@@ -1,8 +1,12 @@
 <?php
 /**
- * The template for displaying archive pages.
+ * The front page template file.
  *
- * @link https://codex.wordpress.org/Template_Hierarchy
+ * The front-page.php template file is used to render your site’s front page,
+ * whether the front page displays the blog posts index (mentioned above) or a static page.
+ * The front page template takes precedence over the blog posts index (home.php) template.
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#front-page-display
  *
  * @package Screenr
  */
@@ -10,19 +14,17 @@
 get_header(); ?>
 
 	<div id="content" class="site-content">
-
-		<div class="page-header">
-			<div class="container">
-				<?php the_archive_title( '<h1 class="page-title">', '</h1>' ); ?>
-				<?php the_archive_description( '<div class="taxonomy-description">', '</div>' ); ?>
-			</div>
-		</div>
-
 		<div id="content-inside" class="container right-sidebar">
 			<div id="primary" class="content-area">
 				<main id="main" class="site-main" role="main">
 
 				<?php if ( have_posts() ) : ?>
+
+					<?php if ( is_home() && ! is_front_page() ) : ?>
+						<header>
+							<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
+						</header>
+					<?php endif; ?>
 
 					<?php /* Start the Loop */ ?>
 					<?php while ( have_posts() ) : the_post(); ?>
@@ -34,7 +36,7 @@ get_header(); ?>
 							 * If you want to override this in a child theme, then include a file
 							 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 							 */
-							get_template_part( 'template-parts/content', 'list' );
+							get_template_part( 'template-parts/content', get_post_format() );
 						?>
 
 					<?php endwhile; ?>

@@ -1,0 +1,78 @@
+/*
+Theme Name: Screenr
+Theme URI: https://www.famethemes.com/themes/screenr
+Author: FameThemes
+Author URI: https://www.famethemes.com
+Description: Big - Bold and stylish, Screenr is a multiuse fullscreen theme.
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: screenr
+Tags:dark, light, black, white, one-column, two-columns, left-sidebar, right-sidebar, responsive-layout, custom-colors, featured-images, sticky-post, theme-options, translation-ready
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+Screenr is based on Underscores http://underscores.me/, (C) 2016 Automattic, Inc.
+Underscores is distributed under the terms of the GNU GPL v2 or later.
+
+Normalizing styles have been helped along thanks to the fine work of
+Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
+*/
+
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+1.0  Reset
+2.0  Document
+3.0  Layout
+4.0  Structure
+5.0  Contents
+6.0  Elements
+7.0  Widgets
+8.0  Sections
+9.0  External Plugins
+
+--------------------------------------------------------------*/
+@import "variables";
+
+/*--------------------------------------------------------------
+2.0 Document Setup
+--------------------------------------------------------------*/
+@import "document";
+
+/*--------------------------------------------------------------
+3.0 Layout
+--------------------------------------------------------------*/
+@import "layout";
+
+/*--------------------------------------------------------------
+4.0 Structure
+--------------------------------------------------------------*/
+@import "structure";
+
+/*--------------------------------------------------------------
+5.0 Contents
+--------------------------------------------------------------*/
+@import "contents";
+
+/*--------------------------------------------------------------
+6.0 Elements
+--------------------------------------------------------------*/
+@import "elements";
+
+/*--------------------------------------------------------------
+7.0 Widgets
+--------------------------------------------------------------*/
+@import "widgets";
+
+/*--------------------------------------------------------------
+8.0 Sections
+--------------------------------------------------------------*/
+@import "sections";
+
+/*--------------------------------------------------------------
+9.0 External Plugins
+--------------------------------------------------------------*/
+@import "external_plugins";
