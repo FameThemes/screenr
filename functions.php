@@ -114,6 +114,7 @@ add_action( 'widgets_init', 'screenr_widgets_init' );
  * Enqueue scripts and styles.
  */
 function screenr_scripts() {
+	wp_enqueue_style( 'screenr-fonts', screenr_fonts_url(), array(), null );
 	wp_enqueue_style( 'bootstrap', get_template_directory_uri() .'/assets/css/bootstrap.min.css', false, '4.0.0' );
 	wp_enqueue_style( 'screenr-style', get_stylesheet_uri() );
 
@@ -125,6 +126,58 @@ function screenr_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'screenr_scripts' );
+
+if ( ! function_exists( 'screenr_fonts_url' ) ) :
+	/**
+	 * Register default Google fonts
+	 */
+	function screenr_fonts_url() {
+	    $fonts_url = '';
+
+	 	/* Translators: If there are characters in your language that are not
+	    * supported by Open Sans, translate this to 'off'. Do not translate
+	    * into your own language.
+	    */
+	    $open_sans = _x( 'on', 'Open Sans font: on or off', 'screenr' );
+
+	    /* Translators: If there are characters in your language that are not
+	    * supported by Merriweather, translate this to 'off'. Do not translate
+	    * into your own language.
+	    */
+	    $raleway = _x( 'on', 'Merriweather font: on or off', 'screenr' );
+
+		/* Translators: If there are characters in your language that are not
+	    * supported by Source Sans Pro, translate this to 'off'. Do not translate
+	    * into your own language.
+	    */
+	    $source_sans_pro = _x( 'on', 'Source Sans Pro font: on or off', 'screenr' );
+
+	    if ( 'off' !== $raleway || 'off' !== $open_sans ) {
+	        $font_families = array();
+
+	        if ( 'off' !== $raleway ) {
+	            $font_families[] = 'Merriweather:400,400italic,700,700italic,900,900italic,300italic,300';
+	        }
+
+	        if ( 'off' !== $open_sans ) {
+	            $font_families[] = 'Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic';
+	        }
+
+			if ( 'off' !== $source_sans_pro ) {
+	            $font_families[] = 'Source+Sans+Pro:400,300italic,300,400italic,600,600italic,700,700italic,900,900italic';
+	        }
+
+	        $query_args = array(
+	            'family' => urlencode( implode( '|', $font_families ) ),
+	            'subset' => urlencode( 'latin,latin-ext' ),
+	        );
+
+	        $fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
+	    }
+
+	    return esc_url_raw( $fonts_url );
+	}
+endif;
 
 /**
  * Custom template tags for this theme.
