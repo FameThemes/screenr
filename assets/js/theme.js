@@ -120,207 +120,80 @@
 
 
 
-jQuery(document).ready(function( $ ) {
-	// https://github.com/woothemes/FlexSlider/wiki/FlexSlider-Properties
-	/*
-
-	 $('#slider').flexslider("play") //Play slideshow
-	 $('#slider').flexslider("pause") //Pause slideshow
-	 $('#slider').flexslider("stop") //Stop slideshow
-	 $('#slider').flexslider("next") //Go to next slide
-	 $('#slider').flexslider("prev") //Go to previous slide
-	 $('#slider').flexslider(3) //Go fourth slide
-	 */
-
-	function my_slider( slider ){
-		var current_slider =  slider.slides[ slider.currentSlide ];
-		if ( $( 'video', current_slider).length > 0 ){
-			var v =  $( 'video', current_slider).eq( 0 );
-			//if ( slider.vars.slideshow ) {
-				slider.pause();
-				v[0].play();
-			//}
-
-			v.on('timeupdate', function() {
-				var currentPos = v[0].currentTime; //Get currenttime
-				var maxduration = v[0].duration; //Get video duration
-
-				if ( currentPos >= maxduration  ) {
-					//v[0].pause();
-					//slider.next();
-					if ( slider.vars.slideshow ) {
-						slider.flexAnimate(slider.getTarget("next"));
-						if (!slider.playing) {
-							slider.play();
-						}
-					} else {
-
-					}
-				}
-			 	var percentage = 100 * currentPos / maxduration; //in %
-				$('.timebar').text(percentage + '%' + '--'+currentPos );
-			});
-
-		} else {
-			//console.log( '-no video-' );
-			if ( slider.vars.slideshow ) {
-				if (!slider.playing) {
-					slider.play();
-				}
-			}
-		}
-	}
-
-
-	$('.flexslider').flexslider({
-		slideshow: true,
-		slideshowSpeed: 2000,
-		animationSpeed: 500,
-		animation: "fade",
-		video: false,
-		touch: true,
-		pauseOnAction: true,
-		useCSS: true,
-		//---
-
-		// Callback API
-
-		start: function( slider ){ //Callback: function(slider) - Fires when the slider loads the first slide
-			my_slider( slider );
-		},
-		before: function( a ){  //Callback: function(slider) - Fires asynchronously with each slider animation
-
-		},
-		after: function( slider ){ //Callback: function(slider) - Fires after each slider animation completes
-			my_slider( slider );
-		},
-
-		end: function(){},              //Callback: function(slider) - Fires when the slider reaches the last slide (asynchronous)
-		added: function(){},            //{NEW} Callback: function(slider) - Fires after a slide is added
-		removed: function(){}           //{NEW} Callback: function(slider) - Fires after a slide is removed
-	});
-
-
-
-
-
-	/*
-	$( '.next-slider').on( 'click',  function() {
-		$('.flexslider').flexslider("prev");
-		return false;
-	});
-
-	var v = $("#s-test-video");
-
-	v2 = document.getElementById("s-test-video");
-
-	console.log( v );
-	console.log( v2 );
-
-	v.on('loadedmetadata', function() {
-		$('.duration').text(v[0].duration);
-	});
-
-	$( '.play-video').click( function(){
-		//var v = document.getElementById("s-test-video");
-		v[0].play();
-		return false;
-	} );
-
-	$( '.pause-video').click( function(){
-		//var v = document.getElementById("s-test-video");
-		v[0].pause();
-		return false;
-	} );
-
-	v.on('timeupdate', function() {
-		var currentPos = v[0].currentTime; //Get currenttime
-		var maxduration = v[0].duration; //Get video duration
-
-		if ( currentPos >= maxduration ) {
-			$('.flexslider').flexslider("next");
-		}
-
-
-		var percentage = 100 * currentPos / maxduration; //in %
-		$('.timebar').text(percentage + '%' );
-		if ( percentage >= 100 ) {
-			console.log( 'has-stop' );
-			$('.flexslider').flexslider("next");
-		}
-
-	});
-	*/
-
-
-});
 
 
 jQuery( document ).ready( function( $ ){
 
+	//-------------------
 
-	function my_ow_slider( owl ){
-		var current_slider =  owl.$owlItems[ owl.currentItem ];
-		console.log( 'index:'+owl.currentItem );
-		if ( $( 'video', current_slider).length > 0 ){
-			var v =  $( 'video', current_slider).eq( 0 );
-			//if ( slider.vars.slideshow ) {
-			owl.stop();
-			v[0].play();
-			//}
+	var video_support = function(){
+		return !!document.createElement('video').canPlayType;
+	};
+	var is_video_support = video_support();
 
-			v.on('timeupdate', function() {
-				var currentPos = v[0].currentTime; //Get currenttime
-				var maxduration = v[0].duration; //Get video duration
+	$( '.swiper-full-screen').each( function(){
+		var s = $( this );
+		s.width( $( window).width());
+		s.height( $( window).height());
+	} );
 
-				if ( currentPos >= maxduration  ) {
-					v[0].pause();
-					//slider.next();
+	$( window).resize( function(){
+		$( '.swiper-full-screen').each( function(){
+			var s = $( this );
+			s.width( $( window).width());
+			s.height( $( window).height());
+		} );
+	} );
 
-					owl.next()
-					owl.play();
+	var swiper = new Swiper('.swiper-container', {
+		// Disable preloading of all images
+		preloadImages: false,
+		loop: true,
+		// Enable lazy loading
+		lazyLoading: true,
+		autoplay: 1000,
+		pagination: '.swiper-pagination',
+		paginationClickable: true,
+		onInit: function( swiper ){
+			var index = swiper.activeIndex;
+			swiper.slides.each( function( index, slide ){
+				console.log( slide );
+				if ( $( 'video', slide).length > 0 ) {
+					var v = $('video', slide ).eq(0);
+					v.on('timeupdate', function () {
+						var currentPos = v[0].currentTime; //Get currenttime
+						var maxduration = v[0].duration; //Get video duration
 
+						if (currentPos >= maxduration) {
+							v[0].pause();
+							swiper.startAutoplay();
+						}
+						var percentage = 100 * currentPos / maxduration; //in %
+						$('.swiper-timebar').text('Playing: ' + percentage + '%' + ' at ' + currentPos + '(s)');
+					});
 				}
-				var percentage = 100 * currentPos / maxduration; //in %
-				$('.timebar').text(percentage + '%' + '--'+currentPos );
-			});
+			} );
 
-		} else {
-			$('.timebar').text ('----');
-			console.log( '-no video-' );
+			var slide =  swiper.slides[ swiper.activeIndex ];
+			if ( $( 'video',slide ).length > 0 ) {
+				var v = $('video', slide ).eq(0);
+				//if ( slider.vars.slideshow ) {
+				swiper.stopAutoplay();
+				v[0].play();
+			}
 
-		}
-	}
-
-	$(".owl-example").owlCarousel( {
-		items: 1,
-		//Basic Speeds
-		slideSpeed : 200,
-		paginationSpeed : 800,
-		rewindSpeed : 1000,
-
-		//Autoplay
-		autoPlay : 5000,
-		stopOnHover : true,
-
-		//Lazy load
-		lazyLoad : true,
-		lazyFollow : true,
-		lazyEffect : "fade",
-
-		afterInit: function( a , b, c){
-			var owl = this;
-			console.log( '-afterInit-' );
-			my_ow_slider( owl )
 		},
-
-		afterMove: function( a , b, c){
-			var owl = this;
-			console.log( '-afterMove-' );
-			my_ow_slider( owl )
+		onSlideChangeStart: function( swiper ){
+			var index = swiper.activeIndex;
+			var slide =  swiper.slides[ swiper.activeIndex ];
+			if ( $( 'video',slide ).length > 0 ) {
+				var v = $('video', slide ).eq(0);
+				//if ( slider.vars.slideshow ) {
+				swiper.stopAutoplay();
+				v[0].play();
+			}
 		}
 	});
-
 
 
 

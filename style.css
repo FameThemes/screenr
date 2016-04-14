@@ -1864,6 +1864,48 @@ input[type="radio"], input[type="checkbox"] {
 /*--------------------------------------------------------------
 8.0 Sections
 --------------------------------------------------------------*/
+/* Full Screen Slider
+------------------------------*/
+.swiper-full-screen {
+	width: 100%;
+	display: block;
+}
+
+.swiper-full-screen .swiper-container {
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+.swiper-full-screen .swiper-slide {
+	display: block;
+	overflow: hidden;
+	position: relative;
+}
+
+.swiper-full-screen .swiper-slide img, .swiper-full-screen .swiper-slide video {
+	position: absolute;
+	min-width: 100%;
+	min-height: 100%;
+	max-width: initial;
+	max-height: initial;
+	height: initial;
+	width: initial;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.swiper-full-screen .swiper-slide .swiper-slide-intro {
+	max-width: 600px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
 /* Section Stuffs
 ------------------------------*/
 .section-padding {

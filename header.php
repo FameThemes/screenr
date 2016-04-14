@@ -49,51 +49,46 @@
 		</div>
 	</header><!-- #masthead -->
 
-	<div style="width: 500px; height: 300px; display: block; margin: 30px auto;" >
-		<div class="flexslider">
-			<ul class="slides">
 
-				<li>
-					<video id="s-test-video" class="fillWidth" height="300px">
+
+	<div class="swiper-full-screen" >
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<video id="owl-test-video" class="fillWidth" height="300px">
 						<source src="http://localhost/fame/screenr/wp-content/uploads/2016/04/Sunset-Lapse.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
 					</video>
-				</li>
-
-				<li>
+					<div class="swiper-slide-intro">
+						<div class="swiper-slide-heading">This is header</div>
+						<div class="swiper-slide-dessc">Place a short tagline here and large welcome message like above.
+							Unlimited background slides, parallax effect and video background too.
+						</div>
+						<a href="/">link</a>
+					</div>
+				</div>
+				<div class="swiper-slide">
 					<img src="http://flexslider.woothemes.com/images/kitchen_adventurer_caramel.jpg" />
-				</li>
-
-
-				<li>
+					<div class="swiper-slide-intro">
+						<div class="swiper-slide-heading">This is header</div>
+						<div class="swiper-slide-dessc">Place a short tagline here and large welcome message like above.
+							Unlimited background slides, parallax effect and video background too.
+						</div>
+						<input type="submit" value="Search" class="search-submit">
+					</div>
+				</div>
+				<div class="swiper-slide">
 					<img src="http://flexslider.woothemes.com/images/kitchen_adventurer_donut.jpg" />
-				</li>
-				<li>
-					<img src="http://flexslider.woothemes.com/images/kitchen_adventurer_cheesecake_brownie.jpg" />
-				</li>
-			</ul>
-		</div>
-	</div>
+					<div class="swiper-slide-intro">
+						<div class="swiper-slide-heading">This is header</div>
+						<div class="swiper-slide-dessc">Place a short tagline here and large welcome message like above.
+							Unlimited background slides, parallax effect and video background too.
+						</div>
+						<input type="submit" value="Search" class="search-submit">
+					</div>
+				</div>
 
-	<h2>owl slider</h2><span class="timebar">----</span>
-
-	<div style="width: 500px; height: 300px; display: block; margin: 30px auto;" >
-		<div class="owl-example">
-			<div>
-				<video id="s-test-video" class="fillWidth" height="300px">
-					<source src="http://localhost/fame/screenr/wp-content/uploads/2016/04/Sunset-Lapse.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
-				</video>
 			</div>
-
-			<div>
-				<img src="http://flexslider.woothemes.com/images/kitchen_adventurer_caramel.jpg" />
-			</div>
-
-
-			<div>
-				<img src="http://flexslider.woothemes.com/images/kitchen_adventurer_donut.jpg" />
-			</div>
-			<div>
-				<img src="http://flexslider.woothemes.com/images/kitchen_adventurer_cheesecake_brownie.jpg" />
-			</div>
+			<!-- Add Pagination -->
+			<div class="swiper-pagination"></div>
 		</div>
 	</div>
