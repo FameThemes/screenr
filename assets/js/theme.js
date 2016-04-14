@@ -118,11 +118,100 @@
 
 
 
-
-
-
-
 jQuery( document ).ready( function( $ ){
+
+	/**
+	* Initialise Menu Toggle
+	*/
+	jQuery('#nav-toggle').on('click', function(event){
+		event.preventDefault();
+		jQuery('#nav-toggle').toggleClass('nav-is-visible');
+		jQuery('.main-navigation .nav-menu').toggleClass("nav-menu-mobile");
+		jQuery('.header-widget').toggleClass("header-widget-mobile");
+	});
+
+	jQuery('.nav-menu li.menu-item-has-children, .nav-menu li.page_item_has_children').each( function() {
+		jQuery(this).prepend('<div class="nav-toggle-subarrow"><i class="fa fa-angle-down"></i></div>');
+	});
+
+	jQuery('.nav-toggle-subarrow, .nav-toggle-subarrow .nav-toggle-subarrow').click(
+		function () {
+			jQuery(this).parent().toggleClass("nav-toggle-dropdown");
+		}
+	);
+
+
+	//--------Set header position top -----------
+	var is_fixed_header = $('.site-header.sticky-header').length > 0 ? true: false;
+	var is_transparent = false;
+	if ( $('.site-header.sticky-header').hasClass( 'transparent' ) ){
+		is_fixed_header = true;
+		is_transparent  = true;
+	}
+
+	if ( is_fixed_header ) {
+
+		$('.site-header.sticky-header').eq(0).wrap( '<div class="site-header-wrapper">' );
+		var $wrap =  $( '.site-header-wrapper');
+		$wrap.addClass( 'no-scroll' );
+
+
+		$(document).scroll(function () {
+			var header_fixed = $('.site-header').eq(0);
+			var header_parent = header_fixed.parent();
+			var header_h = header_fixed.height() || 0;
+			var p_to_top = header_parent.position().top;
+			var topbar = $('#wpadminbar').height() || 0;
+			if (topbar > 0) {
+				var topbar_pos = $('#wpadminbar').css('position');
+				if ('fixed' !== topbar_pos) {
+					p_to_top += topbar ;
+					topbar = 0;
+				}
+			}
+
+			var scrollTop =  $(document).scrollTop();
+
+			if ( scrollTop > 0 ) {
+				if (!is_transparent) {
+					$wrap.height(header_h);
+				}
+				$wrap.addClass('is-fixed').removeClass('no-scroll');
+				header_fixed.addClass('header-fixed');
+
+				if ( scrollTop <  p_to_top + topbar ) {
+					header_fixed.css('top', scrollTop + 'px');
+				} else {
+					header_fixed.css('top', topbar + 'px');
+				}
+
+				header_fixed.css('top', topbar + 'px');
+				header_fixed.stop().animate({}, 400);
+			} else {
+				header_fixed.removeClass('header-fixed');
+				header_fixed.css('top', 'auto');
+				header_fixed.stop().animate({}, 400);
+				if (!is_transparent) {
+					$wrap.height('');
+				}
+				$wrap.removeClass('is-fixed').addClass('no-scroll');
+			}
+		});
+
+
+		if ( $( '#wpadminbar').length > 0 ) {
+			//$( '.site-header').css( 'top', $( '#wpadminbar').height() +'px' );
+		}
+
+		$( window ).resize( function(){
+			if ( $( '#wpadminbar').length > 0 ) {
+			//	$( '.site-header').css( 'top', $( '#wpadminbar').height() +'px' );
+			}
+		} );
+
+
+	}
+
 
 	//-------------------
 
@@ -131,19 +220,79 @@ jQuery( document ).ready( function( $ ){
 	};
 	var is_video_support = video_support();
 
-	$( '.swiper-full-screen').each( function(){
-		var s = $( this );
-		s.width( $( window).width());
-		s.height( $( window).height());
+	function set_swiper_full_screen_height(){
+		var w =  $( window).width();
+		var h = $( window).height();
+
+		var admin_bar_h = 0;
+		if ( $( '#wpadminbar').length > 0 ) {
+			admin_bar_h = $( '#wpadminbar').height();
+		}
+		var header_h = 0;
+		if ( $( '.site-header').length > 0 && ! $( '.site-header').hasClass( 'transparent' )  ){
+			header_h = $( '.site-header').eq( 0).height();
+		}
+
+		h = h - admin_bar_h - header_h;
+
+		var header_pos = '';
+		if ( $( '.site-header').length > 0 ){
+			header_pos = $( '.site-header').eq(0).css('position');
+		}
+
+		$( '.swiper-slider').each( function(){
+			var s =  $(this );
+			if ( s.hasClass( 'full-screen' ) ) {
+				if ( header_pos === 'fixed' ) {
+					s.css({
+						height: h+'px',
+						marginTop: header_h +'px',
+					});
+				} else {
+					s.css({
+						height: h+'px',
+					});
+				}
+			}
+		} );
+	}
+
+
+	$( window ).scroll( function(){
+		var scrolled = $(window).scrollTop();
+		var header_pos = false;
+		if ( $( '.site-header').length > 0 ){
+			header_pos = $( '.site-header').eq( 0).hasClass('sticky-header');
+		}
+
+		var admin_bar_h = 0;
+		if ( $( '#wpadminbar').length > 0 ) {
+			admin_bar_h = $( '#wpadminbar').height();
+		}
+		var header_h = 0;
+		if ( $( '.site-header').length > 0 && ! $( '.site-header').hasClass( 'transparent' )  ){
+			header_h = $( '.site-header').eq( 0).height();
+		}
+
+		var st = scrolled * 0.7;
+		if ( header_pos && st > admin_bar_h + header_h ) {
+			console.log( header_h + '--' + admin_bar_h );
+			var _t =  st - (  admin_bar_h + header_h );
+			$('.swiper-slider.fixed .swiper-container').css('top', +(_t) + 'px');
+		} else {
+			console.log( header_h + '-====-' + admin_bar_h );
+			$('.swiper-slider.fixed .swiper-container').css('top', '0px');
+		}
+
 	} );
 
-	$( window).resize( function(){
-		$( '.swiper-full-screen').each( function(){
-			var s = $( this );
-			s.width( $( window).width());
-			s.height( $( window).height());
-		} );
+
+	set_swiper_full_screen_height();
+
+	$( window ).resize( function(){
+		set_swiper_full_screen_height();
 	} );
+
 
 	var swiper = new Swiper('.swiper-container', {
 		// Disable preloading of all images
@@ -151,26 +300,38 @@ jQuery( document ).ready( function( $ ){
 		loop: true,
 		// Enable lazy loading
 		lazyLoading: true,
-		autoplay: 1000,
+		//preloadImages: false,
+		autoplay: 5000,
+		speed:  700,
+		effect: 'slide', // "slide", "fade", "cube", "coverflow" or "flip"
+		//direction: 'vertical',
 		pagination: '.swiper-pagination',
 		paginationClickable: true,
+
+		nextButton: '.swiper-button-next',
+		prevButton: '.swiper-button-prev',
+
 		onInit: function( swiper ){
-			var index = swiper.activeIndex;
+			if ( ! is_video_support ) {
+				return;
+			}
+
 			swiper.slides.each( function( index, slide ){
-				console.log( slide );
 				if ( $( 'video', slide).length > 0 ) {
 					var v = $('video', slide ).eq(0);
-					v.on('timeupdate', function () {
-						var currentPos = v[0].currentTime; //Get currenttime
-						var maxduration = v[0].duration; //Get video duration
-
-						if (currentPos >= maxduration) {
-							v[0].pause();
-							swiper.startAutoplay();
-						}
-						var percentage = 100 * currentPos / maxduration; //in %
-						$('.swiper-timebar').text('Playing: ' + percentage + '%' + ' at ' + currentPos + '(s)');
-					});
+					if ( v[0].readyState >= 2 ) {
+						v.on('timeupdate', function () {
+							var currentPos = v[0].currentTime; //Get currenttime
+							var maxduration = v[0].duration; //Get video duration
+							if (currentPos >= maxduration) {
+								v[0].pause();
+								swiper.slideNext();
+								swiper.startAutoplay();
+							}
+							//var percentage = 100 * currentPos / maxduration; //in %
+							//$('.swiper-timebar').text('Playing: ' + percentage + '%' + ' at ' + currentPos + '(s)');
+						});
+					}
 				}
 			} );
 
@@ -178,21 +339,52 @@ jQuery( document ).ready( function( $ ){
 			if ( $( 'video',slide ).length > 0 ) {
 				var v = $('video', slide ).eq(0);
 				//if ( slider.vars.slideshow ) {
-				swiper.stopAutoplay();
-				v[0].play();
+				if ( v[0].readyState >= 2 ) {
+					swiper.stopAutoplay();
+					v[0].currentTime = 0;
+					v[0].play();
+				}
+
 			}
 
 		},
-		onSlideChangeStart: function( swiper ){
-			var index = swiper.activeIndex;
-			var slide =  swiper.slides[ swiper.activeIndex ];
-			if ( $( 'video',slide ).length > 0 ) {
-				var v = $('video', slide ).eq(0);
-				//if ( slider.vars.slideshow ) {
-				swiper.stopAutoplay();
-				v[0].play();
+		onSlideChangeStart: function( swiper ) {
+			if ( ! is_video_support ) {
+				return;
 			}
+			var slide = swiper.slides[swiper.activeIndex];
+			// Need to pause all videos in the slider
+			swiper.slides.each(function (index, slide) {
+
+				if ($('video', slide).length > 0) {
+					$('video', slide).each(function () {
+						var v = $(this);
+						if ( v[0].readyState >= 2 ) {
+							v[0].pause();
+						}
+					});
+				}
+			});
+
+			if ($('video', slide).length > 0) {
+				var v = $('video', slide).eq(0);
+				if ( v[0].readyState >= 2 ) {
+					swiper.stopAutoplay();
+					v[0].currentTime = 0;
+					v[0].play();
+				}
+			}
+		},
+		onSlideChangeEnd: function( swiper ){
+			var slide = swiper.slides[swiper.activeIndex];
+			// Need to pause all videos in the slider
+			swiper.slides.each(function (index, slide) {
+				$( slide).removeClass( 'activated' );
+			});
+
+			$( slide).addClass( 'activated' );
 		}
+
 	});
 
 

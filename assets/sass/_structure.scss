@@ -10,6 +10,12 @@
 	z-index: 99;
 	-webkit-transition: all 1s ease-out; /* Safari */
 	transition: all .5s ease-out;
+	&.transparent {
+		background: transparent;
+	}
+	&.sticky-header.transparent  {
+		position: fixed;
+	}
 }
 .site-header-wrapper {
 	display: block;
@@ -27,19 +33,18 @@
 	}
 }
 
-.no-sticky-header.page-template-template-frontpage.header-transparent .site-header{
-	background: transparent;
-	position: absolute;
-}
 
 .site-header.header-fixed {
-	box-shadow: 0 5px 10px 0 rgba(50, 50, 50, 0.06);
+		box-shadow: 0 5px 10px 0 rgba(50, 50, 50, 0.06);
+		&.transparent {
+			background: rgba( 255, 255, 255, .4 );
+		}
 }
 
-.sticky-header #page > .site-header, .sticky-header .header-fixed {
+.site-header-wrapper.is-fixed .header-fixed {
 	position: fixed;
 }
-.sticky-header .header-fixed {
+.is-fixed .header-fixed {
 	top: 0px;
 	left: 0px;
 }
@@ -117,14 +122,24 @@
     float: right;
 }
 
+.wp-custom-logo {
+	.site-branding{
+		.site-title, .site-description {
+			display: none;
+		}
+	}
+}
+
 /* Site Navigation */
-.onepress-menu, .onepress-menu * {
+
+
+.nav-menu, .nav-menu * {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 // Essential Styles
-.onepress-menu {
+.nav-menu {
     float: right;
     @extend .clearfix;
     ul {
@@ -153,7 +168,7 @@
     }
 }
 // Skin
-.onepress-menu {
+.nav-menu {
     ul {
         min-width: 12em; // allow long menu items to determine submenu width
         *width: 12em;    //no auto sub width for IE7, see white-space comment below
@@ -242,11 +257,11 @@
     .main-navigation {
         position: static;
     }
-    .main-navigation .onepress-menu {
+    .main-navigation .nav-menu {
         width: 100% !important;
         display: none;
     }
-    .onepress-menu.onepress-menu-mobile {
+    .nav-menu.nav-menu-mobile {
         display: block !important;
         position: absolute;
         top: 75px;
@@ -302,7 +317,7 @@
         //         background: #FFFFFF;
         //     }
         // }
-        li.onepress-current-item {
+        li.nav-current-item {
             > a {
                 color: $primary;
             }
@@ -422,7 +437,11 @@
 .site-content {
 	border-top: 1px solid $border;
 	margin-top: -1px;
-    //padding-top: 74px;
+  //padding-top: 74px;
+	//for stop slider effect
+	position: relative;
+	z-index: 10;
+	background: #fff;
 }
 .blog .site-content,
 .single-post .site-content {
