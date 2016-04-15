@@ -208,7 +208,7 @@ function onepress_sanitize_repeatable_data_field( $input , $setting ){
 
     }
 
-    return json_encode( $data );
+    return $data;
 }
 
 

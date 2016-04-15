@@ -907,15 +907,27 @@
             frame.on( 'select', function () {
                 // Grab our attachment selection and construct a JSON representation of the model.
                 var media_attachment = frame.state().get('selection').first().toJSON();
+                console.log( media_attachment );
+
                 $( '.image_id', control.media_current  ).val( media_attachment.id );
-                var preview, img_url;
-                img_url = media_attachment.url;
                 $( '.current', control.media_current  ).removeClass( 'hide').addClass( 'show' );
                 $( '.image_url', control.media_current  ).val( img_url );
-                if ( media_attachment.type == 'image' ) {
+                var preview, img_url;
+                img_url = media_attachment.url;
+
+                if ( media_attachment.type == 'video' ){
+
+                    preview = '<video width="400" controls>'+
+                        '<source src="'+img_url+'" type="'+media_attachment.mime+'">'+
+                        'Your browser does not support HTML5 video.'+
+                    '</video>';
+                    $('.thumbnail-image', control.media_current  ).html(preview);
+
+                } else if ( media_attachment.type == 'image' ) {
                     preview = '<img src="' + img_url + '" alt="">';
                     $('.thumbnail-image', control.media_current  ).html(preview);
                 }
+
                 $('.remove-button', control.media_current  ).show();
                 $( '.image_id', control.media_current  ).trigger( 'change' );
                 control.media_btn.text( control.media_btn.attr( 'data-change-txt' ) );

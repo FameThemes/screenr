@@ -263,7 +263,7 @@ function screenr_customize_register( $wp_customize ) {
     $wp_customize->add_section( 'screenr_slider_items' ,
         array(
             'priority'    => 6,
-            'title'       => esc_html__( 'Slider Background Media', 'screenr' ),
+            'title'       => esc_html__( 'Slider Content', 'screenr' ),
             'description' => '',
             'panel'       => 'screenr_slider_panel',
         )
@@ -290,17 +290,29 @@ function screenr_customize_register( $wp_customize ) {
             $wp_customize,
             'screenr_slider_items',
             array(
-                'label'     => esc_html__('Item', 'screenr'),
+                'label'     => esc_html__('Items', 'screenr'),
                 'description'   => '',
                 'priority'     => 40,
                 'section'       => 'screenr_slider_items',
-                'title_format'  => esc_html__( 'Background', 'screenr'), // [live_title]
-                'max_item'      => 2, // Maximum item can add
+                'live_title_id' => 'title', // apply for unput text and textarea only
+                'title_format'  => esc_html__('[live_title]', 'onepress'), // [live_title]
+                'max_item'      => 99, // Maximum item can add
 
                 'fields'    => array(
-                    'image' => array(
-                        'title' => esc_html__('Background Image', 'screenr'),
+                    'title' => array(
+                        'title' => esc_html__('Title', 'screenr'),
+                        'type'  =>'text',
+                        'default' => esc_html__('This is slider title', 'screenr'),
+                    ),
+                    'desc' => array(
+                        'title' => esc_html__('Description', 'screenr'),
+                        'type'  =>'editor',
+                        'default' => esc_html__('This is slider description', 'screenr'),
+                    ),
+                    'media' => array(
+                        'title' => esc_html__('Image/Video', 'screenr'),
                         'type'  =>'media',
+                        'desc'  => esc_html__('Can use image or video here', 'screenr'),
                         'default' => array(
                             'url' => get_template_directory_uri().'/assets/images/slider5.jpg',
                             'id' => ''
