@@ -757,8 +757,20 @@ input[type="radio"], input[type="checkbox"] {
 	font-weight: 600;
 }
 
-.site-branding .site-title:hover, .site-branding .site-text-logo:hover {
+.site-branding .site-title:hover, .site-branding .site-title a:hover, .site-branding .site-text-logo:hover, .site-branding .site-text-logo a:hover {
 	text-decoration: none;
+}
+
+.site-branding .site-description {
+	display: none;
+	line-height: 16px;
+	line-height: 1rem;
+	font-size: 12px;
+	font-size: 0.75rem;
+	margin-top: -27px;
+	margin-top: -1.6875rem;
+	margin-bottom: 0px;
+	margin-bottom: 0rem;
 }
 
 .header-social {

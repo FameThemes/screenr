@@ -69,9 +69,17 @@
 		display: initial;
 		vertical-align: middle;
 		font-weight: 600;
-        &:hover {
+        &:hover, a:hover {
             text-decoration: none;
         }
+	}
+	.site-description {
+		display: none;
+		@include rem('line-height', 16px);
+		@include rem('font-size', 12px);
+		@include rem('margin-top', -27px);
+		@include rem('margin-bottom', 0px);
+
 	}
 }
 
