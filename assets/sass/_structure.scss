@@ -251,9 +251,26 @@
 		display: none;
 	}
 }
-.no-scroll .sticky-header .nav-menu > li > a {
-	color: #ffffff;
+@include for(large-screens) {
+	.no-scroll .sticky-header .nav-menu > li > a {
+		color: #ffffff;
+	}
 }
+
+@include for(screens-large) {
+	.no-scroll .sticky-header {
+		#nav-toggle{
+			span, span:after, span:before{
+				background-color: #ffffff;
+			}
+			&.nav-is-visible span{
+				background-color: transparent;
+			}
+		}
+	}
+}
+
+//
 
 // Responsive Mobile Navigation
 #nav-toggle {

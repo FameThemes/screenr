@@ -952,8 +952,19 @@ input[type="radio"], input[type="checkbox"] {
 	display: none;
 }
 
-.no-scroll .sticky-header .nav-menu > li > a {
-	color: #ffffff;
+@media screen and (min-width: 1140px) {
+	.no-scroll .sticky-header .nav-menu > li > a {
+		color: #ffffff;
+	}
+}
+
+@media screen and (max-width: 1140px) {
+	.no-scroll .sticky-header #nav-toggle span, .no-scroll .sticky-header #nav-toggle span:after, .no-scroll .sticky-header #nav-toggle span:before {
+		background-color: #ffffff;
+	}
+	.no-scroll .sticky-header #nav-toggle.nav-is-visible span {
+		background-color: transparent;
+	}
 }
 
 #nav-toggle {

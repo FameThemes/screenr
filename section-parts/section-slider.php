@@ -2,7 +2,7 @@
     <div class="swiper-container">
 
         <div class="swiper-wrapper">
-
+            <!--
             <div class="swiper-slide">
 
                 <img src="http://localhost/fame/screenr/wp-content/uploads/2016/04/ws1-2.jpg" />
@@ -19,6 +19,7 @@
                 <div class="overlay"></div>
 
             </div>
+            -->
 
 
             <div class="swiper-slide">
@@ -41,6 +42,7 @@
 
             </div>
 
+            <!--
             <div class="swiper-slide">
                 <img src="http://localhost/fame/screenr/wp-content/uploads/2016/04/ws1-8.jpg" />
 
@@ -58,6 +60,7 @@
                 <div class="overlay"></div>
 
             </div>
+            -->
 
 
         </div>
