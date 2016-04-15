@@ -34,7 +34,7 @@ function screenr_customize_register( $wp_customize ) {
     );
 
     /* Header
-		----------------------------------------------------------------------*/
+    ----------------------------------------------------------------------*/
     $wp_customize->add_section( 'screenr_header_settings' ,
         array(
             'priority'    => 5,
@@ -159,6 +159,193 @@ function screenr_customize_register( $wp_customize ) {
     ));
 
 
+    /*------------------------------------------------------------------------*/
+    /*  Section: Slider
+    /*------------------------------------------------------------------------*/
+
+    $wp_customize->add_panel( 'screenr_slider_panel' ,
+        array(
+            'priority'        => 130,
+            'title'           => esc_html__( 'Section: Slider', 'screenr' ),
+            'description'     => '',
+           // 'active_callback' => 'screenr_showon_frontpage'
+        )
+    );
+
+    // Slider settings
+    $wp_customize->add_section( 'screenr_slider_settings' ,
+        array(
+            'priority'    => 3,
+            'title'       => esc_html__( 'Slider Settings', 'screenr' ),
+            'description' => '',
+            'panel'       => 'screenr_slider_panel',
+        )
+    );
+
+    // Show section
+    $wp_customize->add_setting( 'screenr_slider_disable',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_checkbox',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'screenr_slider_disable',
+        array(
+            'type'        => 'checkbox',
+            'label'       => esc_html__('Hide this section?', 'screenr'),
+            'section'     => 'screenr_slider_settings',
+            'description' => esc_html__('Check this box to hide this section.', 'screenr'),
+        )
+    );
+    // Section ID
+    $wp_customize->add_setting( 'screenr_slider_id',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('slider', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'screenr_slider_id',
+        array(
+            'label' 		=> esc_html__('Section ID:', 'screenr'),
+            'section' 		=> 'screenr_slider_settings',
+            'description'   => 'The section id, we will use this for link anchor.'
+        )
+    );
+
+    // Show slider full screen
+    $wp_customize->add_setting( 'screenr_slider_fullscreen',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_checkbox',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'screenr_slider_fullscreen',
+        array(
+            'type'        => 'checkbox',
+            'label'       => esc_html__('Make slider section full screen', 'screenr'),
+            'section'     => 'screenr_slider_settings',
+            'description' => esc_html__('Check this box to make slider section full screen.', 'screenr'),
+        )
+    );
+
+    // Slider content padding top
+    $wp_customize->add_setting( 'screenr_slider_pdtop',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('10', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'screenr_slider_pdtop',
+        array(
+            'label'           => esc_html__('Padding Top:', 'screenr'),
+            'section'         => 'screenr_slider_settings',
+            'description'     => 'The slider content padding top in percent (%).',
+            //'active_callback' => 'screenr_slider_fullscreen_callback'
+        )
+    );
+
+    // Slider content padding bottom
+    $wp_customize->add_setting( 'screenr_slider_pdbotom',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('10', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'screenr_slider_pdbotom',
+        array(
+            'label'           => esc_html__('Padding Bottom:', 'screenr'),
+            'section'         => 'screenr_slider_settings',
+            'description'     => 'The slider content padding bottom in percent (%).',
+           // 'active_callback' => 'screenr_slider_fullscreen_callback'
+        )
+    );
+
+    $wp_customize->add_section( 'screenr_slider_items' ,
+        array(
+            'priority'    => 6,
+            'title'       => esc_html__( 'Slider Background Media', 'screenr' ),
+            'description' => '',
+            'panel'       => 'screenr_slider_panel',
+        )
+    );
+
+
+    $wp_customize->add_setting(
+        'screenr_slider_items',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_repeatable_data_field',
+            'transport' => 'refresh', // refresh or postMessage
+            'default' => json_encode( array(
+                array(
+                    'image'=> array(
+                        'url' => get_template_directory_uri().'/assets/images/slider5.jpg',
+                        'id' => ''
+                    )
+                )
+            ) )
+        ) );
+
+    $wp_customize->add_control(
+        new Screenr_Customize_Repeatable_Control(
+            $wp_customize,
+            'screenr_slider_items',
+            array(
+                'label'     => esc_html__('Item', 'screenr'),
+                'description'   => '',
+                'priority'     => 40,
+                'section'       => 'screenr_slider_items',
+                'title_format'  => esc_html__( 'Background', 'screenr'), // [live_title]
+                'max_item'      => 2, // Maximum item can add
+
+                'fields'    => array(
+                    'image' => array(
+                        'title' => esc_html__('Background Image', 'screenr'),
+                        'type'  =>'media',
+                        'default' => array(
+                            'url' => get_template_directory_uri().'/assets/images/slider5.jpg',
+                            'id' => ''
+                        )
+                    ),
+
+                ),
+
+            )
+        )
+    );
+
+    // Overlay color
+    $wp_customize->add_setting( 'screenr_slider_overlay_color',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_color_alpha',
+            'default'           => 'rgba(0,0,0,.3)',
+            'transport' => 'refresh', // refresh or postMessage
+        )
+    );
+    $wp_customize->add_control( new Screenr_Alpha_Color_Control(
+            $wp_customize,
+            'screenr_slider_overlay_color',
+            array(
+                'label' 		=> esc_html__('Background Overlay Color', 'screenr'),
+                'section' 		=> 'screenr_slider_items',
+                'priority'      => 130,
+            )
+        )
+    );
+
+    $wp_customize->add_section( 'screenr_slider_content_layout1' ,
+        array(
+            'priority'    => 9,
+            'title'       => esc_html__( 'Slider Content Layout', 'screenr' ),
+            'description' => '',
+            'panel'       => 'screenr_slider_panel',
+
+        )
+    );
+
+
+    // END For Slider layout ------------------------
+
+
 
 
 }
@@ -171,3 +358,18 @@ function screenr_customize_preview_js() {
 	wp_enqueue_script( 'screenr_customizer', get_template_directory_uri() . '/assets/js/customizer.js', array( 'customize-preview' ), '20130508', true );
 }
 add_action( 'customize_preview_init', 'screenr_customize_preview_js' );
+
+
+
+/*
+add_action( 'customize_controls_enqueue_scripts', 'screenr_customize_js_settings' );
+function screenr_customize_js_settings(){
+
+    wp_localize_script( 'customize-controls', 'onepress_customizer_settings', array(
+        'number_action' => $number_action,
+        'is_plus_activated' => class_exists( 'OnePress_PLus' ) ? 'y' : 'n',
+        'action_url' => admin_url( 'themes.php?page=ft_onepress&tab=actions_required' )
+    ) );
+}
+*/
+

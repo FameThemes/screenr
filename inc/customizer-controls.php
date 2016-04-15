@@ -376,7 +376,7 @@ class Screenr_Alpha_Color_Control extends WP_Customize_Control {
  * @since  1.0.0
  * @access public
  */
-class Onepress_Customize_Repeatable_Control extends WP_Customize_Control {
+class Screenr_Customize_Repeatable_Control extends WP_Customize_Control {
 
     /**
      * The type of customize control being rendered.
