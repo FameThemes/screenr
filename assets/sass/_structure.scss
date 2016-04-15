@@ -75,7 +75,7 @@
 
 	}
 }
-.no-scroll .site-branding .site-title a{
+.no-scroll .transparent .site-branding .site-title a{
 	color: #fff;
 }
 
@@ -252,13 +252,13 @@
 	}
 }
 @include for(large-screens) {
-	.no-scroll .sticky-header .nav-menu > li > a {
+	.no-scroll .sticky-header.transparent .nav-menu > li > a {
 		color: #ffffff;
 	}
 }
 
 @include for(screens-large) {
-	.no-scroll .sticky-header {
+	.no-scroll .sticky-header.transparent {
 		#nav-toggle{
 			span, span:after, span:before{
 				background-color: #ffffff;

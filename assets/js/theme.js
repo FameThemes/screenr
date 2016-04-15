@@ -131,7 +131,7 @@ jQuery( document ).ready( function( $ ){
 	});
 
 	jQuery('.nav-menu li.menu-item-has-children, .nav-menu li.page_item_has_children').each( function() {
-		jQuery(this).prepend('<div class="nav-toggle-subarrow">&nbsp;</div>');
+        jQuery(this).prepend('<div class="nav-toggle-subarrow"><i class="fa fa-angle-down"></i></div>');
 	});
 
 	jQuery('.nav-toggle-subarrow, .nav-toggle-subarrow .nav-toggle-subarrow').click(

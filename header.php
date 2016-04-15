@@ -24,8 +24,20 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'screenr' ); ?></a>
 
+    <?php
+    $header_classes = array();
+    $header_classes[] = 'site-header';
+    $header_layout = get_option( 'screenr_header_layout' );
+    if ( $header_layout == 'fixed' ){
+        $header_classes[] = 'sticky-header';
+    } else if (  $header_layout == 'transparent' ) {
+        $header_classes[] = 'sticky-header';
+        $header_classes[] = 'transparent';
+    }
 
-	<header id="masthead" class="site-header transparent sticky-header" role="banner">
+
+    ?>
+	<header id="masthead" class="<?php echo esc_attr( join( ' ', $header_classes ) );?>" role="banner">
 		<div class="container">
 			<div class="site-branding">
 				<?php
@@ -59,4 +71,4 @@
 	</header><!-- #masthead -->
 
 
-    <?php get_template_part( 'section-parts/section-slider' ); ?>
+    <?php  get_template_part( 'section-parts/section-slider' ); ?>
