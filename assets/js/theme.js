@@ -141,7 +141,10 @@ jQuery( document ).ready( function( $ ){
 	);
 
 
-	//--------Set header position top -----------
+    /**
+     * Fixed header
+     *
+     */
 	var is_fixed_header = $('.site-header.sticky-header').length > 0 ? true: false;
 	var is_transparent = false;
 	if ( $('.site-header.sticky-header').hasClass( 'transparent' ) ){
@@ -209,11 +212,13 @@ jQuery( document ).ready( function( $ ){
 			}
 		} );
 
-
 	}
 
 
-	//-------------------
+    /**
+     * Custom  Slider
+     *
+     */
 
 	var video_support = function(){
 		return !!document.createElement('video').canPlayType;
@@ -257,9 +262,10 @@ jQuery( document ).ready( function( $ ){
 		} );
 	}
 
-
+    var slider_overlay_opacity = $('.swiper-slider.fixed .swiper-container .overlay').eq( 0 ).css( 'opacity' ) || .35;
 	$( window ).scroll( function(){
 		var scrolled = $(window).scrollTop();
+
 		var header_pos = false;
 		if ( $( '.site-header').length > 0 ){
 			header_pos = $( '.site-header').eq( 0).hasClass('sticky-header');
@@ -275,13 +281,39 @@ jQuery( document ).ready( function( $ ){
 		}
 
 		var st = scrolled * 0.7;
+
+        // calc opactity
+        var  o = slider_overlay_opacity;
+        var wh =  $( window).height();
+        if ( wh > scrolled ) {
+            o = ( scrolled/wh ) * 1.5;
+        }
+        if ( o >= 0.8 ){
+            o = 0.8;
+        }
+
+        if ( o <= slider_overlay_opacity ){
+            o = slider_overlay_opacity;
+        }
+
 		if ( header_pos && st > admin_bar_h + header_h ) {
 			//console.log( header_h + '--' + admin_bar_h );
 			var _t =  st - (  admin_bar_h + header_h );
-			$('.swiper-slider.fixed .swiper-container').css('top', +(_t) + 'px');
+			$('.swiper-slider.fixed .swiper-container').css({
+                'top': +(_t) + 'px',
+            });
+            $('.swiper-slider.fixed .swiper-container .overlay').css( {
+                'opacity': o
+            } );
 		} else {
 			//console.log( header_h + '-====-' + admin_bar_h );
-			$('.swiper-slider.fixed .swiper-container').css('top', '0px');
+			$('.swiper-slider.fixed .swiper-container').css({
+                'top': '0px',
+            });
+
+            $('.swiper-slider.fixed .swiper-container .overlay').css( {
+                'opacity': o
+            } );
 		}
 
 	} );
