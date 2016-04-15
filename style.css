@@ -701,21 +701,15 @@ input[type="radio"], input[type="checkbox"] {
 
 .site-header.sticky-header.transparent {
 	position: fixed;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.site-header.sticky-header.transparent.header-fixed {
+	border-bottom-color: transparent;
 }
 
 .site-header-wrapper {
 	display: block;
-}
-
-.header-transparent .no-scroll .site-header {
-	background: transparent;
-	position: fixed;
-}
-
-@media screen and (min-width: 1140px) {
-	.header-transparent .no-scroll .site-header .onepress-menu > li > a {
-		color: rgba(255, 255, 255, 0.9);
-	}
 }
 
 .site-header.header-fixed {
@@ -723,19 +717,20 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .site-header.header-fixed.transparent {
-	background: rgba(255, 255, 255, 0.4);
+	background: white;
 }
 
 .site-header-wrapper.is-fixed .header-fixed {
 	position: fixed;
 }
 
-.is-fixed .header-fixed {
+.is-fixed .site-header.header-fixed {
 	top: 0px;
 	left: 0px;
+	line-height: 55px;
 }
 
-.header-transparent .hero-slideshow-fullscreen .hero__content {
+.sticky-header.transparent .swiper-slide-intro {
 	padding-top: 50px;
 	padding-top: 3.125rem;
 }
@@ -771,6 +766,10 @@ input[type="radio"], input[type="checkbox"] {
 	margin-top: -1.6875rem;
 	margin-bottom: 0px;
 	margin-bottom: 0rem;
+}
+
+.no-scroll .site-branding .site-title a {
+	color: #fff;
 }
 
 .header-social {
@@ -951,6 +950,10 @@ input[type="radio"], input[type="checkbox"] {
 
 .nav-menu .nav-toggle-subarrow {
 	display: none;
+}
+
+.no-scroll .sticky-header .nav-menu > li > a {
+	color: #ffffff;
 }
 
 #nav-toggle {
@@ -2007,6 +2010,42 @@ input[type="radio"], input[type="checkbox"] {
 	-o-transform: translateY(0px);
 	transform: translateY(0px);
 	visibility: visible;
+}
+
+.swiper-slider .swiper-button-prev,
+.swiper-slider .swiper-button-next {
+	background-color: rgba(0, 0, 0, 0.2);
+	padding: 30px;
+}
+
+.swiper-slider .swiper-button-prev.swiper-button-disabled,
+.swiper-slider .swiper-button-next.swiper-button-disabled {
+	display: none;
+}
+
+.swiper-slider .swiper-button-prev:hover,
+.swiper-slider .swiper-button-next:hover {
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.swiper-slider .swiper-button-prev {
+	left: 0px;
+	-webkit-border-top-right-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+	-moz-border-radius-topright: 4px;
+	-moz-border-radius-bottomright: 4px;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+
+.swiper-slider .swiper-button-next {
+	right: 0px;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
 }
 
 /* Section Stuffs

@@ -276,11 +276,11 @@ jQuery( document ).ready( function( $ ){
 
 		var st = scrolled * 0.7;
 		if ( header_pos && st > admin_bar_h + header_h ) {
-			console.log( header_h + '--' + admin_bar_h );
+			//console.log( header_h + '--' + admin_bar_h );
 			var _t =  st - (  admin_bar_h + header_h );
 			$('.swiper-slider.fixed .swiper-container').css('top', +(_t) + 'px');
 		} else {
-			console.log( header_h + '-====-' + admin_bar_h );
+			//console.log( header_h + '-====-' + admin_bar_h );
 			$('.swiper-slider.fixed .swiper-container').css('top', '0px');
 		}
 
@@ -293,11 +293,12 @@ jQuery( document ).ready( function( $ ){
 		set_swiper_full_screen_height();
 	} );
 
+    var slider_number_item = $( '.swiper-slider .swiper-slide').length;
 
 	var swiper = new Swiper('.swiper-container', {
 		// Disable preloading of all images
 		preloadImages: false,
-		loop: true,
+		loop: slider_number_item >  1 ? true: false,
 		// Enable lazy loading
 		lazyLoading: true,
 		//preloadImages: false,
@@ -316,25 +317,6 @@ jQuery( document ).ready( function( $ ){
 				return;
 			}
 
-			swiper.slides.each( function( index, slide ){
-				if ( $( 'video', slide).length > 0 ) {
-					var v = $('video', slide ).eq(0);
-					if ( v[0].readyState >= 2 ) {
-						v.on('timeupdate', function () {
-							var currentPos = v[0].currentTime; //Get currenttime
-							var maxduration = v[0].duration; //Get video duration
-							if (currentPos >= maxduration) {
-								v[0].pause();
-								swiper.slideNext();
-								swiper.startAutoplay();
-							}
-							//var percentage = 100 * currentPos / maxduration; //in %
-							//$('.swiper-timebar').text('Playing: ' + percentage + '%' + ' at ' + currentPos + '(s)');
-						});
-					}
-				}
-			} );
-
 			var slide =  swiper.slides[ swiper.activeIndex ];
 			if ( $( 'video',slide ).length > 0 ) {
 				var v = $('video', slide ).eq(0);
@@ -344,11 +326,10 @@ jQuery( document ).ready( function( $ ){
 					v[0].currentTime = 0;
 					v[0].play();
 				}
-
 			}
 
 		},
-		onSlideChangeStart: function( swiper ) {
+        onSlideChangeStart: function( swiper ) {
 			if ( ! is_video_support ) {
 				return;
 			}
@@ -368,6 +349,7 @@ jQuery( document ).ready( function( $ ){
 
 			if ($('video', slide).length > 0) {
 				var v = $('video', slide).eq(0);
+                console.log( 'Video Rate: '+ v[0].readyState );
 				if ( v[0].readyState >= 2 ) {
 					swiper.stopAutoplay();
 					v[0].currentTime = 0;
@@ -388,6 +370,39 @@ jQuery( document ).ready( function( $ ){
 	});
 
 
+    if ( $( '.swiper-slider video').length > 0 ) {
+        // swiper-pagination
+        if ( slider_number_item === 1 ) {
+            $( '.swiper-slider .swiper-pagination').hide();
+        }
+
+        $( '.swiper-slider video').on( 'timeupdate', function(){
+            var v = $( this ) .eq(0);
+            if ( v[0].readyState >= 2 ) {
+                v.on('timeupdate', function () {
+
+                    var currentPos = v[0].currentTime; //Get currenttime
+                    var maxduration = v[0].duration; //Get video duration
+                    if (currentPos >= maxduration) {
+                        //console.log( slider_number_item );
+                        if ( slider_number_item === 1 ) {
+                            v[0].pause();
+                            v[0].currentTime = 0;
+                            v[0].play();
+                        } else {
+                            v[0].pause();
+                            swiper.slideNext();
+                            swiper.startAutoplay();
+                        }
+                    }
+                    //var percentage = 100 * currentPos / maxduration; //in %
+                    //$('.swiper-timebar').text('Playing: ' + percentage + '%' + ' at ' + currentPos + '(s)');
+                });
+            }
+
+        } );
+
+    }
 
 
 } );
