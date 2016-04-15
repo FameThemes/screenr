@@ -949,7 +949,7 @@
                     } );
 
                     // when upload item
-                    $('.upload-button, .attachment-media-view', _item ).on('click', function ( e ) {
+                    $('.upload-button', _item ).on('click', function ( e ) {
                         e.preventDefault();
                         control.media_current = _item;
                         control.media_btn = $( this );
@@ -966,31 +966,35 @@
             control.colorPicker =  function( $context ){
                 // Add Color Picker to all inputs that have 'color-field' class
 
-
-                $('.c-color', $context).wpColorPicker( {
-                    change: function(event, ui){
-                        control.updateValue();
-                    },
-                    clear: function(event, ui){
-                        control.updateValue();
-                    },
-                });
-
-                $('.c-coloralpha', $context ).each( function(){
-                    var input = $( this);
-                    var c = input.val();
-                    c = c.replace( '#', '' );
-                    input.removeAttr( 'value');
-                    input.prop( 'value', c );
-                    input.alphaColorPicker( {
-                        change: function(event, ui){
+                if ( $('.c-color', $context).length > 0 ) {
+                    $('.c-color', $context).wpColorPicker({
+                        change: function (event, ui) {
                             control.updateValue();
                         },
-                        clear: function(event, ui){
+                        clear: function (event, ui) {
                             control.updateValue();
                         },
                     });
-                } );
+                }
+
+                if ( $('.c-coloralpha', $context).length > 0 ) {
+
+                    $('.c-coloralpha', $context).each(function () {
+                        var input = $(this);
+                        var c = input.val();
+                        c = c.replace('#', '');
+                        input.removeAttr('value');
+                        input.prop('value', c);
+                        input.alphaColorPicker({
+                            change: function (event, ui) {
+                                control.updateValue();
+                            },
+                            clear: function (event, ui) {
+                                control.updateValue();
+                            },
+                        });
+                    });
+                }
 
 
             };
