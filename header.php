@@ -69,6 +69,3 @@
 
 		</div>
 	</header><!-- #masthead -->
-
-
-    <?php  get_template_part( 'section-parts/section-slider' ); ?>

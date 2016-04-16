@@ -19,8 +19,6 @@
                 <div class="overlay"></div>
             </div>
 
-
-
             <!-- <div class="swiper-slide">
                 <video class="fillWidth" >
                     <source src="http://localhost/fame/screenr/wp-content/uploads/2016/04/Sunset-Lapse.mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
@@ -36,11 +34,8 @@
                         <a class="btn btn-secondary-outline btn-lg" href="http://localhost/fame/onepress/#contact">Get Started</a>
                     </div>
                 </div>
-
                 <div class="overlay"></div>
-
             </div>
-
 
             <div class="swiper-slide">
                 <img src="http://localhost/fame/screenr/wp-content/uploads/2016/04/ws1-8.jpg" />
@@ -59,8 +54,6 @@
                 <div class="overlay"></div>
 
             </div> -->
-
-
 
         </div>
         <!-- Add Pagination -->

@@ -3,7 +3,7 @@
 /* Header
 ------------------------------*/
 .site-header {
-	line-height: 75px;
+	line-height: 85px;
 	position: relative;
 	width: 100%;
 	background: #FFFFFF;
@@ -15,7 +15,6 @@
 	}
 	&.sticky-header.transparent  {
 		position: fixed;
-		border-bottom: 1px solid rgba(255, 255, 255, .5);
 		&.header-fixed {
 			border-bottom-color: transparent;
 		}
@@ -197,12 +196,10 @@
         font-family: $font_heading;
         padding-left: 17px;
         padding-right: 17px;
-        font-size: 13px;
-        font-weight: 600;
-        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 500;
         text-decoration: none;
         zoom: 1;
-        letter-spacing: 1px;
         &:hover {
             color: $primary;
         }
@@ -288,7 +285,7 @@
     .nav-menu.nav-menu-mobile {
         display: block !important;
         position: absolute;
-        top: 75px;
+        top: 85px;
         right: 0;
         width: 100%;
         background: transparent;
@@ -459,10 +456,6 @@
 /* Content
 ------------------------------*/
 .site-content {
-	border-top: 1px solid $border;
-	margin-top: -1px;
-  //padding-top: 74px;
-	//for stop slider effect
 	position: relative;
 	z-index: 10;
 	background: #fff;
