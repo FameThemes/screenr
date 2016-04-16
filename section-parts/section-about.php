@@ -1,4 +1,4 @@
-<section id="" class="section-about section-padding onepage-section section-meta section-padding-lg">
+<section id="" class="section-about section-padding onepage-section section-padding-lg">
     <div class="container">
         <div class="row">
             <div class="col-md-5">

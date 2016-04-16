@@ -3,7 +3,7 @@
         <div class="section-title-area">
             <div class="section-subtitle">Keep in touch</div>
             <h2 class="section-title">Contact Us</h2>
-            <div class="section-desc">Just fill out the form below and you will hear from us shortly.</div>
+            <div class="section-desc">Fill out the form below and you will hear from us shortly.</div>
         </div>
         <div class="section-content">
             <div class="row">

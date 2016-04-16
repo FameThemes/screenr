@@ -116,6 +116,79 @@
 
 } )();
 
+/**
+ * Parallax Section
+ */
+( function() {
+
+    jQuery(window).resize(function(){
+        onepressParallax();
+    });
+
+    function onepressParallax() {
+        var isMobile = {
+            Android: function() {
+                return navigator.userAgent.match(/Android/i);
+            },
+            BlackBerry: function() {
+                return navigator.userAgent.match(/BlackBerry/i);
+            },
+            iOS: function() {
+                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+            },
+            Opera: function() {
+                return navigator.userAgent.match(/Opera Mini/i);
+            },
+            Windows: function() {
+                return navigator.userAgent.match(/IEMobile/i);
+            },
+            any: function() {
+                return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+            }
+        };
+
+        var testMobile = isMobile.any();
+
+        jQuery('.section-has-parallax').each(function() {
+            var $this = jQuery(this);
+            var bg    = $this.find('.parallax_bg');
+
+            jQuery(bg).css('backgroundImage', 'url(' + $this.data('bg') + ')');
+
+            if (testMobile == null) {
+                jQuery(bg).addClass('not-mobile');
+                jQuery(bg).removeClass('is-mobile');
+                jQuery(bg).parallax('50%', 0.4);
+            }
+            else {
+                //jQuery(bg).css('backgroundAttachment', 'inherit');
+                jQuery(bg).removeClass('not-mobile');
+                jQuery(bg).addClass('is-mobile');
+
+            }
+        });
+    }
+})();
+
+/**
+ * Call magnificPopup when use
+ */
+( function() {
+
+    jQuery('.popup-video').magnificPopup({
+        //disableOn: 700,
+        type: 'iframe',
+        mainClass: 'mfp-fade',
+        removalDelay: 160,
+        preloader: false,
+        fixedContentPos: false,
+        zoom: {
+            enabled:true
+        }
+    });
+
+})();
+
 
 
 jQuery( document ).ready( function( $ ){
