@@ -16,7 +16,7 @@ get_header(); ?>
 			if ( ! has_action( 'screenr_frontpage_section_parts' ) ) {
 
 				$sections = apply_filters( 'screenr_frontpage_sections_order', array(
-                    'slider', 'features', 'about'
+                    'slider', 'features', 'about', 'contact'
                 ) );
 
 				foreach ( $sections as $section ){

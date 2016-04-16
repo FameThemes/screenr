@@ -33,9 +33,10 @@ body {
 
 body, button, input, select, textarea {
     font-family: $font_text;
-    @include rem('font-size', 14px);
+    @include rem('font-size', 16px);
     line-height: 1.7;
     color: $text;
+	letter-spacing: -0.2px;
 }
 
 pre,

@@ -2,9 +2,9 @@
     <div class="container">
         <div class="container">
             <div class="section-title-area">
-                <h2 class="section-title">Section Title</h2>
-                <h5 class="section-subtitle">Section Subtitle</h5>
-                <div class="section-desc">Section Description</div>
+                <div class="section-subtitle">About us</div>
+                <h2 class="section-title">We make life better</h2>
+                <div class="section-desc">Hey nice to meet you- we're Screenr. A group of software developers, designers, & thinkers.<br> We love making and breaking things big and small.</div>
             </div>
         </div>
     </div>
