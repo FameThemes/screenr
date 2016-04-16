@@ -11,6 +11,9 @@
 .section-padding-larger {
 	@include rem('padding', 140px 0px);
 }
+.section-padding-empty {
+	@include rem('padding', 0px);
+}
 
 .section-meta {
 	background-color: $meta;
@@ -19,12 +22,12 @@
 .onepage-section {
 	position: relative;
 	overflow: hidden;
-	&:before {
-		position: absolute;
-		top: 0px; left: 0px; right: 0px; bottom: 0px; display: block;
-		content: " ";
-		z-index: 1;
-	}
+	// &:before {
+	// 	position: absolute;
+	// 	top: 0px; left: 0px; right: 0px; bottom: 0px; display: block;
+	// 	content: " ";
+	// 	z-index: 1;
+	// }
 	.container {
 		position: relative;
 		z-index: 5;
@@ -72,7 +75,7 @@
 }
 
 .section-title-area {
-	margin-bottom: 60px;
+	margin-bottom: 40px;
 	text-align: center;
 	.section-title {
 		font-size: 30px;
@@ -268,7 +271,41 @@
 }
 
 
+/* Section: Features
+------------------------------*/
+.section-features {
+	.card {
+		border: none;
+	}
+}
 
+.features-content {
+	.features__item {
+		background: $primary;
+		color: #FFF;
+		font-size: 17px;
+		.features__item-media {
+			text-align: center;
+			&.icon {
+				margin-top: 70px;
+			}
+			.fa-7x {
+				font-size: 7em;
+			}
+		}
+		.features__item-content {
+			p:last-of-type {
+				margin-bottom: 0px;
+			}
+			text-align: center;
+			@include rem('padding', 60px 50px);
+			.features__item-content-button {
+				text-align: center;
+				margin-top: 30px;
+			}
+		}
+	}
+}
 
 /* Section: Parallax
 ------------------------------*/
