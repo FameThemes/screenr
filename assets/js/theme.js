@@ -285,6 +285,8 @@ jQuery( document ).ready( function( $ ){
 			}
 		} );
 
+       // $(document).trigger( 'scroll' );
+
 	}
 
 
@@ -456,7 +458,7 @@ jQuery( document ).ready( function( $ ){
 
 			if ($('video', slide).length > 0) {
 				var v = $('video', slide).eq(0);
-                console.log( 'Video Rate: '+ v[0].readyState );
+                //console.log( 'Video Rate: '+ v[0].readyState );
 				if ( v[0].readyState >= 2 ) {
 					swiper.stopAutoplay();
 					v[0].currentTime = 0;
@@ -493,9 +495,9 @@ jQuery( document ).ready( function( $ ){
                     if (currentPos >= maxduration) {
                         //console.log( slider_number_item );
                         if ( slider_number_item === 1 ) {
-                            v[0].pause();
-                            v[0].currentTime = 0;
-                            v[0].play();
+                            //v[0].pause();
+                            //v[0].currentTime = 0;
+                           // v[0].play();
                         } else {
                             v[0].pause();
                             swiper.slideNext();

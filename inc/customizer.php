@@ -270,19 +270,22 @@ function screenr_customize_register( $wp_customize ) {
     );
 
 
+    /**
+     * @see screenr_sanitize_repeatable_data_field
+     */
     $wp_customize->add_setting(
         'screenr_slider_items',
         array(
             'sanitize_callback' => 'screenr_sanitize_repeatable_data_field',
             'transport' => 'refresh', // refresh or postMessage
-            'default' => json_encode( array(
+            'default' => array(
                 array(
                     'image'=> array(
                         'url' => get_template_directory_uri().'/assets/images/slider5.jpg',
                         'id' => ''
                     )
                 )
-            ) )
+            )
         ) );
 
     $wp_customize->add_control(
@@ -314,8 +317,51 @@ function screenr_customize_register( $wp_customize ) {
                         'type'  =>'media',
                         'desc'  => esc_html__('Can use image or video here', 'screenr'),
                         'default' => array(
-                            'url' => get_template_directory_uri().'/assets/images/slider5.jpg',
+                            'url' => '',
                             'id' => ''
+                        )
+                    ),
+
+
+
+                    'btn_1' => array(
+                        'title' => esc_html__('Button 1 text', 'screenr'),
+                        'type'  =>'text',
+                    ),
+
+                    'btn_1_link' => array(
+                        'title' => esc_html__('Button 1 link', 'screenr'),
+                        'type'  =>'text',
+                    ),
+
+                    'btn_2' => array(
+                        'title' => esc_html__('Button 2 text', 'screenr'),
+                        'type'  =>'text',
+                    ),
+
+                    'btn_2_link' => array(
+                        'title' => esc_html__('Button 2 link', 'screenr'),
+                        'type'  =>'text',
+                    ),
+
+                    'align' => array(
+                        'title' => esc_html__('Content align', 'screenr'),
+                        'type'  =>'select',
+                        'options' => array(
+                            'center' => esc_html__('Center', 'screenr'),
+                            'left' => esc_html__('Left', 'screenr'),
+                            'right' => esc_html__('Right', 'screenr'),
+                            'bottom' => esc_html__('Bottom', 'screenr'),
+                        )
+                    ),
+
+                    'v_align' => array(
+                        'title' => esc_html__('Content vertical align', 'screenr'),
+                        'type'  =>'select',
+                        'options' => array(
+                            'center' => esc_html__('Center', 'screenr'),
+                            'top' => esc_html__('Top', 'screenr'),
+                            'bottom' => esc_html__('Bottom', 'screenr'),
                         )
                     ),
 

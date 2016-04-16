@@ -791,13 +791,18 @@
             var default_data =  control.params.fields;
 
             var values;
-            try {
-                values = JSON.parse( control.params.value ) ;
-            }catch ( e ) {
-                values = {};
+            if (  typeof control.params.value === 'string' ) {
+                try {
+                    values = JSON.parse( control.params.value ) ;
+                }catch ( e ) {
+                    values = {};
+                }
+            } else {
+                values = control.params.value;
             }
+
             //if ( control.id == 'onepress_section_order_styling' ){
-            //console.log( values );
+           // console.log( control.params.value );
             //}
 
             var max_item  = 0; // unlimited

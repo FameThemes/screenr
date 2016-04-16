@@ -2088,6 +2088,50 @@ input[type="radio"], input[type="checkbox"] {
 	margin-top: 1.875rem;
 }
 
+.swiper-slider .swiper-slide.slide-align-left .swiper-slide-intro {
+	text-align: left;
+}
+
+.swiper-slider .swiper-slide.slide-align-right .swiper-slide-intro {
+	text-align: right;
+}
+
+.swiper-slider .swiper-slide.slide-v_align-bottom .swiper-slide-intro {
+	-webkit-transform: translateY(0%);
+	transform: translateY(0%);
+	position: absolute;
+	top: auto;
+	bottom: 0px;
+	width: 100%;
+	max-width: 100%;
+}
+
+.swiper-slider .swiper-slide.slide-v_align-bottom .swiper-slide-intro .swiper-intro-inner {
+	max-width: 1140px;
+	max-width: 71.25rem;
+	margin: 0 auto;
+	padding-bottom: 65px;
+	padding-bottom: 4.0625rem;
+}
+
+.swiper-slider .swiper-slide.slide-v_align-top .swiper-slide-intro {
+	-webkit-transform: translateY(0%);
+	transform: translateY(0%);
+	position: absolute;
+	top: 0px;
+	bottom: auto;
+	width: 100%;
+	max-width: 100%;
+}
+
+.swiper-slider .swiper-slide.slide-v_align-top .swiper-slide-intro .swiper-intro-inner {
+	padding-top: 65px;
+	padding-top: 4.0625rem;
+	max-width: 1140px;
+	max-width: 71.25rem;
+	margin: 0 auto;
+}
+
 .swiper-slider .swiper-slide-heading,
 .swiper-slider .swiper-slide-desc,
 .swiper-slider .swiper-slide-actions {

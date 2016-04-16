@@ -51,12 +51,12 @@ class One_Press_Textarea_Custom_Control extends WP_Customize_Control
 
 class Screenr_Theme_Support extends WP_Customize_Control {
 	public function render_content() {
-		echo wp_kses_post( 'Upgrade to <a href="#">Screenr Plus</a> to be able to change the section order and styling!', 'onepress' );
+		echo wp_kses_post( 'Upgrade to <a href="#">Screenr Plus</a> to be able to change the section order and styling!', 'screenr' );
 	}
 }
 
-if ( ! function_exists( 'onepress_sanitize_checkbox' ) ) {
-    function onepress_sanitize_checkbox( $input ) {
+if ( ! function_exists( 'screenr_sanitize_checkbox' ) ) {
+    function screenr_sanitize_checkbox( $input ) {
         if ( $input == 1 ) {
             return 1;
         } else {
@@ -71,14 +71,14 @@ if ( ! function_exists( 'onepress_sanitize_checkbox' ) ) {
  * @param $string
  * @return string
  */
-function onepress_sanitize_css($string) {
+function screenr_sanitize_css($string) {
     $string = preg_replace( '@<(script|style)[^>]*?>.*?</\\1>@si', '', $string );
     $string = strip_tags($string);
     return trim( $string );
 }
 
 
-function onepress_sanitize_color_alpha( $color ){
+function screenr_sanitize_color_alpha( $color ){
     $color = str_replace( '#', '', $color );
     if ( '' === $color ){
         return '';
@@ -113,7 +113,7 @@ function onepress_sanitize_color_alpha( $color ){
  * @param $setting object $wp_customize
  * @return bool|mixed|string|void
  */
-function onepress_sanitize_repeatable_data_field( $input , $setting ){
+function screenr_sanitize_repeatable_data_field( $input , $setting ){
     $control = $setting->manager->get_control( $setting->id );
 
     $fields = $control->fields;
@@ -143,10 +143,10 @@ function onepress_sanitize_repeatable_data_field( $input , $setting ){
                         $data[ $i ][ $id ] = sanitize_hex_color_no_hash( $value );
                         break;
                     case 'coloralpha':
-                        $data[ $i ][ $id ] = onepress_sanitize_color_alpha( $value );
+                        $data[ $i ][ $id ] = screenr_sanitize_color_alpha( $value );
                         break;
                     case 'checkbox':
-                        $data[ $i ][ $id ] =  onepress_sanitize_checkbox( $value );
+                        $data[ $i ][ $id ] =  screenr_sanitize_checkbox( $value );
                         break;
                     case 'select':
                         $data[ $i ][ $id ] = '';
@@ -239,11 +239,11 @@ class Screenr_Editor_Custom_Control extends WP_Customize_Control
      */
     public function enqueue() {
         wp_enqueue_script( 'wp-color-picker' );
-        wp_register_script( 'onepress-customizer', get_template_directory_uri() . '/assets/js/customizer.js', array( 'customize-controls', 'wp-color-picker' ) );
-        wp_register_style( 'onepress-customizer',  get_template_directory_uri() . '/assets/css/customizer.css' );
+        wp_register_script( 'screenr-customizer', get_template_directory_uri() . '/assets/js/customizer.js', array( 'customize-controls', 'wp-color-picker' ) );
+        wp_register_style( 'screenr-customizer',  get_template_directory_uri() . '/assets/css/customizer.css' );
 
-        wp_enqueue_script( 'onepress-customizer' );
-        wp_enqueue_style( 'onepress-customizer' );
+        wp_enqueue_script( 'screenr-customizer' );
+        wp_enqueue_style( 'screenr-customizer' );
 
 
         if ( ! class_exists( '_WP_Editors' ) ) {
@@ -490,7 +490,9 @@ class Screenr_Customize_Repeatable_Control extends WP_Customize_Control {
         if ( empty ( $value ) ){
             $value = json_encode( $this->defined_values );
         } elseif ( is_array( $this->defined_values ) && ! empty ( $this->defined_values ) ) {
-            $value = json_decode( $value, true );
+            if ( ! is_array( $value ) ) {
+                $value = json_decode( $value, true );
+            }
             $value = $this->merge_data( $value, $this->defined_values );
             $value = json_encode( $value );
         }
