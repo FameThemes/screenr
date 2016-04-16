@@ -33,7 +33,7 @@ body {
 
 body, button, input, select, textarea {
     font-family: $font_text;
-    @include rem('font-size', 16px);
+    @include rem('font-size', 15px);
     line-height: 1.7;
     color: $text;
 }
@@ -115,7 +115,7 @@ h2 {
 
 h3 {
 	@include rem('font-size', 20px);
-	font-weight: 600;
+	font-weight: 500;
 }
 
 h4 {

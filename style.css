@@ -75,8 +75,8 @@ body {
 
 body, button, input, select, textarea {
 	font-family: "Open Sans", Helvetica, Arial, sans-serif;
-	font-size: 16px;
-	font-size: 1rem;
+	font-size: 15px;
+	font-size: 0.9375rem;
 	line-height: 1.7;
 	color: #777777;
 }
@@ -179,7 +179,7 @@ h2 {
 h3 {
 	font-size: 20px;
 	font-size: 1.25rem;
-	font-weight: 600;
+	font-weight: 500;
 }
 
 h4 {
@@ -1900,8 +1900,8 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .section-padding-larger {
-	padding: 140px 0px;
-	padding:  8.75rem 0rem;
+	padding: 100px 0px;
+	padding:  6.25rem 0rem;
 }
 
 .section-padding-empty {
@@ -2302,6 +2302,46 @@ input[type="radio"], input[type="checkbox"] {
 .parallax-videolightbox .parallax-mirror::before {
 	background-color: #000000;
 	opacity: 0.4;
+}
+
+/* Section: Services
+------------------------------*/
+.services-content .card {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.services-content .card-block, .services-content .card-img-overlay {
+	padding: 28px 30px 30px;
+	padding:  1.75rem 1.875rem 1.875rem;
+}
+
+.services-content .card-title {
+	margin-bottom: 15px;
+}
+
+.services-content .service__media-icon .service-card-content {
+	padding-right: 80px;
+}
+
+.services-content .service-card-icon {
+	position: absolute;
+	top: 30px;
+	right: 30px;
+}
+
+.services-content .service-card-icon i {
+	color: #42c3d3;
+}
+
+.services-content .service-button {
+	margin-top: 20px;
+	display: block;
+	font-size: 17px;
+}
+
+.services-content .card-img-overlay {
+	background: rgba(0, 0, 0, 0.7);
 }
 
 /* Section: Contact

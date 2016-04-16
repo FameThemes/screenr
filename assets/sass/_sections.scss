@@ -9,7 +9,7 @@
 	@include rem('padding', 70px 0px);
 }
 .section-padding-larger {
-	@include rem('padding', 140px 0px);
+	@include rem('padding', 100px 0px);
 }
 .section-padding-empty {
 	@include rem('padding', 0px);
@@ -383,6 +383,40 @@
 .parallax-videolightbox .parallax-mirror::before {
 	background-color: #000000;
 	opacity: 0.4;
+}
+
+/* Section: Services
+------------------------------*/
+.services-content {
+	.card {
+		margin-top: 20px;
+		margin-bottom: 10px;
+	}
+	.card-block, .card-img-overlay {
+		@include rem('padding', 28px 30px 30px);
+	}
+	.card-title {
+		margin-bottom: 15px;
+	}
+	.service__media-icon .service-card-content {
+		padding-right: 80px;
+	}
+	.service-card-icon {
+		position: absolute;
+		top: 30px;
+		right: 30px;
+		i {
+			color: $primary;
+		}
+	}
+	.service-button {
+		margin-top: 20px;
+		display: block;
+		font-size: 17px;
+	}
+	.card-img-overlay {
+		background: rgba(0,0,0,0.7);
+	}
 }
 
 
