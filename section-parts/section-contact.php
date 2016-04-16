@@ -1,29 +1,42 @@
-<section id="contact" class="section-contact section-padding onepage-section section-padding-empty">
-    <!-- <div class="container">
+<section id="contact" class="section-contact section-padding onepage-section">
+    <div class="container">
         <div class="section-title-area">
-            <h2 class="section-title">Section Title</h2>
-            <h5 class="section-subtitle">Section Subtitle</h5>
-            <div class="section-desc">Section Description</div>
+            <div class="section-subtitle">Keep in touch</div>
+            <h2 class="section-title">Contact Us</h2>
+            <div class="section-desc">Just fill out the form below and you will hear from us shortly.</div>
         </div>
-    </div> -->
-    <div class="card-group">
+        <div class="section-content">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
 
-        <div class="card" style="background:#ccc">
-            <?php echo do_shortcode( '[contact-form-7 id="23" title="Contact form 1"]' ) ?>
-        </div>
+                    <div class="contact-details">
+                        <div class="row">
 
-        <div class="card">
-            <div class="features__item-media icon">
-                <i class="fa fa-briefcase fa-7x"></i>
-            </div>
-            <div class="features__item-content">
-                <h3>Parallax Effect</h3>
-                <p>Consectetur adipiscing elit. Suspendisse pulvinar scelerisque dictum. Donec iaculis, diam sit amet suscipit feugiat, diam magna volutpat augue.</p>
-                <div class="features__item-content-button">
-                    <a href="#" class="btn btn-secondary-outline">Read More</a>
+                            <!-- Loop: Repeater : 3 item for free version -->
+                            <div class="contact-detail col-lg-4 col-md-6">
+                                <span class="contact-icon"><i aria-hidden="true" class="fa fa-volume-control-phone fa-2x"></i></span>
+                                <a href="#"><span class="contact-detail-value">+1 (123) 456 78 89</span></a>
+                            </div>
+                            <div class="contact-detail col-lg-4 col-md-6">
+                                <span class="contact-icon"><i aria-hidden="true" class="fa fa-envelope-o fa-2x"></i></span>
+                                <a href="mailto:<?php echo antispambot( 'friends@studio.com' ); ?>"><span class="contact-detail-value">friends@studio.com</span></a>
+                            </div>
+                            <div class="contact-detail col-lg-4 col-md-6">
+                                <span class="contact-icon"><i aria-hidden="true" class="fa fa-twitter fa-2x"></i></span>
+                                <a href="#"><span class="contact-detail-value">@kientrong89</span></a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="contact-form-fields">
+                        <?php echo do_shortcode( '[contact-form-7 id="23" title="Contact form 1"]' ) ?>
+                    </div>
+
                 </div>
+                <div class="col-md-1"></div>
             </div>
         </div>
     </div>
-
 </section>

@@ -78,9 +78,9 @@
 	margin-bottom: 40px;
 	text-align: center;
 	.section-title {
-		font-family: $font_text;
-		font-size: 30px;
-		letter-spacing: -2px;
+		font-family: $font_heading;
+		font-size: 28px;
+		letter-spacing: -1px;
 		font-weight: 600;
 		position: relative;
 		margin-bottom: 0px;
@@ -324,6 +324,76 @@
 		}
 	}
 }
+
+/* Section: About
+------------------------------*/
+.section-about {
+	.section-title-area {
+		text-align: left;
+		margin-bottom: 0px;
+		.section-desc {
+			margin-top: 20px;
+		}
+	}
+	.section-content {
+		padding-left: 30px;
+	}
+}
+
+/* Section: Contact
+------------------------------*/
+
+.section-contact {
+	textarea,
+	input[type="date"],
+	input[type="datetime"],
+	input[type="datetime-local"],
+	input[type="email"],
+	input[type="month"],
+	input[type="number"],
+	input[type="password"],
+	input[type="search"],
+	input[type="tel"],
+	input[type="text"],
+	input[type="time"],
+	input[type="url"],
+	input[type="week"] {
+		width: 100%;
+	}
+	.contact-submit {
+		text-align: center;
+
+	}
+	.wpcf7-submit {
+		padding: 16px 40px;
+		font-size: 16px;
+	}
+}
+
+.contact-details {
+	.contact-detail {
+		@include rem('margin-bottom', 40px);
+	}
+
+	i {
+		color: $primary;
+		margin-right: 6px;
+	}
+	a:hover {
+		text-decoration: none;
+	}
+	a .contact-detail-value, .contact-detail-value {
+		color: $text;
+		font-size: 20px;
+		position: relative;
+		top: -5px;
+		&:hover {
+			text-decoration: none;
+			color: $primary;
+		}
+	}
+}
+
 
 /* Section: Parallax
 ------------------------------*/

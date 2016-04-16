@@ -23,7 +23,7 @@
         </div>
 
         <!-- Icon Type -->
-        <div class="features__item card" style="background:#4a4961">
+        <div class="features__item card" style="background:#323b43">
             <div class="features__item-media icon">
                 <i class="fa fa-briefcase fa-7x"></i>
             </div>
