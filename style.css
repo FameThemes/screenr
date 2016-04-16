@@ -127,7 +127,7 @@ h4,
 h5,
 h6 {
 	clear: both;
-	font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+	font-family: "Montserrat", Helvetica, Arial, sans-serif;
 	font-weight: 600;
 	margin-bottom: 15px;
 	margin-bottom: 15px;
@@ -742,7 +742,7 @@ input[type="radio"], input[type="checkbox"] {
 .site-branding .site-title, .site-branding .site-text-logo {
 	margin: 0px;
 	line-height: 1;
-	font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+	font-family: "Montserrat", Helvetica, Arial, sans-serif;
 	font-size: 23px;
 	letter-spacing: 1px;
 	text-transform: uppercase;
@@ -899,7 +899,7 @@ input[type="radio"], input[type="checkbox"] {
 
 .nav-menu a {
 	color: #333333;
-	font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+	font-family: "Montserrat", Helvetica, Arial, sans-serif;
 	padding-left: 17px;
 	padding-right: 17px;
 	font-size: 13px;
@@ -1398,7 +1398,7 @@ input[type="radio"], input[type="checkbox"] {
 	font-weight: 500;
 	text-transform: none;
 	letter-spacing: -0.6px;
-	font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+	font-family: "Montserrat", Helvetica, Arial, sans-serif;
 	font-size: 25px;
 	line-height: 1.3;
 }

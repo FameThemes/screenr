@@ -2,12 +2,12 @@
     <div class="swiper-container">
 
         <div class="swiper-wrapper">
-            <!--
+
             <div class="swiper-slide">
 
-                <img src="http://localhost/fame/screenr/wp-content/uploads/2016/04/ws1-2.jpg" />
+                <img src="http://localhost/fame/screenr/wp-content/uploads/2016/04/hero1.jpg" />
                 <div class=" swiper-slide-intro">
-                    <h2 class="swiper-slide-heading">This is slider 1</h2>
+                    <h2 class="swiper-slide-heading">Your business, your website.</h2>
                     <div class="swiper-slide-desc">Place a short tagline here and large welcome message like above.<br/>
                         Unlimited background slides, parallax effect and video background too.
                     </div>
@@ -17,14 +17,13 @@
                     </div>
                 </div>
                 <div class="overlay"></div>
-
             </div>
-            -->
 
 
-            <div class="swiper-slide">
+
+            <!-- <div class="swiper-slide">
                 <video class="fillWidth" >
-                    <source src="http://localhost/fame/screenr/wp-content/uploads/2016/04/Cheer-Up.mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
+                    <source src="http://localhost/fame/screenr/wp-content/uploads/2016/04/Sunset-Lapse.mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
                 </video>
 
                 <div class=" swiper-slide-intro">
@@ -42,7 +41,7 @@
 
             </div>
 
-            <!--
+
             <div class="swiper-slide">
                 <img src="http://localhost/fame/screenr/wp-content/uploads/2016/04/ws1-8.jpg" />
 
@@ -59,13 +58,13 @@
 
                 <div class="overlay"></div>
 
-            </div>
-            -->
+            </div> -->
+
 
 
         </div>
         <!-- Add Pagination -->
-        <div class="swiper-pagination swiper-pagination-white"></div>
+        <!-- <div class="swiper-pagination swiper-pagination-white"></div> -->
         <!-- Add Navigation -->
         <div class="swiper-button-prev swiper-button-white"></div>
         <div class="swiper-button-next swiper-button-white"></div>
