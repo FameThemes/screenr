@@ -231,7 +231,6 @@ jQuery( document ).ready( function( $ ){
 		var $wrap =  $( '.site-header-wrapper');
 		$wrap.addClass( 'no-scroll' );
 
-
 		$(document).scroll(function () {
 			var header_fixed = $('.site-header').eq(0);
 			var header_parent = header_fixed.parent();
@@ -284,7 +283,6 @@ jQuery( document ).ready( function( $ ){
 			//	$( '.site-header').css( 'top', $( '#wpadminbar').height() +'px' );
 			}
 		} );
-
        // $(document).trigger( 'scroll' );
 
 	}
@@ -420,11 +418,21 @@ jQuery( document ).ready( function( $ ){
 		prevButton: '.swiper-button-prev',
 
 		onInit: function( swiper ){
-			if ( ! is_video_support ) {
+
+            var slide =  swiper.slides[ swiper.activeIndex ];
+
+            $( slide ).addClass( 'activated' );
+            var n = $( slide ) .attr( 'data-swiper-slide-index' ) || 0;
+            n = parseInt( n );
+            $( '.slide-current').text( n + 1 );
+            $( '.slide-total').text( slider_number_item );
+
+
+            if ( ! is_video_support ) {
 				return;
 			}
 
-			var slide =  swiper.slides[ swiper.activeIndex ];
+
 			if ( $( 'video',slide ).length > 0 ) {
 				var v = $('video', slide ).eq(0);
 				//if ( slider.vars.slideshow ) {
@@ -435,14 +443,19 @@ jQuery( document ).ready( function( $ ){
 				}
 			}
 
-            $( slide ).addClass( 'activated' );
 
 		},
         onSlideChangeStart: function( swiper ) {
+
+            var slide = swiper.slides[swiper.activeIndex];
+            var n = $( slide ).attr( 'data-swiper-slide-index' ) || 0;
+            n = parseInt( n );
+            $( '.slide-current').text( n + 1 );
+
 			if ( ! is_video_support ) {
 				return;
 			}
-			var slide = swiper.slides[swiper.activeIndex];
+
 			// Need to pause all videos in the slider
 			swiper.slides.each(function (index, slide) {
 
@@ -467,6 +480,7 @@ jQuery( document ).ready( function( $ ){
 			}
 		},
 		onSlideChangeEnd: function( swiper ){
+
 			var slide = swiper.slides[swiper.activeIndex];
 			// Need to pause all videos in the slider
 			swiper.slides.each(function (index, slide) {
@@ -510,8 +524,28 @@ jQuery( document ).ready( function( $ ){
             }
 
         } );
-
     }
+
+    //hover on button
+
+    $( '.swiper-button-prev, .swiper-button-next').hover( function(){
+        var b = $( this );
+        var w = b.find( '.slide-count').width();
+        b.animate({
+            width: "+="+w,
+        }, 400 , function(){
+            b.addClass( 'active' );
+        });
+    }, function(){
+        var b = $( this );
+        var w = b.find( '.slide-count').width();
+        b.removeClass( 'active' );
+        b.animate({
+            width: "-="+w,
+        }, 400 , function(){
+            b.removeClass( 'active' );
+        });
+    } );
 
 
 } );

@@ -127,12 +127,15 @@ class Screenr_Slider {
 
                     if ( $item['btn_1'] || $item['btn_2'] ) {
                         $html .= '<div class="swiper-slide-actions">';
-                        if ( $item['btn_1'] ){
-                            $html .= ' <a class="btn btn-primary btn-lg" href="'.esc_url( $item['btn_1_link'] ).'">'.esc_html( $item['btn_1'] ).'</a> ';
-                        }
+
                         if ( $item['btn_2'] ){
                             $html .= '<a class="btn btn-secondary-outline btn-lg" href="'.esc_url( $item['btn_2_link'] ).'">'.esc_html( $item['btn_1'] ).'</a> ';
                         }
+
+                        if ( $item['btn_1'] ){
+                            $html .= ' <a class="btn btn-primary btn-lg" href="'.esc_url( $item['btn_1_link'] ).'">'.esc_html( $item['btn_1'] ).'</a> ';
+                        }
+
                         $html .= '</div>';
                     }
 
