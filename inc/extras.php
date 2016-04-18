@@ -167,6 +167,16 @@ if ( $menu_hover_color ) {
     }
     <?php
     }
+
+    $slider_overlay_color =  get_theme_mod( 'screenr_slider_overlay_color' );
+    if ( $slider_overlay_color ) {
+        ?>
+    .swiper-slider .swiper-slide .overlay {
+        background-color: <?php echo $slider_overlay_color; ?>;
+    }
+        <?php
+    }
+
     ?>
     </style>
     <?php

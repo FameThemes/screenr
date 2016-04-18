@@ -2083,8 +2083,7 @@ input[type="radio"], input[type="checkbox"] {
 	left: 0px;
 	right: 0px;
 	bottom: 0px;
-	background: black;
-	opacity: .4;
+	background: rgba(0, 0, 0, 0.4);
 }
 
 .swiper-slider .swiper-slide .swiper-slide-actions {
