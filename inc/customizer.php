@@ -551,7 +551,6 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
-
     // About ID
     $wp_customize->add_setting( 'about_id',
         array(
@@ -599,9 +598,97 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    /*------------------------------------------------------------------------*/
+    /*  Section: VideoLight Box
+    /*------------------------------------------------------------------------*/
+
+    $wp_customize->add_section( 'section_videolightbox' ,
+        array(
+            'title'       => esc_html__( 'Video Lightbox', 'screenr' ),
+            'description' => '',
+            'panel'       => 'front_page_sections',
+        )
+    );
+
+    // Show section
+    $wp_customize->add_setting( 'videolightbox_disable',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_checkbox',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'videolightbox_disable',
+        array(
+            'type'        => 'checkbox',
+            'label'       => esc_html__('Hide this section?', 'screenr'),
+            'section'     => 'section_videolightbox',
+            'description' => esc_html__('Check this box to hide this section.', 'screenr'),
+        )
+    );
+
+    // About ID
+    $wp_customize->add_setting( 'videolightbox_id',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('video', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'videolightbox_id',
+        array(
+            'label' 		=> esc_html__('Section ID:', 'screenr'),
+            'section' 		=> 'section_videolightbox',
+            'description'   => esc_html__('The section id, we will use this for link anchor.', 'screenr' )
+        )
+    );
 
 
+    // LightBox Title
+    $wp_customize->add_setting( 'videolightbox_title',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'videolightbox_title',
+        array(
+            'label' 		=> esc_html__('Title:', 'screenr'),
+            'section' 		=> 'section_videolightbox',
+            'description'   => esc_html__('Short text about this section.', 'screenr' )
+        )
+    );
 
+    // LightBox Video
+    $wp_customize->add_setting( 'videolightbox_video',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'videolightbox_video',
+        array(
+            'label' 		=> esc_html__('Video URL:', 'screenr'),
+            'section' 		=> 'section_videolightbox',
+            'description'   => esc_html__('Youtube or Vimeo url', 'screenr' )
+        )
+    );
+
+    // LightBox Image Parallax
+    $wp_customize->add_setting( 'videolightbox_parallax_img',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control(
+        new WP_Customize_Image_Control(
+            $wp_customize,
+            'videolightbox_parallax_img',
+            array(
+                'label' 		=> esc_html__('Parallax image:', 'screenr'),
+                'section' 		=> 'section_videolightbox',
+            )
+        )
+    );
 
 
 
