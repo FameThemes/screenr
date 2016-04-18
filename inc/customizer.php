@@ -20,6 +20,14 @@ function screenr_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 
 
+    $pages  =  get_pages();
+    $option_pages = array();
+    $option_pages[0] = __( 'Select page', 'onepress' );
+    foreach( $pages as $p ){
+        $option_pages[ $p->ID ] = $p->post_title;
+    }
+
+
     /*------------------------------------------------------------------------*/
     /*  Site Options
     /*------------------------------------------------------------------------*/
@@ -368,8 +376,151 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
-
     // END For Slider layout ------------------------
+
+    /*------------------------------------------------------------------------*/
+    /*  Section: Features
+    /*------------------------------------------------------------------------*/
+
+    $wp_customize->add_section( 'section_features' ,
+        array(
+            'priority'    => 5,
+            'title'       => esc_html__( 'Features', 'screenr' ),
+            'description' => '',
+            'panel'       => 'front_page_sections',
+        )
+    );
+
+    // Show section
+    $wp_customize->add_setting( 'features_disable',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_checkbox',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'features_disable',
+        array(
+            'type'        => 'checkbox',
+            'label'       => esc_html__('Hide this section?', 'screenr'),
+            'section'     => 'section_features',
+            'description' => esc_html__('Check this box to hide this section.', 'screenr'),
+        )
+    );
+
+    /**
+     * @see screenr_sanitize_repeatable_data_field
+     */
+    $wp_customize->add_setting(
+        'features_items',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_repeatable_data_field',
+            'transport' => 'refresh', // refresh or postMessage
+            'default' => array(
+                array(
+                    'image'=> array(
+                        'url' => get_template_directory_uri().'/assets/images/slider5.jpg',
+                        'id' => ''
+                    )
+                )
+            )
+        ) );
+
+    $wp_customize->add_control(
+        new Screenr_Customize_Repeatable_Control(
+            $wp_customize,
+            'features_items',
+            array(
+                'label'     => esc_html__('Content Items', 'screenr'),
+                'description'   => '',
+                'section'       => 'section_features',
+                'live_title_id' => 'page_id', // apply for unput text and textarea only
+                'title_format'  => esc_html__('[live_title]', 'screenr'), // [live_title]
+                'max_item'      => 99, // Maximum item can add
+                'limited_msg' 	=> wp_kses_post( 'Upgrade to <a target="_blank" href="#">Screenr Plus</a> to be able to add more items and unlock other premium features!', 'screenr' ),
+                //'allow_unlimited' => false, // Maximum item can add
+                'fields'    => array(
+
+                    'page_id' => array(
+                        'title' => esc_html__('Content align', 'screenr'),
+                        'type'  =>'select',
+                        'options' => $option_pages
+                    ),
+
+                    'thumb_type' => array(
+                        'title' => esc_html__('Thumbnail type', 'screenr'),
+                        'type'  =>'select',
+                        'options' => array(
+                            'image'     => esc_html__('Featured image', 'screenr'),
+                            'icon' => esc_html__('Font Icon', 'screenr'),
+                            'svg'       => esc_html__('SVG icon code', 'screenr'),
+                        )
+                    ),
+                    'icon' => array(
+                        'title' => esc_html__('Font icon', 'screenr'),
+                        'desc' => __('Paste your <a target="_blank" href="http://fortawesome.github.io/Font-Awesome/icons/">Font Awesome</a> icon class name here.', 'screenr'),
+                        'type'  =>'text',
+                        "required" => array( 'thumb_type', '=', 'icon' )
+                    ),
+                    'svg' => array(
+                        'title' => esc_html__('SVG icon code', 'screenr'),
+                        'type'  =>'textarea',
+                        'desc' => esc_html__('Paste svg icon code here', 'screenr'),
+                        "required" => array( 'thumb_type', '=', 'svg' )
+                    ),
+                    'readmore' => array(
+                        'title' => esc_html__('Show readmore button', 'screenr'),
+                        'type'  =>'checkbox',
+                        'default' => 1,
+                    ),
+                    'bg_color' => array(
+                        'title' => esc_html__('Background Color', 'screenr'),
+                        'type'  =>'color',
+                    ),
+
+
+                ),
+
+            )
+        )
+    );
+
+
+    // Features columns
+    $wp_customize->add_setting( 'features_layout',
+        array(
+            'sanitize_callback' => 'sanitize_text_field',
+            'default'           => 3,
+        )
+    );
+    $wp_customize->add_control( 'features_layout',
+        array(
+            'type'        => 'select',
+            'label'       => esc_html__('Layout Settings', 'screenr'),
+            'section'     => 'section_features',
+            'description' => esc_html__('Check this box to hide this section.', 'screenr'),
+            'choices' => array(
+                1 => 1,
+                2 => 2,
+                3 => 3,
+                4 => 4
+            )
+        )
+    );
+
+    // Features ID
+    $wp_customize->add_setting( 'features_id',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('features', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'features_id',
+        array(
+            'label' 		=> esc_html__('Section ID:', 'screenr'),
+            'section' 		=> 'section_features',
+            'description'   => esc_html__('The section id, we will use this for link anchor.', 'screenr' )
+        )
+    );
 
 
 

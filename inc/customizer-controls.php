@@ -137,7 +137,7 @@ function screenr_sanitize_repeatable_data_field( $input , $setting ){
                         $data[ $i ][ $id ] = sanitize_text_field( $value );
                         break;
                     case 'textarea':
-                        $data[ $i ][ $id ] = wp_kses_post( $value );
+                        $data[ $i ][ $id ] = force_balance_tags( $value );
                         break;
                     case 'color':
                         $data[ $i ][ $id ] = sanitize_hex_color_no_hash( $value );

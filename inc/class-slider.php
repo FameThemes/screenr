@@ -102,7 +102,7 @@ class Screenr_Slider {
             $html = '<img src="'.esc_url( $media['url'] ).'" alt="" />';
         }
 
-        return apply_filters( 'screenr_render_item_media', $html );
+        return apply_filters( 'screenr_render_slider_item_media', $html, $media );
     }
 
     function render_item( $item ){

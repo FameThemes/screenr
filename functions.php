@@ -41,6 +41,13 @@ function screenr_setup() {
 	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 	 */
 	add_theme_support( 'post-thumbnails' );
+    /*
+	 * Enable support for Post Thumbnails on posts and pages.
+	 *
+	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
+	 */
+    add_theme_support( 'post-thumbnails' );
+    set_post_thumbnail_size( 640, 350, true );
 
 	add_theme_support( 'custom-logo', array(
 		'height'      => 60,
