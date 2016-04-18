@@ -20,22 +20,25 @@ get_header(); ?>
                 ) );
 
 				foreach ( $sections as $section ){
-                    /**
-                     * Hook before section
-                     */
-                    do_action('screenr_before_section_'.$section );
-                    do_action( 'screenr_before_section_part', $section );
+                    // If  section not disable
+                    if ( ! get_theme_mod( $section.'_disable' ) ) {
+                        /**
+                         * Hook before section
+                         */
+                        do_action('screenr_before_section_' . $section);
+                        do_action('screenr_before_section_part', $section);
 
-                    /**
-                     * Load section template part
-                     */
-					get_template_part('section-parts/section', $section );
+                        /**
+                         * Load section template part
+                         */
+                        get_template_part('section-parts/section', $section);
 
-                    /**
-                     * Hook after section
-                     */
-                    do_action('screenr_after_section_part', $section );
-                    do_action('screenr_after_section_'.$section );
+                        /**
+                         * Hook after section
+                         */
+                        do_action('screenr_after_section_part', $section);
+                        do_action('screenr_after_section_' . $section);
+                    }
 				}
 
 			} else {
