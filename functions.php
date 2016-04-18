@@ -41,6 +41,7 @@ function screenr_setup() {
 	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 	 */
 	add_theme_support( 'post-thumbnails' );
+    add_post_type_support( 'page', 'excerpt' );
     /*
 	 * Enable support for Post Thumbnails on posts and pages.
 	 *

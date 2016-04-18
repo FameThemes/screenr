@@ -523,6 +523,87 @@ function screenr_customize_register( $wp_customize ) {
     );
 
 
+    /*------------------------------------------------------------------------*/
+    /*  Section: About
+    /*------------------------------------------------------------------------*/
+
+    $wp_customize->add_section( 'section_about' ,
+        array(
+            'title'       => esc_html__( 'About', 'screenr' ),
+            'description' => '',
+            'panel'       => 'front_page_sections',
+        )
+    );
+
+    // Show section
+    $wp_customize->add_setting( 'about_disable',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_checkbox',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'about_disable',
+        array(
+            'type'        => 'checkbox',
+            'label'       => esc_html__('Hide this section?', 'screenr'),
+            'section'     => 'section_about',
+            'description' => esc_html__('Check this box to hide this section.', 'screenr'),
+        )
+    );
+
+
+    // About ID
+    $wp_customize->add_setting( 'about_id',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('features', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'about_id',
+        array(
+            'label' 		=> esc_html__('Section ID:', 'screenr'),
+            'section' 		=> 'section_about',
+            'description'   => esc_html__('The section id, we will use this for link anchor.', 'screenr' )
+        )
+    );
+
+    // About page
+    $wp_customize->add_setting( 'about_page_id',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'about_page_id',
+        array(
+            'label' 		=> esc_html__('Display page:', 'screenr'),
+            'section' 		=> 'section_about',
+            'type' 		    => 'select',
+            'choices'       => $option_pages,
+            'description'   => esc_html__('Select page to display on this section.', 'screenr' )
+        )
+    );
+
+    // About Title
+    $wp_customize->add_setting( 'about_tagline',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'about_tagline',
+        array(
+            'label' 		=> esc_html__('Tagline:', 'screenr'),
+            'section' 		=> 'section_about',
+            'description'   => esc_html__('Short text about this section.', 'screenr' )
+        )
+    );
+
+
+
+
+
+
 
 
 }
