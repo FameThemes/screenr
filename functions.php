@@ -140,6 +140,11 @@ function screenr_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+    wp_localize_script( 'jquery', 'Screenr', array(
+        'full_screen_slider' => ( get_theme_mod( 'screenr_slider_fullscreen' ) ) ? true : false,
+    ) );
+
 }
 add_action( 'wp_enqueue_scripts', 'screenr_scripts' );
 

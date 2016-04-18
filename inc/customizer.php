@@ -328,13 +328,22 @@ function screenr_customize_register( $wp_customize ) {
     );
 
 
-    // Section ID
+    // Slider ID
     $wp_customize->add_setting( 'screenr_slider_id',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
             'default'           => esc_html__('slider', 'screenr'),
         )
     );
+    $wp_customize->add_control( 'screenr_slider_id',
+        array(
+            'label' 		=> esc_html__('Section ID:', 'screenr'),
+            'section' 		=> 'screenr_slider_settings',
+            'description'   => 'The section id, we will use this for link anchor.'
+        )
+    );
+
+
     $wp_customize->add_control( 'screenr_slider_id',
         array(
             'label' 		=> esc_html__('Section ID:', 'screenr'),
@@ -363,7 +372,6 @@ function screenr_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'screenr_slider_pdtop',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => esc_html__('10', 'screenr'),
         )
     );
     $wp_customize->add_control( 'screenr_slider_pdtop',
@@ -379,7 +387,6 @@ function screenr_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'screenr_slider_pdbotom',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => esc_html__('10', 'screenr'),
         )
     );
     $wp_customize->add_control( 'screenr_slider_pdbotom',
@@ -414,11 +421,75 @@ add_action( 'customize_preview_init', 'screenr_customize_preview_js' );
 add_action( 'customize_controls_enqueue_scripts', 'screenr_customize_js_settings' );
 function screenr_customize_js_settings(){
 
-    wp_localize_script( 'customize-controls', 'onepress_customizer_settings', array(
+    wp_localize_script( 'customize-controls', 'screenr_customizer_settings', array(
         'number_action' => $number_action,
         'is_plus_activated' => class_exists( 'OnePress_PLus' ) ? 'y' : 'n',
-        'action_url' => admin_url( 'themes.php?page=ft_onepress&tab=actions_required' )
+        'action_url' => admin_url( 'themes.php?page=ft_screenr&tab=actions_required' )
     ) );
 }
 */
+
+
+/*------------------------------------------------------------------------*/
+/*  OnePress Sanitize Functions.
+/*------------------------------------------------------------------------*/
+
+function screenr_sanitize_file_url( $file_url ) {
+    $output = '';
+    $filetype = wp_check_filetype( $file_url );
+    if ( $filetype["ext"] ) {
+        $output = esc_url( $file_url );
+    }
+    return $output;
+}
+
+
+/**
+ * Conditional to show more hero settings
+ *
+ * @param $control
+ * @return bool
+ */
+function screenr_hero_fullscreen_callback ( $control ) {
+    if ( $control->manager->get_setting('screenr_hero_fullscreen')->value() == '' ) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+function screenr_sanitize_number( $input ) {
+    return balanceTags( $input );
+}
+
+function screenr_sanitize_hex_color( $color ) {
+    if ( $color === '' ) {
+        return '';
+    }
+    if ( preg_match('|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) ) {
+        return $color;
+    }
+    return null;
+}
+
+function screenr_sanitize_checkbox( $input ) {
+    if ( $input == 1 ) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+function screenr_sanitize_text( $string ) {
+    return wp_kses_post( balanceTags( $string ) );
+}
+
+function screenr_sanitize_html_input( $string ) {
+    return wp_kses_allowed_html( $string );
+}
+
+function screenr_showon_frontpage() {
+    return is_page_template( 'template-frontpage.php' );
+}
 

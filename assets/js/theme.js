@@ -391,12 +391,16 @@ jQuery( document ).ready( function( $ ){
 
 	} );
 
+    console.log( Screenr );
 
-	set_swiper_full_screen_height();
+    if ( Screenr.full_screen_slider == '1' ) {
+        set_swiper_full_screen_height();
 
-	$( window ).resize( function(){
-		set_swiper_full_screen_height();
-	} );
+        $( window ).resize( function(){
+            set_swiper_full_screen_height();
+        } );
+    }
+
 
     var slider_number_item = $( '.swiper-slider .swiper-slide').length;
 
