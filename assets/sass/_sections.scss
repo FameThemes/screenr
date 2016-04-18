@@ -130,7 +130,9 @@
 		//top: 0px;
 	}
 	z-index: 0;
-
+	.swiper-container {
+		background: url( "assets/images/diagonal_line.png" ) center center;
+	}
 	.swiper-container {
 		width: 100%;
 		height: 100%;
@@ -289,12 +291,10 @@
 		@include rem('height', 60px);
 		@include rem('width', 50px);
 		overflow: hidden;
-
-
 		i {
 			@include rem('width', 50px);
 			@include rem('font-size', 40px);
-			@include rem('line-height', 60px);
+			@include rem('line-height', 58px);
 			color: #fff;
 			vertical-align: middle;
 			text-align: center;

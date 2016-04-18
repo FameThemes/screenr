@@ -1,5 +1,7 @@
 <?php
-
+function screenr_showon_frontpage() {
+    return is_page_template( 'template-frontpage.php' );
+}
 
 /*-----------------------------------------------------------------------------------*/
 /*  Screenr Customizer Controls
