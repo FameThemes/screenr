@@ -42,7 +42,7 @@ function screenr_custom_style(){
      /**
          * Header background
          */
-    $header_bg_color =  get_theme_mod( 'screenr_header_bg_color' );
+    $header_bg_color =  get_theme_mod( 'header_bg_color' );
     if ( $header_bg_color ) {
     ?>
     .site-header, .is-fixed .site-header.header-fixed.transparent {
@@ -56,7 +56,7 @@ function screenr_custom_style(){
 /**
  * Menu color
  */
-$menu_color =  get_theme_mod( 'screenr_menu_color' );
+$menu_color =  get_theme_mod( 'menu_color' );
 if ( $menu_color ) {
     ?>
     .nav-menu > li > a,
@@ -69,7 +69,7 @@ if ( $menu_color ) {
 /**
  * Menu hover color
  */
-$menu_hover_color =  get_theme_mod( 'screenr_menu_hover_color' );
+$menu_hover_color =  get_theme_mod( 'menu_hover_color' );
 if ( $menu_hover_color ) {
     ?>
     .nav-menu > li > a:hover,
@@ -87,7 +87,7 @@ if ( $menu_hover_color ) {
     /**
      * Menu hover background color
      */
-    $menu_hover_bg =  get_theme_mod( 'screenr_menu_hover_bg_color' );
+    $menu_hover_bg =  get_theme_mod( 'menu_hover_bg_color' );
     if ( $menu_hover_bg ) {
         ?>
     @media screen and (min-width: 1140px) {
@@ -110,7 +110,7 @@ if ( $menu_hover_color ) {
     /**
      * Reponsive Mobie button color
      */
-    $menu_button_color =  get_theme_mod( 'screenr_menu_toggle_button_color' );
+    $menu_button_color =  get_theme_mod( 'menu_toggle_button_color' );
     if ( $menu_button_color ) {
         ?>
     #nav-toggle span,
@@ -133,12 +133,12 @@ if ( $menu_hover_color ) {
     /**
      * Site Title
      */
-    $screenr_logo_text_color =  get_theme_mod( 'screenr_logo_text_color' );
-    if ( $screenr_logo_text_color ) {
+    $logo_text_color =  get_theme_mod( 'logo_text_color' );
+    if ( $logo_text_color ) {
         ?>
     .site-branding .site-title, .site-branding .site-text-logo, .site-branding .site-title a, .site-branding .site-text-logo a,
     .no-scroll .transparent .site-branding .site-title a{
-        color: #<?php echo $screenr_logo_text_color; ?>;
+        color: #<?php echo $logo_text_color; ?>;
     }
     <?php
     }
@@ -146,7 +146,7 @@ if ( $menu_hover_color ) {
     /**
      * Slider padding top
      */
-     $slider_padding_top =  get_theme_mod( 'screenr_slider_pdtop' );
+     $slider_padding_top =  get_theme_mod( 'slider_pdtop' );
     if ( $slider_padding_top != '' ) {
         ?>
     body .swiper-slider .swiper-slide .swiper-slide-intro .swiper-intro-inner {
@@ -158,7 +158,7 @@ if ( $menu_hover_color ) {
      /**
      * Slider padding top
      */
-    $slider_padding_bottom =  get_theme_mod( 'screenr_slider_pdbotom' );
+    $slider_padding_bottom =  get_theme_mod( 'slider_pdbotom' );
 
     if ( $slider_padding_bottom != '' ) {
     ?>
@@ -168,7 +168,7 @@ if ( $menu_hover_color ) {
     <?php
     }
 
-    $slider_overlay_color =  get_theme_mod( 'screenr_slider_overlay_color' );
+    $slider_overlay_color =  get_theme_mod( 'slider_overlay_color' );
     if ( $slider_overlay_color ) {
         ?>
     .swiper-slider .swiper-slide .overlay {

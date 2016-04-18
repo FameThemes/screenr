@@ -1,9 +1,9 @@
 <?php
 
-$slider = new Screenr_Slider( get_theme_mod( 'screenr_slider_items' ) );
+$slider = new Screenr_Slider( get_theme_mod( 'slider_items' ) );
 
 ?>
-<div id="<?php echo esc_attr( get_theme_mod( 'screenr_slider_id', 'hero-slider' ) ); ?>" class="swiper-slider full-screen fixed" >
+<div id="<?php echo esc_attr( get_theme_mod( 'slider_id', 'hero-slider' ) ); ?>" class="swiper-slider full-screen fixed" >
     <div class="swiper-container">
         <div class="swiper-wrapper">
             <?php

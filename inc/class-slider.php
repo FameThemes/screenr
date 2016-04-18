@@ -8,7 +8,6 @@ class Screenr_Slider {
         if ( empty( $data ) ){
             return false;
         }
-
         $this->data =  $data;
         $this->number_item = count( $this->data );
     }
@@ -68,7 +67,7 @@ class Screenr_Slider {
 
     }
 
-    function render(  ){
+    function render( ){
         $slider_data =  array();
         //wp_get_attachment_url( get_post_thumbnail_id() );
         foreach ( $this->data as $k => $item ){
@@ -78,10 +77,6 @@ class Screenr_Slider {
                 'media'         => '',
                 'align'         => '',
                 'v_align'         => '',
-                'button_1'      => '',
-                'button_1_link' => '',
-                'button_2'      => '',
-                'button_2_link' => '',
             ) );
             $item['media'] = $this->get_media( $item['media'] );
             if ( ! $item['align'] ) {
@@ -101,19 +96,16 @@ class Screenr_Slider {
             return '';
         }
 
+        $html = '';
+
         if ( $media['type'] == 'image' ){
-            return '<img src="'.esc_url( $media['url'] ).'" alt="" />';
-        } else {
-            if ( $this->number_item == 1  ){
-                return ' <video autoplay loop muted><source src="'.esc_url( $media['url'] ).'" type="'.esc_attr( $media['type'] ).'"></video>';
-            } else {
-                return ' <video muted><source src="'.esc_url( $media['url'] ).'" type="'.esc_attr( $media['type'] ).'"></video>';
-            }
+            $html = '<img src="'.esc_url( $media['url'] ).'" alt="" />';
         }
+
+        return apply_filters( 'screenr_render_item_media', $html );
     }
 
     function render_item( $item ){
-
         $html = '<div class="swiper-slide slide-align-'.esc_attr( $item['align'] ).' slide-v_align-'.esc_attr( $item['v_align'] ).'">';
             $html .= $this->render_media( $item['media'] );
             $html .= '<div class="swiper-slide-intro">';
@@ -125,25 +117,10 @@ class Screenr_Slider {
                         $html .= '<div class="swiper-slide-desc">'.wp_kses_post( $item['desc'] ).'</div>';
                     }
 
-                    if ( $item['btn_1'] || $item['btn_2'] ) {
-                        $html .= '<div class="swiper-slide-actions">';
-
-                        if ( $item['btn_2'] ){
-                            $html .= '<a class="btn btn-secondary-outline btn-lg" href="'.esc_url( $item['btn_2_link'] ).'">'.esc_html( $item['btn_1'] ).'</a> ';
-                        }
-
-                        if ( $item['btn_1'] ){
-                            $html .= ' <a class="btn btn-primary btn-lg" href="'.esc_url( $item['btn_1_link'] ).'">'.esc_html( $item['btn_1'] ).'</a> ';
-                        }
-
-                        $html .= '</div>';
-                    }
-
                 $html .= '</div>';
             $html .= '</div>';
             $html .= '<div class="overlay"></div>';
         $html .= '</div>';
-
         return $html;
     }
 

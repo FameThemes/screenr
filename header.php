@@ -27,7 +27,7 @@
     <?php
     $header_classes = array();
     $header_classes[] = 'site-header';
-    $header_layout = get_option( 'screenr_header_layout' );
+    $header_layout = get_option( 'header_layout' );
     if ( $header_layout == 'fixed' ){
         $header_classes[] = 'sticky-header';
     } else if (  $header_layout == 'transparent' ) {

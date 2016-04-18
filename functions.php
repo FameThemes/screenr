@@ -142,7 +142,7 @@ function screenr_scripts() {
 	}
 
     wp_localize_script( 'jquery', 'Screenr', array(
-        'full_screen_slider' => ( get_theme_mod( 'screenr_slider_fullscreen' ) ) ? true : false,
+        'full_screen_slider' => ( get_theme_mod( 'slider_fullscreen' ) ) ? true : false,
     ) );
 
 }

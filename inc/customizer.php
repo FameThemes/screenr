@@ -35,7 +35,7 @@ function screenr_customize_register( $wp_customize ) {
 
     /* Header
     ----------------------------------------------------------------------*/
-    $wp_customize->add_section( 'screenr_header_settings' ,
+    $wp_customize->add_section( 'header_settings' ,
         array(
             'priority'    => 5,
             'title'       => esc_html__( 'Header', 'screenr' ),
@@ -45,7 +45,7 @@ function screenr_customize_register( $wp_customize ) {
     );
 
     // Header Transparent
-    $wp_customize->add_setting( 'screenr_header_layout',
+    $wp_customize->add_setting( 'header_layout',
         array(
             'sanitize_callback' => 'sanitize_text_field',
             'default'           => 'default',
@@ -53,11 +53,11 @@ function screenr_customize_register( $wp_customize ) {
             'type'              => 'option' // make this settings value can use in child theme.
         )
     );
-    $wp_customize->add_control( 'screenr_header_layout',
+    $wp_customize->add_control( 'header_layout',
         array(
             'type'        => 'select',
             'label'       => esc_html__('Header style', 'screenr'),
-            'section'     => 'screenr_header_settings',
+            'section'     => 'header_settings',
             'choices'     => array(
                 'default'       => esc_html__('Default', 'screenr'),
                 'fixed'         => esc_html__('Fixed', 'screenr'),
@@ -67,93 +67,93 @@ function screenr_customize_register( $wp_customize ) {
     );
 
     // Header BG Color
-    $wp_customize->add_setting( 'screenr_header_bg_color',
+    $wp_customize->add_setting( 'header_bg_color',
         array(
             'sanitize_callback' => 'sanitize_hex_color_no_hash',
             'sanitize_js_callback' => 'maybe_hash_hex_color',
             'default' => ''
         ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'screenr_header_bg_color',
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_bg_color',
         array(
             'label'       => esc_html__( 'Background Color', 'screenr' ),
-            'section'     => 'screenr_header_settings',
+            'section'     => 'header_settings',
             'description' => '',
         )
     ));
 
 
     // Site Title Color
-    $wp_customize->add_setting( 'screenr_logo_text_color',
+    $wp_customize->add_setting( 'logo_text_color',
         array(
             'sanitize_callback' => 'sanitize_hex_color_no_hash',
             'sanitize_js_callback' => 'maybe_hash_hex_color',
             'default' => ''
         ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'screenr_logo_text_color',
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'logo_text_color',
         array(
             'label'       => esc_html__( 'Site Title Color', 'screenr' ),
-            'section'     => 'screenr_header_settings',
+            'section'     => 'header_settings',
             'description' => esc_html__( 'Only set if you don\'t use an image logo.', 'screenr' ),
         )
     ));
 
     // Header Menu Color
-    $wp_customize->add_setting( 'screenr_menu_color',
+    $wp_customize->add_setting( 'menu_color',
         array(
             'sanitize_callback' => 'sanitize_hex_color_no_hash',
             'sanitize_js_callback' => 'maybe_hash_hex_color',
             'default' => ''
         ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'screenr_menu_color',
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'menu_color',
         array(
             'label'       => esc_html__( 'Menu Link Color', 'screenr' ),
-            'section'     => 'screenr_header_settings',
+            'section'     => 'header_settings',
             'description' => '',
         )
     ));
 
     // Header Menu Hover Color
-    $wp_customize->add_setting( 'screenr_menu_hover_color',
+    $wp_customize->add_setting( 'menu_hover_color',
         array(
             'sanitize_callback' => 'sanitize_hex_color_no_hash',
             'sanitize_js_callback' => 'maybe_hash_hex_color',
             'default' => ''
         ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'screenr_menu_hover_color',
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'menu_hover_color',
         array(
             'label'       => esc_html__( 'Menu Link Hover/Active Color', 'screenr' ),
-            'section'     => 'screenr_header_settings',
+            'section'     => 'header_settings',
             'description' => '',
 
         )
     ));
 
     // Header Menu Hover BG Color
-    $wp_customize->add_setting( 'screenr_menu_hover_bg_color',
+    $wp_customize->add_setting( 'menu_hover_bg_color',
         array(
             'sanitize_callback' => 'sanitize_hex_color_no_hash',
             'sanitize_js_callback' => 'maybe_hash_hex_color',
             'default' => ''
         ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'screenr_menu_hover_bg_color',
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'menu_hover_bg_color',
         array(
             'label'       => esc_html__( 'Menu Link Hover/Active BG Color', 'screenr' ),
-            'section'     => 'screenr_header_settings',
+            'section'     => 'header_settings',
             'description' => '',
         )
     ));
 
     // Reponsive Mobie button color
-    $wp_customize->add_setting( 'screenr_menu_toggle_button_color',
+    $wp_customize->add_setting( 'menu_toggle_button_color',
         array(
             'sanitize_callback' => 'sanitize_hex_color_no_hash',
             'sanitize_js_callback' => 'maybe_hash_hex_color',
             'default' => ''
         ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'screenr_menu_toggle_button_color',
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'menu_toggle_button_color',
         array(
             'label'       => esc_html__( 'Responsive Menu Button Color', 'screenr' ),
-            'section'     => 'screenr_header_settings',
+            'section'     => 'header_settings',
             'description' => '',
         )
     ));
@@ -166,7 +166,7 @@ function screenr_customize_register( $wp_customize ) {
     /**
      * @see screen_showon_frontpage
      */
-    $wp_customize->add_panel( 'screenr_front_page_sections',
+    $wp_customize->add_panel( 'front_page_sections',
         array(
             'priority'       => 25,
             'capability'     => 'edit_theme_options',
@@ -183,27 +183,27 @@ function screenr_customize_register( $wp_customize ) {
 
 
     // Slider settings
-    $wp_customize->add_section( 'screenr_slider_settings' ,
+    $wp_customize->add_section( 'section_slider' ,
         array(
             'priority'    => 3,
-            'title'       => esc_html__( 'Hero Settings', 'screenr' ),
+            'title'       => esc_html__( 'Hero', 'screenr' ),
             'description' => '',
-            'panel'       => 'screenr_front_page_sections',
+            'panel'       => 'front_page_sections',
         )
     );
 
     // Show section
-    $wp_customize->add_setting( 'screenr_slider_disable',
+    $wp_customize->add_setting( 'slider_disable',
         array(
             'sanitize_callback' => 'screenr_sanitize_checkbox',
             'default'           => '',
         )
     );
-    $wp_customize->add_control( 'screenr_slider_disable',
+    $wp_customize->add_control( 'slider_disable',
         array(
             'type'        => 'checkbox',
             'label'       => esc_html__('Hide this section?', 'screenr'),
-            'section'     => 'screenr_slider_settings',
+            'section'     => 'section_slider',
             'description' => esc_html__('Check this box to hide this section.', 'screenr'),
         )
     );
@@ -212,7 +212,7 @@ function screenr_customize_register( $wp_customize ) {
      * @see screenr_sanitize_repeatable_data_field
      */
     $wp_customize->add_setting(
-        'screenr_slider_items',
+        'slider_items',
         array(
             'sanitize_callback' => 'screenr_sanitize_repeatable_data_field',
             'transport' => 'refresh', // refresh or postMessage
@@ -229,11 +229,11 @@ function screenr_customize_register( $wp_customize ) {
     $wp_customize->add_control(
         new Screenr_Customize_Repeatable_Control(
             $wp_customize,
-            'screenr_slider_items',
+            'slider_items',
             array(
                 'label'     => esc_html__('Content Items', 'screenr'),
                 'description'   => '',
-                'section'       => 'screenr_slider_settings',
+                'section'       => 'section_slider',
                 'live_title_id' => 'title', // apply for unput text and textarea only
                 'title_format'  => esc_html__('[live_title]', 'screenr'), // [live_title]
                 'max_item'      => 2, // Maximum item can add
@@ -253,33 +253,12 @@ function screenr_customize_register( $wp_customize ) {
                         'default' => esc_html__('This is slider description', 'screenr'),
                     ),
                     'media' => array(
-                        'title' => esc_html__('Image/Video', 'screenr'),
+                        'title' => esc_html__('Image', 'screenr'),
                         'type'  =>'media',
-                        'desc'  => esc_html__('Can use image or video here', 'screenr'),
                         'default' => array(
                             'url' => '',
                             'id' => ''
                         )
-                    ),
-
-                    'btn_1' => array(
-                        'title' => esc_html__('Button 1 text', 'screenr'),
-                        'type'  =>'text',
-                    ),
-
-                    'btn_1_link' => array(
-                        'title' => esc_html__('Button 1 link', 'screenr'),
-                        'type'  =>'text',
-                    ),
-
-                    'btn_2' => array(
-                        'title' => esc_html__('Button 2 text', 'screenr'),
-                        'type'  =>'text',
-                    ),
-
-                    'btn_2_link' => array(
-                        'title' => esc_html__('Button 2 link', 'screenr'),
-                        'type'  =>'text',
                     ),
 
                     'align' => array(
@@ -302,7 +281,6 @@ function screenr_customize_register( $wp_customize ) {
                             'bottom' => esc_html__('Bottom', 'screenr'),
                         )
                     ),
-
                 ),
 
             )
@@ -310,7 +288,7 @@ function screenr_customize_register( $wp_customize ) {
     );
 
     // Overlay color
-    $wp_customize->add_setting( 'screenr_slider_overlay_color',
+    $wp_customize->add_setting( 'slider_overlay_color',
         array(
             'sanitize_callback' => 'screenr_sanitize_color_alpha',
             'default'           => 'rgba(0,0,0,.3)',
@@ -319,80 +297,72 @@ function screenr_customize_register( $wp_customize ) {
     );
     $wp_customize->add_control( new Screenr_Alpha_Color_Control(
             $wp_customize,
-            'screenr_slider_overlay_color',
+            'slider_overlay_color',
             array(
                 'label' 		=> esc_html__('Background Overlay Color', 'screenr'),
-                'section' 		=> 'screenr_slider_settings',
+                'section' 		=> 'section_slider',
             )
         )
     );
 
 
     // Slider ID
-    $wp_customize->add_setting( 'screenr_slider_id',
+    $wp_customize->add_setting( 'slider_id',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
             'default'           => esc_html__('slider', 'screenr'),
         )
     );
-    $wp_customize->add_control( 'screenr_slider_id',
+    $wp_customize->add_control( 'slider_id',
         array(
             'label' 		=> esc_html__('Section ID:', 'screenr'),
-            'section' 		=> 'screenr_slider_settings',
+            'section' 		=> 'section_slider',
             'description'   => 'The section id, we will use this for link anchor.'
         )
     );
 
-
-    $wp_customize->add_control( 'screenr_slider_id',
-        array(
-            'label' 		=> esc_html__('Section ID:', 'screenr'),
-            'section' 		=> 'screenr_slider_settings',
-            'description'   => 'The section id, we will use this for link anchor.'
-        )
-    );
 
     // Show slider full screen
-    $wp_customize->add_setting( 'screenr_slider_fullscreen',
+    $wp_customize->add_setting( 'slider_fullscreen',
         array(
             'sanitize_callback' => 'screenr_sanitize_checkbox',
             'default'           => '',
         )
     );
-    $wp_customize->add_control( 'screenr_slider_fullscreen',
+    $wp_customize->add_control( 'slider_fullscreen',
         array(
             'type'        => 'checkbox',
             'label'       => esc_html__('Make slider section full screen', 'screenr'),
-            'section'     => 'screenr_slider_settings',
+            'section'     => 'section_slider',
             'description' => esc_html__('Check this box to make slider section full screen.', 'screenr'),
         )
     );
 
     // Slider content padding top
-    $wp_customize->add_setting( 'screenr_slider_pdtop',
+    $wp_customize->add_setting( 'slider_pdtop',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
         )
     );
-    $wp_customize->add_control( 'screenr_slider_pdtop',
+    $wp_customize->add_control( 'slider_pdtop',
         array(
             'label'           => esc_html__('Padding Top:', 'screenr'),
-            'section'         => 'screenr_slider_settings',
+            'section'         => 'section_slider',
             'description'     => 'The slider content padding top in percent (%).',
             //'active_callback' => 'screenr_slider_fullscreen_callback'
         )
     );
 
     // Slider content padding bottom
-    $wp_customize->add_setting( 'screenr_slider_pdbotom',
+    $wp_customize->add_setting( 'slider_pdbotom',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
         )
     );
-    $wp_customize->add_control( 'screenr_slider_pdbotom',
+    $wp_customize->add_control( 'slider_pdbotom',
         array(
             'label'           => esc_html__('Padding Bottom:', 'screenr'),
-            'section'         => 'screenr_slider_settings',
+            'section'         => 'section_slider',
             'description'     => 'The slider content padding bottom in percent (%).',
            // 'active_callback' => 'screenr_slider_fullscreen_callback'
         )
