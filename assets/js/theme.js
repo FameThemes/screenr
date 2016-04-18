@@ -288,6 +288,61 @@ jQuery( document ).ready( function( $ ){
 	}
 
 
+
+    // Get the header height and wpadminbar height if enable.
+    var h = jQuery('#wpadminbar').height() + ( jQuery('.site-header.sticky-header').height() + jQuery('.site-header.sticky-header').height()  );
+
+    // Navigation click to section.
+    jQuery('.home #site-navigation li a[href*="#"]').on('click', function(event){
+        event.preventDefault();
+        smoothScroll(jQuery(this.hash));
+    });
+
+    // Add active class to menu when scroll to active section.
+    jQuery(window).scroll(function() {
+        var currentNode = null;
+        jQuery('.screenr-section').each(function(){
+            var currentId = jQuery(this).attr('id');
+
+            if(jQuery('#'+currentId).length>0 ) {
+                if(jQuery(window).scrollTop() >= jQuery('#'+currentId).offset().top - h-10) {
+                    currentNode = currentId;
+                }
+            }
+        });
+        jQuery('#site-navigation li').removeClass('current-menu-item').find('a[href$="#'+currentNode+'"]').parent().addClass('current-menu-item');
+    });
+
+    // Move to the right section on page load.
+    jQuery(window).load(function(){
+        var urlCurrent = location.hash;
+        if (jQuery(urlCurrent).length>0 ) {
+            smoothScroll(urlCurrent);
+        }
+    });
+
+    // Other scroll to elements
+    jQuery( 'body' ).on('click', '.swiper-slide a[href*="#"]:not([href="#"]), .parallax-content a[href*="#"]:not([href="#"]), .back-top-top', function(event){
+        event.preventDefault();
+        smoothScroll(jQuery(this.hash));
+    });
+
+    // Smooth scroll animation
+    function smoothScroll(urlhash) {
+        if ( urlhash.length <= 0 ) {
+            return false;
+        }
+        jQuery("html, body").animate({
+            scrollTop: (jQuery(urlhash).offset().top - h) + "px"
+        }, {
+            duration: 800,
+            easing: "swing"
+        });
+        return false;
+    }
+
+
+
     /**
      * Custom  Slider
      *
@@ -390,8 +445,6 @@ jQuery( document ).ready( function( $ ){
 		}
 
 	} );
-
-    console.log( Screenr );
 
     if ( Screenr.full_screen_slider == '1' ) {
         set_swiper_full_screen_height();
