@@ -1,39 +1,70 @@
-<section id="contact" class="section-contact section-padding onepage-section">
+<?php
+
+$title      = get_theme_mod( 'contact_title', __( 'Contact Us', 'screenr' ) );
+$subtitle   = get_theme_mod( 'contact_subtitle', __( 'Keep in touch', 'screenr' ) );
+$desc       = get_theme_mod( 'contact_desc', __( 'Fill out the form below and you will hear from us shortly.', 'screenr' ) );
+$content    = get_theme_mod( 'contact_content' );
+$items      = get_theme_mod( 'contact_items' );
+?>
+
+<section id="<?php echo esc_attr( get_theme_mod('contact_id', 'contact')); ?>" class="section-contact section-padding onepage-section">
     <div class="container">
         <div class="section-title-area">
-            <div class="section-subtitle">Keep in touch</div>
-            <h2 class="section-title">Contact Us</h2>
-            <div class="section-desc">Fill out the form below and you will hear from us shortly.</div>
+            <?php if ( $subtitle ) { ?><div class="section-subtitle"><?php echo esc_html( $subtitle ); ?></div><?php } ?>
+            <?php if ( $title ) { ?><h2 class="section-title"><?php echo esc_html( $title ); ?></h2><?php } ?>
+            <?php if ( $title ) { ?><div class="section-desc"><?php echo do_shortcode( wp_kses_post( $desc ) ); ?></div><?php } ?>
         </div>
         <div class="section-content">
             <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-10">
-
+                    <?php if ( ! empty ( $items ) ) { ?>
                     <div class="contact-details">
                         <div class="row">
+                            <?php
+                            $layout = absint( get_theme_mod( 'contact_layout', 3 ) );
+                            if ( $layout == 0 ) {
+                                $layout = 3;
+                            }
 
-                            <!-- Loop: Repeater : 3 item for free version -->
-                            <div class="contact-detail col-lg-4 col-md-6">
-                                <span class="contact-icon"><i aria-hidden="true" class="fa fa-volume-control-phone fa-2x"></i></span>
-                                <a href="#"><span class="contact-detail-value">+1 (123) 456 78 89</span></a>
-                            </div>
-                            <div class="contact-detail col-lg-4 col-md-6">
-                                <span class="contact-icon"><i aria-hidden="true" class="fa fa-envelope-o fa-2x"></i></span>
-                                <a href="mailto:<?php echo antispambot( 'friends@studio.com' ); ?>"><span class="contact-detail-value">friends@studio.com</span></a>
-                            </div>
-                            <div class="contact-detail col-lg-4 col-md-6">
-                                <span class="contact-icon"><i aria-hidden="true" class="fa fa-twitter fa-2x"></i></span>
-                                <a href="#"><span class="contact-detail-value">@kientrong89</span></a>
-                            </div>
+                            $classes = '';
+                            switch( $layout ){
+                                case 2:
+                                    $classes = 'col-lg-6';
+                                    break;
+                                case 3:
+                                    $classes = 'col-lg-4';
+                                    break;
+                                case 4:
+                                    $classes = 'col-lg-3';
+                                    break;
+                                default:
+                                    $classes = 'col-lg-6';
+                            }
+
+                            foreach ( ( array ) $items as $item ) {
+                                $items = wp_parse_args( $item, array(
+                                    'title' => '',
+                                    'icon'  => '',
+                                    'url'   => '',
+                                ) );
+                                ?>
+                                <div class="contact-detail <?php echo esc_attr( $classes ); ?> col-md-6">
+                                    <?php if ( $item['icon'] ){ ?><span class="contact-icon"><i aria-hidden="true" class="fa fa-<?php echo esc_attr( $item['icon'] ); ?> fa-2x"></i></span><?php } ?>
+                                    <?php if ( $item['url'] ){ ?><a href="<?php echo antispambot( $item['url'] ); ?>"><?php } ?>
+                                        <span class="contact-detail-value"><?php echo esc_html( $item['title'] ); ?></span>
+                                    <?php if ( $item['url'] ){ ?></a><?php } ?>
+                                </div>
+                            <?php }// end loop items ?>
 
                         </div>
                     </div>
-
+                    <?php } ?>
+                    <?php if ( $content ) { ?>
                     <div class="contact-form-fields">
-                        <?php echo do_shortcode( '[contact-form-7 id="23" title="Contact form 1"]' ) ?>
+                        <?php echo do_shortcode( wp_kses_post( $content ) ); ?>
                     </div>
-
+                    <?php } ?>
                 </div>
                 <div class="col-md-1"></div>
             </div>

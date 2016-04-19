@@ -497,7 +497,7 @@ function screenr_customize_register( $wp_customize ) {
             'type'        => 'select',
             'label'       => esc_html__('Layout Settings', 'screenr'),
             'section'     => 'section_features',
-            'description' => esc_html__('Check this box to hide this section.', 'screenr'),
+            'description' => esc_html__('Number item per row to display.', 'screenr'),
             'choices' => array(
                 1 => 1,
                 2 => 2,
@@ -718,6 +718,21 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    // Service ID
+    $wp_customize->add_setting( 'services_id',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('services', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'services_id',
+        array(
+            'label' 		=> esc_html__('Section ID:', 'screenr'),
+            'section' 		=> 'section_services',
+            'description'   => esc_html__('The section id, we will use this for link anchor.', 'screenr' )
+        )
+    );
+
     // Section services title
     $wp_customize->add_setting( 'services_title',
         array(
@@ -821,7 +836,7 @@ function screenr_customize_register( $wp_customize ) {
             'type'        => 'select',
             'label'       => esc_html__('Layout Settings', 'screenr'),
             'section'     => 'section_services',
-            'description' => esc_html__('Check this box to hide this section.', 'screenr'),
+            'description' => esc_html__('Number columns to display.', 'screenr'),
             'choices' => array(
                 1 => 1,
                 2 => 2,
@@ -831,20 +846,189 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
-    // Service ID
-    $wp_customize->add_setting( 'services_id',
+
+    /*------------------------------------------------------------------------*/
+    /*  Section: Contact
+    /*------------------------------------------------------------------------*/
+
+    $wp_customize->add_section( 'section_contact' ,
         array(
-            'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => esc_html__('services', 'screenr'),
+            'title'       => esc_html__( 'Contact', 'screenr' ),
+            'description' => '',
+            'panel'       => 'front_page_sections',
         )
     );
-    $wp_customize->add_control( 'services_id',
+
+    // Show section
+    $wp_customize->add_setting( 'contact_disable',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_checkbox',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'contact_disable',
+        array(
+            'type'        => 'checkbox',
+            'label'       => esc_html__('Hide this section?', 'screenr'),
+            'section'     => 'section_contact',
+            'description' => esc_html__('Check this box to hide this section.', 'screenr'),
+        )
+    );
+
+    // Contact ID
+    $wp_customize->add_setting( 'contact_id',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('contact', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'contact_id',
         array(
             'label' 		=> esc_html__('Section ID:', 'screenr'),
-            'section' 		=> 'section_services',
+            'section' 		=> 'section_contact',
             'description'   => esc_html__('The section id, we will use this for link anchor.', 'screenr' )
         )
     );
+
+    // Section contact title
+    $wp_customize->add_setting( 'contact_title',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('Contact Us', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'contact_title',
+        array(
+            'label' 		=> esc_html__('Section title:', 'screenr'),
+            'section' 		=> 'section_contact',
+        )
+    );
+
+    // Section contact subtitle
+    $wp_customize->add_setting( 'contact_subtitle',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('Keep in touch', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'contact_subtitle',
+        array(
+            'label' 		=> esc_html__('Section subtitle:', 'screenr'),
+            'section' 		=> 'section_contact',
+        )
+    );
+
+    // Section contact description
+    $wp_customize->add_setting( 'contact_desc',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('Fill out the form below and you will hear from us shortly.', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'contact_desc',
+        array(
+            'label' 		=> esc_html__('Section description:', 'screenr'),
+            'section' 		=> 'section_contact',
+        )
+    );
+
+    // Section contact content
+    $wp_customize->add_setting( 'contact_content',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           =>  '',
+        )
+    );
+    $wp_customize->add_control(
+        new Screenr_Editor_Custom_Control(
+            $wp_customize,
+            'contact_content',
+            array(
+                'label' 		=> esc_html__('Contact content:', 'screenr'),
+                'section' 		=> 'section_contact',
+            )
+        )
+    );
+
+    /**
+     * @see screenr_sanitize_repeatable_data_field
+     */
+    $wp_customize->add_setting(
+        'contact_items',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_repeatable_data_field',
+            'transport' => 'refresh', // refresh or postMessage
+            'default' => array(
+
+            )
+        ) );
+
+    $wp_customize->add_control(
+        new Screenr_Customize_Repeatable_Control(
+            $wp_customize,
+            'contact_items',
+            array(
+                'label'     => esc_html__('Contact Items', 'screenr'),
+                'description'   => '',
+                'section'       => 'section_contact',
+                'live_title_id' => 'title', // apply for unput text and textarea only
+                'title_format'  => esc_html__('[live_title]', 'screenr'), // [live_title]
+                'max_item'      => 3, // Maximum item can add
+                'limited_msg' 	=> wp_kses_post( 'Upgrade to <a target="_blank" href="#">Screenr Plus</a> to be able to add more items and unlock other premium features!', 'screenr' ),
+                //'allow_unlimited' => false, // Maximum item can add
+                'fields'    => array(
+
+                    'title' => array(
+                        'title' => esc_html__('Title', 'screenr'),
+                        'type'  =>'text',
+                    ),
+
+                    'icon' => array(
+                        'title' => esc_html__('Font icon', 'screenr'),
+                        'desc'  => __('Paste your <a target="_blank" href="http://fortawesome.github.io/Font-Awesome/icons/">Font Awesome</a> icon class name here.', 'screenr'),
+                        'type'  =>'text',
+                    ),
+
+                    'url' => array(
+                        'title' => esc_html__('URL', 'screenr'),
+                        'type'  =>'text',
+                        'desc'  => __('Custom url', 'screenr'),
+                    ),
+
+                ),
+
+            )
+        )
+    );
+
+    $wp_customize->add_setting( 'contact_layout',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => 3,
+        )
+    );
+    $wp_customize->add_control( 'contact_layout',
+        array(
+            'type'        => 'select',
+            'label'       => esc_html__('Items layout settings', 'screenr'),
+            'section'     => 'section_contact',
+            'description' => esc_html__('Number item per row to display.', 'screenr'),
+            'choices' => array(
+                2 => 2,
+                3 => 3,
+                4 => 4
+            )
+        )
+    );
+
+
+
+
+
+
+
+
+
 
 
 
