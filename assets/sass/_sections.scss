@@ -539,6 +539,62 @@
 	}
 }
 
+/* Section: Clients
+------------------------------*/
+.clients-wrapper {
+	&:after {
+		@include clearfix();
+	}
+	margin-left: -15px;
+	margin-right: -15px;
+}
+.client-col {
+	float: left;
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+	padding: 15px;
+}
+@include for(medium-screens) {
+	.client-4-cols {
+		.client-col {
+			width: ( 100%/4 );
+			&:nth-child(4n+1) {
+				clear: left;
+			}
+		}
+	}
+	.client-5-cols {
+		.client-col {
+			width: ( 100%/5 );
+			&:nth-child(5n+1) {
+				clear: left;
+			}
+		}
+	}
+	.client-6-cols {
+		.client-col {
+			width: ( 100%/6 );
+			&:nth-child(6n+1) {
+				clear: left;
+			}
+		}
+	}
+}
+
+@include for(screens-medium) {
+	.client-4-cols,
+	.client-5-cols,
+	.client-6-cols {
+		.client-col {
+			width: ( 100%/2 );
+			&:nth-child(2n+1) {
+				clear: left;
+			}
+		}
+	}
+}
 
 /* Section: Contact
 ------------------------------*/

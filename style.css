@@ -2485,6 +2485,63 @@ input[type="radio"], input[type="checkbox"] {
 	color: #777;
 }
 
+/* Section: Clients
+------------------------------*/
+.clients-wrapper {
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+.clients-wrapper:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.client-col {
+	float: left;
+	padding: 15px;
+}
+
+.client-col img {
+	max-width: 100%;
+	height: auto;
+}
+
+@media screen and (min-width: 940px) {
+	.client-4-cols .client-col {
+		width: 25%;
+	}
+	.client-4-cols .client-col:nth-child(4n+1) {
+		clear: left;
+	}
+	.client-5-cols .client-col {
+		width: 20%;
+	}
+	.client-5-cols .client-col:nth-child(5n+1) {
+		clear: left;
+	}
+	.client-6-cols .client-col {
+		width: 16.66667%;
+	}
+	.client-6-cols .client-col:nth-child(6n+1) {
+		clear: left;
+	}
+}
+
+@media screen and (max-width: 940px) {
+	.client-4-cols .client-col,
+	.client-5-cols .client-col,
+	.client-6-cols .client-col {
+		width: 50%;
+	}
+	.client-4-cols .client-col:nth-child(2n+1),
+	.client-5-cols .client-col:nth-child(2n+1),
+	.client-6-cols .client-col:nth-child(2n+1) {
+		clear: left;
+	}
+}
+
 /* Section: Contact
 ------------------------------*/
 .section-contact textarea,

@@ -1022,6 +1022,162 @@ function screenr_customize_register( $wp_customize ) {
     );
 
 
+    /*------------------------------------------------------------------------*/
+    /*  Section: Client
+    /*------------------------------------------------------------------------*/
+
+    $wp_customize->add_section( 'section_clients' ,
+        array(
+            'title'       => esc_html__( 'Clients', 'screenr' ),
+            'description' => '',
+            'panel'       => 'front_page_sections',
+        )
+    );
+
+    // Show section
+    $wp_customize->add_setting( 'clients_disable',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_checkbox',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'clients_disable',
+        array(
+            'type'        => 'checkbox',
+            'label'       => esc_html__('Hide this section?', 'screenr'),
+            'section'     => 'section_clients',
+            'description' => esc_html__('Check this box to hide this section.', 'screenr'),
+        )
+    );
+
+    // Contact ID
+    $wp_customize->add_setting( 'clients_id',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('clients', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'clients_id',
+        array(
+            'label' 		=> esc_html__('Section ID:', 'screenr'),
+            'section' 		=> 'section_clients',
+            'description'   => esc_html__('The section id, we will use this for link anchor.', 'screenr' )
+        )
+    );
+
+    // Section clients title
+    $wp_customize->add_setting( 'clients_title',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'clients_title',
+        array(
+            'label' 		=> esc_html__('Section title:', 'screenr'),
+            'section' 		=> 'section_clients',
+        )
+    );
+
+    // Section clients subtitle
+    $wp_customize->add_setting( 'clients_subtitle',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('Have been featured on', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'clients_subtitle',
+        array(
+            'label' 		=> esc_html__('Section subtitle:', 'screenr'),
+            'section' 		=> 'section_clients',
+        )
+    );
+
+    // Section clients description
+    $wp_customize->add_setting( 'clients_desc',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control(
+        new Screenr_Editor_Custom_Control(
+            $wp_customize,
+            'clients_desc',
+            array(
+                'label' 		=> esc_html__('Section description:', 'screenr'),
+                'section' 		=> 'section_clients',
+            )
+        )
+    );
+
+
+    $wp_customize->add_setting(
+        'clients_items',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_repeatable_data_field',
+            'transport' => 'refresh', // refresh or postMessage
+            'default' => array(
+
+            )
+        ) );
+
+    $wp_customize->add_control(
+        new Screenr_Customize_Repeatable_Control(
+            $wp_customize,
+            'clients_items',
+            array(
+                'label'     => esc_html__('Clients', 'screenr'),
+                'description'   => '',
+                'section'       => 'section_clients',
+                'live_title_id' => 'title', // apply for unput text and textarea only
+                'title_format'  => esc_html__('[live_title]', 'screenr'), // [live_title]
+                'max_item'      => 99, // Maximum item can add
+                'limited_msg' 	=> wp_kses_post( 'Upgrade to <a target="_blank" href="#">Screenr Plus</a> to be able to add more items and unlock other premium features!', 'screenr' ),
+                //'allow_unlimited' => false, // Maximum item can add
+                'fields'    => array(
+
+                    'title' => array(
+                        'title' => esc_html__('Title', 'screenr'),
+                        'type'  =>'text',
+                    ),
+
+                    'image' => array(
+                        'title' => esc_html__('Client logo', 'screenr'),
+                        'type'  =>'media',
+                    ),
+
+                    'url' => array(
+                        'title' => esc_html__('Client URL', 'screenr'),
+                        'type'  =>'text',
+                    ),
+
+                ),
+
+            )
+        )
+    );
+
+    $wp_customize->add_setting( 'clients_layout',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => 5,
+        )
+    );
+    $wp_customize->add_control( 'clients_layout',
+        array(
+            'type'        => 'select',
+            'label'       => esc_html__('Items layout settings', 'screenr'),
+            'section'     => 'section_clients',
+            'description' => esc_html__('Number item per row to display.', 'screenr'),
+            'choices' => array(
+                4 => 4,
+                5 => 5,
+                6 => 6
+            )
+        )
+    );
+
 
 
 
