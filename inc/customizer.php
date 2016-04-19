@@ -216,6 +216,21 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    // Slider ID
+    $wp_customize->add_setting( 'slider_id',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('slider', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'slider_id',
+        array(
+            'label' 		=> esc_html__('Section ID:', 'screenr'),
+            'section' 		=> 'section_slider',
+            'description'   => 'The section id, we will use this for link anchor.'
+        )
+    );
+
     /**
      * @see screenr_sanitize_repeatable_data_field
      */
@@ -314,21 +329,6 @@ function screenr_customize_register( $wp_customize ) {
     );
 
 
-    // Slider ID
-    $wp_customize->add_setting( 'slider_id',
-        array(
-            'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => esc_html__('slider', 'screenr'),
-        )
-    );
-    $wp_customize->add_control( 'slider_id',
-        array(
-            'label' 		=> esc_html__('Section ID:', 'screenr'),
-            'section' 		=> 'section_slider',
-            'description'   => 'The section id, we will use this for link anchor.'
-        )
-    );
-
 
     // Show slider full screen
     $wp_customize->add_setting( 'slider_fullscreen',
@@ -376,7 +376,6 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
-    // END For Slider layout ------------------------
 
     /*------------------------------------------------------------------------*/
     /*  Section: Features
@@ -404,6 +403,21 @@ function screenr_customize_register( $wp_customize ) {
             'label'       => esc_html__('Hide this section?', 'screenr'),
             'section'     => 'section_features',
             'description' => esc_html__('Check this box to hide this section.', 'screenr'),
+        )
+    );
+
+    // Features ID
+    $wp_customize->add_setting( 'features_id',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('features', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'features_id',
+        array(
+            'label' 		=> esc_html__('Section ID:', 'screenr'),
+            'section' 		=> 'section_features',
+            'description'   => esc_html__('The section id, we will use this for link anchor.', 'screenr' )
         )
     );
 
@@ -484,7 +498,6 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
-
     // Features columns
     $wp_customize->add_setting( 'features_layout',
         array(
@@ -504,21 +517,6 @@ function screenr_customize_register( $wp_customize ) {
                 3 => 3,
                 4 => 4
             )
-        )
-    );
-
-    // Features ID
-    $wp_customize->add_setting( 'features_id',
-        array(
-            'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => esc_html__('features', 'screenr'),
-        )
-    );
-    $wp_customize->add_control( 'features_id',
-        array(
-            'label' 		=> esc_html__('Section ID:', 'screenr'),
-            'section' 		=> 'section_features',
-            'description'   => esc_html__('The section id, we will use this for link anchor.', 'screenr' )
         )
     );
 

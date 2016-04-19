@@ -32,7 +32,7 @@ if ( is_array( $items ) && ! empty( $items ) ) {
                         if ( ! $image ){
                             continue;
                         }
-                        
+
                         ?>
                         <div class="client-col">
                             <?php if ( $item['url'] ){ ?><a href="<?php echo esc_url( $item['url'] ); ?>"><?php } ?>
