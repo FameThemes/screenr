@@ -1,7 +1,6 @@
 <?php
 $items = get_theme_mod( 'features_items' );
 
-
 if ( is_array( $items ) && ! empty( $items ) ) {
     $layout = absint( get_theme_mod( 'features_layout', 3 ) );
     if ( $layout == 0 ){

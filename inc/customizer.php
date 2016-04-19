@@ -435,13 +435,13 @@ function screenr_customize_register( $wp_customize ) {
                 'section'       => 'section_features',
                 'live_title_id' => 'page_id', // apply for unput text and textarea only
                 'title_format'  => esc_html__('[live_title]', 'screenr'), // [live_title]
-                'max_item'      => 99, // Maximum item can add
+                'max_item'      => 3, // Maximum item can add
                 'limited_msg' 	=> wp_kses_post( 'Upgrade to <a target="_blank" href="#">Screenr Plus</a> to be able to add more items and unlock other premium features!', 'screenr' ),
                 //'allow_unlimited' => false, // Maximum item can add
                 'fields'    => array(
 
                     'page_id' => array(
-                        'title' => esc_html__('Content align', 'screenr'),
+                        'title' => esc_html__('Content page', 'screenr'),
                         'type'  =>'select',
                         'options' => $option_pages
                     ),
@@ -555,7 +555,7 @@ function screenr_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'about_id',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => esc_html__('features', 'screenr'),
+            'default'           => esc_html__('about', 'screenr'),
         )
     );
     $wp_customize->add_control( 'about_id',
@@ -690,6 +690,161 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    /*------------------------------------------------------------------------*/
+    /*  Section: Services
+    /*------------------------------------------------------------------------*/
+
+    $wp_customize->add_section( 'section_services' ,
+        array(
+            'title'       => esc_html__( 'Services', 'screenr' ),
+            'description' => '',
+            'panel'       => 'front_page_sections',
+        )
+    );
+
+    // Show section
+    $wp_customize->add_setting( 'services_disable',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_checkbox',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'services_disable',
+        array(
+            'type'        => 'checkbox',
+            'label'       => esc_html__('Hide this section?', 'screenr'),
+            'section'     => 'section_services',
+            'description' => esc_html__('Check this box to hide this section.', 'screenr'),
+        )
+    );
+
+    // Section services title
+    $wp_customize->add_setting( 'services_title',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('Services', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'services_title',
+        array(
+            'label' 		=> esc_html__('Section title:', 'screenr'),
+            'section' 		=> 'section_services',
+        )
+    );
+
+    // Section services title
+    $wp_customize->add_setting( 'services_subtitle',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('Section subtitle', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'services_subtitle',
+        array(
+            'label' 		=> esc_html__('Section subtitle:', 'screenr'),
+            'section' 		=> 'section_services',
+        )
+    );
+
+    /**
+     * @see screenr_sanitize_repeatable_data_field
+     */
+    $wp_customize->add_setting(
+        'services_items',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_repeatable_data_field',
+            'transport' => 'refresh', // refresh or postMessage
+            'default' => array(
+
+            )
+        ) );
+
+    $wp_customize->add_control(
+        new Screenr_Customize_Repeatable_Control(
+            $wp_customize,
+            'services_items',
+            array(
+                'label'     => esc_html__('Content Items', 'screenr'),
+                'description'   => '',
+                'section'       => 'section_services',
+                'live_title_id' => 'page_id', // apply for unput text and textarea only
+                'title_format'  => esc_html__('[live_title]', 'screenr'), // [live_title]
+                'max_item'      => 6, // Maximum item can add
+                'limited_msg' 	=> wp_kses_post( 'Upgrade to <a target="_blank" href="#">Screenr Plus</a> to be able to add more items and unlock other premium features!', 'screenr' ),
+                //'allow_unlimited' => false, // Maximum item can add
+                'fields'    => array(
+
+                    'page_id' => array(
+                        'title' => esc_html__('Content page', 'screenr'),
+                        'type'  =>'select',
+                        'options' => $option_pages
+                    ),
+
+                    'thumb_type' => array(
+                        'title' => esc_html__('Item style', 'screenr'),
+                        'type'  =>'select',
+                        'options' => array(
+                            'image_top'      => esc_html__('Featured image top', 'screenr'),
+                            'image_overlay'  => esc_html__('Featured image overlay', 'screenr'),
+                            'icon'           => esc_html__('Font icon', 'screenr'),
+                            'no_thumb'       => esc_html__('No thumbnail', 'screenr'),
+                        )
+                    ),
+                    'icon' => array(
+                        'title' => esc_html__('Font icon', 'screenr'),
+                        'desc'  => __('Paste your <a target="_blank" href="http://fortawesome.github.io/Font-Awesome/icons/">Font Awesome</a> icon class name here.', 'screenr'),
+                        'type'  =>'text',
+                        "required" => array( 'thumb_type', '=', 'icon' )
+                    ),
+                    'readmore' => array(
+                        'title' => esc_html__('Show readmore link', 'screenr'),
+                        'type'  =>'checkbox',
+                        'default' => 1,
+                    ),
+
+                ),
+
+            )
+        )
+    );
+
+
+    // Features columns
+    $wp_customize->add_setting( 'services_layout',
+        array(
+            'sanitize_callback' => 'sanitize_text_field',
+            'default'           => 2,
+        )
+    );
+    $wp_customize->add_control( 'services_layout',
+        array(
+            'type'        => 'select',
+            'label'       => esc_html__('Layout Settings', 'screenr'),
+            'section'     => 'section_services',
+            'description' => esc_html__('Check this box to hide this section.', 'screenr'),
+            'choices' => array(
+                1 => 1,
+                2 => 2,
+                3 => 3,
+                4 => 4
+            )
+        )
+    );
+
+    // Service ID
+    $wp_customize->add_setting( 'services_id',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('services', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'services_id',
+        array(
+            'label' 		=> esc_html__('Section ID:', 'screenr'),
+            'section' 		=> 'section_services',
+            'description'   => esc_html__('The section id, we will use this for link anchor.', 'screenr' )
+        )
+    );
 
 
 

@@ -2477,6 +2477,14 @@ input[type="radio"], input[type="checkbox"] {
 	background: rgba(0, 0, 0, 0.7);
 }
 
+.card-img-overlay .card-title a {
+	color: #fff;
+}
+
+.card-img-overlay .card-title a:hover {
+	color: #777;
+}
+
 /* Section: Contact
 ------------------------------*/
 .section-contact textarea,
