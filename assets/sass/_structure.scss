@@ -14,10 +14,15 @@
 		background: transparent;
 	}
 	&.sticky-header.transparent  {
-		position: fixed;
+		//position: fixed;
 		&.header-fixed {
 			border-bottom-color: transparent;
 		}
+	}
+}
+.home, .page-template-template-frontpage {
+	.site-header.sticky-header.transparent {
+		position: fixed;
 	}
 }
 .site-header-wrapper {
@@ -248,8 +253,10 @@
 	}
 }
 @include for(large-screens) {
-	.no-scroll .sticky-header.transparent .nav-menu > li > a {
-		color: #ffffff;
+	.home, .page-template-template-frontpage {
+		.no-scroll .sticky-header.transparent .nav-menu > li > a {
+			color: #ffffff;
+		}
 	}
 }
 

@@ -290,7 +290,7 @@ jQuery( document ).ready( function( $ ){
 
 
     // Get the header height and wpadminbar height if enable.
-    var h = jQuery('#wpadminbar').height() + ( jQuery('.site-header.sticky-header').height() + jQuery('.site-header.sticky-header').height()  );
+    var h = jQuery('#wpadminbar').height() + ( jQuery('.site-header.sticky-header').height()  );
 
     // Navigation click to section.
     jQuery('.home #site-navigation li a[href*="#"]').on('click', function(event){
@@ -341,6 +341,20 @@ jQuery( document ).ready( function( $ ){
         return false;
     }
 
+	// Next section
+	$( 'body').on( 'click', '.btn-next-section', function( e ){
+		e.preventDefault();
+		var current_section = $( this).closest( '.screenr-section' );
+		if ( current_section.next( '.screenr-section').length > 0 ){
+			jQuery("html, body").animate({
+				scrollTop: (current_section.next( '.screenr-section').offset().top - h + 30 ) + "px"
+			}, {
+				duration: 800,
+				easing: "swing"
+			});
+		}
+
+	} );
 
 
     /**
@@ -391,6 +405,8 @@ jQuery( document ).ready( function( $ ){
 	}
 
     var slider_overlay_opacity = $('.swiper-slider.fixed .swiper-container .overlay').eq( 0 ).css( 'opacity' ) || .35;
+	console.log( slider_overlay_opacity );
+	//slider_overlay_opacity = 0.35;
 	$( window ).scroll( function(){
 		var scrolled = $(window).scrollTop();
 
@@ -433,6 +449,10 @@ jQuery( document ).ready( function( $ ){
             $('.swiper-slider.fixed .swiper-container .overlay').css( {
                 'opacity': o
             } );
+
+			$('.swiper-slider.fixed .swiper-container .swiper-slide-intro').css( {
+                'opacity': 1 - o
+            } );
 		} else {
 			//console.log( header_h + '-====-' + admin_bar_h );
 			$('.swiper-slider.fixed .swiper-container').css({
@@ -442,6 +462,10 @@ jQuery( document ).ready( function( $ ){
             $('.swiper-slider.fixed .swiper-container .overlay').css( {
                 'opacity': o
             } );
+
+			$('.swiper-slider.fixed .swiper-container .swiper-slide-intro').css( {
+				'opacity': 1
+			} );
 		}
 
 	} );

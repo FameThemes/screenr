@@ -689,12 +689,12 @@ input[type="radio"], input[type="checkbox"] {
 	background: transparent;
 }
 
-.site-header.sticky-header.transparent {
-	position: fixed;
-}
-
 .site-header.sticky-header.transparent.header-fixed {
 	border-bottom-color: transparent;
+}
+
+.home .site-header.sticky-header.transparent, .page-template-template-frontpage .site-header.sticky-header.transparent {
+	position: fixed;
 }
 
 .site-header-wrapper {
@@ -938,7 +938,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 @media screen and (min-width: 1140px) {
-	.no-scroll .sticky-header.transparent .nav-menu > li > a {
+	.home .no-scroll .sticky-header.transparent .nav-menu > li > a, .page-template-template-frontpage .no-scroll .sticky-header.transparent .nav-menu > li > a {
 		color: #ffffff;
 	}
 }
@@ -2079,7 +2079,8 @@ input[type="radio"], input[type="checkbox"] {
 	left: 0px;
 	right: 0px;
 	bottom: 0px;
-	background: rgba(0, 0, 0, 0.4);
+	opacity: 0.35;
+	background: #000;
 }
 
 .swiper-slider .swiper-slide .swiper-slide-actions {
@@ -2297,6 +2298,74 @@ input[type="radio"], input[type="checkbox"] {
 	border-top-left-radius: 4px;
 	border-bottom-left-radius: 4px;
 	text-align: right;
+}
+
+.swiper-slider .btn-next-section {
+	text-align: center;
+	position: absolute;
+	left: 50%;
+	z-index: 11;
+	color: #fff;
+	cursor: pointer;
+	width: 60px;
+	width: 3.75rem;
+	height: 60px;
+	height: 3.75rem;
+	bottom: 30px;
+	bottom: 1.875rem;
+	margin-left: -30px;
+	margin-left: -1.875rem;
+	-webkit-transition: 500ms linear;
+	-moz-transition: 500ms linear;
+	transition: 500ms linear;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.swiper-slider .btn-next-section:hover {
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.swiper-slider .btn-next-section:before, .swiper-slider .btn-next-section:after {
+	width: 30px;
+	width: 1.875rem;
+	height: 1px;
+	height: 0.0625rem;
+	background: #fff;
+	content: " ";
+	display: block;
+	position: absolute;
+}
+
+.swiper-slider .btn-next-section:before {
+	/* Safari */
+	-webkit-transform: rotate(-135deg);
+	/* Firefox */
+	-moz-transform: rotate(-135deg);
+	/* IE */
+	-ms-transform: rotate(-135deg);
+	/* Opera */
+	-o-transform: rotate(-135deg);
+	bottom: 30px;
+	bottom: 1.875rem;
+	left: 5px;
+	left: 0.3125rem;
+}
+
+.swiper-slider .btn-next-section:after {
+	/* Safari */
+	-webkit-transform: rotate(135deg);
+	/* Firefox */
+	-moz-transform: rotate(135deg);
+	/* IE */
+	-ms-transform: rotate(135deg);
+	/* Opera */
+	-o-transform: rotate(135deg);
+	bottom: 30px;
+	bottom: 1.875rem;
+	right: 5px;
+	right: 0.3125rem;
 }
 
 /* Section: Features

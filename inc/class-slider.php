@@ -70,7 +70,7 @@ class Screenr_Slider {
     function render( ){
         $slider_data =  array();
         //wp_get_attachment_url( get_post_thumbnail_id() );
-        foreach ( $this->data as $k => $item ){
+        foreach ( ( array ) $this->data as $k => $item ){
             $item = wp_parse_args( $item, array(
                 'title'         => '',
                 'desc'          => '',
