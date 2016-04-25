@@ -15,28 +15,20 @@
 get_header();
 
 
-the_post();
-
+    the_post();
+    $thumbnail = '';
+    if ( has_post_thumbnail() ) {
+        $thumbnail = get_the_post_thumbnail_url( get_the_ID(),  'full' );
+        if ( $thumbnail ) {
+            $thumbnail = ' style="background-image: url('.esc_url( $thumbnail ).');" ';
+        }
+    }
 ?>
-	<section id="page-header" class="screenr-section swiper-slider full-screen fixed" >
-		<div class="swiper-container">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide slide-align-center activated swiper-slide-active">
-					<?php
-					if ( has_post_thumbnail() ) {
-						the_post_thumbnail( 'large' );
-					}
-					?>
-					<div class="swiper-slide-intro">
-						<div class="swiper-intro-inner">
-							<?php the_title( '<h2 class="swiper-slide-heading">', '</h2>' ); ?>
-						</div>
-					</div>
-					<div class="overlay"></div>
-				</div>
-			</div>
-		</div>
-	</section>
+	<div id="page-header" class="page-header-cover"<?php echo $thumbnail; ?>>
+        <div class="page-header-inner">
+            <?php the_title( '<h1 class="site-title">', '</h1>' ); ?>
+        </div>
+	</div>
 
 	<div id="content" class="site-content">
 		<div id="content-inside" class="container right-sidebar">

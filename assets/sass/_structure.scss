@@ -457,6 +457,42 @@
     }
 }
 
+/* Page header cover
+------------------------------*/
+.page-header-cover {
+	position: relative;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;: 
+	&:before {
+		background-color: rgba( 0, 0, 0, .45 );
+		content: " ";
+		display: block;
+		position: absolute;
+		top: 0px; left: 0px; right: 0px; bottom: 0px;
+		z-index: 6;
+	}
+	.page-header-inner {
+		position: relative;
+		z-index: 8;
+		padding-top: 10%;
+		padding-bottom: 10%;
+		text-align: center;
+		@include rem('max-width', 1140px);
+		margin: 0 auto;
+		color: #fff;
+		text-transform: uppercase;
+		h1 {
+			@include rem('font-size', 65px);
+			color: #fff;
+		}
+	}
+}
+
 /* Content
 ------------------------------*/
 .site-content {

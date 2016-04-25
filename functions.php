@@ -145,6 +145,7 @@ function screenr_scripts() {
 
     wp_localize_script( 'jquery', 'Screenr', array(
         'full_screen_slider' => ( get_theme_mod( 'slider_fullscreen' ) ) ? true : false,
+        'header_layout' 	 => get_option( 'header_layout' ),
     ) );
 
 }

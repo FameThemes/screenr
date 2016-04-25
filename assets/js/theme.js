@@ -231,7 +231,7 @@ jQuery( document ).ready( function( $ ){
 		var $wrap =  $( '.site-header-wrapper');
 		$wrap.addClass( 'no-scroll' );
 
-		$(document).scroll(function () {
+		$( window ).scroll(function () {
 			var header_fixed = $('.site-header').eq(0);
 			var header_parent = header_fixed.parent();
 			var header_h = header_fixed.height() || 0;
@@ -247,7 +247,10 @@ jQuery( document ).ready( function( $ ){
             var start = 0;
             if ( is_fixed_header && is_transparent ) {
                 if ( $( '.swiper-slider' ).length ) {
-                    start = $( '.swiper-slider' ).eq( 0 ).offset( ).top + $( '.swiper-slider' ).height();
+                    start = $( '.swiper-slider' ).eq( 0 ).offset( ).top + $( '.swiper-slider' ).outerHeight();
+                    start  = start - header_h - topbar ;
+                } else if ( $( '.page-header-cover' ).length ) {
+                    start = $( '.page-header-cover' ).eq( 0 ).offset( ).top + $( '.page-header-cover' ).outerHeight();
                     start  = start - header_h - topbar ;
                 }
             }
@@ -279,8 +282,6 @@ jQuery( document ).ready( function( $ ){
 				$wrap.removeClass('is-fixed').addClass('no-scroll');
 			}
 		});
-
-        $(document).trigger( 'scroll' );
 
 
 		if ( $( '#wpadminbar').length > 0 ) {
@@ -406,7 +407,7 @@ jQuery( document ).ready( function( $ ){
 				if ( header_pos === 'fixed' ) {
 					s.css({
 						height: h+'px',
-						marginTop: header_h +'px',
+						//marginTop: header_h +'px',
 					});
 				} else {
 					s.css({
@@ -496,7 +497,6 @@ jQuery( document ).ready( function( $ ){
 			}
 		},
 		onSlideChangeEnd: function( swiper ){
-
 			var slide = swiper.slides[swiper.activeIndex];
 			// Need to pause all videos in the slider
 			swiper.slides.each(function (index, slide) {
@@ -578,8 +578,7 @@ jQuery( document ).ready( function( $ ){
 		if ( $( '.site-header').length > 0 && ! $( '.site-header').hasClass( 'transparent' )  ){
 			header_h = $( '.site-header').eq( 0 ).height();
 		}
-
-		var st = scrolled * 0.7;
+        var  st = scrolled * 0.7;
 
 		// calc opactity
 		var  o = slider_overlay_opacity;
@@ -627,7 +626,7 @@ jQuery( document ).ready( function( $ ){
 			} );
 		}
 
-        var sch = swiper.container.height();
+        var sch = swiper.container.outerHeight();
 
         if ( scrolled >= sch / 4 ) {
             swiper.container.addClass( 'over-1-4' );
@@ -695,7 +694,13 @@ jQuery( document ).ready( function( $ ){
             }
 
             if ( scrolled > 0 ) {
-                var _s_t =  top - scrolled  + _t ;
+                var _s_t = 0;
+                if ( Screenr.header_layout === 'fixed' ) {
+                    _s_t =  top - ( scrolled * .3 )  ;
+                    console.log( _s_t );
+                } else {
+                    _s_t =  top - scrolled  + _t ;
+                }
                 intro.css( { 'top':  ( _s_t ) +'px' } );
             } else {
                 intro.css( { 'top': '' } );
@@ -715,6 +720,8 @@ jQuery( document ).ready( function( $ ){
         swiper.container.find( '.swiper-slide-intro, .btn-next-section' ).removeAttr( 'data-top' ).removeAttr( 'style' );
         $( window ).trigger( 'scroll' );
     } );
+
+    $(document).trigger( 'scroll' );
 
 
 } );
