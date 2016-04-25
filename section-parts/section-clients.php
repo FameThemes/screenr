@@ -11,7 +11,7 @@ if ( is_array( $items ) && ! empty( $items ) ) {
     $subtitle   = get_theme_mod( 'clients_subtitle', __( 'Have been featured on', 'screenr' ) );
     $desc       = get_theme_mod( 'clients_desc' );
     ?>
-    <section id="<?php echo esc_attr( get_theme_mod( 'clients_id', 'clients' ) ); ?>" class="section-clients section-padding screenr-section">
+    <section id="<?php echo esc_attr( get_theme_mod( 'clients_id', 'clients' ) ); ?>" class="section-clients section-padding section-meta screenr-section">
         <div class="container">
             <div class="section-title-area">
                 <?php if ( $subtitle ) { ?><div class="section-subtitle"><?php echo esc_html( $subtitle ); ?></div><?php } ?>

@@ -66,6 +66,8 @@
 		display: initial;
 		vertical-align: middle;
 		font-weight: 600;
+		position: relative;
+		top: -3px;
         &:hover, a:hover {
             text-decoration: none;
         }
@@ -201,7 +203,8 @@
         //font-family: $font_heading;
         padding-left: 17px;
         padding-right: 17px;
-        font-size: 16px;
+        font-size: 14px;
+		font-weight: 600;
         text-decoration: none;
         zoom: 1;
         &:hover {

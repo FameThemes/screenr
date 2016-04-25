@@ -48,7 +48,8 @@ function screenr_setup() {
 	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 	 */
     add_theme_support( 'post-thumbnails' );
-    set_post_thumbnail_size( 640, 350, true );
+	add_image_size( 'screenr-blog-grid-small', 350, 200, true );
+    add_image_size( 'screenr-blog-grid', 540, 300, true );
 
 	add_theme_support( 'custom-logo', array(
 		'height'      => 60,

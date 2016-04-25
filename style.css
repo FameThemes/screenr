@@ -102,7 +102,7 @@ textarea {
 	2.2 Links
 ------------------------------*/
 a {
-	color: #42c3d3;
+	color: #e86240;
 	text-decoration: none;
 	outline: none;
 }
@@ -386,7 +386,7 @@ fieldset {
 
 input[type="reset"], input[type="submit"], input[type="submit"] {
 	cursor: pointer;
-	background: #42c3d3;
+	background: #e86240;
 	border: none;
 	display: inline-block;
 	color: #FFFFFF;
@@ -476,7 +476,7 @@ input[type="week"]:focus {
 	-moz-transition: all 0.2s linear;
 	-webkit-transition: all 0.2s linear;
 	-o-transition: all 0.2s linear;
-	border-color: #42c3d3;
+	border-color: #e86240;
 }
 
 button::-moz-focus-inner {
@@ -505,7 +505,7 @@ input[type="radio"], input[type="checkbox"] {
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	clip: auto !important;
-	color: #42c3d3;
+	color: #e86240;
 	display: block;
 	height: auto;
 	left: 5px;
@@ -739,6 +739,8 @@ input[type="radio"], input[type="checkbox"] {
 	display: initial;
 	vertical-align: middle;
 	font-weight: 600;
+	position: relative;
+	top: -3px;
 }
 
 .site-branding .site-title:hover, .site-branding .site-title a:hover, .site-branding .site-text-logo:hover, .site-branding .site-text-logo a:hover {
@@ -784,7 +786,7 @@ input[type="radio"], input[type="checkbox"] {
 	float: left;
 	margin-left: 0px;
 	margin-top: -2px;
-	color: #42c3d3;
+	color: #e86240;
 }
 
 @media screen and (min-width: 940px) {
@@ -890,13 +892,14 @@ input[type="radio"], input[type="checkbox"] {
 	color: #333333;
 	padding-left: 17px;
 	padding-right: 17px;
-	font-size: 16px;
+	font-size: 14px;
+	font-weight: 600;
 	text-decoration: none;
 	zoom: 1;
 }
 
 .nav-menu a:hover {
-	color: #42c3d3;
+	color: #e86240;
 }
 
 .nav-menu ul li {
@@ -914,15 +917,15 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .nav-menu ul li a:hover {
-	color: #42c3d3;
+	color: #e86240;
 }
 
 .nav-menu li.onepress-current-item > a {
-	color: #42c3d3;
+	color: #e86240;
 }
 
 .nav-menu ul li.current-menu-item > a {
-	color: #42c3d3;
+	color: #e86240;
 }
 
 .nav-menu > li:last-child > a {
@@ -930,7 +933,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .nav-menu > li a.menu-actived {
-	color: #42c3d3;
+	color: #e86240;
 }
 
 .nav-menu .nav-toggle-subarrow {
@@ -1014,7 +1017,7 @@ input[type="radio"], input[type="checkbox"] {
 		width: 100% !important;
 	}
 	.nav-menu.nav-menu-mobile li.nav-current-item > a {
-		color: #42c3d3;
+		color: #e86240;
 	}
 	.nav-menu.nav-menu-mobile a {
 		color: #777777;
@@ -1172,7 +1175,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .site-footer a {
-	color: #42c3d3;
+	color: #e86240;
 }
 
 .site-footer .footer-connect {
@@ -1270,7 +1273,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .site-footer .footer-social a:hover {
-	color: #42c3d3;
+	color: #e86240;
 }
 
 .site-footer .site-info {
@@ -1311,7 +1314,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .site-footer .btt a:hover {
-	color: #42c3d3;
+	color: #e86240;
 }
 
 .site-footer .btt a i {
@@ -1398,7 +1401,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .highlight {
-	color: #42c3d3;
+	color: #e86240;
 }
 
 /* Entry Content
@@ -1411,7 +1414,7 @@ input[type="radio"], input[type="checkbox"] {
 	padding: 30px;
 	position: relative;
 	background: #f8f9f9;
-	border-left: 3px solid #42c3d3;
+	border-left: 3px solid #e86240;
 	font-style: italic;
 }
 
@@ -1473,7 +1476,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .nav-links a:hover {
-	background: #42c3d3;
+	background: #e86240;
 	text-decoration: none;
 }
 
@@ -1657,7 +1660,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 #comments .comment .comment-wrapper .comment-meta .comment-time:hover, #comments .comment .comment-wrapper .comment-meta .comment-reply-link:hover, #comments .comment .comment-wrapper .comment-meta .comment-edit-link:hover {
-	color: #42c3d3;
+	color: #e86240;
 }
 
 #comments .comment .comment-wrapper .comment-meta .comment-time:after, #comments .comment .comment-wrapper .comment-meta .comment-reply-link:after, #comments .comment .comment-wrapper .comment-meta .comment-edit-link:after {
@@ -1812,7 +1815,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .sidebar .widget a:hover {
-	color: #42c3d3;
+	color: #e86240;
 	text-decoration: underline;
 }
 
@@ -1991,8 +1994,8 @@ input[type="radio"], input[type="checkbox"] {
 	font-size: 12px;
 	display: inline-block;
 	position: relative;
-	margin: 20px 0px 8px 0px;
-	margin:  1.25rem 0rem 0.5rem 0rem;
+	margin: 20px 0px 2px 0px;
+	margin:  1.25rem 0rem 0.125rem 0rem;
 	text-transform: uppercase;
 	letter-spacing: 2px;
 }
@@ -2376,7 +2379,7 @@ input[type="radio"], input[type="checkbox"] {
 
 .features-content .features__item {
 	border-radius: 0px;
-	background: #42c3d3;
+	background: #e86240;
 	color: rgba(255, 255, 255, 0.9);
 	font-size: 16px;
 	font-size: 1rem;
@@ -2533,7 +2536,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .services-content .service-card-icon i {
-	color: #42c3d3;
+	color: #e86240;
 }
 
 .services-content .service-button {
@@ -2645,7 +2648,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .contact-details i {
-	color: #42c3d3;
+	color: #e86240;
 	margin-right: 6px;
 }
 
@@ -2662,7 +2665,7 @@ input[type="radio"], input[type="checkbox"] {
 
 .contact-details a .contact-detail-value:hover, .contact-details .contact-detail-value:hover {
 	text-decoration: none;
-	color: #42c3d3;
+	color: #e86240;
 }
 
 /* Section: Parallax
@@ -3191,7 +3194,7 @@ img.mfp-img {
 }
 
 .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button, .woocommerce button.button.alt {
-	background-color: #42c3d3;
+	background-color: #e86240;
 	padding: 10px 20px;
 	padding:  0.625rem 1.25rem;
 	color: #FFF;
