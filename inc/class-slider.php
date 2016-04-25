@@ -75,15 +75,11 @@ class Screenr_Slider {
                 'title'         => '',
                 'desc'          => '',
                 'media'         => '',
-                'align'         => '',
-                'v_align'         => '',
+                'position'      => '',
             ) );
             $item['media'] = $this->get_media( $item['media'] );
-            if ( ! $item['align'] ) {
-                $item['align']  = 'center';
-            }
-            if ( ! $item['v_align'] ) {
-                $item['v_align']  = 'center';
+            if ( ! $item['position'] ) {
+                $item['position']  = 'center';
             }
             $slider_data[ $k ] = $this->render_item( $item );
         }
@@ -95,7 +91,7 @@ class Screenr_Slider {
         if ( ! $media ) {
             return '';
         }
-
+        
         $html = '';
 
         if ( $media['type'] == 'image' ){
@@ -106,7 +102,7 @@ class Screenr_Slider {
     }
 
     function render_item( $item ){
-        $html = '<div class="swiper-slide slide-align-'.esc_attr( $item['align'] ).' slide-v_align-'.esc_attr( $item['v_align'] ).'">';
+        $html = '<div class="swiper-slide slide-align-'.esc_attr( $item['position'] ).'">';
             $html .= $this->render_media( $item['media'] );
             $html .= '<div class="swiper-slide-intro">';
                 $html .= '<div class="swiper-intro-inner">';

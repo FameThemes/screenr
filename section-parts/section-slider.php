@@ -15,8 +15,6 @@ $slider = new Screenr_Slider( get_theme_mod( 'slider_items' ) );
         <!-- Add Navigation -->
         <div class="swiper-button-prev"><i class="fa fa-angle-left" ></i> <div class="slide-count"> <span class="slide-current" >1</span> <span class="sep"></span> <span class="slide-total">3</span> </div></div>
         <div class="swiper-button-next"><i class="fa fa-angle-right" ></i> <div class="slide-count"> <span class="slide-current" >1</span> <span class="sep"></span> <span class="slide-total">3</span> </div> </div>
-
+        <div class="btn-next-section"></div>
     </div>
-
-    <div class="btn-next-section"></div>
 </section>

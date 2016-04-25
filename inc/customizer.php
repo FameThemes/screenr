@@ -227,7 +227,7 @@ function screenr_customize_register( $wp_customize ) {
         array(
             'label' 		=> esc_html__('Section ID:', 'screenr'),
             'section' 		=> 'section_slider',
-            'description'   => 'The section id, we will use this for link anchor.'
+            'description'   => esc_html__( 'The section id, we will use this for link anchor.', 'screenr' )
         )
     );
 
@@ -284,26 +284,19 @@ function screenr_customize_register( $wp_customize ) {
                         )
                     ),
 
-                    'align' => array(
+                    'position' => array(
                         'title' => esc_html__('Content align', 'screenr'),
                         'type'  =>'select',
                         'options' => array(
                             'center' => esc_html__('Center', 'screenr'),
                             'left' => esc_html__('Left', 'screenr'),
                             'right' => esc_html__('Right', 'screenr'),
-                            'bottom' => esc_html__('Bottom', 'screenr'),
+                            'bottom_center' => esc_html__('Bottom center', 'screenr'),
+                            'bottom_left' => esc_html__('Bottom left', 'screenr'),
+                            'bottom_right' => esc_html__('Bottom right', 'screenr'),
                         )
                     ),
 
-                    'v_align' => array(
-                        'title' => esc_html__('Content vertical align', 'screenr'),
-                        'type'  =>'select',
-                        'options' => array(
-                            'center' => esc_html__('Center', 'screenr'),
-                            'top' => esc_html__('Top', 'screenr'),
-                            'bottom' => esc_html__('Bottom', 'screenr'),
-                        )
-                    ),
                 ),
 
             )
@@ -371,7 +364,7 @@ function screenr_customize_register( $wp_customize ) {
         array(
             'label'           => esc_html__('Padding Bottom:', 'screenr'),
             'section'         => 'section_slider',
-            'description'     => 'The slider content padding bottom in percent (%).',
+            'description'     => esc_html__( 'The slider content padding bottom in percent (%).', 'screenr' ),
            // 'active_callback' => 'screenr_slider_fullscreen_callback'
         )
     );
@@ -1175,16 +1168,6 @@ function screenr_customize_register( $wp_customize ) {
             )
         )
     );
-
-
-
-
-
-
-
-
-
-
 
 }
 add_action( 'customize_register', 'screenr_customize_register' );
