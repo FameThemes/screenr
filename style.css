@@ -693,7 +693,7 @@ input[type="radio"], input[type="checkbox"] {
 	border-bottom-color: transparent;
 }
 
-.home .site-header.sticky-header.transparent, .page-template-template-frontpage .site-header.sticky-header.transparent {
+.site-header.sticky-header.transparent {
 	position: fixed;
 }
 
@@ -706,7 +706,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .site-header.header-fixed.transparent {
-	background: white;
+	background: #000;
 }
 
 .site-header-wrapper.is-fixed .header-fixed {
@@ -716,7 +716,6 @@ input[type="radio"], input[type="checkbox"] {
 .is-fixed .site-header.header-fixed {
 	top: 0px;
 	left: 0px;
-	line-height: 55px;
 }
 
 .sticky-header.transparent .swiper-slide-intro {
@@ -759,7 +758,7 @@ input[type="radio"], input[type="checkbox"] {
 	margin-bottom: 0rem;
 }
 
-.no-scroll .transparent .site-branding .site-title a {
+.transparent .site-branding .site-title a {
 	color: #fff;
 }
 
@@ -941,16 +940,16 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 @media screen and (min-width: 1140px) {
-	.home .no-scroll .sticky-header.transparent .nav-menu > li > a, .page-template-template-frontpage .no-scroll .sticky-header.transparent .nav-menu > li > a {
+	.sticky-header.transparent .nav-menu > li > a {
 		color: #ffffff;
 	}
 }
 
 @media screen and (max-width: 1140px) {
-	.no-scroll .sticky-header.transparent #nav-toggle span, .no-scroll .sticky-header.transparent #nav-toggle span:after, .no-scroll .sticky-header.transparent #nav-toggle span:before {
+	.sticky-header.transparent #nav-toggle span, .sticky-header.transparent #nav-toggle span:after, .sticky-header.transparent #nav-toggle span:before {
 		background-color: #ffffff;
 	}
-	.no-scroll .sticky-header.transparent #nav-toggle.nav-is-visible span {
+	.sticky-header.transparent #nav-toggle.nav-is-visible span {
 		background-color: transparent;
 	}
 }
@@ -2020,6 +2019,7 @@ input[type="radio"], input[type="checkbox"] {
 	display: block;
 	position: relative;
 	height: 500px;
+	height: 31.25rem;
 	overflow: hidden;
 	z-index: 0;
 }

@@ -121,9 +121,7 @@
 	width: 100%;
 	display: block;
 	position: relative;
-	//position: fixed;
-	//top:30px;
-	height: 500px;
+	@include rem('height', 500px);
 	overflow: hidden;
 	&.fixed {
 		//position: fixed;
@@ -132,12 +130,14 @@
 	z-index: 0;
 
 	.swiper-container {
+
 		width: 100%;
 		height: 100%;
 		display: block;
 		position: absolute;
 		top: 0px;
 		left: 0px;
+
 	}
 	.swiper-slide {
 		display: block;
