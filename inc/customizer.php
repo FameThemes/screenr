@@ -263,7 +263,6 @@ function screenr_customize_register( $wp_customize ) {
                 'limited_msg' 	=> wp_kses_post( 'Upgrade to <a target="_blank" href="#">Screenr Plus</a> to be able to add more items and unlock other premium features!', 'screenr' ),
                 //'allow_unlimited' => false, // Maximum item can add
 
-
                 'fields'    => array(
                     'title' => array(
                         'title' => esc_html__('Title', 'screenr'),
@@ -414,6 +413,50 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    // Features Title
+    $wp_customize->add_setting( 'features_title',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'features_title',
+        array(
+            'label' 		=> esc_html__('Section Title:', 'screenr'),
+            'section' 		=> 'section_features',
+        )
+    );
+
+    // Features Subtitle
+    $wp_customize->add_setting( 'features_subtitle',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'features_subtitle',
+        array(
+            'label' 		=> esc_html__('Section Subtitle:', 'screenr'),
+            'section' 		=> 'section_features',
+        )
+    );
+
+    // Features Description
+    $wp_customize->add_setting( 'features_desc',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control(
+        new Screenr_Editor_Custom_Control( $wp_customize,
+            'features_desc',
+            array(
+                'label' 		=> esc_html__('Section Description:', 'screenr'),
+                'section' 		=> 'section_features',
+            ) )
+    );
+
     /**
      * @see screenr_sanitize_repeatable_data_field
      */
@@ -555,6 +598,50 @@ function screenr_customize_register( $wp_customize ) {
             'section' 		=> 'section_about',
             'description'   => esc_html__('The section id, we will use this for link anchor.', 'screenr' )
         )
+    );
+
+    // About Title
+    $wp_customize->add_setting( 'about_title',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'about_title',
+        array(
+            'label' 		=> esc_html__('Section Title:', 'screenr'),
+            'section' 		=> 'section_about',
+        )
+    );
+
+    // About Subtitle
+    $wp_customize->add_setting( 'about_subtitle',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'about_subtitle',
+        array(
+            'label' 		=> esc_html__('Section Subtitle:', 'screenr'),
+            'section' 		=> 'section_about',
+        )
+    );
+
+    // About Description
+    $wp_customize->add_setting( 'about_desc',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control(
+        new Screenr_Editor_Custom_Control( $wp_customize,
+            'about_desc',
+            array(
+                'label' 		=> esc_html__('Section Description:', 'screenr'),
+                'section' 		=> 'section_about',
+            ) )
     );
 
     // About page
@@ -724,7 +811,7 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
-    // Section services title
+    // Section title
     $wp_customize->add_setting( 'services_title',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
@@ -738,7 +825,7 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
-    // Section services title
+    // Section subtitle
     $wp_customize->add_setting( 'services_subtitle',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
@@ -750,6 +837,22 @@ function screenr_customize_register( $wp_customize ) {
             'label' 		=> esc_html__('Section subtitle:', 'screenr'),
             'section' 		=> 'section_services',
         )
+    );
+
+    // Services Description
+    $wp_customize->add_setting( 'services_desc',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control(
+        new Screenr_Editor_Custom_Control( $wp_customize,
+            'services_desc',
+            array(
+                'label' 		=> esc_html__('Section Description:', 'screenr'),
+                'section' 		=> 'section_services',
+            ) )
     );
 
     /**
@@ -839,6 +942,130 @@ function screenr_customize_register( $wp_customize ) {
 
 
     /*------------------------------------------------------------------------*/
+    /*  Section: News
+    /*------------------------------------------------------------------------*/
+
+    $wp_customize->add_section( 'section_news' ,
+        array(
+            'title'       => esc_html__( 'News', 'screenr' ),
+            'description' => '',
+            'panel'       => 'front_page_sections',
+        )
+    );
+
+    // Show section
+    $wp_customize->add_setting( 'news_disable',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_checkbox',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'news_disable',
+        array(
+            'type'        => 'checkbox',
+            'label'       => esc_html__('Hide this section?', 'screenr'),
+            'section'     => 'section_news',
+            'description' => esc_html__('Check this box to hide this section.', 'screenr'),
+        )
+    );
+
+    // News ID
+    $wp_customize->add_setting( 'news_id',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('news', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'news_id',
+        array(
+            'label' 		=> esc_html__('Section ID:', 'screenr'),
+            'section' 		=> 'section_news',
+            'description'   => esc_html__('The section id, we will use this for link anchor.', 'screenr' )
+        )
+    );
+
+    // Section contact title
+    $wp_customize->add_setting( 'news_title',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('Latest News', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'news_title',
+        array(
+            'label' 		=> esc_html__('Section title:', 'screenr'),
+            'section' 		=> 'section_news',
+        )
+    );
+
+    // Section contact subtitle
+    $wp_customize->add_setting( 'news_subtitle',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => __( 'Section subtitle', 'screenr' ),
+        )
+    );
+    $wp_customize->add_control( 'news_subtitle',
+        array(
+            'label' 		=> esc_html__('Section subtitle:', 'screenr'),
+            'section' 		=> 'section_news',
+        )
+    );
+
+    // Section description
+    $wp_customize->add_setting( 'news_desc',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control(
+        new Screenr_Editor_Custom_Control( $wp_customize,
+            'news_desc',
+            array(
+                'label' 		=> esc_html__('Section Description:', 'screenr'),
+                'section' 		=> 'section_news',
+            ) )
+    );
+
+    // Number posts to show
+    $wp_customize->add_setting( 'news_num_post',
+        array(
+            'sanitize_callback' => 'absint',
+            'default'           => 3,
+        )
+    );
+    $wp_customize->add_control( 'news_num_post',
+        array(
+            'label' 		=> esc_html__('Number Posts:', 'screenr'),
+            'section' 		=> 'section_news',
+            'description'   => esc_html__('How many posts you want to show.', 'screenr' )
+        )
+    );
+
+    $wp_customize->add_setting( 'news_layout',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => 3,
+        )
+    );
+    $wp_customize->add_control( 'news_layout',
+        array(
+            'type'        => 'select',
+            'label'       => esc_html__('Layout Settings', 'screenr'),
+            'section'     => 'section_news',
+            'description' => esc_html__('Number item per row to display.', 'screenr'),
+            'choices' => array(
+                1 => 1,
+                2 => 2,
+                3 => 3,
+                4 => 4,
+            )
+        )
+    );
+
+
+    /*------------------------------------------------------------------------*/
     /*  Section: Contact
     /*------------------------------------------------------------------------*/
 
@@ -909,18 +1136,20 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
-    // Section contact description
+    // Section description
     $wp_customize->add_setting( 'contact_desc',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
             'default'           => esc_html__('Fill out the form below and you will hear from us shortly.', 'screenr'),
         )
     );
-    $wp_customize->add_control( 'contact_desc',
-        array(
-            'label' 		=> esc_html__('Section description:', 'screenr'),
-            'section' 		=> 'section_contact',
-        )
+    $wp_customize->add_control(
+        new Screenr_Editor_Custom_Control( $wp_customize,
+            'contact_desc',
+            array(
+                'label' 		=> esc_html__('Section Description:', 'screenr'),
+                'section' 		=> 'section_contact',
+            ) )
     );
 
     // Section contact content
@@ -985,9 +1214,7 @@ function screenr_customize_register( $wp_customize ) {
                         'type'  =>'text',
                         'desc'  => __('Custom url', 'screenr'),
                     ),
-
                 ),
-
             )
         )
     );

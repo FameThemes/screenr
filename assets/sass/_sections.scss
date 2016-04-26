@@ -614,6 +614,40 @@
 	}
 }
 
+/* Section: News
+------------------------------*/
+.section-news {
+	 @include for( medium-screens  ) {
+		.content-grid[data-layout="4"] {
+			article:nth-child(4n+1) {
+				clear: left;
+			}
+		}
+
+		.content-grid[data-layout="3"] {
+			article:nth-child(3n+1) {
+				clear: left;
+			}
+		}
+		.content-grid[data-layout="2"] {
+			article:nth-child(2n+1) {
+				clear: left;
+			}
+		}
+	}
+
+
+	@include for( screens-medium ) {
+	 .content-grid {
+		 article {
+			 width: 100%
+		 }
+	 }
+ }
+
+}
+
+
 /* Section: Clients
 ------------------------------*/
 .clients-wrapper {

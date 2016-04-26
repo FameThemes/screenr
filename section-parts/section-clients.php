@@ -13,11 +13,13 @@ if ( is_array( $items ) && ! empty( $items ) ) {
     ?>
     <section id="<?php echo esc_attr( get_theme_mod( 'clients_id', 'clients' ) ); ?>" class="section-clients section-padding section-meta screenr-section">
         <div class="container">
+            <?php if (  $title || $subtitle || $desc ) { ?>
             <div class="section-title-area">
                 <?php if ( $subtitle ) { ?><div class="section-subtitle"><?php echo esc_html( $subtitle ); ?></div><?php } ?>
                 <?php if ( $title ) { ?><h2 class="section-title"><?php echo esc_html( $title ); ?></h2><?php } ?>
                 <?php if ( $desc ) { ?><div class="section-desc"><?php echo do_shortcode( wp_kses_post( $desc ) ); ?></div><?php } ?>
             </div>
+            <?php } ?>
             <div class="section-content">
                 <div class="clients-wrapper client-<?php echo esc_attr( $layout ); ?>-cols">
                     <?php

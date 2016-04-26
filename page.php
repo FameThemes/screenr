@@ -14,7 +14,6 @@
 
 get_header();
 
-
     the_post();
     $thumbnail = '';
     if ( has_post_thumbnail() ) {

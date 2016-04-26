@@ -6,9 +6,26 @@ if ( is_array( $items ) && ! empty( $items ) ) {
     if ( $layout == 0 ){
         $layout = 3;
     }
+    $title      = get_theme_mod( 'features_title' );
+    $subtitle   = get_theme_mod( 'features_subtitle' );
+    $desc       = get_theme_mod( 'features_desc' );
     ?>
     <section id="<?php echo esc_attr( get_theme_mod( 'features_id', 'features' ) ); ?>" class="section-features section-padding screenr-section section-padding-empty">
+        <?php
+        if ( $title || $subtitle || $desc ) {
+            ?>
+            <div class="container">
+                <div class="section-title-area">
+                    <?php if ( $subtitle ) { ?><div class="section-subtitle"><?php echo esc_html( $subtitle ); ?></div><?php } ?>
+                    <?php if ( $title ) { ?><h2 class="section-title"><?php echo esc_html( $title ); ?></h2><?php } ?>
+                    <?php if ( $desc ) { ?><div class="section-desc"><?php echo wp_kses_post( $desc ); ?></div><?php } ?>
+                </div>
+            </div>
+            <?php
+        }
+        ?>
         <div class="features-content features-<?php echo esc_attr( $layout ); ?>-columns card-group">
+
         <?php
         global $post;
         $count = 0;

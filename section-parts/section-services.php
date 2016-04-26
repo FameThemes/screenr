@@ -2,20 +2,23 @@
 $items = get_theme_mod( 'services_items' );
 
 if ( is_array( $items ) && ! empty( $items ) ) {
-    $title = get_theme_mod( 'services_title', __( 'Our Services', 'screenr' ) );
-    $subtitle = get_theme_mod( 'services_subtitle',__( 'Section subtitle', 'screenr' ) );
-    $layout = absint( get_theme_mod( 'services_layout', 2 ) );
+    $title      = get_theme_mod( 'services_title', __( 'Our Services', 'screenr' ) );
+    $subtitle   = get_theme_mod( 'services_subtitle',__( 'Section subtitle', 'screenr' ) );
+    $desc       = get_theme_mod( 'services_desc' );
+    $layout     = absint( get_theme_mod( 'services_layout', 2 ) );
     if ( $layout == 0 ){
         $layout = 2;
     }
     ?>
     <section id="<?php echo esc_attr(get_theme_mod('services_id', 'services')); ?>" class="section-services section-padding section-meta screenr-section">
         <div class="container">
+            <?php if (  $title || $subtitle || $desc ) { ?>
             <div class="section-title-area">
                 <?php if ( $subtitle ) { ?><div class="section-subtitle"><?php echo esc_html( $subtitle ); ?></div><?php } ?>
                 <?php if ( $title ) { ?><h2 class="section-title"><?php echo esc_html( $title ); ?></h2><?php } ?>
-                <!-- <div class="section-desc">Fill out the form below and you will hear from us shortly.</div> -->
+                <?php if ( $desc ) { ?><div class="section-desc"><?php echo wp_kses_post( $desc ); ?></div><?php } ?>
             </div>
+            <?php } ?>
             <div class="section-content services-content">
 
                 <div class="row">

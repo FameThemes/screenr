@@ -1139,6 +1139,7 @@ input[type="radio"], input[type="checkbox"] {
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
+	background-attachment: fixed;
 }
 
 .page-header-cover:before {
@@ -2602,6 +2603,26 @@ input[type="radio"], input[type="checkbox"] {
 
 .card-img-overlay .card-title a:hover {
 	color: #777;
+}
+
+/* Section: News
+------------------------------*/
+@media screen and (min-width: 940px) {
+	.section-news .content-grid[data-layout="4"] article:nth-child(4n+1) {
+		clear: left;
+	}
+	.section-news .content-grid[data-layout="3"] article:nth-child(3n+1) {
+		clear: left;
+	}
+	.section-news .content-grid[data-layout="2"] article:nth-child(2n+1) {
+		clear: left;
+	}
+}
+
+@media screen and (max-width: 940px) {
+	.section-news .content-grid article {
+		width: 100%;
+	}
 }
 
 /* Section: Clients
