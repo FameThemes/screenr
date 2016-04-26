@@ -1,5 +1,4 @@
 <?php
-
 $title      = get_theme_mod( 'news_title', __( 'News', 'screenr' ) );
 $subtitle   = get_theme_mod( 'news_subtitle', __( 'Section subtitle', 'screenr' ) );
 $desc       = get_theme_mod( 'news_desc' );

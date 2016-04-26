@@ -604,12 +604,12 @@ function screenr_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'about_title',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => '',
+            'default'           => __( 'About us', 'screenr' ),
         )
     );
     $wp_customize->add_control( 'about_title',
         array(
-            'label' 		=> esc_html__('Section Title:', 'screenr'),
+            'label' 		=> '',
             'section' 		=> 'section_about',
         )
     );
@@ -632,7 +632,7 @@ function screenr_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'about_desc',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => '',
+            'default'           => __( 'We provide creative solutions that get attention and meaningful to clients around the world.', 'screenr' ),
         )
     );
     $wp_customize->add_control(
@@ -662,19 +662,26 @@ function screenr_customize_register( $wp_customize ) {
     );
 
     // About Title
-    $wp_customize->add_setting( 'about_tagline',
+    $wp_customize->add_setting( 'about_page_content_type',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => '',
+            'default'           => 'excerpt',
         )
     );
-    $wp_customize->add_control( 'about_tagline',
+    $wp_customize->add_control( 'about_page_content_type',
         array(
-            'label' 		=> esc_html__('Tagline:', 'screenr'),
+            'label' 		=> esc_html__('Page content type:', 'screenr'),
             'section' 		=> 'section_about',
-            'description'   => esc_html__('Short text about this section.', 'screenr' )
+            'type' 		    => 'select',
+            'choices'       => array(
+                'excerpt' => esc_html__('Page excerpt', 'screenr'),
+                'content' => esc_html__('Page Content', 'screenr'),
+            ),
+            'description'   => esc_html__('Select content type of page above to display on this section.', 'screenr' )
         )
     );
+
+
 
     /*------------------------------------------------------------------------*/
     /*  Section: VideoLight Box
