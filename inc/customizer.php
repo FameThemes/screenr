@@ -1402,7 +1402,6 @@ function screenr_customize_register( $wp_customize ) {
             )
         )
     );
-
 }
 add_action( 'customize_register', 'screenr_customize_register' );
 
@@ -1410,23 +1409,10 @@ add_action( 'customize_register', 'screenr_customize_register' );
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
 function screenr_customize_preview_js() {
-	wp_enqueue_script( 'screenr_customizer', get_template_directory_uri() . '/assets/js/customizer.js', array( 'customize-preview' ), '20130508', true );
+	wp_enqueue_script( 'screenr_customizer', get_template_directory_uri() . '/assets/js/customizer-preview.js', array( 'customize-preview', 'customize-selective-refresh' ), false, true );
 }
-add_action( 'customize_preview_init', 'screenr_customize_preview_js' );
+add_action( 'customize_preview_init', 'screenr_customize_preview_js', 65 );
 
-
-
-/*
-add_action( 'customize_controls_enqueue_scripts', 'screenr_customize_js_settings' );
-function screenr_customize_js_settings(){
-
-    wp_localize_script( 'customize-controls', 'screenr_customizer_settings', array(
-        'number_action' => $number_action,
-        'is_plus_activated' => class_exists( 'OnePress_PLus' ) ? 'y' : 'n',
-        'action_url' => admin_url( 'themes.php?page=ft_screenr&tab=actions_required' )
-    ) );
-}
-*/
 
 
 /*------------------------------------------------------------------------*/
@@ -1492,3 +1478,5 @@ function screenr_showon_frontpage() {
     return is_page_template( 'template-frontpage.php' );
 }
 
+
+require get_template_directory() . '/inc/customizer-selective-refresh.php';

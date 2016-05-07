@@ -7,6 +7,14 @@
  * @package Screenr
  */
 
+if ( ! function_exists( 'screenr_is_selective_refresh' ) ) {
+	function screenr_is_selective_refresh()
+	{
+		return isset($GLOBALS['screenr_is_selective_refresh']) && $GLOBALS['screenr_is_selective_refresh'] ? true : false;
+	}
+}
+
+
 if ( ! function_exists( 'screenr_posted_on' ) ) :
 /**
  * Prints HTML with meta information for the current post-date/time and author.

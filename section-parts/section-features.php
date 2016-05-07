@@ -9,8 +9,10 @@ if ( is_array( $items ) && ! empty( $items ) ) {
     $title      = get_theme_mod( 'features_title' );
     $subtitle   = get_theme_mod( 'features_subtitle' );
     $desc       = get_theme_mod( 'features_desc' );
+    if ( ! screenr_is_selective_refresh() ) {
     ?>
     <section id="<?php echo esc_attr( get_theme_mod( 'features_id', 'features' ) ); ?>" class="section-features section-padding screenr-section section-padding-empty">
+    <?php } ?>
         <?php
         if ( $title || $subtitle || $desc ) {
             ?>
@@ -25,8 +27,8 @@ if ( is_array( $items ) && ! empty( $items ) ) {
         }
         ?>
         <div class="features-content features-<?php echo esc_attr( $layout ); ?>-columns card-group">
-
         <?php
+
         global $post;
         $count = 0;
         $number_item =  count( $items );
@@ -102,8 +104,9 @@ if ( is_array( $items ) && ! empty( $items ) ) {
         }// end loop items
         ?>
         </div><!-- /.features-content  -->
-
+    <?php if ( ! screenr_is_selective_refresh() ) { ?>
     </section>
+    <?php } ?>
 <?php
 wp_reset_postdata();
 } ?>

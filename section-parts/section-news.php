@@ -29,7 +29,9 @@ switch ( $layout ) {
 }
 
 ?>
+<?php if ( ! screenr_is_selective_refresh() ) { ?>
 <section id="news" class="section-news section-padding">
+<?php } ?>
     <div class="container">
         <?php if (  $title || $subtitle || $desc ) { ?>
             <div class="section-title-area">
@@ -66,5 +68,7 @@ switch ( $layout ) {
             </div>
         </div>
     </div>
+<?php if ( ! screenr_is_selective_refresh() ) { ?>
 </section>
+<?php } ?>
 <?php wp_reset_postdata(); ?>

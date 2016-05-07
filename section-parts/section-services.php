@@ -10,7 +10,9 @@ if ( is_array( $items ) && ! empty( $items ) ) {
         $layout = 2;
     }
     ?>
+    <?php if ( ! screenr_is_selective_refresh() ) { ?>
     <section id="<?php echo esc_attr(get_theme_mod('services_id', 'services')); ?>" class="section-services section-padding section-meta screenr-section">
+    <?php } ?>
         <div class="container">
             <?php if (  $title || $subtitle || $desc ) { ?>
             <div class="section-title-area">
@@ -150,7 +152,9 @@ if ( is_array( $items ) && ! empty( $items ) ) {
 
             </div>
         </div>
+    <?php if ( ! screenr_is_selective_refresh() ) { ?>
     </section>
+    <?php } ?>
     <?php
 }
 wp_reset_postdata();

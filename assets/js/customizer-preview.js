@@ -6,6 +6,7 @@
  * Contains handlers to make Theme Customizer preview reload changes asynchronously.
  */
 
+
 ( function( $ ) {
 	// Site title and description.
 	wp.customize( 'blogname', function( value ) {
@@ -37,6 +38,19 @@
 			}
 		} );
 	} );
+
+    /**
+     * Handle rendering of partials.
+     *
+     * @param {api.selectiveRefresh.Placement} placement
+     */
+    wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function( placement ) {
+        $( window ).resize();
+        console.log( placement );
+        $( '.swiper-slider' ).trigger( 'preview_event_changed' );
+    } );
+
+
 } )( jQuery );
 
 

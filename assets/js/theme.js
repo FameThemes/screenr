@@ -723,5 +723,9 @@ jQuery( document ).ready( function( $ ){
 
     $(document).trigger( 'scroll' );
 
+	$( '.swiper-slider' ).bind( 'preview_event_changed', function(){
+		alert( 'section_slider_changed' );
+	} );
+
 
 } );

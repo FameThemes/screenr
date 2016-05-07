@@ -15,9 +15,19 @@ get_header(); ?>
 
 			if ( ! has_action( 'screenr_frontpage_section_parts' ) ) {
 
-				$sections = apply_filters( 'screenr_frontpage_sections_order', array(
-                    'slider', 'features', 'about', 'videolightbox', 'services', 'clients', 'news', 'contact'
-                ) );
+				$sections = apply_filters (
+					'screenr_frontpage_sections_order',
+					array(
+                    	'slider',
+						'features',
+						'about',
+						'videolightbox',
+						'services',
+						'clients',
+						'news',
+						'contact'
+                	)
+				);
 
 				foreach ( $sections as $section ){
                     // If  section not disable
