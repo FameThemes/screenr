@@ -122,21 +122,27 @@ function screenr_customizer_partials( $wp_customize )
                 $wp_customize->get_setting( $key )->transport = 'postMessage';
             }
         }
-
-        $tpl = 'section-parts/section-'.$section['id'].'.php';
-        $wp_customize->selective_refresh->add_partial( 'section_'.$section['id'] , array(
+        $wp_customize->selective_refresh->add_partial( 'section-'.$section['id'] , array(
             'selector' => 'section.section-'.$section['id'],
             'settings' => $section['settings'],
-            'render_callback' => function () use ( $tpl ) {
-                $GLOBALS['screenr_is_selective_refresh'] = true;
-                $file = locate_template( $tpl );
-                if ( $file ) {
-                    include $file;
-                }
-            },
+            'render_callback' => 'screenr_selective_refresh_render_section_content',
         ));
     }
 
 }
-
 add_action( 'customize_register', 'screenr_customizer_partials', 50 );
+
+/**
+ * Selective render content
+ *
+ * @param $partial
+ * @param array $container_context
+ */
+function screenr_selective_refresh_render_section_content( $partial, $container_context = array() ) {
+    $tpl = 'section-parts/'.$partial->id.'.php';
+    $GLOBALS['screenr_is_selective_refresh'] = true;
+    $file = locate_template( $tpl );
+    if ( $file ) {
+        include $file;
+    }
+}
