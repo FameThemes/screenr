@@ -420,6 +420,20 @@ jQuery( document ).ready( function( $ ){
 
 	//----------------------------------------------
 
+	function set_slider_height(){
+		var sh = 0;
+		$( '.swiper-container .swiper-intro-inner' ).each( function () {
+			if( sh <= $( this ).outerHeight() ) {
+				sh = $( this ).outerHeight();
+			}
+		} );
+		$( '.swiper-slider' ).height( sh );
+	}
+	set_slider_height();
+	$( window ).resize( function(){
+		set_slider_height();
+	} );
+
     var slider_number_item = $( '.swiper-slider .swiper-slide').length;
 	var swiper = new Swiper('.swiper-container', {
 		// Disable preloading of all images
@@ -428,7 +442,7 @@ jQuery( document ).ready( function( $ ){
 		// Enable lazy loading
 		lazyLoading: true,
 		//preloadImages: false,
-		autoplay: 5000,
+		//autoplay: 10000,
 		speed:  700,
 		effect: 'slide', // "slide", "fade", "cube", "coverflow" or "flip"
 		//direction: 'vertical',

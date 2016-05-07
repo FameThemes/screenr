@@ -17,10 +17,10 @@ function screenr_customizer_partials( $wp_customize )
 
     $selective_refresh_keys = array(
         // section slider
+        /*
         array(
             'id' => 'slider',
             'settings' => array(
-                //'features_id',
                 'slider_items',
                 'slider_overlay_color',
                 'slider_fullscreen',
@@ -28,7 +28,7 @@ function screenr_customizer_partials( $wp_customize )
                 'slider_pdbotom',
             ),
         ),
-
+        */
         // section features
         array(
             'id' => 'features',

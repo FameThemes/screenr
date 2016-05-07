@@ -76,6 +76,8 @@ class Screenr_Slider {
                 'desc'          => '',
                 'media'         => '',
                 'position'      => '',
+                'pd_top'      => '',
+                'pd_bottom'      => '',
             ) );
             $item['media'] = $this->get_media( $item['media'] );
             if ( ! $item['position'] ) {
@@ -104,8 +106,18 @@ class Screenr_Slider {
     function render_item( $item ){
         $html = '<div class="swiper-slide slide-align-'.esc_attr( $item['position'] ).'">';
             $html .= $this->render_media( $item['media'] );
+            $style  = '';
+            if  ( $item['pd_top'] != '' ) {
+                $style .='padding-top: '.floatval( $item['pd_top'] ).'%; ';
+            }
+            if  ( $item['pd_bottom'] != '' ) {
+                $style .='padding-bottom: '.floatval( $item['pd_bottom'] ).'%; ';
+            }
+            if ( $style != '' ) {
+                $style = ' style="'.$style.'" ';
+            }
             $html .= '<div class="swiper-slide-intro">';
-                $html .= '<div class="swiper-intro-inner">';
+                $html .= '<div class="swiper-intro-inner"'.$style.'>';
                     if ( $item['title'] ) {
                         $html .= '<h2 class="swiper-slide-heading">'.wp_kses_post( $item['title'] ).'</h2>';
                     }

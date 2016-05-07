@@ -165,31 +165,6 @@ if ( $menu_hover_color ) {
     <?php
     }
 
-    /**
-     * Slider padding top
-     */
-     $slider_padding_top =  get_theme_mod( 'slider_pdtop' );
-    if ( $slider_padding_top != '' ) {
-        ?>
-    body .swiper-slider .swiper-slide .swiper-slide-intro .swiper-intro-inner {
-        padding-top: <?php echo intval( $slider_padding_top ) ?>%;
-    }
-    <?php
-    }
-
-     /**
-     * Slider padding top
-     */
-    $slider_padding_bottom =  get_theme_mod( 'slider_pdbotom' );
-
-    if ( $slider_padding_bottom != '' ) {
-    ?>
-    body .swiper-slider .swiper-slide .swiper-slide-intro .swiper-intro-inner {
-        padding-bottom: <?php echo intval( $slider_padding_bottom ); ?>%;
-    }
-    <?php
-    }
-
     $slider_overlay_color =  get_theme_mod( 'slider_overlay_color' );
     if ( $slider_overlay_color ) {
         ?>

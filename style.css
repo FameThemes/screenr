@@ -2063,8 +2063,6 @@ input[type="radio"], input[type="checkbox"] {
 	display: block;
 	position: relative;
 	overflow: hidden;
-	padding-top: 30%;
-	padding-bottom: 30%;
 	z-index: 0;
 }
 
@@ -2086,8 +2084,8 @@ input[type="radio"], input[type="checkbox"] {
 
 .swiper-slider .swiper-slide img, .swiper-slider .swiper-slide video {
 	position: absolute;
-	min-width: 100%;
-	min-height: 100%;
+	min-width: 100.011111%;
+	min-height: 100.011111%;
 	max-width: initial;
 	max-height: initial;
 	height: initial;
@@ -2100,14 +2098,11 @@ input[type="radio"], input[type="checkbox"] {
 
 .swiper-slider .swiper-slide .swiper-slide-intro {
 	position: relative;
-	top: 50%;
 	width: 100%;
 	z-index: 4;
 	max-width: 1140px;
 	max-width: 71.25rem;
 	margin: 0 auto;
-	-webkit-transform: translateY(-50%);
-	transform: translateY(-50%);
 	color: #fff;
 	text-align: center;
 	font-size: 22px;
@@ -2118,6 +2113,11 @@ input[type="radio"], input[type="checkbox"] {
 	font-size: 65px;
 	font-size: 4.0625rem;
 	color: #fff;
+}
+
+.swiper-slider .swiper-slide .swiper-intro-inner {
+	padding-top: 30%;
+	padding-bottom: 30%;
 }
 
 .swiper-slider .swiper-slide .overlay {
@@ -2145,8 +2145,6 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .swiper-slider .swiper-slide.slide-align-bottom_left .swiper-slide-intro, .swiper-slider .swiper-slide.slide-align-bottom_center .swiper-slide-intro, .swiper-slider .swiper-slide.slide-align-bottom_right .swiper-slide-intro {
-	-webkit-transform: translateY(0%);
-	transform: translateY(0%);
 	position: absolute;
 	top: auto;
 	bottom: 50px;

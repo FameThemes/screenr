@@ -282,6 +282,16 @@ function screenr_customize_register( $wp_customize ) {
                             'id' => ''
                         )
                     ),
+                    'pd_top' => array(
+                        'title' => esc_html__('Padding top', 'screenr'),
+                        'type'  =>'text',
+                        'desc' => esc_html__('The slider content padding top in percent (%).', 'screenr'),
+                    ),
+                    'pd_bottom' => array(
+                        'title' => esc_html__('Padding bottom', 'screenr'),
+                        'type'  =>'text',
+                        'desc' => esc_html__('The slider content padding top in percent (%).', 'screenr'),
+                    ),
 
                     'position' => array(
                         'title' => esc_html__('Content align', 'screenr'),
@@ -320,8 +330,6 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
-
-
     // Show slider full screen
     $wp_customize->add_setting( 'slider_fullscreen',
         array(
@@ -335,36 +343,6 @@ function screenr_customize_register( $wp_customize ) {
             'label'       => esc_html__('Make slider section full screen', 'screenr'),
             'section'     => 'section_slider',
             'description' => esc_html__('Check this box to make slider section full screen.', 'screenr'),
-        )
-    );
-
-    // Slider content padding top
-    $wp_customize->add_setting( 'slider_pdtop',
-        array(
-            'sanitize_callback' => 'screenr_sanitize_text',
-        )
-    );
-    $wp_customize->add_control( 'slider_pdtop',
-        array(
-            'label'           => esc_html__('Padding Top:', 'screenr'),
-            'section'         => 'section_slider',
-            'description'     => 'The slider content padding top in percent (%).',
-            //'active_callback' => 'screenr_slider_fullscreen_callback'
-        )
-    );
-
-    // Slider content padding bottom
-    $wp_customize->add_setting( 'slider_pdbotom',
-        array(
-            'sanitize_callback' => 'screenr_sanitize_text',
-        )
-    );
-    $wp_customize->add_control( 'slider_pdbotom',
-        array(
-            'label'           => esc_html__('Padding Bottom:', 'screenr'),
-            'section'         => 'section_slider',
-            'description'     => esc_html__( 'The slider content padding bottom in percent (%).', 'screenr' ),
-           // 'active_callback' => 'screenr_slider_fullscreen_callback'
         )
     );
 
@@ -1412,7 +1390,6 @@ function screenr_customize_preview_js() {
 	wp_enqueue_script( 'screenr_customizer', get_template_directory_uri() . '/assets/js/customizer-preview.js', array( 'customize-preview', 'customize-selective-refresh' ), false, true );
 }
 add_action( 'customize_preview_init', 'screenr_customize_preview_js', 65 );
-
 
 
 /*------------------------------------------------------------------------*/
