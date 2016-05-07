@@ -720,7 +720,13 @@ class Screenr_Customize_Repeatable_Control extends WP_Customize_Control {
 
                                             <textarea data-live-id="{{{ field.id }}}" data-repeat-name="_items[__i__][{{ field.id }}]">{{ field.value }}</textarea>
 
-                                        <# } #>
+                                        <# }  else if ( field.type == 'icon'  ) { #>
+                                            <div class="icon-wrapper">
+                                                <i class="fa fa-{{ field.value }}"></i>
+                                                <input data-live-id="{{ field.id }}" type="hidden" value="{{ field.value }}" data-repeat-name="_items[__i__][{{ field.id }}]" class="">
+                                            </div>
+                                            <a href="#" class="remove-icon"><?php _e( 'Remove', 'screenr' ); ?></a>
+                                        <# }  #>
 
                                     </div>
 

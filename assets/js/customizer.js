@@ -1289,3 +1289,83 @@
 
 } )( wp.customize, jQuery );
 
+
+/**
+ * Icon picker
+ */
+jQuery( document ).ready( function( $ ) {
+
+    window.editing_icon = false;
+    var icon_picker = $( '<div class="c-icon-picker"><div class="c-icon-search"><input class="" type="text"></div><div class="c-icon-list"></div></div>' );
+    var icons_array = C_Icon_Picker.icons.split('|');
+
+    $('<link>')
+        .appendTo('head')
+        .attr({type : 'text/css', rel : 'stylesheet'})
+        .attr('id', 'customizer-font-awesome')
+        .attr('href', C_Icon_Picker.icon_font );
+    icon_picker.find( '.c-icon-search input' ).attr( 'placeholder', C_Icon_Picker.search );
+
+    $.each( icons_array, function( index, icon ){
+        var i =  $( '<span><i class="fa '+icon+'"></i></span>' );
+        i.attr( 'data-name', icon );
+        icon_picker.find( '.c-icon-list' ).append( i );
+    } );
+
+    $( '.wp-full-overlay' ).append( icon_picker );
+
+    $( 'body' ).on( 'keyup', '.c-icon-search input', function(){
+        var v = $( this ).val();
+        if ( v == '' ) {
+            $( '.c-icon-list span' ).show();
+        } else {
+            $( '.c-icon-list span' ).hide();
+           try {
+               $( '.c-icon-list span[data-name*="'+v+'"]' ).show();
+           } catch ( e ){
+
+           }
+        }
+    } );
+
+    $( 'body' ).on( 'click', '.icon-wrapper', function( e ){
+        e.preventDefault();
+        var icon =  $( this );
+        window.editing_icon = icon;
+        icon_picker.addClass( 'ic-active' );
+    } );
+
+    $( 'body' ).on( 'click', '.item-icon .remove-icon', function( e ){
+        e.preventDefault();
+        var item =  $( this ).closest( '.item-icon' );
+        item.find( '.icon-wrapper input' ).val( '' ).trigger( 'change' );
+        item.find( '.icon-wrapper i' ).attr( 'class', '' );
+    } );
+
+
+    $( 'body' ).on( 'click', '.c-icon-list span', function( e ){
+        e.preventDefault();
+        var icon_name =  $( this ).attr( 'data-name' ) || '';
+        if ( window.editing_icon ) {
+            window.editing_icon.find( 'i' ).attr( 'class', '' ).addClass( $( this ).find( 'i' ).attr( 'class' ) );
+            window.editing_icon.find( 'input' ).val( icon_name ).trigger( 'change' );
+        }
+        icon_picker.removeClass( 'ic-active' );
+        window.editing_icon = false;
+    } );
+
+    $( document ).mouseup(function (e) {
+        if ( window.editing_icon ) {
+            if ( ! window.editing_icon.is( e.target ) // if the target of the click isn't the container...
+                && window.editing_icon.has( e.target ).length === 0) // ... nor a descendant of the container
+            {
+                icon_picker.removeClass('ic-active');
+               // window.editing_icon = false;
+            }
+        }
+    });
+
+
+
+} );
+
