@@ -38,9 +38,9 @@ if ( is_array( $items ) && ! empty( $items ) ) {
                         }
 
                         ?>
-                        <div class="client-col">
-                            <?php if ( $item['url'] ){ ?><a href="<?php echo esc_url( $item['url'] ); ?>"><?php } ?>
-                            <img src="<?php echo esc_url( $image ) ?>" alt="">
+                        <div class="client-col" title="<?php echo esc_attr( $item['title'] ); ?>">
+                            <?php if ( $item['url'] ){ ?><a title="<?php echo esc_attr( $item['title'] ); ?>" href="<?php echo esc_url( $item['url'] ); ?>"><?php } ?>
+                            <img src="<?php echo esc_url( $image ) ?>" alt="<?php echo esc_attr( $item['title'] ); ?>">
                             <?php if ( $item['url'] ){ ?></a><?php } ?>
                         </div>
                         <?php
