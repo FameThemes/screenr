@@ -346,6 +346,21 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    // Slider Autoplay
+    $wp_customize->add_setting( 'slider_autoplay',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => 7000,
+        )
+    );
+    $wp_customize->add_control( 'slider_autoplay',
+        array(
+            'label' 		=> esc_html__('Autoplay', 'screenr'),
+            'section' 		=> 'section_slider',
+            'description'   => esc_html__( 'Delay between transitions (in ms). Leave empty to disable.', 'screenr' )
+        )
+    );
+
 
     /*------------------------------------------------------------------------*/
     /*  Section: Features

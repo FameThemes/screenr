@@ -1,10 +1,11 @@
 <?php
 $slider = new Screenr_Slider( get_theme_mod( 'slider_items' ) );
+$autoplay = get_theme_mod( 'slider_autoplay' , 7000 );
 ?>
 <?php if ( ! screenr_is_selective_refresh() ) { ?>
 <section id="<?php echo esc_attr( get_theme_mod( 'slider_id', 'hero-slider' ) ); ?>" class="section-slider screenr-section swiper-slider full-screen fixed" >
 <?php } ?>
-    <div class="swiper-container">
+    <div class="swiper-container" data-autoplay="<?php echo intval( $autoplay ); ?>">
         <div class="swiper-wrapper">
             <?php
              echo $slider->render();

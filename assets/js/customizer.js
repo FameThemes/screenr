@@ -942,13 +942,12 @@
             frame.on( 'select', function () {
                 // Grab our attachment selection and construct a JSON representation of the model.
                 var media_attachment = frame.state().get('selection').first().toJSON();
-                console.log( media_attachment );
+                var preview, img_url;
+                img_url = media_attachment.url;
 
                 $( '.image_id', control.media_current  ).val( media_attachment.id );
                 $( '.current', control.media_current  ).removeClass( 'hide').addClass( 'show' );
                 $( '.image_url', control.media_current  ).val( img_url );
-                var preview, img_url;
-                img_url = media_attachment.url;
 
                 if ( media_attachment.type == 'video' ){
 

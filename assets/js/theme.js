@@ -435,6 +435,7 @@ jQuery( document ).ready( function( $ ){
 	} );
 
     var slider_number_item = $( '.swiper-slider .swiper-slide').length;
+	var autoplay = $( '.swiper-container' ).data( 'autoplay' ) || 0;
 	var swiper = new Swiper('.swiper-container', {
 		// Disable preloading of all images
 		preloadImages: false,
@@ -442,7 +443,7 @@ jQuery( document ).ready( function( $ ){
 		// Enable lazy loading
 		lazyLoading: true,
 		//preloadImages: false,
-		//autoplay: 10000,
+		autoplay: autoplay,
 		speed:  700,
 		effect: 'slide', // "slide", "fade", "cube", "coverflow" or "flip"
 		//direction: 'vertical',
