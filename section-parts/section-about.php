@@ -17,7 +17,7 @@ if ( $page_id && ( $post = get_post( $page_id ) )) {
                 <div class="section-title-area">
                     <?php if ( $subtitle ) { ?><div class="section-subtitle"><?php echo esc_html( $subtitle ); ?></div><?php } ?>
                     <?php if ( $title ) { ?><h2 class="section-title"><?php echo esc_html( $title ); ?></h2><?php } ?>
-                    <?php if ( $desc ) { ?><div class="section-desc"><?php echo do_shortcode( wp_kses_post( $desc ) ); ?></div><?php } ?>
+                    <?php if ( $desc ) { ?><div class="section-desc"><?php echo do_shortcode( apply_filters( 'the_content', $desc ) ); ?></div><?php } ?>
                 </div>
                 <?php } ?>
             </div>

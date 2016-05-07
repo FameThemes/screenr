@@ -305,6 +305,7 @@
 
                 var tpl = _tpl.replace( new RegExp(_id,"g"), id );
                 var template =  $( tpl );
+                template.find( 'textarea').removeAttr( 'rows').removeAttr( 'cols' );
                 $( "#"+id ).replaceWith( template );
                 // set content
                 $( '#'+id ).val( content );
@@ -332,11 +333,15 @@
                         if (settings.sync_id !== '') {
                             if (typeof settings.sync_id === 'string') {
                                 editor.on('keyup change', function (e) {
-                                    $('#' + settings.sync_id).val(editor.getContent() ).trigger('change');
+                                    var html = editor.getContent( { format: 'raw' } );
+                                    html = _wpEditor.removep( html );
+                                    $('#' + settings.sync_id).val( html ).trigger('change');
                                 });
                             } else {
                                 editor.on('keyup change', function (e) {
-                                    settings.sync_id.val( editor.getContent() ).trigger('change');
+                                    var html = editor.getContent( { format: 'raw' } );
+                                    html = _wpEditor.removep( html );
+                                    settings.sync_id.val( html ).trigger('change');
                                 });
                             }
 
@@ -354,7 +359,11 @@
                     }
                 };
 
+
+                //console.log( tmceInit );
+                tmceInit.plugins = tmceInit.plugins.replace('fullscreen,', '');
                 tinyMCEPreInit.mceInit[ id ] = tmceInit;
+                //console.log( tmceInit );
 
                 qtInit.id = id;
                 tinyMCEPreInit.qtInit[ id ] = qtInit;
@@ -387,6 +396,14 @@
             }
         },
 
+        /**
+         * Replace paragraphs with double line breaks
+         * @see wp-admin/js/editor.js
+         */
+        removep: function ( html ) {
+            return window.switchEditors._wp_Nop( html );
+        },
+
         sync: function(){
             //
         },
@@ -395,7 +412,8 @@
             var content = '';
             var editor = false;
             if ( editor = tinymce.get(id) ) {
-                content = editor.getContent();
+                content = editor.getContent( { format: 'raw' } );
+                content = _wpEditor.removep( content );
                 editor.remove();
             } else {
                 content = $( '#'+id ).val();
@@ -460,7 +478,6 @@
 
 
 // WP EDITOR Customizer -----------------------------
-
 ( function( api , $ ) {
     api.controlConstructor['wp_editor'] = api.Control.extend( {
         ready: function() {
@@ -474,7 +491,7 @@
             var content = control.editing_area.val();
             // Load default value
             $( 'textarea', control.editing_editor).val( content );
-            control.preview.html( content );
+            control.preview.html( window.switchEditors._wp_Autop( content ) );
 
             $( 'body' ).on( 'click', '#customize-controls, .customize-section-back', function( e ) {
                 if ( ! $( e.target ).is( control.preview ) ) {
@@ -501,16 +518,30 @@
                 sync_id: control.editing_area,
                 init_instance_callback: function( editor ){
                     var w =  $( '#wp-'+control.editor_id+ '-wrap' );
+                    $( '.wp-editor-tabs', w).append( '<button class="wp-switch-editor fullscreen-wp-editor"  type="button"><span class="dashicons"></span></button>' );
+                    $( '.wp-editor-tabs', w).append( '<button class="wp-switch-editor preview-wp-editor"  type="button"><span class="dashicons dashicons-visibility"></span></button>' );
                     $( '.wp-editor-tabs', w).append( '<button class="wp-switch-editor close-wp-editor"  type="button"><span class="dashicons dashicons-no-alt"></span></button>' );
                     w.on( 'click', '.close-wp-editor', function( e ) {
                         e.preventDefault();
                         control.editing_editor.removeClass( 'wpe-active' );
                         $( '.wp-js-editor-preview').removeClass( 'wpe-focus');
                     } );
+                    $( '.preview-wp-editor', w ).hover( function(){
+                        w.closest( '.modal-wp-js-editor').css( { opacity: 0 } );
+                    }, function(){
+                        w.closest( '.modal-wp-js-editor').css( { opacity: 1 } );
+                    } );
+                    w.on( 'click', '.fullscreen-wp-editor', function( e ) {
+                        e.preventDefault();
+                        w.closest( '.modal-wp-js-editor').toggleClass( 'fullscreen' );
+                        setTimeout( function(){
+                            $( window ).resize();
+                        }, 600 );
+                    } );
                 }
             } );
             control.editing_area.on( 'change', function() {
-                control.preview.html( $( this).val() );
+                control.preview.html( window.switchEditors._wp_Autop( $( this).val() ) );
             });
 
             control.preview.on( 'click', function( e ){
@@ -532,29 +563,22 @@
 
         _resize: function(){
             var control = this;
-            var w =  $( '#wp-'+control.editor_id+ '-wrap' );
-            var height = $( window ).height();
-            var tb_h = $( '.mce-toolbar-grp',  w).eq(0).height();
-            tb_h += $( '.wp-editor-tools', w ).eq(0).height();
-            tb_h += 80;
-            var width = $( window ).width();
+            var w =  $( '#wp-'+control.editor_id+ '-wrap');
+            var height = w.innerHeight();
+            var tb_h = w.find( '.mce-toolbar-grp' ).eq( 0 ).height();
+            tb_h += w.find( '.wp-editor-tools' ).eq( 0 ).height();
+            tb_h += 50;
+            //var width = $( window ).width();
             var editor = tinymce.get( control.editor_id );
-            if ( width > 700 ) {
-                if ( width - 301 > 500 ) {
-                    control.editing_editor.width( '' );
-                } else {
-                    control.editing_editor.width( width - 330 );
-                }
-                editor.theme.resizeTo('100%', height - tb_h );
-            } else {
-                control.editing_editor.width( '' );
-                editor.theme.resizeTo('100%', height- ( tb_h + 150 ) );
-            }
+            control.editing_editor.width( '' );
+            editor.theme.resizeTo( '100%', height - tb_h );
+            w.find( 'textarea.wp-editor-area').height( height - tb_h  );
         }
 
     } );
 
 } )( wp.customize, jQuery );
+
 
 // WP REPEATERABLE Customizer -----------------------------
 
@@ -705,7 +729,7 @@
             var content = settings.editing_area.val();
             // Load default value
             $( 'textarea', settings.editing_editor).val( content );
-            settings.preview.html( content );
+            settings.preview.html( window.switchEditors._wp_Autop( content ) );
 
             $( 'body' ).on( 'click', '#customize-controls, .customize-section-back', function( e ) {
                 if ( ! $( e.target ).is( settings.preview ) ) {
@@ -723,16 +747,31 @@
                     sync_id: settings.editing_area,
                     init_instance_callback: function (editor) {
                         var w = $('#wp-' + settings.editor_id + '-wrap');
+                        $( '.wp-editor-tabs', w).append( '<button class="wp-switch-editor fullscreen-wp-editor"  type="button"><span class="dashicons"></span></button>' );
+                        $( '.wp-editor-tabs', w).append( '<button class="wp-switch-editor preview-wp-editor"  type="button"><span class="dashicons dashicons-visibility"></span></button>' );
                         $('.wp-editor-tabs', w).append('<button class="wp-switch-editor close-wp-editor"  type="button"><span class="dashicons dashicons-no-alt"></span></button>');
                         w.on('click', '.close-wp-editor', function (e) {
                             e.preventDefault();
                             settings.editing_editor.removeClass('wpe-active');
                             $( '.wp-js-editor-preview').removeClass( 'wpe-focus' );
                         });
+
+                        $( '.preview-wp-editor', w ).hover( function(){
+                            w.closest( '.modal-wp-js-editor').css( { opacity: 0 } );
+                        }, function(){
+                            w.closest( '.modal-wp-js-editor').css( { opacity: 1 } );
+                        } );
+                        w.on( 'click', '.fullscreen-wp-editor', function( e ) {
+                            e.preventDefault();
+                            w.closest( '.modal-wp-js-editor').toggleClass( 'fullscreen' );
+                            setTimeout( function(){
+                                $( window ).resize();
+                            }, 600 );
+                        } );
                     }
                 });
                 settings.editing_area.on('change', function () {
-                    settings.preview.html($(this).val());
+                    settings.preview.html( window.switchEditors._wp_Autop( $( this).val() )  );
                 });
 
                 settings.preview.on('click', function (e) {
@@ -756,23 +795,14 @@
             //----
             settings._resize = function(){
                 var w =  $( '#wp-'+settings.editor_id+ '-wrap' );
-                var height = $( window ).height();
-                var tb_h = $( '.mce-toolbar-grp',  w).eq(0).height();
-                tb_h += $( '.wp-editor-tools', w ).eq(0).height();
-                tb_h += 80;
-                var width = $( window ).width();
+                var height = w.innerHeight();
+                var tb_h = w.find( '.mce-toolbar-grp' ).eq( 0 ).height();
+                tb_h += w.find( '.wp-editor-tools' ).eq( 0 ).height();
+                tb_h += 50;
                 var editor = tinymce.get( settings.editor_id );
-                if ( width > 700 ) {
-                    if ( width - 301 > 500 ) {
-                        settings.editing_editor.width( '' );
-                    } else {
-                        settings.editing_editor.width( width - 330 );
-                    }
-                    editor.theme.resizeTo('100%', height - tb_h );
-                } else {
-                    settings.editing_editor.width( '' );
-                    settings.theme.resizeTo('100%', height- ( tb_h + 150 ) );
-                }
+                settings.editing_editor.width( '' );
+                editor.theme.resizeTo( '100%', height - tb_h );
+                w.find( 'textarea.wp-editor-area').height( height - tb_h  );
             };
 
 

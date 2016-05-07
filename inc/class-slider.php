@@ -122,7 +122,7 @@ class Screenr_Slider {
                         $html .= '<h2 class="swiper-slide-heading">'.wp_kses_post( $item['title'] ).'</h2>';
                     }
                     if ( $item['desc'] ) {
-                        $html .= '<div class="swiper-slide-desc">'.wp_kses_post( $item['desc'] ).'</div>';
+                        $html .= '<div class="swiper-slide-desc">'.apply_filters( 'the_content', $item['desc'] ).'</div>';
                     }
 
                 $html .= '</div>';
