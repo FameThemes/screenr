@@ -98,7 +98,7 @@ if ( is_array( $items ) && ! empty( $items ) ) {
                                     </div>
                                     <?php if ( $item['icon'] ){ ?>
                                     <div class="service-card-icon">
-                                        <i class="fa <?php echo esc_attr( $item['icon'] ); ?> fa-3x" aria-hidden="true"></i>
+                                        <i class="<?php echo esc_attr( $item['icon'] ); ?> fa-3x" aria-hidden="true"></i>
                                     </div>
                                     <?php } ?>
                                     <?php if ( $item['readmore'] ){ ?>

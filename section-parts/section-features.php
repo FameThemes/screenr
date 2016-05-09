@@ -65,9 +65,9 @@ if ( is_array( $items ) && ! empty( $items ) ) {
                     case 'icon':
                         echo '<div class="features__item-media icon">';
                         if ( ! $item['icon'] ) {
-                            $item['icon'] = 'fa-briefcase';
+                            $item['icon'] = 'fa fa-briefcase';
                         }
-                        echo '<i class="fa '.esc_attr( $item['icon'] ).' fa-7x"></i>';
+                        echo '<i class="'.esc_attr( $item['icon'] ).' fa-7x"></i>';
                         echo '</div>';
                         break;
                     case 'svg':

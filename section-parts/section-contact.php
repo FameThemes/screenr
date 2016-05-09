@@ -53,7 +53,7 @@ $items      = get_theme_mod( 'contact_items' );
                                 ) );
                                 ?>
                                 <div class="contact-detail <?php echo esc_attr( $classes ); ?> col-md-6">
-                                    <?php if ( $item['icon'] ){ ?><span class="contact-icon"><i aria-hidden="true" class="fa <?php echo esc_attr( $item['icon'] ); ?> fa-2x"></i></span><?php } ?>
+                                    <?php if ( $item['icon'] ){ ?><span class="contact-icon"><i aria-hidden="true" class="<?php echo esc_attr( $item['icon'] ); ?> fa-2x"></i></span><?php } ?>
                                     <?php if ( $item['url'] ){ ?><a href="<?php echo antispambot( $item['url'] ); ?>"><?php } ?>
                                         <span class="contact-detail-value"><?php echo esc_html( $item['title'] ); ?></span>
                                     <?php if ( $item['url'] ){ ?></a><?php } ?>

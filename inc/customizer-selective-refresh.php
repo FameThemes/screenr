@@ -110,8 +110,7 @@ function screenr_customizer_partials( $wp_customize )
                 'clients_layout',
             ),
         ),
-
-
+        
     );
 
     $selective_refresh_keys = apply_filters( 'screenr_customizer_partials_selective_refresh_keys', $selective_refresh_keys );
