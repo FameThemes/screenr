@@ -866,6 +866,24 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    // Overlay color
+    $wp_customize->add_setting( 'videolightbox_overlay',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_color_alpha',
+            'default'           => 'rgba(0,0,0,.4)',
+            'transport' => 'refresh', // refresh or postMessage
+        )
+    );
+    $wp_customize->add_control( new Screenr_Alpha_Color_Control(
+            $wp_customize,
+            'videolightbox_overlay',
+            array(
+                'label' 		=> esc_html__('Background Overlay Color', 'screenr'),
+                'section' 		=> 'section_videolightbox',
+            )
+        )
+    );
+
     /*------------------------------------------------------------------------*/
     /*  Section: Services
     /*------------------------------------------------------------------------*/

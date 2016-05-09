@@ -186,6 +186,15 @@ if ( $menu_hover_color ) {
         <?php
     }
 
+    $v_overlay = get_theme_mod( 'videolightbox_overlay' );
+    if ( $v_overlay ){
+    ?>
+    .parallax-window.parallax-videolightbox .parallax-mirror::before{
+        background-color: <?php echo $v_overlay; ?>;
+    }
+    <?php
+    }
+
     ?>
     </style>
     <?php

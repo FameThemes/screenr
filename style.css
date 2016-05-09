@@ -1984,12 +1984,12 @@ input[type="radio"], input[type="checkbox"] {
 	background-color: #f8f9f9;
 }
 
-.onepage-section {
+.onepage-section, .screenr-section {
 	position: relative;
 	overflow: hidden;
 }
 
-.onepage-section .container {
+.onepage-section .container, .screenr-section .container {
 	position: relative;
 	z-index: 5;
 }
@@ -2574,11 +2574,6 @@ input[type="radio"], input[type="checkbox"] {
 	color: #000;
 }
 
-.parallax-videolightbox .parallax-mirror::before {
-	background-color: #000000;
-	opacity: 0.4;
-}
-
 /* Section: Services
 ------------------------------*/
 .services-content .card {
@@ -2775,6 +2770,7 @@ input[type="radio"], input[type="checkbox"] {
 	bottom: 0px;
 	display: block;
 	z-index: 2;
+	background: rgba(0, 0, 0, 0.4);
 }
 
 /*--------------------------------------------------------------

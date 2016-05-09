@@ -9,7 +9,7 @@ if ( $video_url ) {
         $parallax_url =  apply_filters( 'video_parallax_bg', $parallax_url );
         if ( $parallax_url ) {
         ?>
-        <div class="parallax-id parallax-window" data-over-scroll-fix="true" data-z-index="1" data-speed="0.3" data-image-src="<?php echo esc_url( $parallax_url ); ?>" data-parallax="scroll" data-position="center" data-bleed="0">
+        <div class="parallax-videolightbox parallax-window" data-over-scroll-fix="true" data-z-index="1" data-speed="0.3" data-image-src="<?php echo esc_url( $parallax_url ); ?>" data-parallax="scroll" data-position="center" data-bleed="0">
         <?php } ?>
         <section id="<?php echo esc_attr( get_theme_mod( 'videolightbox_id', 'video' ) ); ?>" class="section-videolightbox section-padding section-padding-larger section-inverse onepage-section">
     <?php } ?>
