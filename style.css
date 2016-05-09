@@ -761,6 +761,10 @@ input[type="radio"], input[type="checkbox"] {
 	display: block;
 }
 
+.wp-custom-logo .site-title, .wp-custom-logo .site-description {
+	display: none !important;
+}
+
 .wp-custom-logo .site-branding .custom-logo-link {
 	display: block;
 }

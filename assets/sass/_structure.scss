@@ -81,8 +81,12 @@
 }
 .custom-logo-link {
 	display: block;
+
 }
 .wp-custom-logo {
+	.site-title, .site-description {
+		display: none !important;
+	}
 	.site-branding{
 		.custom-logo-link {
 			display: block;
