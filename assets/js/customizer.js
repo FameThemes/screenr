@@ -1370,7 +1370,8 @@ jQuery( document ).ready( function( $ ) {
     $( 'body' ).on( 'click', '.item-icon .remove-icon', function( e ){
         e.preventDefault();
         var item =  $( this ).closest( '.item-icon' );
-        item.find( '.icon-wrapper input' ).val( '' ).trigger( 'change' );
+        item.find( '.icon-wrapper input' ).val( '' );
+        item.find( '.icon-wrapper input' ).trigger( 'change' );
         item.find( '.icon-wrapper i' ).attr( 'class', '' );
         $( 'body' ).find( '.icon-wrapper' ).removeClass('icon-editing');
     } );

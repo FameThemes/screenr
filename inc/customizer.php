@@ -514,6 +514,14 @@ function screenr_customize_register( $wp_customize ) {
                         'type'  =>'checkbox',
                         'default' => 1,
                     ),
+
+                    'readmore_txt' => array(
+                        'title' => esc_html__('Read more text', 'screenr'),
+                        'type'  =>'text',
+                        'default' => esc_html__('Read More', 'screenr'),
+                        "required" => array( 'readmore', '=', '1' )
+                    ),
+
                     'bg_color' => array(
                         'title' => esc_html__('Background Color', 'screenr'),
                         'type'  =>'color',
