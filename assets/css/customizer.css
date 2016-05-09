@@ -1,3 +1,29 @@
+/* Group Heading */
+.customizer-group-heading {
+    background: #f5f5f5 none repeat scroll 0 0;
+    color: #888;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    line-height: 1;
+    margin: 10px -12px 2px;
+    padding: 14px 12px;
+    text-transform: uppercase;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+}
+.customizer-group-subheading {
+    color: #888888;
+    font-size: 11px;
+    line-height: 1.5;
+    margin: 15px 0px 4px;
+}
+.customizer-group-heading.group-heading-top {
+    margin-top: -16px;
+}
+
+/* Theme Action Count */
 .theme-action-count {
     padding: 0 6px;
     display: inline-block;

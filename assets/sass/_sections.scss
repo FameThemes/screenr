@@ -217,7 +217,7 @@
 
 			&.slide-align-bottom_left, &.slide-align-bottom_center, &.slide-align-bottom_right {
 				.swiper-slide-intro {
-	
+
 					position: absolute;;
 					top: auto;
 					@include rem('bottom', 50px);
@@ -535,10 +535,9 @@
 .section-videolightbox {
 	text-align: center;
 	.videolightbox__icon {
-		@include rem('margin-bottom', 40px);
+		@include rem('margin-top', 40px);
 	}
 	.videolightbox__heading {
-		text-transform: uppercase;
 		@include rem('font-size', 38px);
 		letter-spacing: 0px;
 		font-weight: 500;
@@ -559,7 +558,7 @@
 			color: #fff;
 		    font-size: 20px;
 		    margin-left: 6px;
-			margin-top: 1px;
+			margin-top: 0px;
 			line-height: 1;
 		}
 		&:hover {

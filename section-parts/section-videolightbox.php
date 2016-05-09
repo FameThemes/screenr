@@ -15,14 +15,15 @@ if ( $video_url ) {
     <?php } ?>
 
             <div class="container">
+
+                <?php if ( $title ){ ?>
+                <h2 class="videolightbox__heading"><?php echo esc_html( $title ) ?></h2>
+                <?php } ?>
                 <div class="videolightbox__icon">
                     <a href="<?php echo esc_url( $video_url ); ?>" class="popup-video">
                         <span class="video_icon"><i class="fa fa-play"></i></span>
                     </a>
                 </div>
-                <?php if ( $title ){ ?>
-                <h2 class="videolightbox__heading"><strong><?php echo esc_html( $title ) ?></strong></h2>
-                <?php } ?>
             </div>
 
     <?php if ( ! screenr_is_selective_refresh() ) { ?>

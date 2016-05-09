@@ -8,7 +8,7 @@ if ( is_array( $items ) && ! empty( $items ) ) {
     }
 
     $title      = get_theme_mod( 'clients_title' );
-    $subtitle   = get_theme_mod( 'clients_subtitle', __( 'Have been featured on', 'screenr' ) );
+    $subtitle   = get_theme_mod( 'clients_subtitle', __( 'We had been featured on', 'screenr' ) );
     $desc       = get_theme_mod( 'clients_desc' );
     ?>
     <?php if ( ! screenr_is_selective_refresh() ) { ?>

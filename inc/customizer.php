@@ -375,6 +375,16 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    // Group Heading
+	$wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'feature_setting_group_heading',
+			array(
+				'type' 			=> 'group_heading_top',
+				'title'			=> esc_html__( 'Section Settings', 'screenr' ),
+				'section' 		=> 'section_features'
+			)
+		)
+	);
+
     // Show section
     $wp_customize->add_setting( 'features_disable',
         array(
@@ -387,7 +397,6 @@ function screenr_customize_register( $wp_customize ) {
             'type'        => 'checkbox',
             'label'       => esc_html__('Hide this section?', 'screenr'),
             'section'     => 'section_features',
-            'description' => esc_html__('Check this box to hide this section.', 'screenr'),
         )
     );
 
@@ -449,6 +458,16 @@ function screenr_customize_register( $wp_customize ) {
                 'section' 		=> 'section_features',
             ) )
     );
+
+    // Group Heading
+	$wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'feature_content_group_heading',
+			array(
+				'type' 			=> 'group_heading',
+				'title'			=> esc_html__( 'Section Content', 'screenr' ),
+				'section' 		=> 'section_features'
+			)
+		)
+	);
 
     /**
      * @see screenr_sanitize_repeatable_data_field
@@ -569,6 +588,16 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    // Group Heading
+	$wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'about_setting_group_heading',
+			array(
+				'type' 			=> 'group_heading_top',
+				'title'			=> esc_html__( 'Section Settings', 'screenr' ),
+				'section' 		=> 'section_about'
+			)
+		)
+	);
+
     // Show section
     $wp_customize->add_setting( 'about_disable',
         array(
@@ -581,7 +610,6 @@ function screenr_customize_register( $wp_customize ) {
             'type'        => 'checkbox',
             'label'       => esc_html__('Hide this section?', 'screenr'),
             'section'     => 'section_about',
-            'description' => esc_html__('Check this box to hide this section.', 'screenr'),
         )
     );
 
@@ -604,7 +632,7 @@ function screenr_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'about_title',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => __( 'About us', 'screenr' ),
+            'default'           => esc_html__( 'About us', 'screenr' ),
         )
     );
     $wp_customize->add_control( 'about_title',
@@ -632,7 +660,7 @@ function screenr_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'about_desc',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => __( 'We provide creative solutions that get attention and meaningful to clients around the world.', 'screenr' ),
+            'default'           => esc_html__( 'We provide creative solutions that get attention and meaningful to clients around the world.', 'screenr' ),
         )
     );
     $wp_customize->add_control(
@@ -643,6 +671,16 @@ function screenr_customize_register( $wp_customize ) {
                 'section' 		=> 'section_about',
             ) )
     );
+
+    // Group Heading
+	$wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'about_content_group_heading',
+			array(
+				'type' 			=> 'group_heading',
+				'title'			=> esc_html__( 'Section Content', 'screenr' ),
+				'section' 		=> 'section_about'
+			)
+		)
+	);
 
     // About page
     $wp_customize->add_setting( 'about_page_id',
@@ -695,6 +733,16 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    // Group Heading
+	$wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'video_lightbox_setting_group_heading',
+			array(
+				'type' 			=> 'group_heading_top',
+				'title'			=> esc_html__( 'Section Settings', 'screenr' ),
+				'section' 		=> 'section_videolightbox'
+			)
+		)
+	);
+
     // Show section
     $wp_customize->add_setting( 'videolightbox_disable',
         array(
@@ -707,7 +755,6 @@ function screenr_customize_register( $wp_customize ) {
             'type'        => 'checkbox',
             'label'       => esc_html__('Hide this section?', 'screenr'),
             'section'     => 'section_videolightbox',
-            'description' => esc_html__('Check this box to hide this section.', 'screenr'),
         )
     );
 
@@ -742,6 +789,16 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    // Group Heading
+	$wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'video_lightbox_content_group_heading',
+			array(
+				'type' 			=> 'group_heading',
+				'title'			=> esc_html__( 'Section Content', 'screenr' ),
+				'section' 		=> 'section_videolightbox'
+			)
+		)
+	);
+
     // LightBox Video
     $wp_customize->add_setting( 'videolightbox_video',
         array(
@@ -753,7 +810,7 @@ function screenr_customize_register( $wp_customize ) {
         array(
             'label' 		=> esc_html__('Video URL:', 'screenr'),
             'section' 		=> 'section_videolightbox',
-            'description'   => esc_html__('Youtube or Vimeo url', 'screenr' )
+            'description'   => esc_html__('Youtube or Vimeo url, e.g: https://www.youtube.com/watch?v=xxxxx', 'screenr' )
         )
     );
 
@@ -787,6 +844,16 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    // Group Heading
+	$wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'service_setting_group_heading',
+			array(
+				'type' 			=> 'group_heading_top',
+				'title'			=> esc_html__( 'Section Settings', 'screenr' ),
+				'section' 		=> 'section_services'
+			)
+		)
+	);
+
     // Show section
     $wp_customize->add_setting( 'services_disable',
         array(
@@ -799,7 +866,6 @@ function screenr_customize_register( $wp_customize ) {
             'type'        => 'checkbox',
             'label'       => esc_html__('Hide this section?', 'screenr'),
             'section'     => 'section_services',
-            'description' => esc_html__('Check this box to hide this section.', 'screenr'),
         )
     );
 
@@ -862,6 +928,16 @@ function screenr_customize_register( $wp_customize ) {
             ) )
     );
 
+    // Group Heading
+    $wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'service_content_group_heading',
+            array(
+                'type' 			=> 'group_heading',
+                'title'			=> esc_html__( 'Section Content', 'screenr' ),
+                'section' 		=> 'section_services'
+            )
+        )
+    );
+
     /**
      * @see screenr_sanitize_repeatable_data_field
      */
@@ -885,7 +961,7 @@ function screenr_customize_register( $wp_customize ) {
                 'section'       => 'section_services',
                 'live_title_id' => 'page_id', // apply for unput text and textarea only
                 'title_format'  => esc_html__('[live_title]', 'screenr'), // [live_title]
-                'max_item'      => 6, // Maximum item can add
+                'max_item'      => 4, // Maximum item can add
                 'limited_msg' 	=> wp_kses_post( 'Upgrade to <a target="_blank" href="#">Screenr Plus</a> to be able to add more items and unlock other premium features!', 'screenr' ),
                 //'allow_unlimited' => false, // Maximum item can add
                 'fields'    => array(
@@ -959,6 +1035,16 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    // Group Heading
+    $wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'news_setting_group_heading',
+            array(
+                'type' 			=> 'group_heading_top',
+                'title'			=> esc_html__( 'Section Settings', 'screenr' ),
+                'section' 		=> 'section_news'
+            )
+        )
+    );
+
     // Show section
     $wp_customize->add_setting( 'news_disable',
         array(
@@ -971,7 +1057,6 @@ function screenr_customize_register( $wp_customize ) {
             'type'        => 'checkbox',
             'label'       => esc_html__('Hide this section?', 'screenr'),
             'section'     => 'section_news',
-            'description' => esc_html__('Check this box to hide this section.', 'screenr'),
         )
     );
 
@@ -990,7 +1075,6 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
-    // Section contact title
     $wp_customize->add_setting( 'news_title',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
@@ -1004,7 +1088,6 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
-    // Section contact subtitle
     $wp_customize->add_setting( 'news_subtitle',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
@@ -1032,6 +1115,16 @@ function screenr_customize_register( $wp_customize ) {
                 'label' 		=> esc_html__('Section Description:', 'screenr'),
                 'section' 		=> 'section_news',
             ) )
+    );
+
+    // Group Heading
+    $wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'news_content_group_heading',
+            array(
+                'type' 			=> 'group_heading',
+                'title'			=> esc_html__( 'Section Content', 'screenr' ),
+                'section' 		=> 'section_news'
+            )
+        )
     );
 
     // Number posts to show
@@ -1083,6 +1176,16 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    // Group Heading
+    $wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'contact_setting_group_heading',
+            array(
+                'type' 			=> 'group_heading_top',
+                'title'			=> esc_html__( 'Section Settings', 'screenr' ),
+                'section' 		=> 'section_contact'
+            )
+        )
+    );
+
     // Show section
     $wp_customize->add_setting( 'contact_disable',
         array(
@@ -1095,7 +1198,6 @@ function screenr_customize_register( $wp_customize ) {
             'type'        => 'checkbox',
             'label'       => esc_html__('Hide this section?', 'screenr'),
             'section'     => 'section_contact',
-            'description' => esc_html__('Check this box to hide this section.', 'screenr'),
         )
     );
 
@@ -1158,6 +1260,16 @@ function screenr_customize_register( $wp_customize ) {
             ) )
     );
 
+    // Group Heading
+    $wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'contact_content_group_heading',
+            array(
+                'type' 			=> 'group_heading',
+                'title'			=> esc_html__( 'Section Content', 'screenr' ),
+                'section' 		=> 'section_contact'
+            )
+        )
+    );
+
     // Section contact content
     $wp_customize->add_setting( 'contact_content',
         array(
@@ -1170,8 +1282,9 @@ function screenr_customize_register( $wp_customize ) {
             $wp_customize,
             'contact_content',
             array(
-                'label' 		=> esc_html__('Contact content:', 'screenr'),
+                'label' 		=> esc_html__('Content:', 'screenr'),
                 'section' 		=> 'section_contact',
+                'description'   => esc_html__('You can install any contact form plugin such as Contact Form 7 and then paste the shortcode of the form here.', 'screenr'),
             )
         )
     );
@@ -1194,7 +1307,7 @@ function screenr_customize_register( $wp_customize ) {
             $wp_customize,
             'contact_items',
             array(
-                'label'     => esc_html__('Contact Items', 'screenr'),
+                'label'     => esc_html__('Contact Detail Items', 'screenr'),
                 'description'   => '',
                 'section'       => 'section_contact',
                 'live_title_id' => 'title', // apply for unput text and textarea only
@@ -1233,9 +1346,9 @@ function screenr_customize_register( $wp_customize ) {
     $wp_customize->add_control( 'contact_layout',
         array(
             'type'        => 'select',
-            'label'       => esc_html__('Items layout settings', 'screenr'),
+            'label'       => esc_html__('Detail items layout setting', 'screenr'),
             'section'     => 'section_contact',
-            'description' => esc_html__('Number item per row to display.', 'screenr'),
+            'description' => esc_html__('Number of items per row to display.', 'screenr'),
             'choices' => array(
                 2 => 2,
                 3 => 3,
@@ -1257,6 +1370,16 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    // Group Heading
+    $wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'clients_setting_group_heading',
+            array(
+                'type' 			=> 'group_heading_top',
+                'title'			=> esc_html__( 'Section Settings', 'screenr' ),
+                'section' 		=> 'section_clients'
+            )
+        )
+    );
+
     // Show section
     $wp_customize->add_setting( 'clients_disable',
         array(
@@ -1269,7 +1392,6 @@ function screenr_customize_register( $wp_customize ) {
             'type'        => 'checkbox',
             'label'       => esc_html__('Hide this section?', 'screenr'),
             'section'     => 'section_clients',
-            'description' => esc_html__('Check this box to hide this section.', 'screenr'),
         )
     );
 
@@ -1306,7 +1428,7 @@ function screenr_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'clients_subtitle',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => esc_html__('Have been featured on', 'screenr'),
+            'default'           => esc_html__('We had been featured on', 'screenr'),
         )
     );
     $wp_customize->add_control( 'clients_subtitle',
@@ -1334,6 +1456,15 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    // Group Heading
+    $wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'clients_content_group_heading',
+            array(
+                'type' 			=> 'group_heading',
+                'title'			=> esc_html__( 'Section Content', 'screenr' ),
+                'section' 		=> 'section_clients'
+            )
+        )
+    );
 
     $wp_customize->add_setting(
         'clients_items',
@@ -1355,7 +1486,7 @@ function screenr_customize_register( $wp_customize ) {
                 'section'       => 'section_clients',
                 'live_title_id' => 'title', // apply for unput text and textarea only
                 'title_format'  => esc_html__('[live_title]', 'screenr'), // [live_title]
-                'max_item'      => 99, // Maximum item can add
+                'max_item'      => 5, // Maximum item can add
                 'limited_msg' 	=> wp_kses_post( 'Upgrade to <a target="_blank" href="#">Screenr Plus</a> to be able to add more items and unlock other premium features!', 'screenr' ),
                 //'allow_unlimited' => false, // Maximum item can add
                 'fields'    => array(

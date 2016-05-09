@@ -10,6 +10,7 @@ class Screenr_Misc_Control extends WP_Customize_Control {
 
 	public $settings = 'blogname';
 	public $description = '';
+	public $title = '';
 	public $group = '';
 
 	/**
@@ -18,6 +19,20 @@ class Screenr_Misc_Control extends WP_Customize_Control {
 	public function render_content() {
 		switch ( $this->type ) {
 			default:
+
+			case 'group_heading_top':
+				echo '<h4 class="customizer-group-heading group-heading-top">' . $this->title . '</h4>';
+				if ( $this->description != '' ) {
+					echo '<p class="customizer-group-subheading">' . $this->description . '</p>';
+				}
+				break;
+
+			case 'group_heading':
+				echo '<h4 class="customizer-group-heading">' . $this->title . '</h4>';
+				if ( $this->description != '' ) {
+					echo '<p class="customizer-group-subheading">' . $this->description . '</p>';
+				}
+				break;
 
 			case 'heading':
 				echo '<span class="customize-control-title">' . $this->title . '</span>';
@@ -31,21 +46,6 @@ class Screenr_Misc_Control extends WP_Customize_Control {
 				echo '<hr />';
 				break;
 		}
-	}
-}
-
-class One_Press_Textarea_Custom_Control extends WP_Customize_Control
-{
-	public function render_content() {
-		?>
-		<label>
-			<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-			<textarea class="large-text" cols="20" rows="5" <?php $this->link(); ?>>
-				<?php echo esc_textarea( $this->value() ); ?>
-			</textarea>
-			<p class="description"><?php echo $this->description ?></p>
-		</label>
-		<?php
 	}
 }
 
