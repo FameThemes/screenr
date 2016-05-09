@@ -747,18 +747,43 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .site-branding .site-description {
-	display: none;
 	line-height: 16px;
 	line-height: 1rem;
 	font-size: 12px;
 	font-size: 0.75rem;
-	margin-top: -27px;
-	margin-top: -1.6875rem;
+	margin-top: -37px;
+	margin-top: -2.3125rem;
 	margin-bottom: 0px;
 	margin-bottom: 0rem;
 }
 
-.transparent .site-branding .site-title a {
+.custom-logo-link {
+	display: block;
+}
+
+.wp-custom-logo .site-branding .custom-logo-link {
+	display: block;
+}
+
+.no-site-title .site-title {
+	display: none;
+}
+
+.no-site-title.has-site-tagline .site-description {
+	margin-top: 0px;
+	line-height: 85px;
+}
+
+.no-site-tagline .site-description {
+	display: none;
+}
+
+.has-site-title.has-site-tagline .site-title {
+	display: inline-block;
+	margin-top: -15px;
+}
+
+.transparent .site-branding .site-title a, .transparent .site-branding .site-description {
 	color: #fff;
 }
 
@@ -820,10 +845,6 @@ input[type="radio"], input[type="checkbox"] {
 
 .header-btn {
 	float: right;
-}
-
-.wp-custom-logo .site-branding .site-title, .wp-custom-logo .site-branding .site-description {
-	display: none;
 }
 
 /* Site Navigation */

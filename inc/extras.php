@@ -46,6 +46,18 @@ function screenr_body_classes( $classes ) {
 		$classes[] = 'hfeed';
 	}
 
+    if ( get_theme_mod( 'screenr_hide_sitetitle' ) ) {
+        $classes[] = 'no-site-title';
+    } else {
+        $classes[] = 'has-site-title';
+    }
+
+    if ( get_theme_mod( 'screenr_hide_tagline' ) ) {
+        $classes[] = 'no-site-tagline';
+    } else {
+        $classes[] = 'has-site-tagline';
+    }
+
 	return $classes;
 }
 add_filter( 'body_class', 'screenr_body_classes' );

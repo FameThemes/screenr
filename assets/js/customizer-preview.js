@@ -6,7 +6,6 @@
  * Contains handlers to make Theme Customizer preview reload changes asynchronously.
  */
 
-
 ( function( $ ) {
 	// Site title and description.
 	wp.customize( 'blogname', function( value ) {
@@ -19,6 +18,29 @@
 			$( '.site-description' ).text( to );
 		} );
 	} );
+
+	wp.customize( 'screenr_hide_sitetitle', function( value ) {
+		value.bind( function( to ) {
+			console.log( to );
+			if ( to ) {
+				$( 'body' ).addClass( 'no-site-title' ).removeClass('has-site-title');
+			} else {
+				$( 'body' ).removeClass( 'no-site-title' ).addClass('has-site-title');
+			}
+		} );
+	} );
+
+	wp.customize( 'screenr_hide_tagline', function( value ) {
+		value.bind( function( to ) {
+			if ( to ) {
+				$( 'body' ).addClass( 'no-site-tagline' ).removeClass('has-site-tagline');
+			} else {
+				$( 'body' ).removeClass( 'no-site-tagline' ).addClass('has-site-tagline');
+			}
+		} );
+	} );
+
+
 	// Header text color.
 	wp.customize( 'header_textcolor', function( value ) {
 		value.bind( function( to ) {

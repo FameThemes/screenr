@@ -28,6 +28,40 @@ function screenr_customize_register( $wp_customize ) {
     }
 
 
+    $wp_customize->add_setting( 'screenr_hide_sitetitle',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_checkbox',
+            'default'           => 0,
+            'transport'         => 'postMessage'
+        )
+    );
+    $wp_customize->add_control(
+        'screenr_hide_sitetitle',
+        array(
+            'label' 		=> esc_html__('Hide site title', 'screenr'),
+            'section' 		=> 'title_tagline',
+            'type'          => 'checkbox',
+        )
+    );
+
+    $wp_customize->add_setting( 'screenr_hide_tagline',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_checkbox',
+            'default'           => 0,
+            'transport'         => 'postMessage'
+        )
+    );
+    $wp_customize->add_control(
+        'screenr_hide_tagline',
+        array(
+            'label' 		=> esc_html__('Hide site tagline', 'screenr'),
+            'section' 		=> 'title_tagline',
+            'type'          => 'checkbox',
+
+        )
+    );
+
+
     /*------------------------------------------------------------------------*/
     /*  Site Options
     /*------------------------------------------------------------------------*/
@@ -1538,7 +1572,7 @@ add_action( 'customize_register', 'screenr_customize_register' );
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
 function screenr_customize_preview_js() {
-	wp_enqueue_script( 'screenr_customizer', get_template_directory_uri() . '/assets/js/customizer-preview.js', array( 'customize-preview', 'customize-selective-refresh' ), false, true );
+	wp_enqueue_script( 'screenr_customizer_preview', get_template_directory_uri() . '/assets/js/customizer-preview.js', array( 'customize-preview', 'customize-selective-refresh' ), false, true );
 }
 add_action( 'customize_preview_init', 'screenr_customize_preview_js', 65 );
 

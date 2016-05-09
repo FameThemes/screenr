@@ -55,6 +55,7 @@ function screenr_setup() {
 		'height'      => 60,
 		'width'       => 240,
 		'flex-height' => true,
+		//'header-text' => array( 'site-title', 'site-description' ),
 	) );
 
 	// This theme uses wp_nav_menu() in one location.
