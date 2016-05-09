@@ -9,7 +9,9 @@ $desc       = get_theme_mod( 'about_desc', __( 'We provide creative solutions th
 if ( $page_id && ( $post = get_post( $page_id ) )) {
     setup_postdata( $post );
 ?>
+<?php if ( ! screenr_is_selective_refresh() ) { ?>
 <section id="<?php echo esc_attr( get_theme_mod( 'about_id', 'about' ) ); ?>" class="screenr-section section-about section-padding section-padding-larger">
+<?php } ?>
     <div class="container">
         <div class="row">
             <div class="col-md-5">
@@ -34,7 +36,9 @@ if ( $page_id && ( $post = get_post( $page_id ) )) {
             </div>
         </div>
     </div>
+<?php if ( ! screenr_is_selective_refresh() ) { ?>
 </section>
+<?php } ?>
 <?php }
 wp_reset_postdata();
 ?>
