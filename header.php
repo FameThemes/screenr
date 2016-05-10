@@ -35,7 +35,6 @@
         $header_classes[] = 'transparent';
     }
 
-
     ?>
 	<header id="masthead" class="<?php echo esc_attr( join( ' ', $header_classes ) );?>" role="banner">
 		<div class="container">
@@ -69,3 +68,5 @@
 
 		</div>
 	</header><!-- #masthead -->
+<?php
+do_action( 'after_site_header' );

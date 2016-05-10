@@ -13,27 +13,13 @@
  */
 
 get_header();
-
-    the_post();
-    $thumbnail = '';
-    if ( has_post_thumbnail() ) {
-        $thumbnail = get_the_post_thumbnail_url( get_the_ID(),  'full' );
-        if ( $thumbnail ) {
-            $thumbnail = ' style="background-image: url('.esc_url( $thumbnail ).');" ';
-        }
-    }
 ?>
-	<div id="page-header" class="page-header-cover"<?php echo $thumbnail; ?>>
-        <div class="page-header-inner">
-            <?php the_title( '<h1 class="site-title">', '</h1>' ); ?>
-        </div>
-	</div>
-
 	<div id="content" class="site-content">
 		<div id="content-inside" class="container right-sidebar">
 			<div id="primary" class="content-area">
 				<main id="main" class="site-main" role="main">
 				<?php
+				the_post();
 
 				get_template_part( 'template-parts/content', 'page' );
 

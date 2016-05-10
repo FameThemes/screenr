@@ -47,7 +47,7 @@ function screenr_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'screenr_hide_tagline',
         array(
             'sanitize_callback' => 'screenr_sanitize_checkbox',
-            'default'           => 0,
+            'default'           => 1,
             'transport'         => 'postMessage'
         )
     );
@@ -200,7 +200,82 @@ function screenr_customize_register( $wp_customize ) {
         )
     ));
 
+    /* Page Header
+   ----------------------------------------------------------------------*/
+    $wp_customize->add_section( 'page_header_settings' ,
+        array(
+            'priority'    => 10,
+            'title'       => esc_html__( 'Page Header', 'screenr' ),
+            'description' => '',
+            'panel'       => 'screenr_options',
+            //'active_callback'   => 'is_page', // function
+        )
+    );
 
+        // Header background BG Color
+        $wp_customize->add_setting( 'page_header_bg_color',
+            array(
+                'sanitize_callback' => 'sanitize_hex_color_no_hash',
+                'sanitize_js_callback' => 'maybe_hash_hex_color',
+                'default' => ''
+            ) );
+        $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'page_header_bg_color',
+            array(
+                'label'       => esc_html__( 'Background color', 'screenr' ),
+                'section'     => 'page_header_settings',
+                'description' => '',
+            )
+        ));
+
+        // Header background BG image
+        $wp_customize->add_setting( 'page_header_bg_image',
+            array(
+                'sanitize_callback' => 'screenr_sanitize_text',
+                'default' => ''
+            ) );
+        $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize,
+            'page_header_bg_image',
+            array(
+                'label'       => esc_html__( 'Background image', 'screenr' ),
+                'section'     => 'page_header_settings',
+                'description' => '',
+            )
+        ));
+
+        // Header background BG parallax
+        $wp_customize->add_setting( 'page_header_pallax',
+            array(
+                'sanitize_callback' => 'screenr_sanitize_checkbox',
+                'default'           => '',
+            )
+        );
+        $wp_customize->add_control( 'page_header_parallax',
+            array(
+                'type'        => 'checkbox',
+                'label'       => esc_html__('Enable parallax ?', 'screenr'),
+                'section'     => 'page_header_settings',
+                'description' => esc_html__('Check this box to enable parallax.', 'screenr'),
+            )
+        );
+
+        // Header background BG parallax
+        $wp_customize->add_setting( 'page_header_upsell',
+            array(
+
+            )
+        );
+        $wp_customize->add_control( new Screenr_Misc_Control(
+                $wp_customize,
+                'page_header_upsell',
+                array(
+                    'title' 		=> esc_html__('Header upsell', 'screenr'),
+                    'type' 		    => 'custom_message',
+                    'section' 		=> 'page_header_settings',
+                    'description' 	=> wp_kses_post( 'Upgrade to <a target="_blank" href="#">Screenr Plus</a> to be able to add more items and unlock other premium features!', 'screenr' ),
+                )
+            )
+        );
+    
     /*------------------------------------------------------------------------*/
     /*  Panel: Sections
     /*------------------------------------------------------------------------*/
