@@ -235,15 +235,16 @@ if ( $menu_hover_color ) {
         background-color: <?php echo rgb2hex( $c['color'] ); ?>;
         opacity: <?php echo $c['opacity']; ?>;
     }
+    <?php
+    }
 
+    ?>
     #page-header-cover.swiper-slider.no-image .swiper-slide .overlay {
         background-color: #<?php echo $bg_cover; ?>;
         opacity: 1;
     }
+
     <?php
-    }
-
-
     ?>
     </style>
     <?php
@@ -280,8 +281,6 @@ function screenr_page_header_cover(){
     $classes = array(
         'section-slider',
         'swiper-slider',
-        'full-screen'
-
     );
 
     if ( $is_parallax ) {

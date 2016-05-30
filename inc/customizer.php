@@ -215,9 +215,9 @@ function screenr_customize_register( $wp_customize ) {
         // Header background BG Color
         $wp_customize->add_setting( 'page_header_bg_color',
             array(
-                'sanitize_callback' => 'sanitize_hex_color_no_hash',
-                'sanitize_js_callback' => 'maybe_hash_hex_color',
-                'default' => ''
+                'sanitize_callback'     => 'sanitize_hex_color_no_hash',
+                'sanitize_js_callback'  => 'maybe_hash_hex_color',
+                'default'               => ''
             ) );
         $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'page_header_bg_color',
             array(
@@ -241,7 +241,6 @@ function screenr_customize_register( $wp_customize ) {
                 'description' => '',
             )
         ));
-
 
         $wp_customize->add_setting( 'page_header_bg_overlay',
             array(
