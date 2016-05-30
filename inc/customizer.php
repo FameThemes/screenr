@@ -260,7 +260,7 @@ function screenr_customize_register( $wp_customize ) {
         $wp_customize->add_setting( 'page_header_pdtop',
             array(
                 'sanitize_callback' => 'sanitize_text_field',
-                'default'           => '',
+                'default'           => '10',
             )
         );
         $wp_customize->add_control( 'page_header_pdtop',
@@ -275,7 +275,7 @@ function screenr_customize_register( $wp_customize ) {
         $wp_customize->add_setting( 'page_header_pdbottom',
             array(
                 'sanitize_callback' => 'sanitize_text_field',
-                'default'           => '',
+                'default'           => '10',
             )
         );
         $wp_customize->add_control( 'page_header_pdbottom',

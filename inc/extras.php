@@ -272,8 +272,8 @@ function screenr_page_header_cover(){
     $is_parallax  = get_theme_mod( 'page_header_parallax' ) == 1 ? true : false;
     $item = array(
         'position' => '',
-        'pd_top' => get_theme_mod( 'page_header_pdtop' ),
-        'pd_bottom' => get_theme_mod( 'page_header_pdbottom' ),
+        'pd_top' => get_theme_mod( 'page_header_pdtop') == '' ? 10 : get_theme_mod( 'page_header_pdtop'),
+        'pd_bottom' => get_theme_mod( 'page_header_pdbottom' ) == '' ? 10 : get_theme_mod( 'page_header_pdbottom' ) ,
         'title' => get_the_title(),
         'desc' => '',
     );
