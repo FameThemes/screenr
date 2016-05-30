@@ -599,21 +599,16 @@ jQuery( document ).ready( function( $ ){
 		var  o = slider_overlay_opacity;
 		var wh =  $( window ).height();
         var _t = 0;
-		if ( wh > scrolled ) {
-			o = ( scrolled / wh ) * 1.5;
-		}
-		if ( o >= 1 ){
-			o = 1;
-		}
+		
+		var slider_height = $( '.swiper-slider' ).eq(0).height();
 
-		if ( o <= 0 ){
-			o = 0;
-		}
+		o = ( scrolled / slider_height ) * 1.3;
 
-        var _oo =  ( o > .8 ) ?  .8 : o;
-        if ( _oo < slider_overlay_opacity ) {
-            _oo = slider_overlay_opacity;
-        }
+		var _oo =  ( o > .8 ) ?  .8 : o;
+
+		if ( _oo < slider_overlay_opacity ) {
+			_oo = slider_overlay_opacity;
+		}
 
 		if ( header_pos && st > admin_bar_h + header_h ) {
 			_t =  st - (  admin_bar_h + header_h );
@@ -629,7 +624,7 @@ jQuery( document ).ready( function( $ ){
 		} else {
             _t = 0;
 			$( '.swiper-slider.fixed .swiper-container' ).css({
-				'top': _t+'0px',
+				'top': _t + '0px',
 			});
 
 			$( '.swiper-slider.fixed .swiper-container .overlay' ).css( {
@@ -711,10 +706,15 @@ jQuery( document ).ready( function( $ ){
             if ( scrolled > 0 ) {
                 var _s_t = 0;
                 if ( Screenr.header_layout === 'fixed' ) {
-                    _s_t =  top - ( scrolled * .3 )  ;
-                    console.log( _s_t );
+					_s_t =  top - ( scrolled * .3 )  ;
                 } else {
-                    _s_t =  top - scrolled  + _t ;
+					if ( slider.hasClass( 'slide-align-center' ) ) {
+						_s_t =  top - scrolled  + _t ;
+						_s_t -= _s_t * .6;
+					} else {
+						_s_t =  top - scrolled  + _t ;
+					}
+
                 }
                 intro.css( { 'top':  ( _s_t ) +'px' } );
             } else {
