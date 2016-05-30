@@ -27,6 +27,34 @@ if ( ! function_exists( 'screenr_get_media_url' ) ) {
         return $url;
     }
 }
+if ( ! function_exists( 'rgb2hex' ) ) {
+    function rgb2hex( $rgb )
+    {
+        return '#' . sprintf('%02x', $rgb['r']) . sprintf('%02x', $rgb['g']) . sprintf('%02x', $rgb['b']);
+    }
+}
+
+function color_alpha_parse( $color_alpha ){
+    $s = str_replace( array( 'rgba', '(', ')', ';' ), '', $color_alpha );
+    $arr = explode(',', $s );
+    $r = false;
+    if ( count( $arr ) > 2 ) {
+        $r = array(
+            'color' => array(
+                'r' => $arr[0],
+                'g' => $arr[1],
+                'b' => $arr[2],
+            ),
+            'alpha' => 1,
+        );
+
+        if ( count( $arr ) > 3 ) {
+            $r['opacity'] = floatval( $arr[3] );
+        }
+    }
+
+    return $r;
+}
 
 
 /**
@@ -169,7 +197,7 @@ if ( $menu_hover_color ) {
      */
     $logo_text_color =  get_theme_mod( 'logo_text_color' );
     if ( $logo_text_color ) {
-        ?>
+    ?>
     .site-branding .site-title, .site-branding .site-text-logo, .site-branding .site-title a, .site-branding .site-text-logo a,
     .no-scroll .transparent .site-branding .site-title a{
         color: #<?php echo $logo_text_color; ?>;
@@ -178,12 +206,14 @@ if ( $menu_hover_color ) {
     }
 
     $slider_overlay_color =  get_theme_mod( 'slider_overlay_color' );
-    if ( $slider_overlay_color ) {
-        ?>
+    $c =  color_alpha_parse( $slider_overlay_color );
+    if ( $slider_overlay_color && $c ) {
+    ?>
     .swiper-slider .swiper-slide .overlay {
-        background-color: <?php echo $slider_overlay_color; ?>;
+        background-color: <?php echo rgb2hex( $c['color'] ); ?>;
+        opacity: <?php echo $c['opacity']; ?>;
     }
-        <?php
+    <?php
     }
 
     $v_overlay = get_theme_mod( 'videolightbox_overlay' );
@@ -194,6 +224,25 @@ if ( $menu_hover_color ) {
     }
     <?php
     }
+
+    // Page header
+    $page_header_bg_overlay =  get_theme_mod( 'page_header_bg_overlay' );
+    $bg_cover = get_theme_mod( 'page_header_bg_color' );
+    $c =  color_alpha_parse( $page_header_bg_overlay );
+    if ( $c ){
+    ?>
+    #page-header-cover.swiper-slider .swiper-slide .overlay {
+        background-color: <?php echo rgb2hex( $c['color'] ); ?>;
+        opacity: <?php echo $c['opacity']; ?>;
+    }
+
+    #page-header-cover.swiper-slider.no-image .swiper-slide .overlay {
+        background-color: #<?php echo $bg_cover; ?>;
+        opacity: 1;
+    }
+    <?php
+    }
+
 
     ?>
     </style>
@@ -219,26 +268,72 @@ function screenr_page_header_cover(){
         $image = get_theme_mod( 'page_header_bg_image' );
     }
 
-    $bg_cover = get_theme_mod( 'page_header_bg_color' );
-    $style = '';
-    if ( $image  || $bg_cover ) {
-        if ( $image ) {
-            $style .= ' background-image: url(\''.esc_url( $image ).'\');';
-        }
-        if ( $bg_cover ) {
-            $style .= ' background-color: #'. $bg_cover .';';
-        }
+    $is_parallax  = get_theme_mod( 'page_header_parallax' ) == 1 ? true : false;
+    $item = array(
+        'position' => '',
+        'pd_top' => get_theme_mod( 'page_header_pdtop' ),
+        'pd_bottom' => get_theme_mod( 'page_header_pdbottom' ),
+        'title' => get_the_title(),
+        'desc' => '',
+    );
+
+    $classes = array(
+        'section-slider',
+        'swiper-slider',
+        'full-screen'
+
+    );
+
+    if ( $is_parallax ) {
+        $classes[] = 'fixed';
     }
-    if ( $style ) {
-        $style = ' style="'.$style.'" ';
+    if ( $image ) {
+        $classes[] = 'has-image';
+    } else {
+        $classes[] = 'no-image';
     }
 
+    $item = apply_filters( 'screenr_page_header_item', $item );
+    $classes = apply_filters( 'screenr_page_header_cover_class', $classes );
+
     ?>
-    <div id="page-header" class="page-header-cover"<?php echo $style; ?>>
-        <div class="page-header-inner">
-            <?php the_title( '<h1 class="site-title">', '</h1>' ); ?>
+    <section id="page-header-cover" class="<?php echo esc_attr(  join( ' ', $classes ) ); ?>" >
+        <div class="swiper-container" data-autoplay="0">
+            <div class="swiper-wrapper">
+                <?php
+                $html = '<div class="swiper-slide slide-align-'.esc_attr( $item['position'] ).'">';
+                if ( $image ) {
+                    $html .= '<img src="' . esc_url($image) . '" alt="" />';
+                }
+                $style  = '';
+                if  ( $item['pd_top'] != '' ) {
+                    $style .='padding-top: '.floatval( $item['pd_top'] ).'%; ';
+                }
+                if  ( $item['pd_bottom'] != '' ) {
+                    $style .='padding-bottom: '.floatval( $item['pd_bottom'] ).'%; ';
+                }
+                if ( $style != '' ) {
+                    $style = ' style="'.$style.'" ';
+                }
+                $html .= '<div class="swiper-slide-intro">';
+                $html .= '<div class="swiper-intro-inner"'.$style.'>';
+                if ( $item['title'] ) {
+                    $html .= '<h2 class="swiper-slide-heading">'.wp_kses_post( $item['title'] ).'</h2>';
+                }
+                if ( $item['desc'] ) {
+                    $html .= '<div class="swiper-slide-desc">'.apply_filters( 'the_content', $item['desc'] ).'</div>';
+                }
+
+                $html .= '</div>';
+                $html .= '</div>';
+                $html .= '<div class="overlay"></div>';
+                $html .= '</div>';
+
+                echo $html;
+                ?>
+            </div>
         </div>
-    </div>
+    </section>
     <?php
 }
 

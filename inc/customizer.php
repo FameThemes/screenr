@@ -242,8 +242,53 @@ function screenr_customize_register( $wp_customize ) {
             )
         ));
 
+
+        $wp_customize->add_setting( 'page_header_bg_overlay',
+            array(
+                'sanitize_callback' => 'screenr_sanitize_color_alpha',
+                'default' => ''
+            ) );
+        $wp_customize->add_control( new Screenr_Alpha_Color_Control( $wp_customize, 'page_header_bg_overlay',
+            array(
+                'label'       => esc_html__( 'Background image overlay color', 'screenr' ),
+                'section'     => 'page_header_settings',
+                'description' => '',
+            )
+        ));
+
+
+        // Header page padding top
+        $wp_customize->add_setting( 'page_header_pdtop',
+            array(
+                'sanitize_callback' => 'sanitize_text_field',
+                'default'           => '',
+            )
+        );
+        $wp_customize->add_control( 'page_header_pdtop',
+            array(
+                'label'       => esc_html__('Padding top', 'screenr'),
+                'section'     => 'page_header_settings',
+                'description' => esc_html__('The slider content padding top in percent (%).', 'screenr'),
+            )
+        );
+
+        // Header page padding top
+        $wp_customize->add_setting( 'page_header_pdbottom',
+            array(
+                'sanitize_callback' => 'sanitize_text_field',
+                'default'           => '',
+            )
+        );
+        $wp_customize->add_control( 'page_header_pdbottom',
+            array(
+                'label'       => esc_html__('Padding bottom', 'screenr'),
+                'section'     => 'page_header_settings',
+                'description' => esc_html__('The slider content padding bottom in percent (%).', 'screenr'),
+            )
+        );
+
         // Header background BG parallax
-        $wp_customize->add_setting( 'page_header_pallax',
+        $wp_customize->add_setting( 'page_header_parallax',
             array(
                 'sanitize_callback' => 'screenr_sanitize_checkbox',
                 'default'           => '',
@@ -259,11 +304,7 @@ function screenr_customize_register( $wp_customize ) {
         );
 
         // Header background BG parallax
-        $wp_customize->add_setting( 'page_header_upsell',
-            array(
-
-            )
-        );
+        $wp_customize->add_setting( 'page_header_upsell', array() );
         $wp_customize->add_control( new Screenr_Misc_Control(
                 $wp_customize,
                 'page_header_upsell',
