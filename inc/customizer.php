@@ -1698,6 +1698,8 @@ function screenr_customize_register( $wp_customize ) {
             )
         )
     );
+
+    do_action( 'screenr_customize_after_register', $wp_customize );
 }
 add_action( 'customize_register', 'screenr_customize_register' );
 
