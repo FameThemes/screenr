@@ -147,24 +147,25 @@
 		.swiper-slide-intro {
 
 		}
-			img, video {
-				position: absolute;
+		img, video {
+			position: absolute;
 
-				min-width: 100.011111%;
-				min-height: 100.011111%;
-				max-width: initial;
-				max-height: initial;
-				height: initial;
-				width: initial;
+			min-width: 100.011111%;
+			min-height: 100.011111%;
+			max-width: initial;
+			max-height: initial;
+			height: initial;
+			width: initial;
 
-				top: 50.01111111%;
-				left: 50.01111111%;
-				-webkit-transform: translate(-50.01111111%, -50.01111111%);
-				transform: translate(-50.01111111%, -50.01111111%);
-			}
+			top: 50.01111111%;
+			left: 50.01111111%;
+			-webkit-transform: translate(-50.01111111%, -50.01111111%);
+			transform: translate(-50.01111111%, -50.01111111%);
+		}
 
 			.swiper-slide-intro {
-					position: relative;;
+					position: relative;
+
 					//top: 50%;
 					width: 100%;
 					z-index: 4;
@@ -186,6 +187,8 @@
 			.swiper-intro-inner {
 				padding-top: 30%;
 				padding-bottom: 30%;
+
+
 			}
 			.overlay {
 				z-index: 3;

@@ -318,7 +318,7 @@ function screenr_page_header_cover()
    // $is_parallax  = get_theme_mod( 'page_header_parallax' ) == 1 ? true : false;
     $is_parallax  = true;
     $item = array(
-        'position'  => '',
+        'position'  => 'center',
         'pd_top'    => get_theme_mod( 'page_header_pdtop') == '' ? 10 : get_theme_mod( 'page_header_pdtop'),
         'pd_bottom' => get_theme_mod( 'page_header_pdbottom' ) == '' ? 10 : get_theme_mod( 'page_header_pdbottom' ) ,
         'title'     => $title,

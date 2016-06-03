@@ -1,3 +1,39 @@
+function string_to_number( string ) {
+	if ( typeof string === 'number' ) {
+		return string;
+	}
+	if ( typeof string === 'string' ) {
+		var n = string.match(/[^\d\.]+$/);
+		if (n) {
+			return parseFloat(n[0]);
+		} else {
+			return 0;
+		}
+	}
+	return 0;
+}
+
+function string_to_bool( v ) {
+	if (  typeof v === 'boolean' ){
+		return v;
+	}
+
+	if (  typeof v === 'number' ){
+		return v === 0  ? false : true;
+	}
+
+	if (  typeof v === 'string' ){
+		if ( v === 'true' || v === '1' ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	return false;
+}
+
+
 /**
  * skip-link-focus-fix.js
  *
@@ -601,7 +637,7 @@ jQuery( document ).ready( function( $ ){
 		
 		var slider_height = $( '.swiper-slider' ).eq(0).height();
 
-		o = ( scrolled / slider_height ) * 1.3;
+		o = ( ( scrolled * 1.7 ) / slider_height );
 
 		var _oo =  ( o > .8 ) ?  .8 : o;
 
@@ -611,29 +647,23 @@ jQuery( document ).ready( function( $ ){
 
 		if ( header_pos && st > admin_bar_h + header_h ) {
 			_t =  st - (  admin_bar_h + header_h );
-			$('.swiper-slider.fixed .swiper-container').css({
-				'top': +(_t) + 'px',
-			});
-			$('.swiper-slider.fixed .swiper-container .overlay').css( {
-				'opacity':  _oo
-			} );
 			$('.swiper-slider.fixed .swiper-container .swiper-slide-intro').css( {
 				'opacity': 1 - o
 			} );
 		} else {
             _t = 0;
-			$( '.swiper-slider.fixed .swiper-container' ).css({
-				'top': _t + '0px',
-			});
-
-			$( '.swiper-slider.fixed .swiper-container .overlay' ).css( {
-				'opacity': _oo
-			} );
-
 			$( '.swiper-slider.fixed .swiper-container .swiper-slide-intro' ).css( {
 				'opacity': 1
 			} );
 		}
+
+
+		$('.swiper-slider.fixed .swiper-container').css({
+			'top': _t + 'px',
+		});
+		$('.swiper-slider.fixed .swiper-container .overlay').css( {
+			'opacity':  _oo
+		} );
 
         var sch = swiper.container.outerHeight();
 
@@ -684,38 +714,38 @@ jQuery( document ).ready( function( $ ){
 
         $.each( swiper.slides, function ( index, slide ){
             var slider = $( slide );
-            var intro = slider.find( '.swiper-slide-intro' );
-            //var sh = slider.height();
-            var top, _attr_top;
-            _attr_top = intro.attr( 'data-top' ) || '';
-            if ( _attr_top === '' ) {
-                top = intro.css( 'top' );
-            } else {
-                top = _attr_top;
-            }
-            if ( top === '' ){
-                top = 0;
-            } else {
-                top  =  parseInt( top );
-            }
-            if ( ! _attr_top ) {
-                intro.attr( 'data-top' , top );
-            }
+            var intro = slider.find( '.swiper-slide-intro' ), intro_inner = intro.find( '.swiper-intro-inner' );
+			var _padding_top =  intro_inner.css( 'padding-top' ) || 0;
+			_padding_top = parseFloat( _padding_top );
+			var ot = 0;
+			var intro_top  = _padding_top;
+
+			intro.css( { 'top':   '' } );
+			var top = intro.css( 'top' );
+			top = parseInt( top );
 
             if ( scrolled > 0 ) {
-                var _s_t = 0;
-                if ( Screenr.header_layout === 'fixed' ) {
-					_s_t =  top - ( scrolled * .3 )  ;
-                } else {
+				var _s_t, pt_top = 0;
+				if ( intro_top > 0 ) {
+					pt_top = scrolled / intro_top ;
+				}
+				if ( pt_top > 1 ) {
+					pt_top = 1;
+				}
+
+				if ( Screenr.header_layout === 'fixed' ) {
+					_s_t =  top - ( scrolled * pt_top )  ;
+				} else {
 					if ( slider.hasClass( 'slide-align-center' ) ) {
 						_s_t =  top - scrolled  + _t ;
-						_s_t -= _s_t * .6;
+						_s_t -= _s_t * pt_top;
 					} else {
 						_s_t =  top - scrolled  + _t ;
+						_s_t -= _s_t * pt_top;
 					}
-
-                }
-                intro.css( { 'top':  ( _s_t ) +'px' } );
+				}
+				
+				intro.css( { 'top':  ( _s_t ) + 'px' } );
             } else {
                 intro.css( { 'top': '' } );
             }
