@@ -257,25 +257,50 @@ add_action( 'wp_enqueue_scripts', 'screenr_custom_style', 30 );
 
 
 
-function screenr_page_header_cover(){
-    if ( is_front_page() ) {
-        return ;
+function screenr_page_header_cover()
+{
+    if (is_front_page()) {
+        return;
     }
-    $image = '';
-    if ( has_post_thumbnail() ) {
-        $image = get_the_post_thumbnail_url( get_the_ID(),  'full' );
+
+    $image = $title = $desc = '';
+    if ( is_singular() ) {
+        $title = get_the_title();
+        if ( has_post_thumbnail() ) {
+            $image = get_the_post_thumbnail_url( get_the_ID(),  'full' );
+        }
+    } elseif ( is_category() || is_tag() ||  is_tax() ) {
+        $title = single_cat_title( '', false );
+        $desc  = term_description();
+
+    } elseif (is_day()) {
+        $title = sprintf(__('Daily Archives: %s', 'screenr'), get_the_date());
+
+    } elseif ( is_month() ) {
+        $title = sprintf(__('Monthly Archives: %s', 'screenr'), get_the_date(_x('F Y', 'monthly archives date format', 'screenr')));
+
+    } elseif ( is_year() ) {
+        $title = printf(__('Yearly Archives: %s', 'screenr'), get_the_date(_x('Y', 'yearly archives date format', 'screenr')));
+
+    } else {
+        $title = esc_html__('Archives', 'twentyfourteen');
     }
+
+
+
+
     if ( ! $image ) {
         $image = get_theme_mod( 'page_header_bg_image' );
     }
 
-    $is_parallax  = get_theme_mod( 'page_header_parallax' ) == 1 ? true : false;
+   // $is_parallax  = get_theme_mod( 'page_header_parallax' ) == 1 ? true : false;
+    $is_parallax  = true;
     $item = array(
-        'position' => '',
-        'pd_top' => get_theme_mod( 'page_header_pdtop') == '' ? 10 : get_theme_mod( 'page_header_pdtop'),
+        'position'  => '',
+        'pd_top'    => get_theme_mod( 'page_header_pdtop') == '' ? 10 : get_theme_mod( 'page_header_pdtop'),
         'pd_bottom' => get_theme_mod( 'page_header_pdbottom' ) == '' ? 10 : get_theme_mod( 'page_header_pdbottom' ) ,
-        'title' => get_the_title(),
-        'desc' => '',
+        'title'     => $title,
+        'desc'      => $desc,
     );
 
     $classes = array(
@@ -286,6 +311,7 @@ function screenr_page_header_cover(){
     if ( $is_parallax ) {
         $classes[] = 'fixed';
     }
+
     if ( $image ) {
         $classes[] = 'has-image';
     } else {

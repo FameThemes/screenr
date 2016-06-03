@@ -287,6 +287,7 @@ function screenr_customize_register( $wp_customize ) {
         );
 
         // Header background BG parallax
+        /*
         $wp_customize->add_setting( 'page_header_parallax',
             array(
                 'sanitize_callback' => 'screenr_sanitize_checkbox',
@@ -301,6 +302,7 @@ function screenr_customize_register( $wp_customize ) {
                 'description' => esc_html__('Check this box to enable parallax.', 'screenr'),
             )
         );
+        */
 
         // Header background BG parallax
         $wp_customize->add_setting( 'page_header_upsell', array() );

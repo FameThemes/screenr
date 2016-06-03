@@ -371,7 +371,6 @@ jQuery( document ).ready( function( $ ){
      * Custom  Slider
      *
      */
-
 	var video_support = function(){
 		return !!document.createElement('video').canPlayType;
 	};
@@ -736,7 +735,7 @@ jQuery( document ).ready( function( $ ){
         $( window ).trigger( 'scroll' );
     } );
 
-    $(document).trigger( 'scroll' );
+    $( document ).trigger( 'scroll' );
 
 	$( '.swiper-slider' ).bind( 'preview_event_changed', function(){
 		alert( 'section_slider_changed' );

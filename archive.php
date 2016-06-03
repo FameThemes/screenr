@@ -11,13 +11,6 @@ get_header(); ?>
 
 	<div id="content" class="site-content">
 
-		<div class="page-header">
-			<div class="container">
-				<?php the_archive_title( '<h1 class="page-title">', '</h1>' ); ?>
-				<?php the_archive_description( '<div class="taxonomy-description">', '</div>' ); ?>
-			</div>
-		</div>
-
 		<div id="content-inside" class="container right-sidebar">
 			<div id="primary" class="content-area">
 				<main id="main" class="site-main" role="main">
