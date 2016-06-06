@@ -1247,7 +1247,7 @@ function screenr_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'counter_title',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => esc_html__('Counter', 'screenr'),
+            'default'           => '',
         )
     );
     $wp_customize->add_control( 'counter_title',
@@ -1345,15 +1345,9 @@ function screenr_customize_register( $wp_customize ) {
                         'title' => esc_html__('After number', 'screenr'),
                         'type'  =>'text',
                     ),
-                    'style' => array(
-                        'title' => esc_html__('Style', 'screenr'),
-                        'type'  =>'select',
-                        'options' => array(
-                            'bg1'      => esc_html__('Blue', 'screenr'),
-                            'bg2'      => esc_html__('Black', 'screenr'),
-                            'bg3'      => esc_html__('Red', 'screenr'),
-                            'bg4'      => esc_html__('Green', 'screenr'),
-                        )
+                    'bg_color' => array(
+                        'title' => esc_html__('Custom background color', 'screenr'),
+                        'type'  =>'color',
                     ),
                 ),
             )

@@ -3,7 +3,7 @@ $items      = get_theme_mod( 'counter_items' );
 
 if ( ! empty( $items ) ) {
 
-    $title      = get_theme_mod( 'counter_title', __( 'Counter', 'screenr' ) );
+    $title      = get_theme_mod( 'counter_title' );
     $subtitle   = get_theme_mod( 'counter_subtitle', __( 'Some Fun Facts about our agency?', 'screenr' ) );
     $desc       = get_theme_mod( 'counter_desc' );
     $id         = get_theme_mod( 'counter_id', 'counter' );
@@ -14,28 +14,31 @@ if ( ! screenr_is_selective_refresh() ) {
 <section id="<?php echo esc_attr( $id ); ?>" class="screenr-section section-counter section-padding section-padding-larger section-meta">
 <?php } ?>
     <div class="container">
+        <?php if ( $subtitle || $title || $desc ) {  ?>
         <div class="section-title-area">
             <?php if ( $subtitle ) { ?><div class="section-subtitle"><?php echo esc_html( $subtitle ); ?></div><?php } ?>
             <?php if ( $title ) { ?><h2 class="section-title"><?php echo esc_html( $title ); ?></h2><?php } ?>
             <?php if ( $desc ) { ?><div class="section-desc"><?php echo do_shortcode( apply_filters( 'the_content', $desc ) ); ?></div><?php } ?>
         </div>
+        <?php } ?>
+
         <div class="counter-contents" data-layout="<?php echo esc_attr( $layout ); ?>">
             <div class="section-content">
                 <div class="row">
                     <?php
-
                     foreach ( ( array ) $items as $item ) {
                         $item = wp_parse_args( $item, array(
                             'title' => '',
                             'number' => '',
                             'icon' => '',
-                            'style' => 'bg1',
+                            'bg_color' => '',
                             'before_number' => '',
                             'after_number' => '',
                         ) );
+
                     ?>
                     <div class="col-sm-12 col-md-6 col-lg-<?php echo esc_attr( $layout ); ?>">
-                        <div class="counter-item counter-item-<?php echo esc_attr( $item['style'] ); ?>">
+                        <div class="counter-item counter-item-<?php echo esc_attr( $item['style'] ); ?>" <?php if ( $item['bg_color'] ) { ?> style="background-color: #<?php echo esc_attr( str_replace( '#','', $item['bg_color'] ) ); ?>" <?php } ?>>
                             <span class="counter-title"><?php echo esc_html( $item['title'] ); ?></span>
                             <div class="counter__number">
                                 <?php if ( $item['before_number'] ){ ?>
