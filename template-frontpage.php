@@ -21,9 +21,10 @@ get_header(); ?>
                     	'slider',
 						'features',
 						'about',
-						'videolightbox',
 						'services',
 						'clients',
+						'videolightbox',
+						'counter',
 						'news',
 						'contact'
                 	)

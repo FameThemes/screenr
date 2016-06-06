@@ -2062,8 +2062,8 @@ input[type="radio"], input[type="checkbox"] {
 	font-size: 12px;
 	display: inline-block;
 	position: relative;
-	margin: 20px 0px 2px 0px;
-	margin:  1.25rem 0rem 0.125rem 0rem;
+	margin: 0px 0px 2px 0px;
+	margin:  0rem 0rem 0.125rem 0rem;
 	text-transform: uppercase;
 	letter-spacing: 2px;
 }
@@ -2771,6 +2771,52 @@ input[type="radio"], input[type="checkbox"] {
 	display: block;
 	z-index: 2;
 	background: rgba(0, 0, 0, 0.4);
+}
+
+/* Section: Counter
+------------------------------*/
+.counter-item {
+	background-color: #171717;
+	padding: 25px 30px 30px 30px;
+	position: relative;
+	color: #FFFFFF;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	margin-bottom: 30px;
+}
+
+.counter-item.counter-item-bg1 {
+	background-color: #0099e5;
+}
+
+.counter-item.counter-item-bg3 {
+	background-color: #ff4c4c;
+}
+
+.counter-item.counter-item-bg4 {
+	background-color: #34bf49;
+}
+
+.counter-item .counter-title {
+	color: #FFF;
+	text-transform: none;
+	font-weight: 100;
+	font-size: 22px;
+	margin-bottom: 15px;
+	display: block;
+}
+
+.counter-item .counter__number span {
+	font-size: 43px;
+	line-height: 30px;
+	font-weight: 100;
+	letter-spacing: -2px;
+}
+
+.counter-item i {
+	position: absolute;
+	right: 30px;
+	bottom: 30px;
+	color: rgba(255, 255, 255, 0.5);
 }
 
 /*--------------------------------------------------------------
