@@ -234,6 +234,9 @@
         *white-space: normal; // ...unless you support IE7 (let it wrap)
         -webkit-transition: background .2s;
         transition: background .2s;
+				&.current-menu-item > a {
+					color: $primary;
+				}
     }
     li:hover,
     li.sfHover {

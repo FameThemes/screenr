@@ -920,6 +920,10 @@ input[type="radio"], input[type="checkbox"] {
 	transition: background .2s;
 }
 
+.nav-menu li.current-menu-item > a {
+	color: #e86240;
+}
+
 .nav-menu li:hover,
 .nav-menu li.sfHover {
 	-webkit-transition: none;
