@@ -113,6 +113,9 @@
 	@include rem('font-size', 20px);
 	@include rem('margin-top', 40px);
 }
+.section-content {
+	padding-top: 10px;
+}
 
 /* Full Screen Slider
 ------------------------------*/
@@ -527,7 +530,7 @@
 			margin-top: 20px;
 		}
 	}
-	.section-content {
+	.section-about-content {
 		padding-left: 30px;
 	}
 }
@@ -733,8 +736,24 @@
 
 	}
 	.wpcf7-submit {
-		padding: 16px 40px;
+		padding: 20px 40px;
 		font-size: 16px;
+		width: 100%;
+	}
+	.large-label {
+		text-transform: uppercase;
+		font-weight: bold;
+		letter-spacing: 1.5px;
+		display: inline-block;
+		margin-bottom: 5px;
+		@include rem('font-size', 13px);
+		color: #222222;
+	}
+}
+
+.section-inverse {
+	.large-label {
+		color: rgba(255, 255, 255, 0.99);
 	}
 }
 

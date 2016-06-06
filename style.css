@@ -442,19 +442,20 @@ input[type="text"],
 input[type="time"],
 input[type="url"],
 input[type="week"] {
-	padding: 10px;
+	padding: 13px 13px;
 	max-width: 100%;
 	border: 0px;
 	font-size: 15px;
 	font-weight: normal;
 	line-height: 22px;
-	border-radius: 2px;
+	border-radius: 3px;
 	transition: all 0.2s linear;
 	-moz-transition: all 0.2s linear;
 	-webkit-transition: all 0.2s linear;
 	-o-transition: all 0.2s linear;
-	border: 2px solid #e5e5e5;
+	border: 1px solid #cccccc;
 	box-sizing: border-box;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08) inset;
 	color: #222222;
 }
 
@@ -2081,6 +2082,10 @@ input[type="radio"], input[type="checkbox"] {
 	margin-top: 2.5rem;
 }
 
+.section-content {
+	padding-top: 10px;
+}
+
 /* Full Screen Slider
 ------------------------------*/
 .swiper-slider {
@@ -2521,7 +2526,7 @@ input[type="radio"], input[type="checkbox"] {
 	margin-top: 20px;
 }
 
-.section-about .section-content {
+.section-about .section-about-content {
 	padding-left: 30px;
 }
 
@@ -2723,8 +2728,24 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .section-contact .wpcf7-submit {
-	padding: 16px 40px;
+	padding: 20px 40px;
 	font-size: 16px;
+	width: 100%;
+}
+
+.section-contact .large-label {
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 1.5px;
+	display: inline-block;
+	margin-bottom: 5px;
+	font-size: 13px;
+	font-size: 0.8125rem;
+	color: #222222;
+}
+
+.section-inverse .large-label {
+	color: rgba(255, 255, 255, 0.99);
 }
 
 .contact-details .contact-detail {

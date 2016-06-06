@@ -24,7 +24,7 @@ if ( $page_id && ( $post = get_post( $page_id ) )) {
                 <?php } ?>
             </div>
             <div class="col-md-7">
-                <div class="section-content">
+                <div class="section-about-content">
                     <?php
                     if (  get_theme_mod( 'about_page_content_type' ) == 'content' ) {
                         the_content();

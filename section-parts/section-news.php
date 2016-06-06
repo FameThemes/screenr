@@ -40,7 +40,7 @@ switch ( $layout ) {
                 <?php if ( $desc ) { ?><div class="section-desc"><?php echo do_shortcode( apply_filters( 'the_content', $desc ) ); ?></div><?php } ?>
             </div>
         <?php } ?>
-        <div class="section-news-content">
+        <div class="section-content section-news-content">
             <div class="row">
                 <div class="content-grid" data-layout="<?php echo esc_attr( $layout ); ?>">
                     <?php if ( $latest_posts->have_posts() ) : ?>

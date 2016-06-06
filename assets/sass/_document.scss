@@ -374,19 +374,20 @@ input[type="text"],
 input[type="time"],
 input[type="url"],
 input[type="week"] {
-	padding: 10px;
+	padding: 13px 13px;
 	max-width: 100%;
 	border: 0px;
 	font-size: 15px;
 	font-weight: normal;
 	line-height: 22px;
-	border-radius: 2px;
+	border-radius: 3px;
 	transition: all 0.2s linear;
 	-moz-transition: all 0.2s linear;
 	-webkit-transition: all 0.2s linear;
 	-o-transition: all 0.2s linear;
-    border: 2px solid #e5e5e5;
+    border: 1px solid #cccccc;
     box-sizing: border-box;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08) inset;
     color: #222222;
     &:focus {
     	transition: all 0.2s linear;

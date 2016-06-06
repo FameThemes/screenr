@@ -10,8 +10,8 @@ if ( ! empty( $items ) ) {
     $layout     = absint( get_theme_mod( 'counter_layout', 3 ) );
 
 if ( ! screenr_is_selective_refresh() ) {
-    ?>
-    <section id="<?php echo esc_attr( $id ); ?>" class="screenr-section section-counter section-padding section-padding-larger section-meta">
+?>
+<section id="<?php echo esc_attr( $id ); ?>" class="screenr-section section-counter section-padding section-padding-larger section-meta">
 <?php } ?>
     <div class="container">
         <div class="section-title-area">
