@@ -352,9 +352,9 @@ jQuery( document ).ready( function( $ ){
 
 		jQuery('.site-main section').each( function(){
 			var s =  $( this );
-			var currentId = s.attr('id');
+			var currentId = s.attr('id') || '';
 			var section_height = 0;
-			if ( s.next().length > 0 ) {
+			if ( s.next().length > 0 && currentId ) {
 			} else {
 				section_height = s.outerHeight();
 			}
@@ -364,9 +364,10 @@ jQuery( document ).ready( function( $ ){
 
         });
 
-		if ( jQuery('#site-navigation li').find('a[href$="#'+currentNode+'"]').length > 0 ) {
-			jQuery('#site-navigation li').removeClass('current-menu-item');
-			jQuery('#site-navigation li').find('a[href$="#'+currentNode+'"]').parent().addClass('current-menu-item');
+
+		jQuery('#site-navigation li').removeClass('current-menu-item');
+		if ( currentNode ) {
+			jQuery('#site-navigation li').find('a[href$="#' + currentNode + '"]').parent().addClass('current-menu-item');
 		}
 
 	});
