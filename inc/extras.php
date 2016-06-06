@@ -358,10 +358,13 @@ function screenr_page_header_cover()
         <div class="swiper-container" data-autoplay="0">
             <div class="swiper-wrapper">
                 <?php
-                $html = '<div class="swiper-slide slide-align-'.esc_attr( $item['position'] ).'">';
+                $style = "";
                 if ( $image ) {
-                    $html .= '<img src="' . esc_url($image) . '" alt="" />';
+                    $style = ' style="background-image: url(\''.esc_url( $image ).'\');" ';
                 }
+
+                $html = '<div class="swiper-slide slide-align-'.esc_attr( $item['position'] ).'"'.$style.'>';
+
                 $style  = '';
                 if  ( $item['pd_top'] != '' ) {
                     $style .='padding-top: '.floatval( $item['pd_top'] ).'%; ';

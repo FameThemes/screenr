@@ -17,11 +17,12 @@ class Screenr_Slider {
         //wp_get_attachment_url( get_post_thumbnail_id() );
         foreach ( ( array ) $this->data as $k => $item ){
             $item = wp_parse_args( $item, array(
+                'layout'        => '',
                 'content'       => '',
                 'media'         => '',
                 'position'      => '',
-                'pd_top'      => '',
-                'pd_bottom'      => '',
+                'pd_top'        => '',
+                'pd_bottom'     => '',
             ) );
             if ( ! $item['position'] ) {
                 $item['position']  = 'center';
@@ -41,12 +42,9 @@ class Screenr_Slider {
             return $html;
         }
 
-        $html = '<div class="swiper-slide slide-align-'.esc_attr( $item['position'] ).'">';
+        $url = screenr_get_media_url( $item['media'] );
 
-            $url = screenr_get_media_url( $item['media'] );
-            if ( $url ) {
-                $html .= '<img src="' . esc_url( $url ) . '" alt="" />';
-            }
+        $html = '<div class="swiper-slide slide-align-'.esc_attr( $item['position'] ).' slide-'.esc_attr( $item['layout'] ).'" style="background-image: url(\''.esc_attr( $url ).'\')">';
 
             $style  = '';
             if  ( $item['pd_top'] != '' ) {
@@ -60,10 +58,10 @@ class Screenr_Slider {
             }
             $html .= '<div class="swiper-slide-intro">';
                 $html .= '<div class="swiper-intro-inner"'.$style.'>';
+
                     if ( $item['content'] ) {
                         $html .= apply_filters( 'the_content', $item['content'] );
                     }
-
 
                 $html .= '</div>';
             $html .= '</div>';

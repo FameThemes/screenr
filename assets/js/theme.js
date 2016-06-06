@@ -364,7 +364,7 @@ jQuery( document ).ready( function( $ ){
 				}
 
 			});
-			
+
 			jQuery('#site-navigation li').removeClass('current-menu-item');
 			if (currentNode) {
 				jQuery('#site-navigation li').find('a[href$="#' + currentNode + '"]').parent().addClass('current-menu-item');
@@ -480,12 +480,12 @@ jQuery( document ).ready( function( $ ){
 
 		$( '.swiper-slider' ).height( '' ); // reset style
 		sh = $( '.swiper-container .swiper-slide-intro' ).eq( 0 ).innerHeight();
-		$( '.swiper-slider' ).height( sh + hh );
+		//$( '.swiper-slider' ).height( sh + hh );
 	}
 
-	set_slider_height();
+	//set_slider_height();
 	$( window ).resize( function(){
-		set_slider_height();
+	//	set_slider_height();
 	} );
 
     var slider_number_item = $( '.swiper-slider .swiper-slide').length;

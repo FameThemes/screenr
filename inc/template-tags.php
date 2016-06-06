@@ -14,6 +14,14 @@ if ( ! function_exists( 'screenr_is_selective_refresh' ) ) {
 	}
 }
 
+function screenr_is_fullscreen(){
+	return get_theme_mod( 'slider_fullscreen' );
+}
+
+function screenr_not_fullscreen() {
+	return ! screenr_is_fullscreen();
+}
+
 
 if ( ! function_exists( 'screenr_posted_on' ) ) :
 /**
