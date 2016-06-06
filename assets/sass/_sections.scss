@@ -757,52 +757,18 @@
 
 .contact-details {
 	padding: 0px;
+	text-align: center;
 	&:after(){
 		@include clearfix();
 	}
 	@include for( medium-screens ) {
-		&[data-layout="2"] {
-			li {
-				width: 50%;
-				&:nth-child( 2n + 1 ) {
-					clear: left;
-				}
-			}
-		}
-		&[data-layout="3"] {
-			li {
-				width: 33.3333%;
-				&:nth-child( 3n + 1 ) {
-					clear: left;
-				}
-			}
-		}
-		&[data-layout="4"] {
-			li {
-				width: 25%;
-				&:nth-child( 4n + 1 ) {
-					clear: left;
-				}
-			}
-		}
-	}
 
-	@include for( screens-medium ) {
-			li {
-				width: 50%;
-
-				&:nth-child( 2n + 1 ) {
-					clear: left;
-				}
-			}
 	}
 
 	li {
 		padding: 0px 15px;
 		list-style: none;
-		display: block;
-		float: left;
-
+		display: inline-block;
 	}
 
 	.contact-detail {

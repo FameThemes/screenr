@@ -5,10 +5,6 @@ $subtitle   = get_theme_mod( 'contact_subtitle', __( 'Keep in touch', 'screenr' 
 $desc       = get_theme_mod( 'contact_desc', __( 'Fill out the form below and you will hear from us shortly.', 'screenr' ) );
 $content    = get_theme_mod( 'contact_content' );
 $items      = get_theme_mod( 'contact_items' );
-$layout     = absint( get_theme_mod( 'contact_layout', 3 ) );
-if ( $layout == 0 ) {
-    $layout = 3;
-}
 ?>
 <?php if ( ! screenr_is_selective_refresh() ) { ?>
 <section id="<?php echo esc_attr( get_theme_mod('contact_id', 'contact')); ?>" class="section-contact section-padding onepage-section section-meta">
@@ -26,7 +22,7 @@ if ( $layout == 0 ) {
 
                 <div class="col-md-12">
                     <?php if ( ! empty ( $items ) ) { ?>
-                    <ul class="contact-details" data-layout="<?php echo esc_attr( $layout ); ?>">
+                    <ul class="contact-details">
                         <?php
                         foreach ( ( array ) $items as $item ) {
                             $items = wp_parse_args( $item, array(

@@ -17,8 +17,7 @@ class Screenr_Slider {
         //wp_get_attachment_url( get_post_thumbnail_id() );
         foreach ( ( array ) $this->data as $k => $item ){
             $item = wp_parse_args( $item, array(
-                'title'         => '',
-                'desc'          => '',
+                'content'       => '',
                 'media'         => '',
                 'position'      => '',
                 'pd_top'      => '',
@@ -61,12 +60,10 @@ class Screenr_Slider {
             }
             $html .= '<div class="swiper-slide-intro">';
                 $html .= '<div class="swiper-intro-inner"'.$style.'>';
-                    if ( $item['title'] ) {
-                        $html .= '<h2 class="swiper-slide-heading">'.wp_kses_post( $item['title'] ).'</h2>';
+                    if ( $item['content'] ) {
+                        $html .= apply_filters( 'the_content', $item['content'] );
                     }
-                    if ( $item['desc'] ) {
-                        $html .= '<div class="swiper-slide-desc">'.apply_filters( 'the_content', $item['desc'] ).'</div>';
-                    }
+
 
                 $html .= '</div>';
             $html .= '</div>';

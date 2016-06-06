@@ -339,38 +339,38 @@ jQuery( document ).ready( function( $ ){
     });
 
     // Add active class to menu when scroll to active section.
-    jQuery( window ).scroll( function() {
-        var currentNode = null;
-		var header_top_height = get_header_top_height();
+	if ( $( '.page-template-template-frontpage' ).length > 0 ) {
+		jQuery(window).scroll(function () {
+			var currentNode = null;
+			var header_top_height = get_header_top_height();
 
-		var scrolled = $( window ).scrollTop();
-		if ( scrolled > 0 ) {
-			$( 'body' ).addClass( 'scrolled' );
-		} else {
-			$( 'body' ).removeClass( 'scrolled' );
-		}
-
-		jQuery('.site-main section').each( function(){
-			var s =  $( this );
-			var currentId = s.attr('id') || '';
-			var section_height = 0;
-			if ( s.next().length > 0 && currentId ) {
+			var scrolled = $(window).scrollTop();
+			if (scrolled > 0) {
+				$('body').addClass('scrolled');
 			} else {
-				section_height = s.outerHeight();
-			}
-			if ( jQuery(window).scrollTop() >= s.offset().top - header_top_height - section_height ) {
-				currentNode = currentId;
+				$('body').removeClass('scrolled');
 			}
 
-        });
+			jQuery('.site-main section').each(function () {
+				var s = $(this);
+				var currentId = s.attr('id') || '';
+				var section_height = 0;
+				if (s.next().length > 0 && currentId) {
+				} else {
+					section_height = s.outerHeight();
+				}
+				if (jQuery(window).scrollTop() >= s.offset().top - header_top_height - section_height) {
+					currentNode = currentId;
+				}
 
-
-		jQuery('#site-navigation li').removeClass('current-menu-item');
-		if ( currentNode ) {
-			jQuery('#site-navigation li').find('a[href$="#' + currentNode + '"]').parent().addClass('current-menu-item');
-		}
-
-	});
+			});
+			
+			jQuery('#site-navigation li').removeClass('current-menu-item');
+			if (currentNode) {
+				jQuery('#site-navigation li').find('a[href$="#' + currentNode + '"]').parent().addClass('current-menu-item');
+			}
+		});
+	}
 
     // Move to the right section on page load.
     jQuery( window ).load( function(){

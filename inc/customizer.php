@@ -419,15 +419,10 @@ function screenr_customize_register( $wp_customize ) {
                             'layout-1' => esc_html__('Layout 1', 'screenr'),
                         ) )
                     ),
-                    'title' => array(
-                        'title' => esc_html__('Title', 'screenr'),
-                        'type'  =>'text',
-                        'default' => esc_html__('This is slider title', 'screenr'),
-                    ),
-                    'desc' => array(
-                        'title' => esc_html__('Description', 'screenr'),
+                    'content' => array(
+                        'title' => esc_html__('Content', 'screenr'),
                         'type'  =>'editor',
-                        'default' => esc_html__('This is slider description', 'screenr'),
+                        'default' => '',
                     ),
                     'media' => array(
                         'title' => esc_html__('Image', 'screenr'),
@@ -532,21 +527,6 @@ function screenr_customize_register( $wp_customize ) {
             'label'       => esc_html__('Enable slider parallax', 'screenr'),
             'section'     => 'section_slider',
             'description' => esc_html__('Check this box to enable slider parallax.', 'screenr'),
-        )
-    );
-
-    // Slider Autoplay
-    $wp_customize->add_setting( 'slider_autoplay',
-        array(
-            'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => 7000,
-        )
-    );
-    $wp_customize->add_control( 'slider_autoplay',
-        array(
-            'label' 		=> esc_html__('Autoplay', 'screenr'),
-            'section' 		=> 'section_slider',
-            'description'   => esc_html__( 'Delay between transitions (in ms). Leave empty to disable.', 'screenr' )
         )
     );
 
@@ -1728,27 +1708,7 @@ function screenr_customize_register( $wp_customize ) {
             )
         )
     );
-
-    $wp_customize->add_setting( 'contact_layout',
-        array(
-            'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => 3,
-        )
-    );
-    $wp_customize->add_control( 'contact_layout',
-        array(
-            'type'        => 'select',
-            'label'       => esc_html__('Detail items layout setting', 'screenr'),
-            'section'     => 'section_contact',
-            'description' => esc_html__('Number of items per row to display.', 'screenr'),
-            'choices' => array(
-                2 => 2,
-                3 => 3,
-                4 => 4
-            )
-        )
-    );
-
+    
 
     /*------------------------------------------------------------------------*/
     /*  Section: Client
