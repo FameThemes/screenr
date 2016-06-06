@@ -5,6 +5,10 @@ $subtitle   = get_theme_mod( 'contact_subtitle', __( 'Keep in touch', 'screenr' 
 $desc       = get_theme_mod( 'contact_desc', __( 'Fill out the form below and you will hear from us shortly.', 'screenr' ) );
 $content    = get_theme_mod( 'contact_content' );
 $items      = get_theme_mod( 'contact_items' );
+$layout     = absint( get_theme_mod( 'contact_layout', 3 ) );
+if ( $layout == 0 ) {
+    $layout = 3;
+}
 ?>
 <?php if ( ! screenr_is_selective_refresh() ) { ?>
 <section id="<?php echo esc_attr( get_theme_mod('contact_id', 'contact')); ?>" class="section-contact section-padding onepage-section section-meta">
@@ -19,49 +23,26 @@ $items      = get_theme_mod( 'contact_items' );
         <?php } ?>
         <div class="section-content">
             <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-10">
+
+                <div class="col-md-12">
                     <?php if ( ! empty ( $items ) ) { ?>
-                    <div class="contact-details">
-                        <div class="row">
-                            <?php
-                            $layout = absint( get_theme_mod( 'contact_layout', 3 ) );
-                            if ( $layout == 0 ) {
-                                $layout = 3;
-                            }
-
-                            $classes = '';
-                            switch( $layout ){
-                                case 2:
-                                    $classes = 'col-lg-6';
-                                    break;
-                                case 3:
-                                    $classes = 'col-lg-4';
-                                    break;
-                                case 4:
-                                    $classes = 'col-lg-3';
-                                    break;
-                                default:
-                                    $classes = 'col-lg-6';
-                            }
-
-                            foreach ( ( array ) $items as $item ) {
-                                $items = wp_parse_args( $item, array(
-                                    'title' => '',
-                                    'icon'  => '',
-                                    'url'   => '',
-                                ) );
-                                ?>
-                                <div class="contact-detail <?php echo esc_attr( $classes ); ?> col-md-6">
-                                    <?php if ( $item['icon'] ){ ?><span class="contact-icon"><i aria-hidden="true" class="<?php echo esc_attr( $item['icon'] ); ?> fa-2x"></i></span><?php } ?>
-                                    <?php if ( $item['url'] ){ ?><a href="<?php echo antispambot( $item['url'] ); ?>"><?php } ?>
-                                        <span class="contact-detail-value"><?php echo esc_html( $item['title'] ); ?></span>
-                                    <?php if ( $item['url'] ){ ?></a><?php } ?>
-                                </div>
-                            <?php }// end loop items ?>
-
-                        </div>
-                    </div>
+                    <ul class="contact-details" data-layout="<?php echo esc_attr( $layout ); ?>">
+                        <?php
+                        foreach ( ( array ) $items as $item ) {
+                            $items = wp_parse_args( $item, array(
+                                'title' => '',
+                                'icon'  => '',
+                                'url'   => '',
+                            ) );
+                            ?>
+                            <li class="contact-detail">
+                                <?php if ( $item['icon'] ){ ?><span class="contact-icon"><i aria-hidden="true" class="<?php echo esc_attr( $item['icon'] ); ?> fa-2x"></i></span><?php } ?>
+                                <?php if ( $item['url'] ){ ?><a href="<?php echo antispambot( $item['url'] ); ?>"><?php } ?>
+                                    <span class="contact-detail-value"><?php echo esc_html( $item['title'] ); ?></span>
+                                <?php if ( $item['url'] ){ ?></a><?php } ?>
+                            </li>
+                        <?php }// end loop items ?>
+                    </ul>
                     <?php } ?>
                     <?php if ( $content ) { ?>
                     <div class="contact-form-fields">
@@ -69,7 +50,6 @@ $items      = get_theme_mod( 'contact_items' );
                     </div>
                     <?php } ?>
                 </div>
-                <div class="col-md-1"></div>
             </div>
         </div>
     </div>

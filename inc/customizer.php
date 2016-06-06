@@ -1705,7 +1705,7 @@ function screenr_customize_register( $wp_customize ) {
                 'section'       => 'section_contact',
                 'live_title_id' => 'title', // apply for unput text and textarea only
                 'title_format'  => esc_html__('[live_title]', 'screenr'), // [live_title]
-                'max_item'      => 3, // Maximum item can add
+                'max_item'      => 4, // Maximum item can add
                 'limited_msg' 	=> wp_kses_post( 'Upgrade to <a target="_blank" href="#">Screenr Plus</a> to be able to add more items and unlock other premium features!', 'screenr' ),
                 //'allow_unlimited' => false, // Maximum item can add
                 'fields'    => array(

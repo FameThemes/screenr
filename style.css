@@ -2781,6 +2781,53 @@ input[type="radio"], input[type="checkbox"] {
 	color: rgba(255, 255, 255, 0.99);
 }
 
+.contact-details {
+	padding: 0px;
+}
+
+.contact-details:after() {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+@media screen and (min-width: 940px) {
+	.contact-details[data-layout="2"] li {
+		width: 50%;
+	}
+	.contact-details[data-layout="2"] li:nth-child(2n + 1) {
+		clear: left;
+	}
+	.contact-details[data-layout="3"] li {
+		width: 33.3333%;
+	}
+	.contact-details[data-layout="3"] li:nth-child(3n + 1) {
+		clear: left;
+	}
+	.contact-details[data-layout="4"] li {
+		width: 25%;
+	}
+	.contact-details[data-layout="4"] li:nth-child(4n + 1) {
+		clear: left;
+	}
+}
+
+@media screen and (max-width: 940px) {
+	.contact-details li {
+		width: 50%;
+	}
+	.contact-details li:nth-child(2n + 1) {
+		clear: left;
+	}
+}
+
+.contact-details li {
+	padding: 0px 15px;
+	list-style: none;
+	display: block;
+	float: left;
+}
+
 .contact-details .contact-detail {
 	margin-bottom: 40px;
 	margin-bottom: 2.5rem;
