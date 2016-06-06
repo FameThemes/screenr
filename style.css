@@ -2178,6 +2178,11 @@ input[type="radio"], input[type="checkbox"] {
 	color: #fff;
 }
 
+.swiper-slider .swiper-slide .swiper-intro-inner {
+	padding-top: 25%;
+	padding-bottom: 25%;
+}
+
 .swiper-slider .swiper-slide .overlay {
 	z-index: 3;
 	position: absolute;
