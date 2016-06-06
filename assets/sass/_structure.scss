@@ -329,7 +329,7 @@
 		&:hover, &.current-menu-item {
 			> a {
 				&::after {
-					border-bottom-color: #ffffff;
+					border-bottom-color: $primary;
 				}
 			}
 		}

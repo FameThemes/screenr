@@ -1004,7 +1004,7 @@ input[type="radio"], input[type="checkbox"] {
 		right: 0rem;
 	}
 	.sticky-header.transparent .nav-menu > li:hover > a::after, .sticky-header.transparent .nav-menu > li.current-menu-item > a::after {
-		border-bottom-color: #ffffff;
+		border-bottom-color: #e86240;
 	}
 }
 
