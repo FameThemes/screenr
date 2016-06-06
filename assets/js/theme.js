@@ -456,13 +456,21 @@ jQuery( document ).ready( function( $ ){
 	//----------------------------------------------
 
 	function set_slider_height(){
-		var sh = 0;
+		var sh = 0, hh = 0;
+		// Set slider header padding
+		if ( $( '#page-header-cover' ).length > 0 ) {
+			hh = $( '.site-header' ).eq( 0 ).height();
+			$( '.swiper-slide' ).css( 'padding-top', hh  );
+		}
+
+		$( '.swiper-slider' ).height( '' ); // reset style
 		$( '.swiper-container .swiper-intro-inner' ).each( function () {
 			if( sh <= $( this ).outerHeight() ) {
 				sh = $( this ).outerHeight();
 			}
 		} );
-		$( '.swiper-slider' ).height( sh );
+		$( '.swiper-slider' ).height( sh + hh );
+
 	}
 	set_slider_height();
 	$( window ).resize( function(){
