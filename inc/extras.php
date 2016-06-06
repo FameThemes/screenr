@@ -385,3 +385,61 @@ function screenr_page_header_cover()
 }
 
 add_action( 'after_site_header', 'screenr_page_header_cover' );
+
+
+
+if ( ! function_exists( 'screenr_admin_scripts' ) ) {
+    /**
+     * Enqueue scripts for admin page only: Theme info page
+     */
+    function screenr_admin_scripts($hook)
+    {
+        if ($hook === 'widgets.php' || $hook === 'appearance_page_ft_screenr') {
+            wp_enqueue_style('screenr-admin-css', get_template_directory_uri() . '/assets/css/admin.css');
+        }
+    }
+}
+add_action( 'admin_enqueue_scripts', 'screenr_admin_scripts' );
+
+/**
+ * Get theme actions required
+ *
+ * @return array|mixed|void
+ */
+function screenr_get_actions_required( ) {
+
+    $actions = array();
+    $front_page = get_option( 'page_on_front' );
+    $actions['page_on_front'] = 'dismiss';
+    $actions['page_template'] = 'dismiss';
+    if ( $front_page <= 0  ) {
+        $actions['page_on_front'] = 'active';
+        $actions['page_template'] = 'active';
+
+    } else {
+        if ( get_post_meta( $front_page, '_wp_page_template', true ) == 'template-frontpage.php' ) {
+            $actions['page_template'] = 'dismiss';
+        } else {
+            $actions['page_template'] = 'active';
+        }
+    }
+
+    $actions = apply_filters( 'screenr_get_actions_required', $actions );
+    $actions_dismiss =  get_option( 'screenr_actions_dismiss' );
+
+    if (  $actions_dismiss && is_array( $actions_dismiss ) ) {
+        foreach ( $actions_dismiss as $k => $v ) {
+            if ( isset ( $actions[ $k ] ) ) {
+                $actions[ $k ] = 'dismiss';
+            }
+        }
+    }
+
+    return $actions;
+}
+
+add_action('switch_theme', 'screenr_reset_actions_required');
+function screenr_reset_actions_required () {
+    delete_option('screenr_actions_dismiss');
+}
+

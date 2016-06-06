@@ -223,3 +223,8 @@ require get_template_directory() . '/inc/customizer.php';
  * Slider
  */
 require get_template_directory() . '/inc/class-slider.php';
+
+/**
+ * Add theme info page
+ */
+require get_template_directory() . '/inc/dashboard.php';
