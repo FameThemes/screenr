@@ -86,6 +86,11 @@ function screenr_body_classes( $classes ) {
         $classes[] = 'has-site-tagline';
     }
 
+
+    if ( get_option( 'header_layout' ) != 'default' ) {
+        $classes[] = 'header-layout-fixed';
+    }
+
 	return $classes;
 }
 add_filter( 'body_class', 'screenr_body_classes' );

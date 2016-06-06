@@ -12,61 +12,6 @@ class Screenr_Slider {
         $this->number_item = count( $this->data );
     }
 
-    /**
-     * Get file ext
-     *
-     * @param $file
-     * @return string
-     */
-    function get_file_ext( $file ){
-        $array = explode('.', $file );
-        $extension = end($array);
-        return strtolower( $extension );
-    }
-
-    /**
-     * Get media data
-     *
-     * @param $media
-     * @return array|bool
-     */
-    function get_media( $media ){
-        $media = wp_parse_args( $media, array(
-            'id' => '',
-            'url' =>'',
-        ) );
-
-        $video_exts = array( 'mp4', 'webm', 'ogg');
-        $r = array();
-        if ( $media['id'] ) {
-            $url =  wp_get_attachment_url( $media['id'] );
-            $meta_data = wp_get_attachment_metadata( $media['id'] );
-            // check is video
-            if ( isset( $meta_data['mime_type'] ) && strpos( $meta_data['mime_type'], 'video' ) !== false ) {
-                $r[ 'type' ] = 'video/'.$meta_data['fileformat'];
-                $r[ 'url' ]  = $url;
-                $this->has_video = true;
-            } else {
-                $r[ 'type' ] = 'image';
-                $r[ 'url' ]  = $url;
-            }
-
-        }
-
-        if ( empty( $r ) && $media['url'] != '' ){
-            $ext = $this->get_file_ext( $media['url'] );
-            if ( $ext && in_array( $ext , $video_exts ) ) {
-                $r[ 'type' ] = 'video/'.$ext;
-            } else {
-                $r[ 'type' ] = 'image';
-                $r[ 'url' ]  = $media['url'];
-            }
-        }
-
-        return ( ! empty( $r ) ) ? $r : false;
-
-    }
-
     function render( ){
         $slider_data =  array();
         //wp_get_attachment_url( get_post_thumbnail_id() );
@@ -79,33 +24,31 @@ class Screenr_Slider {
                 'pd_top'      => '',
                 'pd_bottom'      => '',
             ) );
-            $item['media'] = $this->get_media( $item['media'] );
             if ( ! $item['position'] ) {
                 $item['position']  = 'center';
             }
+            $item['pd_top'] = get_theme_mod( 'slider_pd_top' );
+            $item['pd_bottom'] = get_theme_mod( 'slider_pd_bottom' );
             $slider_data[ $k ] = $this->render_item( $item );
         }
 
         return join( "\n", $slider_data );
     }
-
-    function render_media( $media ){
-        if ( ! $media ) {
-            return '';
-        }
-        
-        $html = '';
-
-        if ( $media['type'] == 'image' ){
-            $html = '<img src="'.esc_url( $media['url'] ).'" alt="" />';
-        }
-
-        return apply_filters( 'screenr_render_slider_item_media', $html, $media );
-    }
+    
 
     function render_item( $item ){
+        // if has filter for this item
+        if ( $html = apply_filters( 'screenr_slider_render_item', '', $item ) ) {
+            return $html;
+        }
+
         $html = '<div class="swiper-slide slide-align-'.esc_attr( $item['position'] ).'">';
-            $html .= $this->render_media( $item['media'] );
+
+            $url = screenr_get_media_url( $item['media'] );
+            if ( $url ) {
+                $html .= '<img src="' . esc_url( $url ) . '" alt="" />';
+            }
+
             $style  = '';
             if  ( $item['pd_top'] != '' ) {
                 $style .='padding-top: '.floatval( $item['pd_top'] ).'%; ';

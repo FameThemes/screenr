@@ -949,8 +949,7 @@
                 $( '.current', control.media_current  ).removeClass( 'hide').addClass( 'show' );
                 $( '.image_url', control.media_current  ).val( img_url );
 
-                if ( media_attachment.type == 'video' ){
-
+                if ( media_attachment.type == 'video' ) {
                     preview = '<video width="400" controls>'+
                         '<source src="'+img_url+'" type="'+media_attachment.mime+'">'+
                         'Your browser does not support HTML5 video.'+

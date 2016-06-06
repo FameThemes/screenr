@@ -408,13 +408,18 @@ function screenr_customize_register( $wp_customize ) {
                 'label'     => esc_html__('Content Items', 'screenr'),
                 'description'   => '',
                 'section'       => 'section_slider',
-                'live_title_id' => 'title', // apply for unput text and textarea only
+                'live_title_id' => 'title', // apply for input text and textarea only
                 'title_format'  => esc_html__('[live_title]', 'screenr'), // [live_title]
-                'max_item'      => 2, // Maximum item can add
-                'limited_msg' 	=> wp_kses_post( 'Upgrade to <a target="_blank" href="#">Screenr Plus</a> to be able to add more items and unlock other premium features!', 'screenr' ),
-                //'allow_unlimited' => false, // Maximum item can add
-
+                'max_item'      => 1, // Maximum item can add
+                'limited_msg' 	=> wp_kses_post( 'Upgrade to <a target="_blank" href="#">Screenr Plus</a> to able add video background and enable sliders.', 'screenr' ),
                 'fields'    => array(
+                    'layout' => array(
+                        'title' => esc_html__('Content layout', 'screenr'),
+                        'type'  =>'select',
+                        'options' => apply_filters( 'screenr_slider_content_layout', array(
+                            'layout-1' => esc_html__('Layout 1', 'screenr'),
+                        ) )
+                    ),
                     'title' => array(
                         'title' => esc_html__('Title', 'screenr'),
                         'type'  =>'text',
@@ -433,17 +438,6 @@ function screenr_customize_register( $wp_customize ) {
                             'id' => ''
                         )
                     ),
-                    'pd_top' => array(
-                        'title' => esc_html__('Padding top', 'screenr'),
-                        'type'  =>'text',
-                        'desc' => esc_html__('The slider content padding top in percent (%).', 'screenr'),
-                    ),
-                    'pd_bottom' => array(
-                        'title' => esc_html__('Padding bottom', 'screenr'),
-                        'type'  =>'text',
-                        'desc' => esc_html__('The slider content padding top in percent (%).', 'screenr'),
-                    ),
-
                     'position' => array(
                         'title' => esc_html__('Content align', 'screenr'),
                         'type'  =>'select',
@@ -451,15 +445,43 @@ function screenr_customize_register( $wp_customize ) {
                             'center' => esc_html__('Center', 'screenr'),
                             'left' => esc_html__('Left', 'screenr'),
                             'right' => esc_html__('Right', 'screenr'),
-                            'bottom_center' => esc_html__('Bottom center', 'screenr'),
-                            'bottom_left' => esc_html__('Bottom left', 'screenr'),
-                            'bottom_right' => esc_html__('Bottom right', 'screenr'),
                         )
                     ),
 
                 ),
 
             )
+        )
+    );
+
+
+    // Slide padding
+    $wp_customize->add_setting( 'slider_pd_top',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'slider_pd_top',
+        array(
+            'label' 		=> esc_html__('Padding top', 'screenr'),
+            'section' 		=> 'section_slider',
+            'description'   => esc_html__( 'The slider content padding top in percent (%).', 'screenr' )
+        )
+    );
+
+    // Slide padding
+    $wp_customize->add_setting( 'slider_pd_bottom',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'slider_pd_bottom',
+        array(
+            'label' 		=> esc_html__('Padding bottom', 'screenr'),
+            'section' 		=> 'section_slider',
+            'description'   => esc_html__( 'The slider content padding bottom in percent (%).', 'screenr' )
         )
     );
 
@@ -494,6 +516,23 @@ function screenr_customize_register( $wp_customize ) {
             'label'       => esc_html__('Make slider section full screen', 'screenr'),
             'section'     => 'section_slider',
             'description' => esc_html__('Check this box to make slider section full screen.', 'screenr'),
+        )
+    );
+
+
+    // Show slider full screen
+    $wp_customize->add_setting( 'slider_parallax',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_checkbox',
+            'default'           => 1,
+        )
+    );
+    $wp_customize->add_control( 'slider_parallax',
+        array(
+            'type'        => 'checkbox',
+            'label'       => esc_html__('Enable slider parallax', 'screenr'),
+            'section'     => 'section_slider',
+            'description' => esc_html__('Check this box to enable slider parallax.', 'screenr'),
         )
     );
 

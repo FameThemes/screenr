@@ -675,16 +675,16 @@ input[type="radio"], input[type="checkbox"] {
 --------------------------------------------------------------*/
 /* Header
 ------------------------------*/
-.scrolled .site-header {
+.scrolled.header-layout-fixed .site-header {
 	line-height: 70px;
 }
 
-.scrolled .site-header .site-branding .site-description {
+.scrolled.header-layout-fixed .site-header .site-branding .site-description {
 	margin-top: -30px;
 	margin-top: -1.875rem;
 }
 
-.scrolled .site-header .nav-menu.nav-menu-mobile {
+.scrolled.header-layout-fixed .site-header .nav-menu.nav-menu-mobile {
 	top: 70px;
 }
 
@@ -2176,11 +2176,6 @@ input[type="radio"], input[type="checkbox"] {
 	font-size: 65px;
 	font-size: 4.0625rem;
 	color: #fff;
-}
-
-.swiper-slider .swiper-slide .swiper-intro-inner {
-	padding-top: 30%;
-	padding-bottom: 30%;
 }
 
 .swiper-slider .swiper-slide .overlay {
