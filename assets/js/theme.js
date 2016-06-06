@@ -732,15 +732,15 @@ jQuery( document ).ready( function( $ ){
 				if ( scrolled > 0 ) {
 					var _s_t, pt_top = 0;
 					if ( intro_top > 0 ) {
-						pt_top = scrolled / ( intro_top / 2 );
+						pt_top = scrolled /  intro_top ;
 					} else {
 						pt_top = .6;
 					}
 					if ( pt_top >= 1 ) {
 						pt_top = 1;
 					}
-					if ( pt_top < .5 ) {
-						pt_top = .5 ;
+					if ( pt_top < .3 ) {
+						pt_top = .3 ;
 					}
 
 					_s_t = top - scrolled + _t ;
