@@ -270,9 +270,10 @@ function screenr_page_header_cover()
 
     $image = $title = $desc = '';
     if ( is_singular() ) {
-        $title = get_the_title();
-        if ( has_post_thumbnail() ) {
-            $image = get_the_post_thumbnail_url( get_the_ID(),  'full' );
+        if ( is_single() ) {
+            $title = get_theme_mod( 'page_blog_title', esc_html__( 'The Blog', 'screenr' ) );
+        } else {
+            $title = get_the_title();
         }
     } elseif ( is_category() || is_tag() ||  is_tax() ) {
         $title = single_cat_title( '', false );

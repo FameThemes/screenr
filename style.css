@@ -675,6 +675,15 @@ input[type="radio"], input[type="checkbox"] {
 --------------------------------------------------------------*/
 /* Header
 ------------------------------*/
+.scrolled .site-header {
+	line-height: 70px;
+}
+
+.scrolled .site-header .site-branding .site-description {
+	margin-top: -30px;
+	margin-top: -1.875rem;
+}
+
 .site-header {
 	line-height: 85px;
 	position: relative;

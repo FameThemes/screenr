@@ -2,6 +2,16 @@
 
 /* Header
 ------------------------------*/
+.scrolled {
+	.site-header {
+		line-height: 70px;
+		.site-branding {
+			.site-description {
+				@include rem('margin-top', -30px);
+			}
+		}
+	}
+}
 .site-header {
 	line-height: 85px;
 	position: relative;
@@ -67,16 +77,15 @@
 		font-weight: 600;
 		position: relative;
 		top: -3px;
-        &:hover, a:hover {
-            text-decoration: none;
-        }
+    &:hover, a:hover {
+        text-decoration: none;
+    }
 	}
 	.site-description {
 		@include rem('line-height', 16px);
 		@include rem('font-size', 12px);
 		@include rem('margin-top', -37px);
 		@include rem('margin-bottom', 0px);
-
 	}
 }
 .custom-logo-link {

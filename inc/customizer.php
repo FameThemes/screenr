@@ -286,23 +286,23 @@ function screenr_customize_register( $wp_customize ) {
             )
         );
 
-        // Header background BG parallax
-        /*
-        $wp_customize->add_setting( 'page_header_parallax',
+
+        // Blog page title
+        $wp_customize->add_setting( 'page_blog_title',
             array(
-                'sanitize_callback' => 'screenr_sanitize_checkbox',
-                'default'           => '',
+                'sanitize_callback' => 'sanitize_text_field',
+                'default'           => esc_html__('The Blog', 'screenr'),
             )
         );
-        $wp_customize->add_control( 'page_header_parallax',
+        $wp_customize->add_control( 'page_blog_title',
             array(
-                'type'        => 'checkbox',
-                'label'       => esc_html__('Enable parallax ?', 'screenr'),
+                'label'       => esc_html__('Blog title', 'screenr'),
                 'section'     => 'page_header_settings',
-                'description' => esc_html__('Check this box to enable parallax.', 'screenr'),
+                'description' => esc_html__('Custom page header title on single posts.', 'screenr'),
             )
         );
-        */
+
+
 
         // Header background BG parallax
         $wp_customize->add_setting( 'page_header_upsell', array() );
