@@ -317,7 +317,7 @@ function screenr_customize_register( $wp_customize ) {
                 )
             )
         );
-    
+
     /*------------------------------------------------------------------------*/
     /*  Panel: Sections
     /*------------------------------------------------------------------------*/
@@ -1198,7 +1198,7 @@ function screenr_customize_register( $wp_customize ) {
 
     $wp_customize->add_section( 'section_news' ,
         array(
-            'title'       => esc_html__( 'News', 'screenr' ),
+            'title'       => esc_html__( 'Latest News', 'screenr' ),
             'description' => '',
             'panel'       => 'front_page_sections',
         )

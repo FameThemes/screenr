@@ -7,7 +7,7 @@ $content    = get_theme_mod( 'contact_content' );
 $items      = get_theme_mod( 'contact_items' );
 ?>
 <?php if ( ! screenr_is_selective_refresh() ) { ?>
-<section id="<?php echo esc_attr( get_theme_mod('contact_id', 'contact')); ?>" class="section-contact section-padding onepage-section">
+<section id="<?php echo esc_attr( get_theme_mod('contact_id', 'contact')); ?>" class="section-contact section-padding onepage-section section-meta">
 <?php } ?>
     <div class="container">
         <?php if (  $title || $subtitle || $desc ) { ?>

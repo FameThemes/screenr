@@ -22,7 +22,7 @@ if ( is_array( $items ) && ! empty( $items ) ) {
                 <?php if ( $desc ) { ?><div class="section-desc"><?php echo do_shortcode( apply_filters( 'the_content', $desc ) ); ?></div><?php } ?>
             </div>
             <?php } ?>
-            <div class="section-content">
+            <div class="section-client-content">
                 <div class="clients-wrapper client-<?php echo esc_attr( $layout ); ?>-cols">
                     <?php
                     foreach ( $items as $item ){

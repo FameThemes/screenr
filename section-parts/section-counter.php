@@ -12,7 +12,7 @@ $desc       = get_theme_mod( 'news_desc' );
             <?php if ( $desc ) { ?><div class="section-desc"><?php echo do_shortcode( apply_filters( 'the_content', $desc ) ); ?></div><?php } ?>
         </div>
         <div class="counter-contents">
-            <div class="section-content">
+            <div class="section-content section-countet-content">
                 <div class="row">
                     <div class="col-sm-12 col-md-6 col-lg-3">
                         <div class="counter-item counter-item-bg1">
