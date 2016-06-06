@@ -136,12 +136,16 @@ if ( $menu_hover_color ) {
     ?>
     .nav-menu > li > a:hover,
     .nav-menu > li.current-menu-item > a,
-    .no-scroll .sticky-header.transparent .nav-menu > li.current-menu-item > a{
+    .no-scroll .sticky-header.transparent .nav-menu > li.current-menu-item > a,
+    .sticky-header.transparent .nav-menu > li.current-menu-item > a {
         color: #<?php echo $menu_hover_color; ?>;
         -webkit-transition: all 0.5s ease-in-out;
         -moz-transition: all 0.5s ease-in-out;
         -o-transition: all 0.5s ease-in-out;
         transition: all 0.5s ease-in-out;
+    }
+    .sticky-header.transparent .nav-menu > li:hover > a::after, .sticky-header.transparent .nav-menu > li.current-menu-item > a::after {
+        border-bottom-color: #<?php echo $menu_hover_color; ?>;
     }
     <?php
     } // END $menu_hover_color

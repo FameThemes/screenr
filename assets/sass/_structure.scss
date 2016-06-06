@@ -2,6 +2,7 @@
 
 /* Header
 ------------------------------*/
+// When scrolled
 .scrolled {
 	.site-header {
 		line-height: 70px;
@@ -10,8 +11,13 @@
 				@include rem('margin-top', -30px);
 			}
 		}
+		.nav-menu.nav-menu-mobile {
+			top: 70px;
+		}
+
 	}
 }
+
 .site-header {
 	line-height: 85px;
 	position: relative;
@@ -294,8 +300,38 @@
 	}
 }
 @include for(large-screens) {
-	.sticky-header.transparent .nav-menu > li > a {
-		color: #ffffff;
+	.sticky-header.transparent .nav-menu > li {
+			> a {
+			color: #ffffff;
+			position: relative;
+			&::after {
+				border-bottom: 2px solid transparent;
+				content: " "; display: block;
+				position: absolute;
+				@include rem( 'bottom', 20px );
+				@include rem( 'left', 17px );
+				@include rem( 'right', 17px );
+			}
+
+		}
+
+		&:last-child {
+			> a {
+				&::after {
+					@include rem( 'right', 0px );
+				}
+			}
+		}
+
+		&:hover, &.current-menu-item {
+			> a {
+				&::after {
+					border-bottom-color: #ffffff;
+				}
+			}
+		}
+
+
 	}
 }
 
@@ -339,9 +375,9 @@
         > li > a {
             padding: 12px 20px;
         }
-		li:hover ul {
-			display: none;
-		}
+			li:hover ul {
+				display: none;
+			}
         ul {
             box-shadow: none;
             padding-bottom: 0;

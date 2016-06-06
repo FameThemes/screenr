@@ -684,6 +684,10 @@ input[type="radio"], input[type="checkbox"] {
 	margin-top: -1.875rem;
 }
 
+.scrolled .site-header .nav-menu.nav-menu-mobile {
+	top: 70px;
+}
+
 .site-header {
 	line-height: 85px;
 	position: relative;
@@ -977,6 +981,26 @@ input[type="radio"], input[type="checkbox"] {
 @media screen and (min-width: 1140px) {
 	.sticky-header.transparent .nav-menu > li > a {
 		color: #ffffff;
+		position: relative;
+	}
+	.sticky-header.transparent .nav-menu > li > a::after {
+		border-bottom: 2px solid transparent;
+		content: " ";
+		display: block;
+		position: absolute;
+		bottom: 20px;
+		bottom: 1.25rem;
+		left: 17px;
+		left: 1.0625rem;
+		right: 17px;
+		right: 1.0625rem;
+	}
+	.sticky-header.transparent .nav-menu > li:last-child > a::after {
+		right: 0px;
+		right: 0rem;
+	}
+	.sticky-header.transparent .nav-menu > li:hover > a::after, .sticky-header.transparent .nav-menu > li.current-menu-item > a::after {
+		border-bottom-color: #ffffff;
 	}
 }
 
