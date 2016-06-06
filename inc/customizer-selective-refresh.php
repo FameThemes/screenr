@@ -76,6 +76,18 @@ function screenr_customizer_partials( $wp_customize )
             ),
         ),
 
+        // section counter
+        array(
+            'id' => 'counter',
+            'settings' => array(
+                'counter_items',
+                'counter_title',
+                'counter_subtitle',
+                'counter_desc',
+                'counter_layout',
+            ),
+        ),
+
         // section news
         array(
             'id' => 'news',

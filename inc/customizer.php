@@ -1168,7 +1168,6 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
-
     // Features columns
     $wp_customize->add_setting( 'services_layout',
         array(
@@ -1187,6 +1186,198 @@ function screenr_customize_register( $wp_customize ) {
                 2 => 2,
                 3 => 3,
                 4 => 4
+            )
+        )
+    );
+
+
+    /*------------------------------------------------------------------------*/
+    /*  Section: Counter
+    /*------------------------------------------------------------------------*/
+
+    $wp_customize->add_section( 'section_counter' ,
+        array(
+            'title'       => esc_html__( 'Counter', 'screenr' ),
+            'description' => '',
+            'panel'       => 'front_page_sections',
+        )
+    );
+
+    // Group Heading
+    $wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'counter_setting_group_heading',
+            array(
+                'type' 			=> 'group_heading_top',
+                'title'			=> esc_html__( 'Section Settings', 'screenr' ),
+                'section' 		=> 'section_counter'
+            )
+        )
+    );
+
+    // Show section
+    $wp_customize->add_setting( 'counter_disable',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_checkbox',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'counter_disable',
+        array(
+            'type'        => 'checkbox',
+            'label'       => esc_html__('Hide this section?', 'screenr'),
+            'section'     => 'section_counter',
+        )
+    );
+
+    // Section ID
+    $wp_customize->add_setting( 'counter_id',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('counter', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'counter_id',
+        array(
+            'label' 		=> esc_html__('Section ID:', 'screenr'),
+            'section' 		=> 'section_counter',
+            'description'   => esc_html__('The section id, we will use this for link anchor.', 'screenr' )
+        )
+    );
+
+    // Section title
+    $wp_customize->add_setting( 'counter_title',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('Counter', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'counter_title',
+        array(
+            'label' 		=> esc_html__('Section title:', 'screenr'),
+            'section' 		=> 'section_counter',
+        )
+    );
+
+    // Section subtitle
+    $wp_customize->add_setting( 'counter_subtitle',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('Some Fun Facts about our agency?', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'counter_subtitle',
+        array(
+            'label' 		=> esc_html__('Section subtitle:', 'screenr'),
+            'section' 		=> 'section_counter',
+        )
+    );
+
+    // Section Description
+    $wp_customize->add_setting( 'counter_desc',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control(
+        new Screenr_Editor_Custom_Control( $wp_customize,
+            'counter_desc',
+            array(
+                'label' 		=> esc_html__('Section Description:', 'screenr'),
+                'section' 		=> 'section_counter',
+            ) )
+    );
+
+    // Group Heading
+    $wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'counter_content_group_heading',
+            array(
+                'type' 			=> 'group_heading',
+                'title'			=> esc_html__( 'Section Content', 'screenr' ),
+                'section' 		=> 'section_counter'
+            )
+        )
+    );
+
+    /**
+     * @see screenr_sanitize_repeatable_data_field
+     */
+    $wp_customize->add_setting(
+        'counter_items',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_repeatable_data_field',
+            'transport' => 'refresh', // refresh or postMessage
+            'default' => array(
+
+            )
+        ) );
+
+    $wp_customize->add_control(
+        new Screenr_Customize_Repeatable_Control(
+            $wp_customize,
+            'counter_items',
+            array(
+                'label'     => esc_html__('Content Items', 'screenr'),
+                'description'   => '',
+                'section'       => 'section_counter',
+                'live_title_id' => 'title', // apply for unput text and textarea only
+                'title_format'  => esc_html__('[live_title]', 'screenr'), // [live_title]
+                'max_item'      => 4, // Maximum item can add
+                'limited_msg' 	=> wp_kses_post( 'Upgrade to <a target="_blank" href="#">Screenr Plus</a> to be able to add more items and unlock other premium features!', 'screenr' ),
+                //'allow_unlimited' => false, // Maximum item can add
+                'fields'    => array(
+                    'title' => array(
+                        'title' => esc_html__('Title', 'screenr'),
+                        'type'  =>'text',
+                    ),
+                    'number' => array(
+                        'title' => esc_html__('Number', 'screenr'),
+                        'type'  =>'text',
+                    ),
+                    'icon' => array(
+                        'title' => esc_html__('Font icon', 'screenr'),
+                        'type'  =>'icon',
+
+                    ),
+                    'before_number' => array(
+                        'title' => esc_html__('Before number', 'screenr'),
+                        'type'  =>'text',
+                    ),
+                    'after_number' => array(
+                        'title' => esc_html__('After number', 'screenr'),
+                        'type'  =>'text',
+                    ),
+                    'style' => array(
+                        'title' => esc_html__('Style', 'screenr'),
+                        'type'  =>'select',
+                        'options' => array(
+                            'bg1'      => esc_html__('Blue', 'screenr'),
+                            'bg2'      => esc_html__('Black', 'screenr'),
+                            'bg3'      => esc_html__('Red', 'screenr'),
+                            'bg4'      => esc_html__('Green', 'screenr'),
+                        )
+                    ),
+                ),
+            )
+        )
+    );
+
+    // Counter columns
+    $wp_customize->add_setting( 'counter_layout',
+        array(
+            'sanitize_callback' => 'sanitize_text_field',
+            'default'           => 3,
+        )
+    );
+    $wp_customize->add_control( 'counter_layout',
+        array(
+            'type'        => 'select',
+            'label'       => esc_html__('Layout Settings', 'screenr'),
+            'section'     => 'section_counter',
+            'description' => esc_html__('Number columns to display.', 'screenr'),
+            'choices' => array(
+                12 => 1,
+                6 => 2,
+                4 => 3,
+                3 => 4,
             )
         )
     );

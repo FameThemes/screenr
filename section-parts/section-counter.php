@@ -1,58 +1,64 @@
 <?php
-$title      = get_theme_mod( 'news_title', __( '', 'screenr' ) );
-$subtitle   = get_theme_mod( 'news_subtitle', __( 'Some Fun Facts about our agency?', 'screenr' ) );
-$desc       = get_theme_mod( 'news_desc' );
-?>
+$items      = get_theme_mod( 'counter_items' );
 
-<section id="" class="screenr-section section-counter section-padding section-padding-larger section-meta">
+if ( ! empty( $items ) ) {
+
+    $title      = get_theme_mod( 'counter_title', __( 'Counter', 'screenr' ) );
+    $subtitle   = get_theme_mod( 'counter_subtitle', __( 'Some Fun Facts about our agency?', 'screenr' ) );
+    $desc       = get_theme_mod( 'counter_desc' );
+    $id         = get_theme_mod( 'counter_id', 'counter' );
+    $layout     = absint( get_theme_mod( 'counter_layout', 3 ) );
+
+if ( ! screenr_is_selective_refresh() ) {
+    ?>
+    <section id="<?php echo esc_attr( $id ); ?>" class="screenr-section section-counter section-padding section-padding-larger section-meta">
+<?php } ?>
     <div class="container">
         <div class="section-title-area">
             <?php if ( $subtitle ) { ?><div class="section-subtitle"><?php echo esc_html( $subtitle ); ?></div><?php } ?>
             <?php if ( $title ) { ?><h2 class="section-title"><?php echo esc_html( $title ); ?></h2><?php } ?>
             <?php if ( $desc ) { ?><div class="section-desc"><?php echo do_shortcode( apply_filters( 'the_content', $desc ) ); ?></div><?php } ?>
         </div>
-        <div class="counter-contents">
+        <div class="counter-contents" data-layout="<?php echo esc_attr( $layout ); ?>">
             <div class="section-content">
                 <div class="row">
-                    <div class="col-sm-12 col-md-6 col-lg-3">
-                        <div class="counter-item counter-item-bg1">
-                            <span class="counter-title">Projects</span>
+                    <?php
+
+                    foreach ( ( array ) $items as $item ) {
+                        $item = wp_parse_args( $item, array(
+                            'title' => '',
+                            'number' => '',
+                            'icon' => '',
+                            'style' => 'bg1',
+                            'before_number' => '',
+                            'after_number' => '',
+                        ) );
+                    ?>
+                    <div class="col-sm-12 col-md-6 col-lg-<?php echo esc_attr( $layout ); ?>">
+                        <div class="counter-item counter-item-<?php echo esc_attr( $item['style'] ); ?>">
+                            <span class="counter-title"><?php echo esc_html( $item['title'] ); ?></span>
                             <div class="counter__number">
-                                <span class="n counter">456</span>
+                                <?php if ( $item['before_number'] ){ ?>
+                                    <span class="before-number"><?php echo esc_html( $item['before_number'] ); ?></span>
+                                <?php } ?>
+                                <span class="n counter"><?php echo floatval( $item['number'] ); ?></span>
+                                <?php if ( $item['after_number'] ){ ?>
+                                    <span class="after-number"><?php echo esc_html( $item['after_number'] ); ?></span>
+                                <?php } ?>
                             </div>
-                            <i class="fa fa-briefcase fa-3x"></i>
+                            <?php if ( $item['icon'] ) { ?>
+                            <i class="<?php echo esc_attr( $item['icon'] ); ?> fa-3x"></i>
+                            <?php } ?>
+
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-6 col-lg-3">
-                        <div class="counter-item counter-item-bg2">
-                            <span class="counter-title">Feedback</span>
-                            <div class="counter__number">
-                                <span class="n counter">99%</span>
-                            </div>
-                            <i class="fa fa-gift fa-3x"></i>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-lg-3">
-                        <div class="counter-item counter-item-bg3">
-                            <span class="counter-title">Pizzas Ordered</span>
-                            <div class="counter__number">
-                                <span class="n counter">254</span>
-                            </div>
-                            <i class="fa fa-cart-arrow-down fa-3x"></i>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-lg-3">
-                        <div class="counter-item counter-item-bg4">
-                            <span class="counter-title">Average Cost</span>
-                            <div class="counter__number">
-                                <span class="n counter">$32</span>
-                            </div>
-                            <i class="fa fa-credit-card fa-3x"></i>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
     </div>
-
+<?php if ( ! screenr_is_selective_refresh() ) { ?>
 </section>
+<?php } ?>
+
+<?php } ?>
