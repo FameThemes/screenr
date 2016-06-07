@@ -318,13 +318,6 @@
 
 		}
 
-		&:last-child {
-			> a {
-				&::after {
-					@include rem( 'right', 0px );
-				}
-			}
-		}
 
 		&:hover, &.current-menu-item {
 			> a {
@@ -339,7 +332,7 @@
 }
 
 @include for(screens-large) {
-	.sticky-header.transparent {
+	.transparent {
 		#nav-toggle{
 			span, span:after, span:before{
 				background-color: #ffffff;

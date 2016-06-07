@@ -108,6 +108,8 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    /* Default menu style
+     * --------------------------------------*/
     // Header BG Color
     $wp_customize->add_setting( 'header_bg_color',
         array(
@@ -123,21 +125,6 @@ function screenr_customize_register( $wp_customize ) {
         )
     ));
 
-
-    // Site Title Color
-    $wp_customize->add_setting( 'logo_text_color',
-        array(
-            'sanitize_callback' => 'sanitize_hex_color_no_hash',
-            'sanitize_js_callback' => 'maybe_hash_hex_color',
-            'default' => ''
-        ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'logo_text_color',
-        array(
-            'label'       => esc_html__( 'Site Title Color', 'screenr' ),
-            'section'     => 'header_settings',
-            'description' => esc_html__( 'Only set if you don\'t use an image logo.', 'screenr' ),
-        )
-    ));
 
     // Header Menu Color
     $wp_customize->add_setting( 'menu_color',
@@ -182,6 +169,107 @@ function screenr_customize_register( $wp_customize ) {
             'label'       => esc_html__( 'Menu Link Hover/Active BG Color', 'screenr' ),
             'section'     => 'header_settings',
             'description' => '',
+        )
+    ));
+
+
+
+    /* Transparent menu style
+    * --------------------------------------*/
+
+
+    // Header BG Color
+    $wp_customize->add_setting( 'header_t_bg_color',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_color_alpha',
+            'default' => 'rgba(0,0,0,.8)'
+        ) );
+    $wp_customize->add_control( new Screenr_Alpha_Color_Control( $wp_customize, 'header_t_bg_color',
+        array(
+            'label'       => esc_html__( 'Background Color', 'screenr' ),
+            'section'     => 'header_settings',
+            'description' => '',
+        )
+    ));
+
+
+    // Header Menu Color
+    $wp_customize->add_setting( 'menu_t_color',
+        array(
+            'sanitize_callback' => 'sanitize_hex_color_no_hash',
+            'sanitize_js_callback' => 'maybe_hash_hex_color',
+            'default' => ''
+        ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'menu_t_color',
+        array(
+            'label'       => esc_html__( 'Menu Link Color', 'screenr' ),
+            'section'     => 'header_settings',
+            'description' => '',
+        )
+    ));
+
+    // Header Menu Hover Color
+    $wp_customize->add_setting( 'menu_t_hover_color',
+        array(
+            'sanitize_callback' => 'sanitize_hex_color_no_hash',
+            'sanitize_js_callback' => 'maybe_hash_hex_color',
+            'default' => ''
+        ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'menu_t_hover_color',
+        array(
+            'label'       => esc_html__( 'Menu Link Hover/Active Color', 'screenr' ),
+            'section'     => 'header_settings',
+            'description' => '',
+
+        )
+    ));
+
+    // Header Menu Hover Color
+    $wp_customize->add_setting( 'menu_t_hover_border_color',
+        array(
+            'sanitize_callback' => 'sanitize_hex_color_no_hash',
+            'sanitize_js_callback' => 'maybe_hash_hex_color',
+            'default' => ''
+        ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'menu_t_hover_border_color',
+        array(
+            'label'       => esc_html__( 'Menu Link Hover/Active border color', 'screenr' ),
+            'section'     => 'header_settings',
+            'description' => '',
+
+        )
+    ));
+
+    // Header Menu Hover BG Color
+    $wp_customize->add_setting( 'menu_t_hover_bg_color',
+        array(
+            'sanitize_callback' => 'sanitize_hex_color_no_hash',
+            'sanitize_js_callback' => 'maybe_hash_hex_color',
+            'default' => ''
+        ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'menu_t_hover_bg_color',
+        array(
+            'label'       => esc_html__( 'Menu Link Hover/Active BG Color', 'screenr' ),
+            'section'     => 'header_settings',
+            'description' => '',
+        )
+    ));
+
+
+    
+    //----------------------------------
+    // Site Title Color
+    $wp_customize->add_setting( 'logo_text_color',
+        array(
+            'sanitize_callback' => 'sanitize_hex_color_no_hash',
+            'sanitize_js_callback' => 'maybe_hash_hex_color',
+            'default' => ''
+        ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'logo_text_color',
+        array(
+            'label'       => esc_html__( 'Site Title Color', 'screenr' ),
+            'section'     => 'header_settings',
+            'description' => esc_html__( 'Only set if you don\'t use an image logo.', 'screenr' ),
         )
     ));
 

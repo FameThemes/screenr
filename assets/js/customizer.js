@@ -1420,5 +1420,39 @@ jQuery( document ).ready( function( $ ){
         display_footer_layout( $( this ).val() );
     } );
 
+    // Header menu layout
+
+    var  header_layout_change = function ( layout ) {
+        if ( layout == 'transparent' ) {
+            $( '#customize-control-header_bg_color, ' +
+                '#customize-control-menu_color,' +
+                ' #customize-control-menu_hover_color,' +
+                ' #customize-control-menu_hover_bg_color' ).hide();
+
+            $( '#customize-control-header_t_bg_color, ' +
+                '#customize-control-menu_t_color,' +
+                ' #customize-control-menu_t_hover_color,' +
+                ' #customize-control-menu_t_hover_bg_color' ).show();
+        } else {
+
+            $( '#customize-control-header_bg_color, ' +
+                '#customize-control-menu_color,' +
+                ' #customize-control-menu_hover_color,' +
+                ' #customize-control-menu_hover_bg_color' ).show();
+
+            $( '#customize-control-header_t_bg_color, ' +
+                '#customize-control-menu_t_color,' +
+                ' #customize-control-menu_t_hover_color,' +
+                ' #customize-control-menu_t_hover_bg_color' ).hide();
+
+        }
+    };
+
+    header_layout_change( $( '#customize-control-header_layout select' ).val() );
+    $( '#customize-control-header_layout select' ).on( 'change', function ()  {
+        header_layout_change( $( this ).val() );
+    } );
+
+
 
 } );

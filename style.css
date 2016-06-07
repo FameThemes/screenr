@@ -999,20 +999,16 @@ input[type="radio"], input[type="checkbox"] {
 		right: 17px;
 		right: 1.0625rem;
 	}
-	.sticky-header.transparent .nav-menu > li:last-child > a::after {
-		right: 0px;
-		right: 0rem;
-	}
 	.sticky-header.transparent .nav-menu > li:hover > a::after, .sticky-header.transparent .nav-menu > li.current-menu-item > a::after {
 		border-bottom-color: #ffffff;
 	}
 }
 
 @media screen and (max-width: 1140px) {
-	.sticky-header.transparent #nav-toggle span, .sticky-header.transparent #nav-toggle span:after, .sticky-header.transparent #nav-toggle span:before {
+	.transparent #nav-toggle span, .transparent #nav-toggle span:after, .transparent #nav-toggle span:before {
 		background-color: #ffffff;
 	}
-	.sticky-header.transparent #nav-toggle.nav-is-visible span {
+	.transparent #nav-toggle.nav-is-visible span {
 		background-color: transparent;
 	}
 }
