@@ -21,10 +21,10 @@ switch ( $layout ) {
         $post_class = 'col-md-6';
         break;
     case 4:
-        $post_class = 'col-md-3';
+        $post_class = 'col-md-6 col-lg-3';
         break;
     default:
-        $post_class = 'col-md-4';
+        $post_class = 'col-md-6 col-lg-4';
         break;
 }
 
@@ -47,19 +47,30 @@ switch ( $layout ) {
                         <?php while ( $latest_posts->have_posts() ) : $latest_posts->the_post(); ?>
                             <article id="post-<?php the_ID(); ?>" <?php post_class( $post_class ); ?>>
                                 <?php if ( has_post_thumbnail() ) : ?>
-                                    <a href="<?php echo esc_url( get_permalink() ); ?>">
-                                        <div class="entry-thumb">
+                                    <div class="entry-thumb">
+                                        <a href="<?php echo esc_url( get_permalink() ); ?>">
                                             <?php the_post_thumbnail( 'screenr-blog-grid-small' ); ?>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
                                 <?php endif; ?>
                                 <div class="entry-grid-elements">
+                                    <?php
+                                	$category = get_the_category();
+                                	if ( $category[0] ) {
+                                		echo '<div class="entry-grid-cate">';
+                                		echo '<a href="' . get_category_link( $category[0]->term_id ) . '">' . $category[0]->cat_name . '</a>';
+                                		echo '</div>';
+                                	}
+                                	?>
                                 	<header class="entry-header">
                                 		<?php the_title( '<div class="entry-grid-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></div>' ); ?>
                                 	</header><!-- .entry-header -->
                                 	<div class="entry-excerpt">
-                                		<?php echo wp_trim_words( get_the_content(), 15, ' ...' ); ?>
+                                		<?php echo wp_trim_words( get_the_content(), 13, ' ...' ); ?>
                                 	</div><!-- .entry-content -->
+                                    <div class="entry-grid-more">
+                                        <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php esc_html_e( 'Read On' ) ?> <i aria-hidden="true" class="fa fa-arrow-circle-o-right"></i></a>
+                                    </div>
                                 </div>
                             </article><!-- #post-## -->
                         <?php endwhile; ?>
@@ -67,6 +78,11 @@ switch ( $layout ) {
     					<?php get_template_part( 'template-parts/content', 'none' ); ?>
     				<?php endif; ?>
                 </div>
+                <div class="clear"></div>
+                <div class="content-grid-loadmore">
+                    <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="btn btn-theme-primary-outline"><?php esc_html_e( 'Load More News', 'screenr' ); ?><i aria-hidden="true" class="fa fa-angle-double-down"></i></a>
+                </div>
+
             </div>
         </div>
     </div>

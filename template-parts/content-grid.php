@@ -10,6 +10,14 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<?php
+	$category = get_the_category();
+	if ( $category[0] ) {
+		echo '<div class="entry-grid-cate">';
+		echo '<a href="' . get_category_link( $category[0]->term_id ) . '">' . $category[0]->cat_name . '</a>';
+		echo '</div>';
+	}
+	?>
 	<header class="entry-header">
 		<?php
 			if ( is_single() ) {

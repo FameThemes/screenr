@@ -675,27 +675,63 @@
 	@include for( screens-medium ) {
 		.content-grid {
 			article {
-			 	width: 100%
+			 	width: 100%;
 			}
 		}
 	}
 	.entry-grid-elements {
-		border-left: 1px solid #f3f3f3;
-		padding: 20px 0 0 30px;
+		border: 1px solid $border;
+		border-top: none;
+		padding: 25px 30px 20px 30px;
+		background: #FFF;
 
 	}
 	.entry-grid-title {
-		@include rem('font-size', 22px);
+		@include rem('font-size', 20px);
 		line-height: 1.5;
 		font-weight: 400;
-		font-family: $font_text;
+		font-family: $font_heading;
 		margin-bottom: 15px;
 		a {
 			color: #444444;
 		}
 	}
+	.entry-thumb {
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
+	.entry-grid-cate {
+		margin-bottom: 4px;
+		a {
+			color: #999999;
+			font-weight: bold;
+			font-size: 12px;
+		}
+	}
+	.entry-grid-more {
+		margin-top: 20px;
+		a {
+			color: #333333;
+			text-transform: uppercase;
+		}
+	}
 }
-
+.content-grid {
+	article {
+		margin-bottom: 30px;
+	}
+}
+.content-grid-loadmore {
+	text-align: center;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	display: block;
+	i {
+		margin-left: 8px;
+	}
+}
 
 /* Section: Clients
 ------------------------------*/
