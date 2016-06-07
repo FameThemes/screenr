@@ -369,7 +369,7 @@ function screenr_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'slider_id',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => esc_html__('slider', 'screenr'),
+            'default'           => esc_html__('hero', 'screenr'),
         )
     );
     $wp_customize->add_control( 'slider_id',
@@ -424,7 +424,7 @@ function screenr_customize_register( $wp_customize ) {
                         'default' => '',
                     ),
                     'media' => array(
-                        'title' => esc_html__('Image', 'screenr'),
+                        'title' => esc_html__('Background Image', 'screenr'),
                         'type'  =>'media',
                         'default' => array(
                             'url' => '',

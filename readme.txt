@@ -24,11 +24,6 @@ Big - Bold and stylish, Screenr is a multiuse fullscreen theme.
 
 == Frequently Asked Questions ==
 
-== Changelog ==
-
-= 0.0.2 =
-* Initial release
-
 == Credits ==
 
 * Based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc., [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
@@ -40,3 +35,12 @@ Big - Bold and stylish, Screenr is a multiuse fullscreen theme.
 * WOW JS http://mynameismatthieu.com/WOW/, (C) 2015 Matthieu Aussaguel, [MIT](https://opensource.org/licenses/MIT)
 * jQuery Waypoints https://github.com/imakewebthings/jquery-waypoints, (C) 2011-2013 Caleb Troughton, [MIT](https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt)
 * Tether jQuery https://github.com/HubSpot/tether, (C) 2014-2016 HubSpot , [MIT](https://opensource.org/licenses/MIT)
+* jQuery Counter Up https://github.com/bfintal/Counter-Up, (C) 2013 Benjamin Intal, GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
+* Parallax.js https://github.com/bfintal/Counter-Up, (C) 2015 PixelCog, Inc, [MIT](https://opensource.org/licenses/MIT)
+* FontAwesome http://fontawesome.io/, (C) Dave Gandy, [MIT](https://opensource.org/licenses/MIT)
+* Bootstrap https://github.com/twbs/bootstrap, (C) 2011-2016 Twitter, Inc. [MIT](https://opensource.org/licenses/MIT)
+
+== Changelog ==
+
+= 0.0.2 =
+* Initial release
