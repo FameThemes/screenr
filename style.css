@@ -1002,6 +1002,9 @@ input[type="radio"], input[type="checkbox"] {
 	.sticky-header.transparent .nav-menu > li:hover > a::after, .sticky-header.transparent .nav-menu > li.current-menu-item > a::after {
 		border-bottom-color: #ffffff;
 	}
+	.sticky-header.transparent .nav-menu > li:last-child > a {
+		padding-right: 17px;
+	}
 }
 
 @media screen and (max-width: 1140px) {

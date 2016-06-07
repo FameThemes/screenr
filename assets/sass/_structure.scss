@@ -327,6 +327,10 @@
 			}
 		}
 
+		&:last-child > a {
+        padding-right: 17px;
+    }
+
 
 	}
 }
