@@ -268,7 +268,7 @@ jQuery( document ).ready( function( $ ){
 		$wrap.addClass( 'no-scroll' );
 
 		$( window ).scroll(function () {
-			
+
 			var scrolled = $(window).scrollTop();
 			if (scrolled > 0) {
 				$('body').addClass('scrolled');
@@ -382,7 +382,7 @@ jQuery( document ).ready( function( $ ){
 		if ( $( '.nav-menu' ).hasClass( 'nav-menu-mobile' ) ) {
 			$( '#nav-toggle' ).trigger( 'click' );
 		}
-        smoothScroll(jQuery(this.hash));
+        smoothScroll( jQuery( this.hash ) );
     });
 
     // Smooth scroll animation
@@ -392,7 +392,7 @@ jQuery( document ).ready( function( $ ){
         }
 		var header_top_height = get_header_top_height();
         jQuery("html, body").animate({
-            scrollTop: ( jQuery( urlhash ).offset().top - header_top_height ) + "px"
+            scrollTop: ( jQuery( urlhash ).offset().top - header_top_height + 10 ) + "px"
         }, {
             duration: 800,
             easing: "swing"
@@ -403,15 +403,9 @@ jQuery( document ).ready( function( $ ){
 	// Next section
 	$( 'body').on( 'click', '.btn-next-section', function( e ){
 		e.preventDefault();
-		var current_section = $( this).closest( '.screenr-section' );
-		var h = get_header_top_height();
-		if ( current_section.next( '.screenr-section').length > 0 ){
-			jQuery("html, body").animate({
-				scrollTop: (current_section.next( '.screenr-section').offset().top - h ) + "px"
-			}, {
-				duration: 800,
-				easing: "swing"
-			});
+		var current_section = $( this).closest( 'section' );
+		if ( current_section.next( ).length > 0 ) {
+			smoothScroll( '#'+ current_section.next().attr( 'id' ) );
 		}
 
 	} );
