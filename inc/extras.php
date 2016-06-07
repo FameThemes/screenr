@@ -392,7 +392,11 @@ if ( $layout != 'transparent' ) {
     <?php
     $css =  ob_get_clean();
     $css = trim( preg_replace( '#<style[^>]*>(.*)</style>#is', '$1', $css ) );
-    wp_add_inline_style( 'screenr-style', $css );
+    if ( screenr_is_selective_refresh() ) {
+        return $css;
+    } else {
+        wp_add_inline_style( 'screenr-style', $css );
+    }
 }
 
 add_action( 'wp_enqueue_scripts', 'screenr_custom_style', 55 );

@@ -140,6 +140,40 @@ function screenr_customizer_partials( $wp_customize )
         ));
     }
 
+    
+    $custom_css = array(
+        // header
+        'header_bg_color',
+        'menu_color',
+        'menu_hover_color',
+        'menu_hover_bg_color',
+        'header_t_bg_color',
+        'menu_t_color',
+        'menu_t_hover_color',
+        'menu_t_hover_border_color',
+        'logo_text_color',
+        'menu_toggle_button_color',
+        // footer
+        'footer_widgets_bg',
+        'footer_widgets_color',
+        'footer_copyright_bg',
+        'footer_copyright_color',
+    );
+
+    foreach ( $custom_css as $key ) {
+        if ( $wp_customize->get_setting( $key ) ) {
+            $wp_customize->get_setting( $key )->transport = 'postMessage';
+        }
+    }
+
+    $wp_customize->selective_refresh->add_partial( 'custom_style' , array(
+        'selector' => '#screenr-style-inline-css',
+        'settings' => $custom_css,
+        'render_callback' => 'screenr_custom_style',
+    ));
+
+
+
 }
 add_action( 'customize_register', 'screenr_customizer_partials', 50 );
 

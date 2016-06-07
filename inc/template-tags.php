@@ -10,7 +10,13 @@
 if ( ! function_exists( 'screenr_is_selective_refresh' ) ) {
 	function screenr_is_selective_refresh()
 	{
-		return isset($GLOBALS['screenr_is_selective_refresh']) && $GLOBALS['screenr_is_selective_refresh'] ? true : false;
+		$check = isset($GLOBALS['screenr_is_selective_refresh']) && $GLOBALS['screenr_is_selective_refresh'] ? true : false;
+		if ( ! $check ) {
+			if ( is_customize_preview() && isset( $_POST['partials'] ) ) {
+				$check = true;
+			}
+		}
+		return $check;
 	}
 }
 
