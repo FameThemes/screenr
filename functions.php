@@ -49,7 +49,8 @@ function screenr_setup() {
 	 */
     add_theme_support( 'post-thumbnails' );
 	add_image_size( 'screenr-blog-grid-small', 350, 200, true );
-    add_image_size( 'screenr-blog-grid', 540, 300, true );
+	add_image_size( 'screenr-blog-grid', 540, 300, true );
+    add_image_size( 'screenr-blog-list', 790, 400, true );
 
 	add_theme_support( 'custom-logo', array(
 		'height'      => 60,
@@ -73,18 +74,6 @@ function screenr_setup() {
 		'comment-list',
 		'gallery',
 		'caption',
-	) );
-
-	/*
-	 * Enable support for Post Formats.
-	 * See https://developer.wordpress.org/themes/functionality/post-formats/
-	 */
-	add_theme_support( 'post-formats', array(
-		'aside',
-		'image',
-		'video',
-		'quote',
-		'link',
 	) );
 
 	// Set up the WordPress core custom background feature.

@@ -308,7 +308,7 @@ function screenr_page_header_cover()
              * with a call to rewind_posts().
              */
             the_post();
-            $title = sprintf( esc_html__('All posts by %s', 'screenr' ), get_the_author() );
+            $title = sprintf( esc_html__('Author Archives: %s', 'screenr' ), get_the_author() );
 
             /*
              * Since we called the_post() above, we need to rewind
@@ -329,8 +329,8 @@ function screenr_page_header_cover()
     $is_parallax  = true;
     $item = array(
         'position'  => 'center',
-        'pd_top'    => get_theme_mod( 'page_header_pdtop') == '' ? 10 : get_theme_mod( 'page_header_pdtop'),
-        'pd_bottom' => get_theme_mod( 'page_header_pdbottom' ) == '' ? 10 : get_theme_mod( 'page_header_pdbottom' ) ,
+        'pd_top'    => get_theme_mod( 'page_header_pdtop') == '' ? 13 : get_theme_mod( 'page_header_pdtop'),
+        'pd_bottom' => get_theme_mod( 'page_header_pdbottom' ) == '' ? 13 : get_theme_mod( 'page_header_pdbottom' ) ,
         'title'     => $title,
         'desc'      => $desc,
     );
@@ -455,4 +455,3 @@ add_action('switch_theme', 'screenr_reset_actions_required');
 function screenr_reset_actions_required () {
     delete_option('screenr_actions_dismiss');
 }
-

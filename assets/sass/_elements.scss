@@ -2,3 +2,34 @@
 
 /* Button
 ------------------------------*/
+.btn {
+    @include border-radius(2px);
+    @include rem('font-size', 13px);
+    font-weight: 600;
+    &:active, &:focus {
+        outline: none;
+    }
+}
+
+.btn-lg {
+    @include rem('font-size', 17px);
+}
+.btn-theme-primary {
+    background: $primary;
+    color: #FFFFFF;
+    &:hover {
+        color: #FFFFFF;
+        opacity: 0.9;
+    }
+}
+.btn-theme-primary-outline {
+    background-color: transparent;
+    background-image: none;
+    border-color: $primary;
+    color: $primary;
+    &:hover {
+        color: #FFF;
+        background-color: $primary;
+        border-color: $primary;
+    }
+}

@@ -58,7 +58,7 @@ switch ( $layout ) {
                                 		<?php the_title( '<div class="entry-grid-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></div>' ); ?>
                                 	</header><!-- .entry-header -->
                                 	<div class="entry-excerpt">
-                                		<?php the_excerpt(); ?>
+                                		<?php echo wp_trim_words( get_the_content(), 15, ' ...' ); ?>
                                 	</div><!-- .entry-content -->
                                 </div>
                             </article><!-- #post-## -->

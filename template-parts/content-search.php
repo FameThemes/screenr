@@ -20,11 +20,12 @@
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 
-	<div class="entry-summary">
-		<?php the_excerpt(); ?>
+	<div class="entry-content">
+		<?php echo wp_trim_words( get_the_content(), 50, '...' ); ?>
 	</div><!-- .entry-summary -->
 
-	<footer class="entry-footer">
-		<?php screenr_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
+	<div class="entry-more">
+		<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="btn btn-theme-primary"><?php esc_html_e( 'read more', 'screenr' ); ?><i aria-hidden="true" class="fa fa-chevron-right"></i></a>
+	</div>
+
 </article><!-- #post-## -->

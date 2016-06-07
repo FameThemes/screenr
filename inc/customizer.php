@@ -260,14 +260,14 @@ function screenr_customize_register( $wp_customize ) {
         $wp_customize->add_setting( 'page_header_pdtop',
             array(
                 'sanitize_callback' => 'sanitize_text_field',
-                'default'           => '10',
+                'default'           => '13',
             )
         );
         $wp_customize->add_control( 'page_header_pdtop',
             array(
                 'label'       => esc_html__('Padding top', 'screenr'),
                 'section'     => 'page_header_settings',
-                'description' => esc_html__('The slider content padding top in percent (%).', 'screenr'),
+                'description' => esc_html__('The page header padding top in percent (%).', 'screenr'),
             )
         );
 
@@ -275,14 +275,14 @@ function screenr_customize_register( $wp_customize ) {
         $wp_customize->add_setting( 'page_header_pdbottom',
             array(
                 'sanitize_callback' => 'sanitize_text_field',
-                'default'           => '10',
+                'default'           => '13',
             )
         );
         $wp_customize->add_control( 'page_header_pdbottom',
             array(
                 'label'       => esc_html__('Padding bottom', 'screenr'),
                 'section'     => 'page_header_settings',
-                'description' => esc_html__('The slider content padding bottom in percent (%).', 'screenr'),
+                'description' => esc_html__('The page header padding bottom in percent (%).', 'screenr'),
             )
         );
 
