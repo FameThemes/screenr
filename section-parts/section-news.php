@@ -80,7 +80,7 @@ switch ( $layout ) {
                 </div>
                 <div class="clear"></div>
                 <div class="content-grid-loadmore">
-                    <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="btn btn-theme-primary-outline"><?php esc_html_e( 'Load More News', 'screenr' ); ?><i aria-hidden="true" class="fa fa-angle-double-down"></i></a>
+                    <a href="#" class="btn btn-theme-primary-outline"><?php esc_html_e( 'Load More News', 'screenr' ); ?><i aria-hidden="true" class="fa fa-angle-double-down"></i></a>
                 </div>
 
             </div>

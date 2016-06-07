@@ -10,46 +10,30 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php
-	$category = get_the_category();
-	if ( $category[0] ) {
-		echo '<div class="entry-grid-cate">';
-		echo '<a href="' . get_category_link( $category[0]->term_id ) . '">' . $category[0]->cat_name . '</a>';
-		echo '</div>';
-	}
-	?>
-	<header class="entry-header">
+	<?php if ( has_post_thumbnail() ) : ?>
+		<div class="entry-thumb">
+			<a href="<?php echo esc_url( get_permalink() ); ?>">
+				<?php the_post_thumbnail( 'screenr-blog-grid-small' ); ?>
+			</a>
+		</div>
+	<?php endif; ?>
+	<div class="entry-grid-elements">
 		<?php
-			if ( is_single() ) {
-				the_title( '<h1 class="entry-title">', '</h1>' );
-			} else {
-				the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-			}
-
-		if ( 'post' === get_post_type() ) : ?>
-		<div class="entry-meta">
-			<?php screenr_posted_on(); ?>
-		</div><!-- .entry-meta -->
-		<?php
-		endif; ?>
-	</header><!-- .entry-header -->
-
-	<div class="entry-content">
-		<?php
-			the_content( sprintf(
-				/* translators: %s: Name of current post. */
-				wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'screenr' ), array( 'span' => array( 'class' => array() ) ) ),
-				the_title( '<span class="screen-reader-text">"', '"</span>', false )
-			) );
-
-			wp_link_pages( array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'screenr' ),
-				'after'  => '</div>',
-			) );
+		$category = get_the_category();
+		if ( $category[0] ) {
+			echo '<div class="entry-grid-cate">';
+			echo '<a href="' . get_category_link( $category[0]->term_id ) . '">' . $category[0]->cat_name . '</a>';
+			echo '</div>';
+		}
 		?>
-	</div><!-- .entry-content -->
-
-	<footer class="entry-footer">
-		<?php screenr_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
+		<header class="entry-header">
+			<?php the_title( '<div class="entry-grid-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></div>' ); ?>
+		</header><!-- .entry-header -->
+		<div class="entry-excerpt">
+			<?php echo wp_trim_words( get_the_content(), 13, ' ...' ); ?>
+		</div><!-- .entry-content -->
+		<div class="entry-grid-more">
+			<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php esc_html_e( 'Read On', 'screenr' ) ?> <i aria-hidden="true" class="fa fa-arrow-circle-o-right"></i></a>
+		</div>
+	</div>
 </article><!-- #post-## -->
