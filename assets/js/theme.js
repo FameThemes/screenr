@@ -268,6 +268,14 @@ jQuery( document ).ready( function( $ ){
 		$wrap.addClass( 'no-scroll' );
 
 		$( window ).scroll(function () {
+			
+			var scrolled = $(window).scrollTop();
+			if (scrolled > 0) {
+				$('body').addClass('scrolled');
+			} else {
+				$('body').removeClass('scrolled');
+			}
+
 			var header_fixed = $('.site-header').eq(0);
 			var header_parent = header_fixed.parent();
 			var header_h = header_fixed.height() || 0;
@@ -343,13 +351,6 @@ jQuery( document ).ready( function( $ ){
 		jQuery(window).scroll(function () {
 			var currentNode = null;
 			var header_top_height = get_header_top_height();
-
-			var scrolled = $(window).scrollTop();
-			if (scrolled > 0) {
-				$('body').addClass('scrolled');
-			} else {
-				$('body').removeClass('scrolled');
-			}
 
 			jQuery('.site-main section').each(function () {
 				var s = $(this);
