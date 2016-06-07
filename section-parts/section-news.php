@@ -53,12 +53,14 @@ switch ( $layout ) {
                                         </div>
                                     </a>
                                 <?php endif; ?>
-                            	<header class="entry-header">
-                            		<?php the_title( '<h2 class="entry-title h4"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' ); ?>
-                            	</header><!-- .entry-header -->
-                            	<div class="entry-excerpt">
-                            		<?php the_excerpt(); ?>
-                            	</div><!-- .entry-content -->
+                                <div class="entry-grid-elements">
+                                	<header class="entry-header">
+                                		<?php the_title( '<div class="entry-grid-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></div>' ); ?>
+                                	</header><!-- .entry-header -->
+                                	<div class="entry-excerpt">
+                                		<?php the_excerpt(); ?>
+                                	</div><!-- .entry-content -->
+                                </div>
                             </article><!-- #post-## -->
                         <?php endwhile; ?>
                     <?php else : ?>

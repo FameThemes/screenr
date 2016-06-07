@@ -672,15 +672,28 @@
 		}
 	}
 
-
 	@include for( screens-medium ) {
-	 .content-grid {
-		 article {
-			 width: 100%
-		 }
-	 }
- }
+		.content-grid {
+			article {
+			 	width: 100%
+			}
+		}
+	}
+	.entry-grid-elements {
+		border-left: 1px solid #f3f3f3;
+		padding: 20px 0 0 30px;
 
+	}
+	.entry-grid-title {
+		@include rem('font-size', 22px);
+		line-height: 1.5;
+		font-weight: 400;
+		font-family: $font_text;
+		margin-bottom: 15px;
+		a {
+			color: #444444;
+		}
+	}
 }
 
 
