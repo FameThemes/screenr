@@ -41,7 +41,7 @@ class Screenr_Slider {
         if ( $html = apply_filters( 'screenr_slider_render_item', '', $item ) ) {
             return $html;
         }
-
+        
         $url = screenr_get_media_url( $item['media'] );
 
         $html = '<div class="swiper-slide slide-align-'.esc_attr( $item['position'] ).' slide-'.esc_attr( $item['layout'] ).'" style="background-image: url(\''.esc_attr( $url ).'\')">';
@@ -58,9 +58,9 @@ class Screenr_Slider {
             }
             $html .= '<div class="swiper-slide-intro">';
                 $html .= '<div class="swiper-intro-inner"'.$style.'>';
-
-                    if ( $item['content'] ) {
-                        $html .= apply_filters( 'the_content', $item['content'] );
+                    $content = isset( $item['content_'.$item['layout'] ] ) ? $item['content_'.$item['layout'] ] : '';
+                    if ( $content ) {
+                        $html .= apply_filters( 'the_content', $content );
                     }
 
                 $html .= '</div>';

@@ -333,22 +333,19 @@ jQuery( document ).ready( function( $ ){
 		return ( jQuery('#wpadminbar').height() || 0 ) + ( jQuery('.site-header.sticky-header').height() || 0  );
 	}
 
-
-	// Get the header height and wpadminbar height if enable.
-
-    // Navigation click to section.
-    jQuery('.home #site-navigation li a[href*="#"]').on('click', function(event){
-        event.preventDefault();
-		var _h = this.hash;
-		if ( $( '.nav-menu' ).hasClass( 'nav-menu-mobile' ) ) {
-			$( '#nav-toggle' ).trigger( 'click' );
-		}
-        smoothScroll( _h );
-    });
-
     // Add active class to menu when scroll to active section.
-	if ( $( '.page-template-template-frontpage' ).length > 0 ) {
-		jQuery(window).scroll(function () {
+	if ( string_to_bool( Screenr.is_home_front_page ) ) {
+		// Navigation click to section.
+		jQuery('.home #site-navigation li a[href*="#"]').on('click', function(event){
+			event.preventDefault();
+			var _h = this.hash;
+			if ( $( '.nav-menu' ).hasClass( 'nav-menu-mobile' ) ) {
+				$( '#nav-toggle' ).trigger( 'click' );
+			}
+			smoothScroll ( _h );
+		});
+
+		jQuery( window ).scroll(function () {
 			var currentNode = null;
 			var header_top_height = get_header_top_height();
 
@@ -362,10 +359,12 @@ jQuery( document ).ready( function( $ ){
 			});
 
 			jQuery('#site-navigation li').removeClass('current-menu-item');
-			if (currentNode) {
+			if ( currentNode ) {
 				jQuery('#site-navigation li').find('a[href$="#' + currentNode + '"]').parent().addClass('current-menu-item');
 			}
 		});
+	} else {
+		jQuery( '#site-navigation li.menu-item-type-custom' ).removeClass('current-menu-item');
 	}
 
     // Move to the right section on page load.

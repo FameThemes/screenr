@@ -19,8 +19,8 @@ $items      = get_theme_mod( 'contact_items' );
         <?php } ?>
         <div class="section-content">
             <div class="row">
-
-                <div class="col-md-12">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
                     <?php if ( ! empty ( $items ) ) { ?>
                     <ul class="contact-details">
                         <?php
@@ -46,6 +46,7 @@ $items      = get_theme_mod( 'contact_items' );
                     </div>
                     <?php } ?>
                 </div>
+                <div class="col-md-1"></div>
             </div>
         </div>
     </div>

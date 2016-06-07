@@ -297,7 +297,7 @@ function screenr_page_header_cover()
     } elseif ( is_year() ) {
         $title = printf( esc_html__( 'Yearly Archives: %s', 'screenr' ), get_the_date( _x( 'Y', 'yearly archives date format', 'screenr') ) );
     } elseif ( is_home() || is_front_page() ) {
-        $title = get_theme_mod( 'blog_title', esc_html__('Blog', 'screenr') );
+        $title = get_theme_mod( 'page_blog_title', esc_html__( 'The Blog', 'screenr' ) );
     } elseif ( is_author() ) {
         if ( have_posts() ) {
             /*

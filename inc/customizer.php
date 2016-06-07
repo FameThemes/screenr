@@ -316,6 +316,91 @@ function screenr_customize_register( $wp_customize ) {
             )
         );
 
+
+    /* Page Footer
+    ----------------------------------------------------------------------*/
+    $wp_customize->add_section( 'page_footer_settings' ,
+        array(
+            'priority'    => 10,
+            'title'       => esc_html__( 'Footer', 'screenr' ),
+            'description' => '',
+            'panel'       => 'screenr_options',
+            //'active_callback'   => 'is_page', // function
+        )
+    );
+
+
+        // Features columns
+        $wp_customize->add_setting( 'footer_layout',
+            array(
+                'sanitize_callback' => 'sanitize_text_field',
+                'default'           => 3,
+            )
+        );
+        $wp_customize->add_control( 'footer_layout',
+            array(
+                'type'        => 'select',
+                'label'       => esc_html__('Footer Layout', 'screenr'),
+                'section'     => 'page_footer_settings',
+                'description' => esc_html__('Number footer columns to display.', 'screenr'),
+                'choices' => array(
+                    4  => 4,
+                    3  => 4,
+                    2  => 2,
+                    1  => 1
+                )
+            )
+        );
+
+
+        // Custom 3 columns
+        $wp_customize->add_setting( 'footer_custom_2_columns',
+            array(
+                'sanitize_callback' => 'sanitize_text_field',
+                'default'           => '6+6',
+            )
+        );
+        $wp_customize->add_control( 'footer_custom_2_columns',
+            array(
+                'label'       => esc_html__('Custom footer 2 columns width', 'screenr'),
+                'section'     => 'page_footer_settings',
+                'description' => esc_html__('Enter int numbers and sum of them must smaller or equal 12, separated by "+"', 'screenr'),
+            )
+        );
+
+        // Custom 3 columns
+        $wp_customize->add_setting( 'footer_custom_3_columns',
+            array(
+                'sanitize_callback' => 'sanitize_text_field',
+                'default'           => '4+4+4',
+            )
+        );
+        $wp_customize->add_control( 'footer_custom_3_columns',
+            array(
+                'label'       => esc_html__('Custom footer 3 columns width', 'screenr'),
+                'section'     => 'page_footer_settings',
+                'description' => esc_html__('Enter int numbers and sum of them must smaller or equal 12, separated by "+"', 'screenr'),
+            )
+        );
+
+        // Custom 4 columns
+        $wp_customize->add_setting( 'footer_custom_4_columns',
+            array(
+                'sanitize_callback' => 'sanitize_text_field',
+                'default'           => '3+3+3+3',
+            )
+        );
+        $wp_customize->add_control( 'footer_custom_4_columns',
+            array(
+                'label'       => esc_html__('Custom footer 4 columns width', 'screenr'),
+                'section'     => 'page_footer_settings',
+                'description' => esc_html__('Enter int numbers and sum of them must smaller or equal 12, separated by "+"', 'screenr'),
+            )
+        );
+
+
+
+
     /*------------------------------------------------------------------------*/
     /*  Panel: Sections
     /*------------------------------------------------------------------------*/
@@ -415,13 +500,21 @@ function screenr_customize_register( $wp_customize ) {
                         'title' => esc_html__('Content layout', 'screenr'),
                         'type'  =>'select',
                         'options' => apply_filters( 'screenr_slider_content_layout', array(
-                            'layout-1' => esc_html__('Layout 1', 'screenr'),
+                            'layout_1' => esc_html__('Layout 1', 'screenr'),
+                            'layout_2' => esc_html__('Layout 2', 'screenr'),
                         ) )
                     ),
-                    'content' => array(
-                        'title' => esc_html__('Content', 'screenr'),
+                    'content_layout_1' => array(
+                        'title' => esc_html__('Content layout 1', 'screenr'),
                         'type'  =>'editor',
                         'default' => '',
+                        "required" => array( 'layout', '=', 'layout_1' )
+                    ),
+                    'content_layout_2' => array(
+                        'title' => esc_html__('Content layout 2', 'screenr'),
+                        'type'  =>'editor',
+                        'default' => '',
+                        "required" => array( 'layout', '=', 'layout_2' )
                     ),
                     'media' => array(
                         'title' => esc_html__('Background Image', 'screenr'),
