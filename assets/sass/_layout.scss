@@ -19,14 +19,17 @@
 		float: left;
 	}
 }
-.sidebar {
-	width: 100%;
-	float: none;
-	@include for(medium-screens) {
-		width: percentage( 280px / $grid ); // 300px
-		float: left;
+.site-content {
+	.sidebar {
+		width: 100%;
+		float: none;
+		@include for(medium-screens) {
+			width: percentage( 280px / $grid ); // 300px
+			float: left;
+		}
 	}
 }
+
 
 .no-sidebar .content-area {
 	width: 100%;

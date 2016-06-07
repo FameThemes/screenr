@@ -629,13 +629,13 @@ input[type="radio"], input[type="checkbox"] {
 	}
 }
 
-.sidebar {
+.site-content .sidebar {
 	width: 100%;
 	float: none;
 }
 
 @media screen and (min-width: 940px) {
-	.sidebar {
+	.site-content .sidebar {
 		width: 25.22523%;
 		float: left;
 	}
