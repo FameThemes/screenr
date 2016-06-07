@@ -246,12 +246,47 @@ if ( $menu_hover_color ) {
     }
     <?php
     }
-
     ?>
     #page-header-cover.swiper-slider.no-image .swiper-slide .overlay {
         background-color: #<?php echo $bg_cover; ?>;
         opacity: 1;
     }
+    <?php
+    $footer_w_bg = get_theme_mod( 'footer_widgets_bg' );
+    if ( $footer_w_bg ) {
+    ?>
+    .footer-widgets {
+        background-color: #<?php echo $footer_w_bg; ?>;
+    }
+    <?php } ?>
+
+    <?php
+    $footer_w_color = get_theme_mod( 'footer_widgets_color' );
+    if ( $footer_w_color ) {
+    ?>
+    .footer-widgets, .footer-widgets a, .footer-widgets .sidebar .widget a, .footer-widgets caption,
+    .footer-widgets .widget-title {
+        color: #<?php echo $footer_w_color; ?>;
+    }
+    <?php } ?>
+
+    <?php
+    $footer_c_bg = get_theme_mod( 'footer_copyright_bg' );
+    if ( $footer_c_bg ) {
+    ?>
+    .site-footer .site-info {
+        background-color: #<?php echo $footer_c_bg; ?>;
+    }
+    <?php } ?>
+
+    <?php
+    $footer_c_color = get_theme_mod( 'footer_copyright_color' );
+    if ( $footer_c_color ) {
+    ?>
+    .site-footer .site-info, .site-footer .site-info a {
+        color: #<?php echo $footer_c_color; ?>;
+    }
+    <?php } ?>
 
     <?php
     ?>
@@ -456,3 +491,21 @@ function screenr_reset_actions_required () {
     delete_option('screenr_actions_dismiss');
 }
 
+
+
+/**
+ * Output the status of widets for footer column.
+ *
+ */
+function screenr_sidebar_desc( $sidebar_id ) {
+
+    $desc           = '';
+    $column         = str_replace( 'footer-', '', $sidebar_id );
+    $footer_columns = absint( get_theme_mod( 'footer_layout', 4 ) );
+
+    if ( $column > $footer_columns ) {
+        $desc = esc_html__( 'This widget area is currently disabled. You can enable it Customizer &rarr; Theme Options &rarr; Footer section.', 'wp-coupon' );
+    }
+
+    return esc_html( $desc );
+}

@@ -329,7 +329,6 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
-
         // Features columns
         $wp_customize->add_setting( 'footer_layout',
             array(
@@ -345,9 +344,10 @@ function screenr_customize_register( $wp_customize ) {
                 'description' => esc_html__('Number footer columns to display.', 'screenr'),
                 'choices' => array(
                     4  => 4,
-                    3  => 4,
+                    3  => 3,
                     2  => 2,
-                    1  => 1
+                    1  => 1,
+                    0  => esc_html__('Disable footer widgets', 'screenr'),
                 )
             )
         );
@@ -395,6 +395,80 @@ function screenr_customize_register( $wp_customize ) {
                 'label'       => esc_html__('Custom footer 4 columns width', 'screenr'),
                 'section'     => 'page_footer_settings',
                 'description' => esc_html__('Enter int numbers and sum of them must smaller or equal 12, separated by "+"', 'screenr'),
+            )
+        );
+
+
+        // Footer widgets background
+        $wp_customize->add_setting( 'footer_widgets_bg',
+            array(
+                'sanitize_callback' => 'sanitize_hex_color_no_hash',
+                'sanitize_js_callback' => 'maybe_hash_hex_color',
+                'default'           => '',
+            )
+        );
+        $wp_customize->add_control( new WP_Customize_Color_Control(
+                $wp_customize,
+                'footer_widgets_bg',
+                array(
+                    'label'       => esc_html__('Footer widgets background color', 'screenr'),
+                    'section'     => 'page_footer_settings',
+                )
+            )
+        );
+
+        // Footer widgets text color
+        $wp_customize->add_setting( 'footer_widgets_color',
+            array(
+                'sanitize_callback' => 'sanitize_hex_color_no_hash',
+                'sanitize_js_callback' => 'maybe_hash_hex_color',
+                'default'           => '',
+            )
+        );
+        $wp_customize->add_control( new WP_Customize_Color_Control(
+                $wp_customize,
+                'footer_widgets_color',
+                array(
+                    'label'       => esc_html__('Footer widgets text color', 'screenr'),
+                    'section'     => 'page_footer_settings',
+                )
+            )
+        );
+
+
+        // Footer copyright bg
+        $wp_customize->add_setting( 'footer_copyright_bg',
+            array(
+                'sanitize_callback' => 'sanitize_hex_color_no_hash',
+                'sanitize_js_callback' => 'maybe_hash_hex_color',
+                'default'           => '',
+            )
+        );
+        $wp_customize->add_control( new WP_Customize_Color_Control(
+                $wp_customize,
+                'footer_copyright_bg',
+                array(
+                    'label'       => esc_html__('Footer copyright background color', 'screenr'),
+                    'section'     => 'page_footer_settings',
+                )
+            )
+        );
+
+        // Footer copyright color
+        $wp_customize->add_setting( 'footer_copyright_color',
+            array(
+                'sanitize_callback' => 'sanitize_hex_color_no_hash',
+                'sanitize_js_callback' => 'maybe_hash_hex_color',
+                'default'           => '',
+            )
+        );
+        $wp_customize->add_control( new WP_Customize_Color_Control(
+                $wp_customize,
+                'footer_copyright_color',
+                array(
+                    'label'       => esc_html__('Footer copyright color', 'screenr'),
+                    'section'     => 'page_footer_settings',
+                )
             )
         );
 
