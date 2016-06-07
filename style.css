@@ -1011,6 +1011,9 @@ input[type="radio"], input[type="checkbox"] {
 	.transparent #nav-toggle.nav-is-visible span {
 		background-color: transparent;
 	}
+	.transparent #nav-toggle.nav-is-visible span:before, .transparent #nav-toggle.nav-is-visible span::after {
+		background-color: #ffffff;
+	}
 }
 
 #nav-toggle {

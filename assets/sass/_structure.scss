@@ -334,11 +334,16 @@
 @include for(screens-large) {
 	.transparent {
 		#nav-toggle{
-			span, span:after, span:before{
+			span, span:after, span:before {
 				background-color: #ffffff;
 			}
+
 			&.nav-is-visible span{
 				background-color: transparent;
+				&:before, &::after {
+					background-color: #ffffff;
+				}
+
 			}
 		}
 	}
