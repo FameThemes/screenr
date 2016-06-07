@@ -52,6 +52,7 @@ if ( is_array( $items ) && ! empty( $items ) ) {
                             'thumb_type' => '',
                             'icon'       => '',
                             'readmore'   => '',
+                            'readmore_txt'   => '',
                         ) );
 
                         if ( ! $item['page_id'] ) {
@@ -64,6 +65,8 @@ if ( is_array( $items ) && ! empty( $items ) ) {
                         $count++;
                         setup_postdata( $post );
 
+                        $text = $item['readmore_txt'] ? force_balance_tags( $item['readmore_txt'] ) : esc_html__( 'More detail &rarr;', 'screenr' );
+
                     ?>
                     <div class="<?php echo esc_attr( $classes ); ?>">
                         <?php
@@ -74,7 +77,7 @@ if ( is_array( $items ) && ! empty( $items ) ) {
                                 <div class="card card-inverse service__media">
                                     <?php
                                     if ( has_post_thumbnail() ) {
-                                        the_post_thumbnail('post-thumbnail', array('class' => 'card-img', 'width' => '', 'height' => ''));
+                                        the_post_thumbnail('screenr-blog-grid', array('class' => 'card-img', 'width' => '', 'height' => ''));
                                     }
                                     ?>
                                     <div class="card-img-overlay">
@@ -82,8 +85,9 @@ if ( is_array( $items ) && ! empty( $items ) ) {
                                             <h3 class="card-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
                                             <div class="card-text"><?php the_excerpt(); ?></div>
                                         </div>
-                                        <?php if ( $item['readmore'] ){ ?>
-                                            <a href="<?php the_permalink(); ?>" class="service-button"><?php esc_html_e( 'More detail &rarr;', 'screenr' ); ?></a>
+                                        <?php if ( $item['readmore'] ){
+                                            ?>
+                                            <a href="<?php the_permalink(); ?>" class="service-button"><?php echo $text; ?></a>
                                         <?php } ?>
                                     </div>
                                 </div>
@@ -101,8 +105,9 @@ if ( is_array( $items ) && ! empty( $items ) ) {
                                         <i class="<?php echo esc_attr( $item['icon'] ); ?> fa-3x" aria-hidden="true"></i>
                                     </div>
                                     <?php } ?>
-                                    <?php if ( $item['readmore'] ){ ?>
-                                        <a href="<?php the_permalink(); ?>" class="service-button"><?php esc_html_e( 'More detail &rarr;', 'screenr' ); ?></a>
+                                    <?php if ( $item['readmore'] ){
+                                        ?>
+                                        <a href="<?php the_permalink(); ?>" class="service-button"><?php echo $text; ?></a>
                                     <?php } ?>
                                 </div>
                                 <?php
@@ -132,7 +137,7 @@ if ( is_array( $items ) && ! empty( $items ) ) {
                                             <div class="card-text"><?php the_excerpt(); ?></div>
                                         </div>
                                         <?php if ( $item['readmore'] ){ ?>
-                                            <a href="<?php the_permalink(); ?>" class="service-button"><?php esc_html_e( 'More detail &rarr;', 'screenr' ); ?></a>
+                                            <a href="<?php the_permalink(); ?>" class="service-button"><?php echo $text; ?></a>
                                         <?php } ?>
                                     </div>
                                 </div>

@@ -88,7 +88,7 @@ if ( is_array( $items ) && ! empty( $items ) ) {
                     <?php echo get_the_excerpt( $item['page_id'] ); ?>
                     <?php if ( $item['readmore'] ){ ?>
                     <div class="features__item-content-button">
-                        <a href="<?php the_permalink(); ?>" class="btn btn-secondary-outline"><?php echo $item['readmore_txt']  ? esc_html( $item['readmore_txt'] ) : esc_html__('Read More', 'screenr'); ?></a>
+                        <a href="<?php the_permalink(); ?>" class="btn btn-secondary-outline"><?php echo ( $item['readmore_txt'] )  ? force_balance_tags( $item['readmore_txt'] ) : esc_html__('Read More', 'screenr'); ?></a>
                     </div>
                     <?php } ?>
                 </div>
