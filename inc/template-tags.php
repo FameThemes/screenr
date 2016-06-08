@@ -153,3 +153,85 @@ function screenr_category_transient_flusher() {
 }
 add_action( 'edit_category', 'screenr_category_transient_flusher' );
 add_action( 'save_post',     'screenr_category_transient_flusher' );
+
+
+if ( ! function_exists( 'screenr_loop_post_item' ) ) {
+	function screenr_loop_post_item( $post_class = '')
+	{
+		?>
+		<article id="post-<?php the_ID(); ?>" <?php post_class($post_class); ?>>
+			<?php if (has_post_thumbnail()) : ?>
+				<div class="entry-thumb">
+					<a href="<?php echo esc_url(get_permalink()); ?>">
+						<?php the_post_thumbnail('screenr-blog-grid-small'); ?>
+					</a>
+				</div>
+			<?php endif; ?>
+			<div class="entry-grid-elements">
+				<?php
+				$category = get_the_category();
+				if ($category[0]) {
+					echo '<div class="entry-grid-cate">';
+					echo '<a href="' . get_category_link($category[0]->term_id) . '">' . $category[0]->cat_name . '</a>';
+					echo '</div>';
+				}
+				?>
+				<header class="entry-header">
+					<?php the_title('<div class="entry-grid-title"><a href="' . esc_url(get_permalink()) . '" rel="bookmark">', '</a></div>'); ?>
+				</header><!-- .entry-header -->
+				<div class="entry-excerpt">
+					<?php
+					echo wp_trim_words(get_the_content(), 13, ' ...'); ?>
+				</div><!-- .entry-content -->
+				<div class="entry-grid-more">
+					<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php esc_html_e('Read On', 'screenr'); ?> <i aria-hidden="true" class="fa fa-arrow-circle-o-right"></i></a>
+				</div>
+			</div>
+		</article><!-- #post-## -->
+		<?php
+	}
+}
+
+if ( ! function_exists( 'screenr_ajax_load_more_posts' ) ) {
+	function screenr_ajax_load_more_posts()
+	{
+
+		$paged = isset( $_REQUEST[ 'paged'] ) ?  absint( $_REQUEST[ 'paged' ]  ) :  1;
+		$latest_posts = new WP_Query(array(
+			'posts_per_page' => absint(get_theme_mod('news_num_post', 3)),
+			'ignore_sticky_posts' => true,
+			'paged' => $paged,
+		));
+
+		$layout = absint(get_theme_mod('news_layout', 3));
+		if (!$layout) {
+			$layout = 3;
+		}
+		$post_class = '';
+		switch ( $layout ) {
+			case 1:
+				$post_class = 'col-md-12';
+				break;
+			case 2:
+				$post_class = 'col-md-6';
+				break;
+			case 4:
+				$post_class = 'col-md-6 col-lg-3';
+				break;
+			default:
+				$post_class = 'col-md-6 col-lg-4';
+				break;
+		}
+
+		if ($latest_posts->have_posts()) {
+			while ($latest_posts->have_posts()) : $latest_posts->the_post();
+				screenr_loop_post_item($post_class);
+			endwhile;
+		} else {
+
+		}
+	}
+
+}
+add_action( 'wp_ajax_screenr_ajax_posts', 'screenr_ajax_load_more_posts' );
+add_action( 'wp_ajax_nopriv_screenr_ajax_posts', 'screenr_ajax_load_more_posts' );

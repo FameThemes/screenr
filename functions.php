@@ -81,6 +81,15 @@ function screenr_setup() {
 		'default-color' => 'ffffff',
 		'default-image' => '',
 	) ) );
+
+
+	add_theme_support( 'infinite-scroll', array(
+		'type'           => 'scroll',
+		'footer_widgets' => false,
+		'container'      => 'section-news-posts',
+	) );
+
+
 }
 endif;
 add_action( 'after_setup_theme', 'screenr_setup' );
@@ -175,6 +184,7 @@ function screenr_scripts() {
 	}
 
     wp_localize_script( 'jquery', 'Screenr', array(
+        'ajax_url' 			 => admin_url( 'admin-ajax.php' ),
         'full_screen_slider' => ( get_theme_mod( 'slider_fullscreen' ) ) ? true : false,
         'header_layout' 	 => get_option( 'header_layout' ),
         'slider_parallax' 	 => get_theme_mod( 'slider_parallax', 1 ),

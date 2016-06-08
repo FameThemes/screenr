@@ -97,6 +97,10 @@ function screenr_customizer_partials( $wp_customize )
                 'news_desc',
                 'news_num_post',
                 'news_layout',
+
+                'news_loadmore',
+                'news_more_text',
+                'news_more_link',
             ),
         ),
         // section news

@@ -778,3 +778,52 @@ jQuery( document ).ready( function( $ ){
 		time: 1000
 	});
 } );
+
+
+// Ajax load more posts
+jQuery( document ).ready( function( $ ){
+	$( 'body' ).on( 'click', '.content-grid-loadmore.blt-ajax', function( e ){
+		e.preventDefault();
+		var button = $( this );
+		if ( ! button.prop( 'is_loading' ) ) {
+			button.prop( 'is_loading', true );
+			button.addClass( 'loading' );
+
+			button.find( 'i' ).removeClass( 'fa-angle-double-down' ).addClass( 'fa-spinner fa-spin' );
+
+			var paged = button.prop('paged') || 2;
+			// It's always form 2 because page 1 already there.
+			if ( paged <= 2 ) {
+				paged = 2;
+			}
+			var data = {
+				'action': 'screenr_ajax_posts',
+				'paged': paged
+			};
+
+			jQuery.get( Screenr.ajax_url, data, function ( response ) {
+				response = '<div>' + response + '</div>';
+				response = $( response );
+				button.prop( 'paged', paged + 1 );
+				button.prop( 'is_loading', false );
+				button.removeClass( 'loading' );
+				button.find( 'i' ).removeClass( 'fa-spinner fa-spin' ).addClass( 'fa-angle-double-down' );
+
+				var num_post = $( 'article', response ).length;
+
+				$('article', response).each(function (index, post) {
+					$('#section-news-posts').append( post );
+				});
+
+				if (num_post <= 0) {
+					button.hide();
+				} else {
+
+				}
+
+			});
+		}
+
+	} );
+
+} );

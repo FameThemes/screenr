@@ -42,46 +42,37 @@ switch ( $layout ) {
         <?php } ?>
         <div class="section-content section-news-content">
             <div class="row">
-                <div class="content-grid" data-layout="<?php echo esc_attr( $layout ); ?>">
+                <div class="content-grid" id="section-news-posts" data-layout="<?php echo esc_attr( $layout ); ?>">
                     <?php if ( $latest_posts->have_posts() ) : ?>
                         <?php while ( $latest_posts->have_posts() ) : $latest_posts->the_post(); ?>
-                            <article id="post-<?php the_ID(); ?>" <?php post_class( $post_class ); ?>>
-                                <?php if ( has_post_thumbnail() ) : ?>
-                                    <div class="entry-thumb">
-                                        <a href="<?php echo esc_url( get_permalink() ); ?>">
-                                            <?php the_post_thumbnail( 'screenr-blog-grid-small' ); ?>
-                                        </a>
-                                    </div>
-                                <?php endif; ?>
-                                <div class="entry-grid-elements">
-                                    <?php
-                                	$category = get_the_category();
-                                	if ( $category[0] ) {
-                                		echo '<div class="entry-grid-cate">';
-                                		echo '<a href="' . get_category_link( $category[0]->term_id ) . '">' . $category[0]->cat_name . '</a>';
-                                		echo '</div>';
-                                	}
-                                	?>
-                                	<header class="entry-header">
-                                		<?php the_title( '<div class="entry-grid-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></div>' ); ?>
-                                	</header><!-- .entry-header -->
-                                	<div class="entry-excerpt">
-                                		<?php echo wp_trim_words( get_the_content(), 13, ' ...' ); ?>
-                                	</div><!-- .entry-content -->
-                                    <div class="entry-grid-more">
-                                        <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php esc_html_e( 'Read On' ) ?> <i aria-hidden="true" class="fa fa-arrow-circle-o-right"></i></a>
-                                    </div>
-                                </div>
-                            </article><!-- #post-## -->
+                            <?php screenr_loop_post_item( $post_class ); ?>
                         <?php endwhile; ?>
                     <?php else : ?>
     					<?php get_template_part( 'template-parts/content', 'none' ); ?>
     				<?php endif; ?>
                 </div>
                 <div class="clear"></div>
-                <div class="content-grid-loadmore">
-                    <a href="#" class="btn btn-theme-primary-outline"><?php esc_html_e( 'Load More News', 'screenr' ); ?><i aria-hidden="true" class="fa fa-angle-double-down"></i></a>
+                <?php
+                $t = get_theme_mod( 'news_loadmore', 'ajax' );
+                if ( $t != 'hide' ) {
+                    $label = get_theme_mod( 'news_more_text' );
+                    $icon_name = 'fa-angle-double-down';
+                    if ( $t == 'link' ) {
+                        $icon_name = 'fa-angle-double-right';
+                    }
+                    if ( ! $label ) {
+                        if ( $t == 'link' ) {
+                            $label = esc_html__( 'Read Our Blog', 'screenr' );
+
+                        } else {
+                            $label = esc_html__( 'Load More News', 'screenr' );
+                        }
+                    }
+                ?>
+                <div class="content-grid-loadmore  blt-<?php echo esc_attr( $t ); ?>">
+                    <a href="<?php echo ( $t == 'link' ) ? esc_url( get_theme_mod( 'news_more_link' ) ) : '#'; ?>" class="btn btn-theme-primary-outline"><?php echo esc_html( $label ); ?><i aria-hidden="true" class="fa <?php echo esc_attr( $icon_name ); ?>"></i></a>
                 </div>
+                <?php } ?>
 
             </div>
         </div>

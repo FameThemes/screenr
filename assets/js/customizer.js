@@ -1453,6 +1453,22 @@ jQuery( document ).ready( function( $ ){
         header_layout_change( $( this ).val() );
     } );
 
+    // News load more posts
+    var new_load_more_settings = function( t ){
+        if ( t == 'hide' ) {
+            $( '#customize-control-news_more_text, #customize-control-news_more_link' ).hide();
+        } else if ( t == 'ajax' ) {
+            $( '#customize-control-news_more_text' ).show();
+            $( '#customize-control-news_more_link' ).hide();
+        } else if ( t == 'link' ) {
+            $( '#customize-control-news_more_text' ).show();
+            $( '#customize-control-news_more_link' ).show();
+        }
 
+    };
+    new_load_more_settings( $( '#customize-control-news_loadmore select' ).val() );
+    $( '#customize-control-news_loadmore select' ).on( 'change', function ()  {
+        new_load_more_settings( $( this ).val() );
+    } );
 
 } );

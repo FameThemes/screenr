@@ -1975,6 +1975,54 @@ function screenr_customize_register( $wp_customize ) {
     );
 
 
+    $wp_customize->add_setting( 'news_loadmore',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => 'ajax',
+        )
+    );
+    $wp_customize->add_control( 'news_loadmore',
+        array(
+            'type'        => 'select',
+            'label'       => esc_html__('Load more posts button', 'screenr'),
+            'section'     => 'section_news',
+            'description' => esc_html__('Number item per row to display.', 'screenr'),
+            'choices' => array(
+                'ajax' => esc_html__('Ajax load', 'screenr'),
+                'link' => esc_html__('Custom link', 'screenr'),
+                'hide' => esc_html__('Hide', 'screenr'),
+            )
+        )
+    );
+
+    $wp_customize->add_setting( 'news_more_text',
+        array(
+            'sanitize_callback' => 'sanitize_text_field',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'news_more_text',
+        array(
+            'label'       => esc_html__('Custom load more button label', 'screenr'),
+            'section'     => 'section_news',
+        )
+    );
+
+    $wp_customize->add_setting( 'news_more_link',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'news_more_link',
+        array(
+            'label'       => esc_html__('Custom load more posts link', 'screenr'),
+            'section'     => 'section_news',
+            'description' => esc_html__('Link to your posts page.', 'screenr'),
+        )
+    );
+
+
     /*------------------------------------------------------------------------*/
     /*  Section: Contact
     /*------------------------------------------------------------------------*/
