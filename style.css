@@ -2002,6 +2002,20 @@ input[type="radio"], input[type="checkbox"] {
 	border-color: #e86240;
 }
 
+.slide_content .btn {
+	margin: 10px;
+}
+
+.slide_content .btn-secondary-outline {
+	border-color: #FFF;
+	color: #FFF;
+}
+
+.slide_content .btn-secondary-outline:hover {
+	background: #FFFFFF;
+	color: #333333;
+}
+
 /*--------------------------------------------------------------
 7.0 Widgets
 --------------------------------------------------------------*/
@@ -2282,25 +2296,6 @@ input[type="radio"], input[type="checkbox"] {
 			transform: translate(-50.01111111%, -50.01111111%);
 		}
 		*/
-}
-
-.swiper-slider .swiper-slide .swiper-slide-intro {
-	position: relative;
-	width: 100%;
-	z-index: 4;
-	max-width: 1140px;
-	max-width: 71.25rem;
-	margin: 0 auto;
-	color: #fff;
-	text-align: center;
-	font-size: 22px;
-	font-size: 1.375rem;
-}
-
-.swiper-slider .swiper-slide .swiper-slide-intro h2 {
-	font-size: 65px;
-	font-size: 4.0625rem;
-	color: #fff;
 }
 
 .swiper-slider .swiper-slide .swiper-intro-inner {
@@ -2618,6 +2613,72 @@ input[type="radio"], input[type="checkbox"] {
 	vertical-align: middle;
 }
 
+.slide_content {
+	font-size: 22px;
+	font-size: 1.375rem;
+}
+
+@media (max-width: 767px) {
+	.slide_content {
+		font-size: 18px;
+		font-size: 1.125rem;
+	}
+}
+
+.slide_content .btn {
+	margin: 10px;
+}
+
+.slide_content .btn-secondary-outline {
+	border-color: #FFF;
+	color: #FFF;
+}
+
+.slide_content .btn-secondary-outline:hover {
+	background: #FFFFFF;
+	color: #333333;
+}
+
+.slide_content h1, .slide_content h2, .slide_content h3, .slide_content h4, .slide_content h5, .slide_content h6 {
+	font-weight: 100;
+	letter-spacing: 1px;
+	margin-bottom: 20px;
+	margin-bottom: 1.25rem;
+}
+
+.slide_content h1 strong, .slide_content h2 strong, .slide_content h3 strong, .slide_content h4 strong, .slide_content h5 strong, .slide_content h6 strong {
+	font-weight: 900;
+}
+
+.slide_content p {
+	margin-bottom: 20px;
+	margin-bottom: 1.25rem;
+}
+
+.slide_content h1 {
+	line-height: 1.3;
+	font-size: 35px;
+	font-size: 2.1875rem;
+}
+
+@media (min-width: 768px) {
+	.slide_content h1 {
+		font-size: 50px;
+		font-size: 3.125rem;
+	}
+}
+
+.swiper-slide-intro {
+	position: relative;
+	width: 100%;
+	z-index: 4;
+	max-width: 1140px;
+	max-width: 71.25rem;
+	margin: 0 auto;
+	color: #fff;
+	text-align: center;
+}
+
 /* Section: Features
 ------------------------------*/
 .section-features .card {
@@ -2820,8 +2881,8 @@ input[type="radio"], input[type="checkbox"] {
 
 .section-news .entry-grid-elements {
 	border: 1px solid #e9e9e9;
-	border-top: none;
-	padding: 25px 30px 20px 30px;
+	border-top: 3px solid #e86240;
+	padding: 25px 30px 25px 30px;
 	background: #FFF;
 }
 

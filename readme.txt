@@ -9,8 +9,8 @@ Stable tag: 0.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-OnePress Theme, Copyright 2016 FameThemes
-OnePress is distributed under the terms of the GNU GPL
+Screenr Theme, Copyright 2016 FameThemes
+Screenr is distributed under the terms of the GNU GPL
 
 == Description ==
 
@@ -39,6 +39,7 @@ Big - Bold and stylish, Screenr is a multiuse fullscreen theme.
 * Parallax.js https://github.com/bfintal/Counter-Up, (C) 2015 PixelCog, Inc, [MIT](https://opensource.org/licenses/MIT)
 * FontAwesome http://fontawesome.io/, (C) Dave Gandy, [MIT](https://opensource.org/licenses/MIT)
 * Bootstrap https://github.com/twbs/bootstrap, (C) 2011-2016 Twitter, Inc. [MIT](https://opensource.org/licenses/MIT)
+* Image use in screenshot: https://www.pexels.com/photo/night-building-architecture-3766/. [CC0](https://creativecommons.org/publicdomain/zero/1.0/)
 
 == Changelog ==
 

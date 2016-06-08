@@ -33,3 +33,17 @@
         border-color: $primary;
     }
 }
+
+.slide_content {
+    .btn {
+        margin: 10px;
+    }
+    .btn-secondary-outline {
+        border-color: #FFF;
+        color: #FFF;
+        &:hover {
+            background: #FFFFFF;
+            color: #333333;
+        }
+    }
+}

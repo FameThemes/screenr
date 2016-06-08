@@ -34,17 +34,17 @@ class Screenr_Slider {
 
         return join( "\n", $slider_data );
     }
-    
+
 
     function render_item( $item ){
         // if has filter for this item
         if ( $html = apply_filters( 'screenr_slider_render_item', '', $item ) ) {
             return $html;
         }
-        
+
         $url = screenr_get_media_url( $item['media'] );
 
-        $html = '<div class="swiper-slide slide-align-'.esc_attr( $item['position'] ).' slide-'.esc_attr( $item['layout'] ).'" style="background-image: url(\''.esc_attr( $url ).'\')">';
+        $html = '<div class="swiper-slide slide-align-'.esc_attr( $item['position'] ).' slide_content slide_content_'.esc_attr( $item['layout'] ).'" style="background-image: url(\''.esc_attr( $url ).'\')">';
 
             $style  = '';
             if  ( $item['pd_top'] != '' ) {
