@@ -55,4 +55,4 @@ if ( is_array( $items ) && ! empty( $items ) ) {
     <?php } ?>
     <?php
     wp_reset_postdata();
-} ?>
+}
