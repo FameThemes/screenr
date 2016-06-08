@@ -81,7 +81,7 @@ function screenr_setup() {
 		'default-color' => 'ffffff',
 		'default-image' => '',
 	) ) );
-	
+
 }
 endif;
 add_action( 'after_setup_theme', 'screenr_setup' );
@@ -116,7 +116,7 @@ function screenr_widgets_init() {
 
 
 	register_sidebar( array(
-		'name'          => esc_html__( 'Footer 1', 'wp-coupon' ),
+		'name'          => esc_html__( 'Footer 1', 'screenr' ),
 		'id'            => 'footer-1',
 		'description'   => screenr_sidebar_desc( 'footer-1' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -125,7 +125,7 @@ function screenr_widgets_init() {
 		'after_title'   => '</h3>',
 	) );
 	register_sidebar( array(
-		'name'          => esc_html__( 'Footer 2', 'wp-coupon' ),
+		'name'          => esc_html__( 'Footer 2', 'screenr' ),
 		'id'            => 'footer-2',
 		'description'   => screenr_sidebar_desc( 'footer-2' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -134,7 +134,7 @@ function screenr_widgets_init() {
 		'after_title'   => '</h3>',
 	) );
 	register_sidebar( array(
-		'name'          => esc_html__( 'Footer 3', 'wp-coupon' ),
+		'name'          => esc_html__( 'Footer 3', 'screenr' ),
 		'id'            => 'footer-3',
 		'description'   => screenr_sidebar_desc( 'footer-3' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -143,7 +143,7 @@ function screenr_widgets_init() {
 		'after_title'   => '</h3>',
 	) );
 	register_sidebar( array(
-		'name'          => esc_html__( 'Footer 4', 'wp-coupon' ),
+		'name'          => esc_html__( 'Footer 4', 'screenr' ),
 		'id'            => 'footer-4',
 		'description'   => screenr_sidebar_desc( 'footer-4' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',

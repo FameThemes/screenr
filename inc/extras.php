@@ -604,7 +604,7 @@ function screenr_sidebar_desc( $sidebar_id ) {
     $footer_columns = absint( get_theme_mod( 'footer_layout', 4 ) );
 
     if ( $column > $footer_columns ) {
-        $desc = esc_html__( 'This widget area is currently disabled. You can enable it Customizer &rarr; Theme Options &rarr; Footer section.', 'wp-coupon' );
+        $desc = esc_html__( 'This widget area is currently disabled. You can enable it Customizer &rarr; Theme Options &rarr; Footer section.', 'screenr' );
     }
 
     return esc_html( $desc );

@@ -22,7 +22,7 @@ function screenr_customize_register( $wp_customize ) {
 
     $pages  =  get_pages();
     $option_pages = array();
-    $option_pages[0] = __( 'Select page', 'onepress' );
+    $option_pages[0] = __( 'Select page', 'screenr' );
     foreach( $pages as $p ){
         $option_pages[ $p->ID ] = $p->post_title;
     }

@@ -831,9 +831,6 @@
                 values = control.params.value;
             }
 
-            //if ( control.id == 'onepress_section_order_styling' ){
-           // console.log( control.params.value );
-            //}
 
             var max_item  = 0; // unlimited
             var limited_mg = control.params.limited_msg || '';
@@ -842,9 +839,8 @@
                 max_item = parseInt( control.params.max_item );
             }
 
-            if ( control.params.changeable === 'no' ) {
-                // control.container.addClass( 'no-changeable' );
-            }
+            //if ( control.params.changeable === 'no' ) {
+            //}
 
             /**
              * Toggle show/hide item
@@ -1046,7 +1042,7 @@
 
                     var format = $context.attr( 'data-title-format' ) || '';
                     // Custom for special ID
-                    if ( control.id === 'onepress_section_order_styling' ) {
+                    if ( control.id === 'screenr_section_order_styling' ) {
                         if ( $context.find( 'input.add_by').val() !== 'click' ) {
                             format = '[live_title]';
                         }
@@ -1078,7 +1074,7 @@
 
                             var format = $context.attr( 'data-title-format' ) || '';
                             // custom for special ID
-                            if ( control.id === 'onepress_section_order_styling' ) {
+                            if ( control.id === 'screenr_section_order_styling' ) {
                                 if ( $context.find( 'input.add_by').val() !== 'click' ) {
                                     format = '[live_title]';
                                 }
@@ -1191,7 +1187,7 @@
 
 
                 // Custom for special ID
-                if ( control.id === 'onepress_section_order_styling' ) {
+                if ( control.id === 'screenr_section_order_styling' ) {
                     if ( $context.find( 'input.add_by').val() !== 'click' ) {
                         $context.addClass( 'no-changeable' );
                         $( '.item-editor textarea', $context).addClass( 'editor-added' );

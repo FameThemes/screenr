@@ -158,10 +158,10 @@ function string_to_bool( v ) {
 ( function() {
 
     jQuery(window).resize(function(){
-        onepressParallax();
+        screenrParallax();
     });
 
-    function onepressParallax() {
+    function screenrParallax() {
         var isMobile = {
             Android: function() {
                 return navigator.userAgent.match(/Android/i);
