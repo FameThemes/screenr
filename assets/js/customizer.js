@@ -633,7 +633,6 @@
             }
             $context.addClass( 'conditionized' );
 
-
             $context.on( 'change condition_check', 'input, select, textarea', function( e ) {
                 var id =  $( this ).attr( 'data-live-id' ) || '';
 
@@ -728,12 +727,13 @@
             settings.editing_editor = $( '<div id="wrap-'+settings.editing_id+'" class="modal-wp-js-editor"><textarea id="'+settings.editor_id+'"></textarea></div>');
             var content = settings.editing_area.val();
             // Load default value
-            $( 'textarea', settings.editing_editor).val( content );
+            $( 'textarea', settings.editing_editor).val( content ).attr( 'data-editor-mod', settings.editing_area.attr( 'data-editor-mod' ) );
             settings.preview.html( window.switchEditors._wp_Autop( content ) );
 
             $( 'body' ).on( 'click', '#customize-controls, .customize-section-back', function( e ) {
                 if ( ! $( e.target ).is( settings.preview ) ) {
-                    /// e.preventDefault(); // Keep this AFTER the key filter above
+                    /// e.preventDefault();
+                    // Keep this AFTER the key filter above
                     settings.editing_editor.removeClass( 'wpe-active' );
                     $( '.wp-js-editor-preview').removeClass( 'wpe-focus' );
                 }
@@ -887,7 +887,6 @@
             control.getData = function ( ){
                 var f = $( '.form-data', control.container );
                 var data =  $( 'input, textarea, select', f ).serialize();
-                //console.log( data );
                 return  JSON.stringify( data ) ;
             };
 
@@ -896,7 +895,6 @@
              */
             control.updateValue = function(){
                 var data = control.getData();
-                //console.log( data );
                 $( "[data-hidden-value]", control.container ).val( data );
                 $( "[data-hidden-value]", control.container ).trigger( 'change' );
             };
@@ -1065,7 +1063,6 @@
                         if ( format !== '') {
                             v = format.replace('[live_title]', v);
                         }
-
 
                         $('.widget-title .live-title', $context).text( v );
 

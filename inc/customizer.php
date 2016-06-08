@@ -91,7 +91,7 @@ function screenr_customize_register( $wp_customize ) {
         array(
             'sanitize_callback' => 'sanitize_text_field',
             'default'           => 'default',
-            'active_callback'   => '', // function
+            //'active_callback'   => '', // function
             'type'              => 'option' // make this settings value can use in child theme.
         )
     );
@@ -390,8 +390,7 @@ function screenr_customize_register( $wp_customize ) {
         );
 
 
-        // Header background BG parallax
-        $wp_customize->add_setting( 'page_header_upsell', array() );
+        // Header upsell
         $wp_customize->add_control( new Screenr_Misc_Control(
                 $wp_customize,
                 'page_header_upsell',
@@ -669,12 +668,14 @@ function screenr_customize_register( $wp_customize ) {
                     'content_layout_1' => array(
                         'title' => esc_html__('Content layout 1', 'screenr'),
                         'type'  =>'editor',
+                        'mod'   =>'html',
                         'default' => '',
                         "required" => array( 'layout', '=', 'layout_1' )
                     ),
                     'content_layout_2' => array(
                         'title' => esc_html__('Content layout 2', 'screenr'),
                         'type'  =>'editor',
+                        'mod'   =>'html',
                         'default' => '',
                         "required" => array( 'layout', '=', 'layout_2' )
                     ),

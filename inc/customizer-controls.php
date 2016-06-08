@@ -718,7 +718,7 @@ class Screenr_Customize_Repeatable_Control extends WP_Customize_Control {
 
                                         <# } else if ( field.type == 'textarea' || field.type == 'editor' ) { #>
 
-                                            <textarea data-live-id="{{{ field.id }}}" data-repeat-name="_items[__i__][{{ field.id }}]">{{ field.value }}</textarea>
+                                            <textarea data-live-id="{{{ field.id }}}" data-editor-mod="{{ field.mod }}" data-repeat-name="_items[__i__][{{ field.id }}]">{{ field.value }}</textarea>
 
                                         <# }  else if ( field.type == 'icon'  ) { #>
                                             <div class="icon-wrapper">
