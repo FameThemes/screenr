@@ -256,7 +256,7 @@ function screenr_customize_register( $wp_customize ) {
     ));
 
 
-    
+
     //----------------------------------
     // Site Title Color
     $wp_customize->add_setting( 'logo_text_color',
@@ -2253,7 +2253,7 @@ add_action( 'customize_controls_enqueue_scripts', 'screenr_customize_controls_en
 
 
 /*------------------------------------------------------------------------*/
-/*  OnePress Sanitize Functions.
+/*  Screenr Sanitize Functions.
 /*------------------------------------------------------------------------*/
 
 function screenr_sanitize_file_url( $file_url ) {
