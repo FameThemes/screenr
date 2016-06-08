@@ -43,5 +43,5 @@ Big - Bold and stylish, Screenr is a multiuse fullscreen theme.
 
 == Changelog ==
 
-= 0.0.2 =
+= 1.0.1 =
 * Initial release
