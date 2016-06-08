@@ -81,15 +81,7 @@ function screenr_setup() {
 		'default-color' => 'ffffff',
 		'default-image' => '',
 	) ) );
-
-
-	add_theme_support( 'infinite-scroll', array(
-		'type'           => 'scroll',
-		'footer_widgets' => false,
-		'container'      => 'section-news-posts',
-	) );
-
-
+	
 }
 endif;
 add_action( 'after_setup_theme', 'screenr_setup' );
