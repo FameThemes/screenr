@@ -9,9 +9,10 @@ if ( is_array( $items ) && ! empty( $items ) ) {
     $title      = get_theme_mod( 'features_title' );
     $subtitle   = get_theme_mod( 'features_subtitle' );
     $desc       = get_theme_mod( 'features_desc' );
+    $classes    = 'section-features section-padding screenr-section section-padding-empty';
     if ( ! screenr_is_selective_refresh() ) {
     ?>
-    <section id="<?php echo esc_attr( get_theme_mod( 'features_id', 'features' ) ); ?>" class="section-features section-padding screenr-section section-padding-empty">
+    <section id="<?php echo esc_attr( get_theme_mod( 'features_id', 'features' ) ); ?>" class="<?php echo esc_attr( apply_filters( 'filter_section_class', $classes, 'features' ) ); ?>">
     <?php } ?>
         <?php
         if ( $title || $subtitle || $desc ) {

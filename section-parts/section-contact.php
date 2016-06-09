@@ -5,9 +5,10 @@ $subtitle   = get_theme_mod( 'contact_subtitle', __( 'Keep in touch', 'screenr' 
 $desc       = get_theme_mod( 'contact_desc', __( 'Fill out the form below and you will hear from us shortly.', 'screenr' ) );
 $content    = get_theme_mod( 'contact_content' );
 $items      = get_theme_mod( 'contact_items' );
+$classes = 'section-contact section-padding onepage-section section-meta';
 ?>
 <?php if ( ! screenr_is_selective_refresh() ) { ?>
-<section id="<?php echo esc_attr( get_theme_mod('contact_id', 'contact')); ?>" class="section-contact section-padding onepage-section section-meta">
+<section id="<?php echo esc_attr( get_theme_mod('contact_id', 'contact')); ?>" class="<?php echo esc_attr( apply_filters( 'filter_section_class', $classes, 'contact' ) ); ?>">
 <?php } ?>
     <div class="container">
         <?php if (  $title || $subtitle || $desc ) { ?>

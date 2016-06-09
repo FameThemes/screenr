@@ -28,9 +28,11 @@ switch ( $layout ) {
         break;
 }
 
+$classes = 'section-news section-padding';
+
 ?>
 <?php if ( ! screenr_is_selective_refresh() ) { ?>
-<section id="news" class="section-news section-padding">
+<section id="<?php get_theme_mod( 'news_id', 'news' ); ?>" class="<?php echo esc_attr( apply_filters( 'filter_section_class', $classes, 'news' ) ); ?>">
 <?php } ?>
     <div class="container">
         <?php if (  $title || $subtitle || $desc ) { ?>

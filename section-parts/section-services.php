@@ -9,9 +9,11 @@ if ( is_array( $items ) && ! empty( $items ) ) {
     if ( $layout == 0 ){
         $layout = 2;
     }
+
+    $classes = 'section-services section-padding section-meta screenr-section';
     ?>
     <?php if ( ! screenr_is_selective_refresh() ) { ?>
-    <section id="<?php echo esc_attr(get_theme_mod('services_id', 'services')); ?>" class="section-services section-padding section-meta screenr-section">
+    <section id="<?php echo esc_attr(get_theme_mod('services_id', 'services')); ?>" class="<?php echo esc_attr( apply_filters( 'filter_section_class', $classes, 'services' ) ); ?>">
     <?php } ?>
         <div class="container">
             <?php if (  $title || $subtitle || $desc ) { ?>
