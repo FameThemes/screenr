@@ -129,7 +129,7 @@ function screenr_customizer_partials( $wp_customize )
         
     );
 
-    $selective_refresh_keys = apply_filters( 'screenr_customizer_partials_selective_refresh_keys', $selective_refresh_keys );
+    $selective_refresh_keys = apply_filters( 'screenr_customizer_selective_refresh_sections', $selective_refresh_keys );
 
     foreach ( $selective_refresh_keys as $section ) {
         foreach ( $section['settings'] as $key ) {
