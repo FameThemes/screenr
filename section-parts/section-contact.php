@@ -8,7 +8,7 @@ $items      = get_theme_mod( 'contact_items' );
 $classes = 'section-contact section-padding onepage-section section-meta';
 ?>
 <?php if ( ! screenr_is_selective_refresh() ) { ?>
-<section id="<?php echo esc_attr( get_theme_mod('contact_id', 'contact')); ?>" class="<?php echo esc_attr( apply_filters( 'filter_section_class', $classes, 'contact' ) ); ?>">
+<section id="<?php echo esc_attr( get_theme_mod('contact_id', 'contact')); ?>" class="<?php echo esc_attr( apply_filters( 'screenr_section_class', $classes, 'contact' ) ); ?>">
 <?php } ?>
     <div class="container">
         <?php if (  $title || $subtitle || $desc ) { ?>

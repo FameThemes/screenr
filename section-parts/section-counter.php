@@ -12,7 +12,7 @@ if ( ! empty( $items ) ) {
     $classes = 'screenr-section section-counter section-padding section-padding-larger section-meta';
 if ( ! screenr_is_selective_refresh() ) {
 ?>
-<section id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( apply_filters( 'filter_section_class', $classes, 'contact' ) ); ?>">
+<section id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( apply_filters( 'screenr_section_class', $classes, 'contact' ) ); ?>">
 <?php } ?>
     <div class="container">
         <?php if ( $subtitle || $title || $desc ) {  ?>

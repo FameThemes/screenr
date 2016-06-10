@@ -11,7 +11,7 @@ if ( $page_id && ( $post = get_post( $page_id ) )) {
     $classes = 'screenr-section section-about section-padding section-padding-larger';
 ?>
 <?php if ( ! screenr_is_selective_refresh() ) { ?>
-<section id="<?php echo esc_attr( get_theme_mod( 'about_id', 'about' ) ); ?>" class="<?php echo esc_attr( apply_filters( 'filter_section_class', $classes, 'about' ) ); ?>">
+<section id="<?php echo esc_attr( get_theme_mod( 'about_id', 'about' ) ); ?>" class="<?php echo esc_attr( apply_filters( 'screenr_section_class', $classes, 'about' ) ); ?>">
 <?php } ?>
     <div class="container">
         <div class="row">

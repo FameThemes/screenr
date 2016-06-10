@@ -13,7 +13,7 @@ if ( is_array( $items ) && ! empty( $items ) ) {
     $classes = 'section-clients section-padding section-meta screenr-section';
     ?>
     <?php if ( ! screenr_is_selective_refresh() ) { ?>
-    <section id="<?php echo esc_attr( get_theme_mod( 'clients_id', 'clients' ) ); ?>" class="<?php echo esc_attr( apply_filters( 'filter_section_class', $classes, 'clients' ) ); ?>">
+    <section id="<?php echo esc_attr( get_theme_mod( 'clients_id', 'clients' ) ); ?>" class="<?php echo esc_attr( apply_filters( 'screenr_section_class', $classes, 'clients' ) ); ?>">
     <?php } ?>
         <div class="container">
             <?php if (  $title || $subtitle || $desc ) { ?>

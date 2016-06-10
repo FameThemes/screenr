@@ -13,7 +13,7 @@ if ( $video_url ) {
         ?>
         <div class="parallax-videolightbox parallax-window" data-over-scroll-fix="true" data-z-index="1" data-speed="0.3" data-image-src="<?php echo esc_url( $parallax_url ); ?>" data-parallax="scroll" data-position="center" data-bleed="0">
         <?php } ?>
-        <section id="<?php echo esc_attr( get_theme_mod( 'videolightbox_id', 'video' ) ); ?>" class="<?php echo esc_attr( apply_filters( 'filter_section_class', $classes, 'videolightbox' ) ); ?>">
+        <section id="<?php echo esc_attr( get_theme_mod( 'videolightbox_id', 'video' ) ); ?>" class="<?php echo esc_attr( apply_filters( 'screenr_section_class', $classes, 'videolightbox' ) ); ?>">
     <?php } ?>
 
             <div class="container">
