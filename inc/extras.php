@@ -470,6 +470,7 @@ function screenr_page_header_cover()
         'pd_bottom' => get_theme_mod( 'page_header_pdbottom' ) == '' ? 13 : get_theme_mod( 'page_header_pdbottom' ) ,
         'title'     => $title,
         'desc'      => $desc,
+        'image'     => $image,
     );
 
     $classes = array(
@@ -481,13 +482,16 @@ function screenr_page_header_cover()
         $classes[] = 'fixed';
     }
 
-    if ( $image ) {
+
+
+    $item = apply_filters( 'screenr_page_header_item', $item );
+
+    if ( $item['image'] ) {
         $classes[] = 'has-image';
     } else {
         $classes[] = 'no-image';
     }
 
-    $item = apply_filters( 'screenr_page_header_item', $item );
     $classes = apply_filters( 'screenr_page_header_cover_class', $classes );
 
     ?>
@@ -496,8 +500,8 @@ function screenr_page_header_cover()
             <div class="swiper-wrapper">
                 <?php
                 $style = "";
-                if ( $image ) {
-                    $style = ' style="background-image: url(\''.esc_url( $image ).'\');" ';
+                if ( $item['image'] ) {
+                    $style = ' style="background-image: url(\''.esc_url( $item['image'] ).'\');" ';
                 }
 
                 $html = '<div class="swiper-slide slide-align-'.esc_attr( $item['position'] ).'"'.$style.'>';

@@ -16,19 +16,6 @@ function screenr_customizer_partials( $wp_customize )
 
 
     $selective_refresh_keys = array(
-        // section slider
-        /*
-        array(
-            'id' => 'slider',
-            'settings' => array(
-                'slider_items',
-                'slider_overlay_color',
-                'slider_fullscreen',
-                'slider_pdtop',
-                'slider_pdbotom',
-            ),
-        ),
-        */
         // section features
         array(
             'id' => 'features',
@@ -132,16 +119,19 @@ function screenr_customizer_partials( $wp_customize )
     $selective_refresh_keys = apply_filters( 'screenr_customizer_selective_refresh_sections', $selective_refresh_keys );
 
     foreach ( $selective_refresh_keys as $section ) {
-        foreach ( $section['settings'] as $key ) {
-            if ( $wp_customize->get_setting( $key ) ) {
-                $wp_customize->get_setting( $key )->transport = 'postMessage';
+        if ( $section['id'] ) {
+            foreach ($section['settings'] as $key) {
+                if ($wp_customize->get_setting($key)) {
+                    $wp_customize->get_setting($key)->transport = 'postMessage';
+                }
             }
+
+            $wp_customize->selective_refresh->add_partial('section-' . $section['id'], array(
+                'selector' => '.section-' . $section['id'],
+                'settings' => $section['settings'],
+                'render_callback' => 'screenr_selective_refresh_render_section_content',
+            ));
         }
-        $wp_customize->selective_refresh->add_partial( 'section-'.$section['id'] , array(
-            'selector' => 'section.section-'.$section['id'],
-            'settings' => $section['settings'],
-            'render_callback' => 'screenr_selective_refresh_render_section_content',
-        ));
     }
 
     
@@ -179,7 +169,7 @@ function screenr_customizer_partials( $wp_customize )
 
 
 }
-add_action( 'customize_register', 'screenr_customizer_partials', 50 );
+add_action( 'customize_register', 'screenr_customizer_partials', 95 );
 
 /**
  * Selective render content
@@ -190,8 +180,12 @@ add_action( 'customize_register', 'screenr_customizer_partials', 50 );
 function screenr_selective_refresh_render_section_content( $partial, $container_context = array() ) {
     $tpl = 'section-parts/'.$partial->id.'.php';
     $GLOBALS['screenr_is_selective_refresh'] = true;
-    $file = locate_template( $tpl );
+    $file = apply_filters( 'screenr_selective_refresh_render_section_content_file', false,  $tpl, $partial, $container_context );
+    if ( ! $file ) {
+        $file = locate_template($tpl);
+    }
     if ( $file ) {
         include $file;
     }
+    do_action( 'screenr_selective_refresh_render_section_content', $file, $tpl, $partial, $container_context );
 }

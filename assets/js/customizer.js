@@ -1040,7 +1040,7 @@
 
                     var format = $context.attr( 'data-title-format' ) || '';
                     // Custom for special ID
-                    if ( control.id === 'screenr_section_order_styling' ) {
+                    if ( control.id === 'sections_order_styling' ) {
                         if ( $context.find( 'input.add_by').val() !== 'click' ) {
                             format = '[live_title]';
                         }
@@ -1071,7 +1071,7 @@
 
                             var format = $context.attr( 'data-title-format' ) || '';
                             // custom for special ID
-                            if ( control.id === 'screenr_section_order_styling' ) {
+                            if ( control.id === 'sections_order_styling' ) {
                                 if ( $context.find( 'input.add_by').val() !== 'click' ) {
                                     format = '[live_title]';
                                 }
@@ -1184,7 +1184,7 @@
 
 
                 // Custom for special ID
-                if ( control.id === 'screenr_section_order_styling' ) {
+                if ( control.id === 'sections_order_styling' ) {
                     if ( $context.find( 'input.add_by').val() !== 'click' ) {
                         $context.addClass( 'no-changeable' );
                         $( '.item-editor textarea', $context).addClass( 'editor-added' );

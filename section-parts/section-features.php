@@ -12,7 +12,7 @@ if ( is_array( $items ) && ! empty( $items ) ) {
     $classes    = 'section-features section-padding screenr-section section-padding-empty';
     if ( ! screenr_is_selective_refresh() ) {
     ?>
-    <section id="<?php echo esc_attr( get_theme_mod( 'features_id', 'features' ) ); ?>" class="<?php echo esc_attr( apply_filters( 'screenr_section_class', $classes, 'features' ) ); ?>">
+    <section id="<?php echo esc_attr( get_theme_mod( 'features_id', 'features' ) ); ?>" class="<?php echo esc_attr( apply_filters( 'filter_section_class', $classes, 'features' ) ); ?>">
     <?php } ?>
         <?php
         if ( $title || $subtitle || $desc ) {
