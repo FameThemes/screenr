@@ -59,6 +59,13 @@ class Screenr_Slider {
             $html .= '<div class="swiper-slide-intro">';
                 $html .= '<div class="swiper-intro-inner"'.$style.'>';
                     $content = isset( $item['content_'.$item['layout'] ] ) ? $item['content_'.$item['layout'] ] : '';
+                    if ( ! $content && $item['layout'] == 'layout_1' ) {
+                        $content = wp_kses_post(  '<h1><strong>Your business, your website</strong></h1>
+                                                    Screenr is a multiuse fullscreen WordPress theme.
+
+                                                    <a class="btn btn-lg btn-theme-primary" href="#features">Get Started</a><a class="btn btn-lg btn-secondary-outline" href="#contact">Contact Now</a>' );
+
+                    }
                     if ( $content ) {
                         $html .= apply_filters( 'the_content', $content );
                     }

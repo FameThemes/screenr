@@ -669,7 +669,11 @@ function screenr_customize_register( $wp_customize ) {
                         'title' => esc_html__('Content layout 1', 'screenr'),
                         'type'  =>'editor',
                         'mod'   =>'html',
-                        'default' => '',
+                        'default' => wp_kses_post( '<h1><strong>Your business, your website</strong></h1>
+                                                    Screenr is a multiuse fullscreen WordPress theme.
+
+                                                    <a class="btn btn-lg btn-theme-primary" href="#features">Get Started</a><a class="btn btn-lg btn-secondary-outline" href="#contact">Contact Now</a>'
+                        ),
                         "required" => array( 'layout', '=', 'layout_1' )
                     ),
                     'content_layout_2' => array(
