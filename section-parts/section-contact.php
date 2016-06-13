@@ -1,8 +1,8 @@
 <?php
 
-$title      = get_theme_mod( 'contact_title', __( 'Contact Us', 'screenr' ) );
-$subtitle   = get_theme_mod( 'contact_subtitle', __( 'Keep in touch', 'screenr' ) );
-$desc       = get_theme_mod( 'contact_desc', __( 'Fill out the form below and you will hear from us shortly.', 'screenr' ) );
+$title      = get_theme_mod( 'contact_title', esc_html__( 'Contact Us', 'screenr' ) );
+$subtitle   = get_theme_mod( 'contact_subtitle', esc_html__( 'Keep in touch', 'screenr' ) );
+$desc       = get_theme_mod( 'contact_desc', esc_html__( 'Fill out the form below and you will hear from us shortly.', 'screenr' ) );
 $content    = get_theme_mod( 'contact_content' );
 $items      = get_theme_mod( 'contact_items' );
 $classes = 'section-contact section-padding onepage-section section-meta';

@@ -22,7 +22,7 @@ function screenr_customize_register( $wp_customize ) {
 
     $pages  =  get_pages();
     $option_pages = array();
-    $option_pages[0] = __( 'Select page', 'screenr' );
+    $option_pages[0] = esc_html__( 'Select page', 'screenr' );
     foreach( $pages as $p ){
         $option_pages[ $p->ID ] = $p->post_title;
     }
@@ -2194,7 +2194,7 @@ function screenr_customize_register( $wp_customize ) {
                     'url' => array(
                         'title' => esc_html__('URL', 'screenr'),
                         'type'  =>'text',
-                        'desc'  => __('Custom url', 'screenr'),
+                        'desc'  => esc_html__('Custom url', 'screenr'),
                     ),
                 ),
             )
@@ -2221,7 +2221,7 @@ function screenr_customize_controls_enqueue_scripts(){
     wp_localize_script( 'customize-controls', 'C_Icon_Picker',
         apply_filters( 'c_icon_picker_js_setup',
             array(
-                'search'    => __( 'Search', 'screenr' ),
+                'search'    => esc_html__( 'Search', 'screenr' ),
                 'fonts' => array(
                     'font-awesome' => array(
                         // Name of icon

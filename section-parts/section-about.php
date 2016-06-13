@@ -2,9 +2,9 @@
 $page_id = get_theme_mod( 'about_page_id' );
 global $post;
 
-$title      = get_theme_mod( 'about_title', __( 'About us', 'screenr' ) );
+$title      = get_theme_mod( 'about_title', esc_html__( 'About us', 'screenr' ) );
 $subtitle   = get_theme_mod( 'about_subtitle' );
-$desc       = get_theme_mod( 'about_desc', __( 'We provide creative solutions that get attention and meaningful to clients around the world.', 'screenr' ) );
+$desc       = get_theme_mod( 'about_desc', esc_html__( 'We provide creative solutions that get attention and meaningful to clients around the world.', 'screenr' ) );
 
 if ( $page_id && ( $post = get_post( $page_id ) )) {
     setup_postdata( $post );

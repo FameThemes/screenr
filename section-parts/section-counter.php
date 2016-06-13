@@ -4,7 +4,7 @@ $items      = get_theme_mod( 'counter_items' );
 if ( ! empty( $items ) ) {
 
     $title      = get_theme_mod( 'counter_title' );
-    $subtitle   = get_theme_mod( 'counter_subtitle', __( 'Some Fun Facts about our agency?', 'screenr' ) );
+    $subtitle   = get_theme_mod( 'counter_subtitle', esc_html__( 'Some Fun Facts about our agency?', 'screenr' ) );
     $desc       = get_theme_mod( 'counter_desc' );
     $id         = get_theme_mod( 'counter_id', 'counter' );
     $layout     = absint( get_theme_mod( 'counter_layout', 3 ) );

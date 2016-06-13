@@ -45,7 +45,7 @@ function screenr_admin_notice() {
         $theme_data = wp_get_theme();
         ?>
         <div class="updated notice is-dismissible">
-            <p><?php printf( __( 'Welcome! Thank you for choosing %1$s! To fully take advantage of the best our theme can offer please make sure you visit our <a href="%2$s">Welcome page</a>', 'screenr' ),  $theme_data->Name, admin_url( 'themes.php?page=ft_screenr' )  ); ?></p>
+            <p><?php printf( esc_html__( 'Welcome! Thank you for choosing %1$s! To fully take advantage of the best our theme can offer please make sure you visit our <a href="%2$s">Welcome page</a>', 'screenr' ),  $theme_data->Name, admin_url( 'themes.php?page=ft_screenr' )  ); ?></p>
         </div>
         <?php
     }
@@ -182,7 +182,7 @@ function screenr_theme_info_page() {
                     <?php } ?>
                     <?php do_action( 'screenr_more_required_details', $actions ); ?>
                 <?php  } else { ?>
-                    <h3><?php  printf( __( 'Keep update with %s', 'screenr' ) , $theme_data->Name ); ?></h3>
+                    <h3><?php  printf( esc_html__( 'Keep update with %s', 'screenr' ) , $theme_data->Name ); ?></h3>
                     <p><?php _e( 'Hooray! There are no required actions for you right now.', 'screenr' ); ?></p>
                 <?php } ?>
             </div>

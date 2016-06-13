@@ -2,8 +2,8 @@
 $items = get_theme_mod( 'services_items' );
 
 if ( is_array( $items ) && ! empty( $items ) ) {
-    $title      = get_theme_mod( 'services_title', __( 'Our Services', 'screenr' ) );
-    $subtitle   = get_theme_mod( 'services_subtitle',__( 'Section subtitle', 'screenr' ) );
+    $title      = get_theme_mod( 'services_title', esc_html__( 'Our Services', 'screenr' ) );
+    $subtitle   = get_theme_mod( 'services_subtitle',esc_html__( 'Section subtitle', 'screenr' ) );
     $desc       = get_theme_mod( 'services_desc' );
     $layout     = absint( get_theme_mod( 'services_layout', 2 ) );
     if ( $layout == 0 ){

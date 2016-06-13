@@ -1,6 +1,6 @@
 <?php
-$title      = get_theme_mod( 'news_title', __( 'News', 'screenr' ) );
-$subtitle   = get_theme_mod( 'news_subtitle', __( 'Section subtitle', 'screenr' ) );
+$title      = get_theme_mod( 'news_title', esc_html__( 'News', 'screenr' ) );
+$subtitle   = get_theme_mod( 'news_subtitle', esc_html__( 'Section subtitle', 'screenr' ) );
 $desc       = get_theme_mod( 'news_desc' );
 
 $latest_posts = new WP_Query( array(
