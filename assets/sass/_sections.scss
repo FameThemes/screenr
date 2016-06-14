@@ -80,19 +80,20 @@
 	.section-title {
 		font-family: $font_heading;
 		font-size: 28px;
-		letter-spacing: -1px;
+		letter-spacing: 0px;
+		text-transform: uppercase;
 		font-weight: 600;
 		position: relative;
 		margin-bottom: 0px;
 		@include for(medium-screens) {
-			font-size: 40px;
+			font-size: 36px;
 		}
 	}
 	.section-subtitle {
 		font-size: 12px;
 		display: inline-block;
 		position: relative;
-		@include rem('margin', 0px 0px 2px 0px);
+		@include rem('margin', 0px 0px 10px 0px);
 		text-transform: uppercase;
 		letter-spacing: 2px;
 		// &:after {

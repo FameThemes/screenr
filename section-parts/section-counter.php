@@ -9,7 +9,7 @@ if ( ! empty( $items ) ) {
     $id         = get_theme_mod( 'counter_id', 'counter' );
     $layout     = absint( get_theme_mod( 'counter_layout', 3 ) );
 
-    $classes = 'screenr-section section-counter section-padding section-padding-larger section-meta';
+    $classes = 'screenr-section section-counter section-padding section-padding-lg section-meta';
 if ( ! screenr_is_selective_refresh() ) {
 ?>
 <section id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( apply_filters( 'screenr_section_class', $classes, 'contact' ) ); ?>">

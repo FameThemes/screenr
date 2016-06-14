@@ -2213,7 +2213,8 @@ input[type="radio"], input[type="checkbox"] {
 .section-title-area .section-title {
 	font-family: "Montserrat", Helvetica, Arial, sans-serif;
 	font-size: 28px;
-	letter-spacing: -1px;
+	letter-spacing: 0px;
+	text-transform: uppercase;
 	font-weight: 600;
 	position: relative;
 	margin-bottom: 0px;
@@ -2221,7 +2222,7 @@ input[type="radio"], input[type="checkbox"] {
 
 @media screen and (min-width: 940px) {
 	.section-title-area .section-title {
-		font-size: 40px;
+		font-size: 36px;
 	}
 }
 
@@ -2229,8 +2230,8 @@ input[type="radio"], input[type="checkbox"] {
 	font-size: 12px;
 	display: inline-block;
 	position: relative;
-	margin: 0px 0px 2px 0px;
-	margin:  0rem 0rem 0.125rem 0rem;
+	margin: 0px 0px 10px 0px;
+	margin:  0rem 0rem 0.625rem 0rem;
 	text-transform: uppercase;
 	letter-spacing: 2px;
 }
