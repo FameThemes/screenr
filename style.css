@@ -1256,6 +1256,10 @@ input[type="radio"], input[type="checkbox"] {
 	color: #e86240;
 }
 
+.site-footer table > thead > tr > th, .site-footer table > tbody > tr > th, .site-footer table > tfoot > tr > th, .site-footer table > thead > tr > td, .site-footer table > tbody > tr > td, .site-footer table > tfoot > tr > td {
+	border-color: rgba(255, 255, 255, 0.1);
+}
+
 .site-footer .footer-connect {
 	padding: 90px 0px;
 	padding: 80px 0px;
@@ -2814,6 +2818,10 @@ input[type="radio"], input[type="checkbox"] {
 
 /* Section: Services
 ------------------------------*/
+.services-content p {
+	color: #777777;
+}
+
 .services-content .card {
 	margin-top: 20px;
 	margin-bottom: 10px;
@@ -2885,6 +2893,7 @@ input[type="radio"], input[type="checkbox"] {
 	border-top: 3px solid #e86240;
 	padding: 25px 30px 25px 30px;
 	background: #FFF;
+	color: #777777;
 }
 
 .section-news .entry-grid-title {

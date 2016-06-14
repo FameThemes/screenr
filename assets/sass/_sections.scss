@@ -628,6 +628,9 @@
 /* Section: Services
 ------------------------------*/
 .services-content {
+	p {
+		color: $text;
+	}
 	.card {
 		margin-top: 20px;
 		margin-bottom: 10px;
@@ -703,6 +706,7 @@
 		border-top: 3px solid $primary;
 		padding: 25px 30px 25px 30px;
 		background: #FFF;
+		color: $text;
 
 	}
 	.entry-grid-title {
