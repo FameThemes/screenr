@@ -754,6 +754,11 @@
 
 /* Section: Clients
 ------------------------------*/
+.section-clients {
+	.section-title-area {
+		margin-bottom: 10px;
+	}
+}
 .clients-wrapper {
 	&:after {
 		@include clearfix();

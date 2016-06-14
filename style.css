@@ -2941,6 +2941,10 @@ input[type="radio"], input[type="checkbox"] {
 
 /* Section: Clients
 ------------------------------*/
+.section-clients .section-title-area {
+	margin-bottom: 10px;
+}
+
 .clients-wrapper {
 	margin-left: -15px;
 	margin-right: -15px;
