@@ -330,7 +330,13 @@ jQuery( document ).ready( function( $ ){
 	}
 
 	function get_header_top_height(){
-		return ( jQuery('#wpadminbar').height() || 0 ) + ( jQuery('.site-header.sticky-header').height() || 0  );
+		var hh = ( jQuery('#wpadminbar').height() || 0 ) + ( jQuery('.site-header.sticky-header').height() || 0  );
+        if ( $( '#masthead.site-header').hasClass( 'transparent' ) ){
+            if ( $( window ).scrollTop() == 0 ) {
+                hh -= 15;
+            }
+        }
+        return  hh;
 	}
 
     // Add active class to menu when scroll to active section.
@@ -348,7 +354,6 @@ jQuery( document ).ready( function( $ ){
 		jQuery( window ).scroll(function () {
 			var currentNode = null;
 			var header_top_height = get_header_top_height();
-
 			jQuery('.site-main section').each(function () {
 				var s = $(this);
 				var currentId = s.attr('id') || '';
@@ -391,7 +396,7 @@ jQuery( document ).ready( function( $ ){
         }
 		var header_top_height = get_header_top_height();
         jQuery("html, body").animate({
-            scrollTop: ( jQuery( urlhash ).offset().top - header_top_height + 10 ) + "px"
+            scrollTop: ( jQuery( urlhash ).offset().top - header_top_height + 3 ) + "px"
         }, {
             duration: 800,
             easing: "swing"
