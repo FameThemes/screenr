@@ -780,6 +780,12 @@ jQuery( document ).ready( function( $ ){
 } );
 
 
+// Video
+jQuery( document ).ready( function( $ ){
+    jQuery('.site-content').fitVids();
+} );
+
+
 // Ajax load more posts
 jQuery( document ).ready( function( $ ){
 	$( 'body' ).on( 'click', '.content-grid-loadmore.blt-ajax', function( e ){

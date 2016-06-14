@@ -167,8 +167,8 @@ function screenr_scripts() {
 	wp_enqueue_style( 'screenr-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'jquery' );
+    wp_enqueue_script( 'screenr-plugin', get_template_directory_uri() . '/assets/js/plugin.js', array( 'jquery' ), '4.0.0', true );
 	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array(), '4.0.0', true );
-	wp_enqueue_script( 'screenr-plugin', get_template_directory_uri() . '/assets/js/plugin.js', array( 'jquery' ), '4.0.0', true );
 	wp_enqueue_script( 'screenr-theme', get_template_directory_uri() . '/assets/js/theme.js', array( 'jquery' ), '20120206', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
