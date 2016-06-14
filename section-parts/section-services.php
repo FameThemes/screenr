@@ -73,28 +73,6 @@ if ( is_array( $items ) && ! empty( $items ) ) {
                     <div class="<?php echo esc_attr( $classes ); ?>">
                         <?php
                         switch( $item['thumb_type'] ) {
-
-                            case 'image_overlay':
-                                ?>
-                                <div class="card card-inverse service__media">
-                                    <?php
-                                    if ( has_post_thumbnail() ) {
-                                        the_post_thumbnail('screenr-blog-grid', array('class' => 'card-img', 'width' => '', 'height' => ''));
-                                    }
-                                    ?>
-                                    <div class="card-img-overlay">
-                                        <div class="service-card-content">
-                                            <h3 class="card-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                                            <div class="card-text"><?php the_excerpt(); ?></div>
-                                        </div>
-                                        <?php if ( $item['readmore'] ){
-                                            ?>
-                                            <a href="<?php the_permalink(); ?>" class="service-button"><?php echo $text; ?></a>
-                                        <?php } ?>
-                                    </div>
-                                </div>
-                                <?php
-                                break;
                             case 'icon':
                                 ?>
                                 <div class="card card-block service__media-icon">
@@ -120,6 +98,10 @@ if ( is_array( $items ) && ! empty( $items ) ) {
                                     <div class="service-card-content">
                                         <h3 class="card-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
                                         <p class="card-text"><?php the_excerpt(); ?></p>
+                                        <?php if ( $item['readmore'] ){
+                                            ?>
+                                            <a href="<?php the_permalink(); ?>" class="service-button"><?php echo $text; ?></a>
+                                        <?php } ?>
                                     </div>
                                 </div>
                                 <?php

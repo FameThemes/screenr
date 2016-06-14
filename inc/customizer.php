@@ -1297,7 +1297,6 @@ function screenr_customize_register( $wp_customize ) {
                         'type'  =>'select',
                         'options' => array(
                             'image_top'      => esc_html__('Featured image top', 'screenr'),
-                            'image_overlay'  => esc_html__('Featured image overlay', 'screenr'),
                             'icon'           => esc_html__('Font icon', 'screenr'),
                             'no_thumb'       => esc_html__('No thumbnail', 'screenr'),
                         )
