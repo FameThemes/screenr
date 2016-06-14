@@ -621,9 +621,9 @@ function screenr_sidebar_desc( $sidebar_id ) {
 function screenr_footer_credits(){
     ?>
     <div class="site-info">
-        <a href="<?php echo esc_url( esc_html__( 'https://wordpress.org/', 'screenr' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'screenr' ), 'WordPress' ); ?></a>
-        <span class="sep"> | </span>
-        <?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'screenr' ), 'screenr', '<a href="https://www.famethemes.com" rel="designer">FameThemes</a>' ); ?>
+        <?php printf(esc_html__('Copyright %1$s %2$s %3$s', 'screenr'), '&copy;', esc_attr(date('Y')), esc_attr(get_bloginfo())); ?>
+        <span class="sep"> &ndash; </span>
+        <?php printf(esc_html__('%1$s theme by %2$s', 'screenr'), '<a href="' . esc_url('https://www.famethemes.com/themes/screenr', 'screenr') . '">Screenr</a>', 'FameThemes'); ?>
     </div><!-- .site-info -->
     <?php
 }
