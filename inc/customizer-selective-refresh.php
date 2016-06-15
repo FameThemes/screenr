@@ -126,10 +126,13 @@ function screenr_customizer_partials( $wp_customize )
                 }
             }
 
+            $func_name = isset( $section['callback'] ) ? $section['callback']: 'screenr_selective_refresh_render_section_content';
+            $selector = isset( $section['selector']  ) ? $section['selector'] : '.section-' . $section['id'] ;
+
             $wp_customize->selective_refresh->add_partial('section-' . $section['id'], array(
-                'selector' => '.section-' . $section['id'],
+                'selector' => $selector,
                 'settings' => $section['settings'],
-                'render_callback' => 'screenr_selective_refresh_render_section_content',
+                'render_callback' => $func_name,
             ));
         }
     }
