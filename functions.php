@@ -184,6 +184,7 @@ function screenr_scripts() {
             'is_home_front_page' => ( is_page_template( 'template-frontpage.php' ) && is_front_page() ) ? 1 : 0,
             'autoplay'           => 7000,
             'speed'              => 700,
+            'effect'             => 'slide',
         )
     ) );
 

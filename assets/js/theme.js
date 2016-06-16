@@ -495,7 +495,7 @@ jQuery( document ).ready( function( $ ){
 		//preloadImages: false,
 		autoplay: string_to_number( Screenr.autoplay ),
 		speed:  string_to_number( Screenr.speed ) ,
-		effect: 'slide', // "slide", "fade", "cube", "coverflow" or "flip"
+		effect: Screenr.effect, // "slide", "fade", "cube", "coverflow" or "flip"
 		//direction: 'vertical',
 		pagination: '.swiper-pagination',
 		paginationClickable: true,
