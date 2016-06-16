@@ -4,6 +4,9 @@ function string_to_number( string ) {
 	}
 	if ( typeof string === 'string' ) {
 		var n = string.match(/[^\d\.]+$/);
+        if ( ! n ) {
+            n = string.match(/[\d\.]+$/);
+        }
 		if (n) {
 			return parseFloat(n[0]);
 		} else {
@@ -479,8 +482,10 @@ jQuery( document ).ready( function( $ ){
 		set_slider_padding();
 	} );
 
+
     var slider_number_item = $( '.swiper-slider .swiper-slide').length;
 	var autoplay = $( '.swiper-container' ).data( 'autoplay' ) || 0;
+
 	var swiper = new Swiper('.swiper-container', {
 		// Disable preloading of all images
 		preloadImages: false,
@@ -488,8 +493,8 @@ jQuery( document ).ready( function( $ ){
 		// Enable lazy loading
 		lazyLoading: true,
 		//preloadImages: false,
-		autoplay: autoplay,
-		speed:  700,
+		autoplay: string_to_number( Screenr.autoplay ),
+		speed:  string_to_number( Screenr.speed ) ,
 		effect: 'slide', // "slide", "fade", "cube", "coverflow" or "flip"
 		//direction: 'vertical',
 		pagination: '.swiper-pagination',
@@ -511,50 +516,60 @@ jQuery( document ).ready( function( $ ){
             if ( ! is_video_support ) {
 				return;
 			}
+            // Need to pause all videos in the slider
+            swiper.slides.each(function (index, _slide) {
+                if ( $('video', _slide ).length > 0 ) {
+                    $('video', _slide ).each(function () {
+                        var v = $(this);
+                        try {
 
-			if ( $( 'video',slide ).length > 0 ) {
-				var v = $('video', slide ).eq(0);
-				//if ( slider.vars.slideshow ) {
-				if ( v[0].readyState >= 2 ) {
-					swiper.stopAutoplay();
-					v[0].currentTime = 0;
-					v[0].play();
-				}
-			}
+                            v[0].currentTime = 0;
+                            v[0].pause();
+
+                            if ( v[0].readyState >= 2 ) {
+                            }
+
+                            v.on( 'ended', function(){
+                                if ( slider_number_item === 1 ) {
+                                    v[0].pause();
+                                    v[0].currentTime = 0;
+                                    v[0].play();
+                                } else {
+                                    v[0].pause();
+                                    v[0].currentTime = 0;
+                                    swiper.slideNext();
+                                    swiper.startAutoplay();
+                                }
+                            } );
+
+                        } catch ( e ){
+
+                        }
+
+                    });
+                }
+            });
+
+            if ( $('video', slide).length > 0 ) {
+                var v = $('video', slide).eq(0);
+                try {
+                    swiper.stopAutoplay();
+                    v[0].currentTime = 0;
+                    v[0].play();
+                } catch ( e ){
+
+                }
+            }
+
 		},
         onSlideChangeStart: function( swiper ) {
+            var slide = swiper.slides[ swiper.activeIndex ];
 
-            var slide = swiper.slides[swiper.activeIndex];
+            // Current number slide
             var n = $( slide ).attr( 'data-swiper-slide-index' ) || 0;
             n = parseInt( n );
             $( '.slide-current').text( n + 1 );
 
-			if ( ! is_video_support ) {
-				return;
-			}
-
-			// Need to pause all videos in the slider
-			swiper.slides.each(function (index, slide) {
-
-				if ($('video', slide).length > 0) {
-					$('video', slide).each(function () {
-						var v = $(this);
-						if ( v[0].readyState >= 2 ) {
-							v[0].pause();
-						}
-					});
-				}
-			});
-
-			if ($('video', slide).length > 0) {
-				var v = $('video', slide).eq(0);
-                //console.log( 'Video Rate: '+ v[0].readyState );
-				if ( v[0].readyState >= 2 ) {
-					swiper.stopAutoplay();
-					v[0].currentTime = 0;
-					v[0].play();
-				}
-			}
 		},
 		onSlideChangeEnd: function( swiper ){
 			var slide = swiper.slides[swiper.activeIndex];
@@ -564,41 +579,47 @@ jQuery( document ).ready( function( $ ){
 			});
 
 			$( slide).addClass( 'activated' );
+
+            if ( ! is_video_support ) {
+                return;
+            }
+
+            // Need to pause all videos in the slider
+            swiper.slides.each(function (index, slide) {
+                if ($('video', slide).length > 0) {
+                    $('video', slide).each(function () {
+                        var v = $(this);
+                        try {
+                            v[0].currentTime = 0;
+                            v[0].pause();
+                        } catch ( e ){
+
+                        }
+                    });
+                }
+            });
+
+            if ( $('video', slide).length > 0 ) {
+                var v = $('video', slide).eq(0);
+                //v[0].readyState >= 2
+                try {
+                    swiper.stopAutoplay();
+                    v[0].currentTime = 0;
+                    v[0].play();
+                } catch ( e ){
+
+                }
+            }
 		}
 
 	});
 
-    if ( $( '.swiper-slider video').length > 0 ) {
-        // swiper-pagination
-        if ( slider_number_item === 1 ) {
-            $( '.swiper-slider .swiper-pagination').hide();
-        }
 
-        $( '.swiper-slider video').on( 'timeupdate', function(){
-            var v = $( this ) .eq(0);
-            if ( v[0].readyState >= 2 ) {
-                v.on('timeupdate', function () {
-
-                    var currentPos = v[0].currentTime; //Get currenttime
-                    var maxduration = v[0].duration; //Get video duration
-                    if (currentPos >= maxduration) {
-                        //console.log( slider_number_item );
-                        if ( slider_number_item === 1 ) {
-                            //v[0].pause();
-                            //v[0].currentTime = 0;
-                           // v[0].play();
-                        } else {
-                            v[0].pause();
-                            swiper.slideNext();
-                            swiper.startAutoplay();
-                        }
-                    }
-                    //var percentage = 100 * currentPos / maxduration; //in %
-                });
-            }
-
-        } );
+    // Hide pagination if have 1 slide
+    if ( slider_number_item === 1 ) {
+        $( '.swiper-slider .swiper-pagination').hide();
     }
+
 
     //hover on button
     $( '.swiper-button-prev, .swiper-button-next').hover( function(){

@@ -175,12 +175,16 @@ function screenr_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
-    wp_localize_script( 'jquery', 'Screenr', array(
-        'ajax_url' 			 => admin_url( 'admin-ajax.php' ),
-        'full_screen_slider' => ( get_theme_mod( 'slider_fullscreen' ) ) ? true : false,
-        'header_layout' 	 => get_option( 'header_layout' ),
-        'slider_parallax' 	 => get_theme_mod( 'slider_parallax', 1 ),
-        'is_home_front_page' => ( is_page_template( 'template-frontpage.php' ) && is_front_page() ) ? 1 : 0,
+    wp_localize_script( 'jquery', 'Screenr', apply_filters( 'screenr_localize_script',
+        array(
+            'ajax_url' 			 => admin_url( 'admin-ajax.php' ),
+            'full_screen_slider' => ( get_theme_mod( 'slider_fullscreen' ) ) ? true : false,
+            'header_layout' 	 => get_option( 'header_layout' ),
+            'slider_parallax' 	 => get_theme_mod( 'slider_parallax', 1 ),
+            'is_home_front_page' => ( is_page_template( 'template-frontpage.php' ) && is_front_page() ) ? 1 : 0,
+            'autoplay'           => 1000,
+            'speed'              => 700,
+        )
     ) );
 
 }
