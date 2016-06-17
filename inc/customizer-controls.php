@@ -701,7 +701,7 @@ class Screenr_Customize_Repeatable_Control extends WP_Customize_Control {
                                                 <div class="container">
                                                     <div class="attachment-media-view attachment-media-view-image landscape">
                                                         <div class="thumbnail thumbnail-image">
-                                                            <# if ( field.value.url !== '' ){ #>
+                                                            <# if ( field.value && field.value.url ){ #>
                                                                 <#
                                                                 var ext = field.value.url.substr( field.value.url.lastIndexOf('.') + 1);
                                                                 if ( ext == 'mp4' || ext == 'ogv' || ext == 'webm' ) { #>
