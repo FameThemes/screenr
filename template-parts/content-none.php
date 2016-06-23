@@ -18,7 +18,7 @@
 		<?php
 		if ( is_home() && current_user_can( 'publish_posts' ) ) : ?>
 
-			<p><?php printf( wp_kses( esc_html__( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'screenr' ), array( 'a' => array( 'href' => array() ) ) ), esc_url( admin_url( 'post-new.php' ) ) ); ?></p>
+			<p><?php printf( esc_html__( 'Ready to publish your first post? %1$s.', 'screenr' ) , '<a href="'.esc_url( admin_url( 'post-new.php' ).'">'.esc_html__( 'Get started here', 'screenr' ).'</a>' ) ); ?></p>
 
 		<?php elseif ( is_search() ) : ?>
 
