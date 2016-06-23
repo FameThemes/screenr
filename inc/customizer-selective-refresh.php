@@ -90,7 +90,7 @@ function screenr_customizer_partials( $wp_customize )
                 'news_more_link',
             ),
         ),
-        // section news
+        // section contact
         array(
             'id' => 'contact',
             'settings' => array(
@@ -99,7 +99,6 @@ function screenr_customizer_partials( $wp_customize )
                 'contact_desc',
                 'contact_content',
                 'contact_items',
-                'contact_layout',
             ),
         ),
         // section clients
@@ -118,22 +117,26 @@ function screenr_customizer_partials( $wp_customize )
 
     $selective_refresh_keys = apply_filters( 'screenr_customizer_selective_refresh_sections', $selective_refresh_keys );
 
-    foreach ( $selective_refresh_keys as $section ) {
-        if ( $section['id'] ) {
-            foreach ($section['settings'] as $key) {
+    foreach ( $selective_refresh_keys as $onepage_section ) {
+        if ( $onepage_section['id'] ) {
+            foreach ($onepage_section['settings'] as $index => $key) {
                 if ($wp_customize->get_setting($key)) {
                     $wp_customize->get_setting($key)->transport = 'postMessage';
+                } else {
+                    // remove not existing setting
+                    unset( $onepage_section['settings'][ $index ] );
                 }
             }
 
-            $func_name = isset( $section['callback'] ) ? $section['callback']: 'screenr_selective_refresh_render_section_content';
-            $selector = isset( $section['selector']  ) ? $section['selector'] : '.section-' . $section['id'] ;
+            $func_name = isset( $onepage_section['callback'] ) ? $onepage_section['callback']: 'screenr_selective_refresh_render_section_content';
+            $selector = isset( $onepage_section['selector']  ) ? $onepage_section['selector'] : 'section.section-' . $onepage_section['id'] ;
 
-            $wp_customize->selective_refresh->add_partial('section-' . $section['id'], array(
+            $wp_customize->selective_refresh->add_partial('section-' . $onepage_section['id'], array(
                 'selector' => $selector,
-                'settings' => $section['settings'],
+                'settings' => $onepage_section['settings'],
                 'render_callback' => $func_name,
             ));
+
         }
     }
 
@@ -157,9 +160,11 @@ function screenr_customizer_partials( $wp_customize )
         'footer_copyright_color',
     );
 
-    foreach ( $custom_css as $key ) {
+    foreach ( $custom_css as $index => $key ) {
         if ( $wp_customize->get_setting( $key ) ) {
             $wp_customize->get_setting( $key )->transport = 'postMessage';
+        } else {
+            unset( $custom_css[ $index ] );
         }
     }
 
@@ -168,8 +173,6 @@ function screenr_customizer_partials( $wp_customize )
         'settings' => $custom_css,
         'render_callback' => 'screenr_custom_style',
     ));
-
-
 
 }
 add_action( 'customize_register', 'screenr_customizer_partials', 95 );

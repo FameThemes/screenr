@@ -66,11 +66,11 @@
      *
      * @param {api.selectiveRefresh.Placement} placement
      */
-    wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function( placement ) {
+   //wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function( placement ) {
         //$( window ).resize();
         //console.log( placement );
         //$( '.swiper-slider' ).trigger( 'preview_event_changed' );
-    } );
+    //} );
 
 
 } )( jQuery );
