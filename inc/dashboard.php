@@ -145,7 +145,7 @@ function screenr_theme_info_page() {
                             <a title="<?php  esc_attr_e( 'Dismiss', 'screenr' ); ?>" class="dismiss" href="<?php echo add_query_arg( array( 'screenr_action_dismiss' => 'page_on_front' ), $current_action_link ); ?>"><span class="dashicons dashicons-dismiss"></span></a>
                             <h3><?php esc_html_e( 'Switch "Front page displays" to "A static page"', 'screenr' ); ?></h3>
                             <div class="about">
-                                <p><?php _e( 'In order to have the one page look for your website, please go to Customize -&gt; Static Front Page and switch "Front page displays" to "A static page".', 'screenr' ); ?></p>
+                                <p><?php esc_html_e( 'In order to have the one page look for your website, please go to Customize -&gt; Static Front Page and switch "Front page displays" to "A static page".', 'screenr' ); ?></p>
                             </div>
                             <p>
                                 <a  href="<?php echo admin_url('options-reading.php'); ?>" class="button"><?php esc_html_e('Setup front page displays', 'screenr'); ?></a>
@@ -183,7 +183,7 @@ function screenr_theme_info_page() {
                     <?php do_action( 'screenr_more_required_details', $actions ); ?>
                 <?php  } else { ?>
                     <h3><?php  printf( esc_html__( 'Keep update with %s', 'screenr' ) , $theme_data->Name ); ?></h3>
-                    <p><?php _e( 'Hooray! There are no required actions for you right now.', 'screenr' ); ?></p>
+                    <p><?php esc_html_e( 'Hooray! There are no required actions for you right now.', 'screenr' ); ?></p>
                 <?php } ?>
             </div>
         <?php } ?>
