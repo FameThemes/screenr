@@ -159,6 +159,14 @@
 
 }
 
+.transparent {
+	.site-title,
+	.site-title a,
+	.site-description {
+		color: #fff;
+	}
+}
+
 .header-social {
     margin-left: 0px;
     @include for(medium-screens) {

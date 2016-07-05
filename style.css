@@ -819,6 +819,12 @@ input[type="radio"], input[type="checkbox"] {
 	color: #333333;
 }
 
+.transparent .site-title,
+.transparent .site-title a,
+.transparent .site-description {
+	color: #fff;
+}
+
 .header-social {
 	margin-left: 0px;
 	float: right;
