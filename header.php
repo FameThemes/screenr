@@ -69,4 +69,4 @@
 		</div>
 	</header><!-- #masthead -->
 <?php
-do_action( 'after_site_header' );
+do_action( 'screenr_after_site_header' );

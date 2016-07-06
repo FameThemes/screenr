@@ -538,7 +538,7 @@ function screenr_page_header_cover()
     <?php
 }
 
-add_action( 'after_site_header', 'screenr_page_header_cover' );
+add_action( 'screenr_after_site_header', 'screenr_page_header_cover' );
 
 
 
