@@ -109,7 +109,7 @@ function screenr_theme_info_page() {
                             <h3><?php esc_html_e( 'Theme Customizer', 'screenr' ); ?></h3>
                             <p class="about"><?php printf(esc_html__('%s supports the Theme Customizer for all theme settings. Click "Customize" to start customize your site.', 'screenr'), $theme_data->Name); ?></p>
                             <p>
-                                <a href="<?php echo admin_url('customize.php'); ?>" class="button button-primary"><?php esc_html_e('Start Customize', 'screenr'); ?></a>
+                                <a href="<?php echo esc_url( admin_url('customize.php') ); ?>" class="button button-primary"><?php esc_html_e('Start Customize', 'screenr'); ?></a>
                             </p>
                         </div>
                         <div class="theme_link">
@@ -148,7 +148,7 @@ function screenr_theme_info_page() {
                                 <p><?php esc_html_e( 'In order to have the one page look for your website, please go to Customize -&gt; Static Front Page and switch "Front page displays" to "A static page".', 'screenr' ); ?></p>
                             </div>
                             <p>
-                                <a  href="<?php echo admin_url('options-reading.php'); ?>" class="button"><?php esc_html_e('Setup front page displays', 'screenr'); ?></a>
+                                <a  href="<?php echo esc_url( admin_url('options-reading.php') ); ?>" class="button"><?php esc_html_e('Setup front page displays', 'screenr'); ?></a>
                             </p>
                         </div>
                     <?php } ?>
@@ -166,14 +166,13 @@ function screenr_theme_info_page() {
                                 $front_page = get_option( 'page_on_front' );
                                 if ( $front_page <= 0  ) {
                                     ?>
-                                    <a  href="<?php echo admin_url('options-reading.php'); ?>" class="button"><?php esc_html_e('Setup front page displays', 'screenr'); ?></a>
+                                    <a  href="<?php echo esc_url( admin_url('options-reading.php') ); ?>" class="button"><?php esc_html_e('Setup front page displays', 'screenr'); ?></a>
                                     <?php
-
                                 }
 
                                 if ( $front_page > 0 && get_post_meta( $front_page, '_wp_page_template', true ) != 'template-frontpage.php' ) {
                                     ?>
-                                    <a href="<?php echo get_edit_post_link( $front_page ); ?>" class="button"><?php esc_html_e('Change homepage page template', 'screenr'); ?></a>
+                                    <a href="<?php echo esc_url( get_edit_post_link( $front_page ) ); ?>" class="button"><?php esc_html_e('Change homepage page template', 'screenr'); ?></a>
                                     <?php
                                 }
                                 ?>

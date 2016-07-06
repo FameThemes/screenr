@@ -2285,7 +2285,7 @@ function screenr_hero_fullscreen_callback ( $control ) {
 
 
 function screenr_sanitize_number( $input ) {
-    return balanceTags( $input );
+    return absint( $input );
 }
 
 function screenr_sanitize_hex_color( $color ) {

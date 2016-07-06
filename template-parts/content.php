@@ -33,7 +33,7 @@
 	</div><!-- .entry-content -->
 	
 	<div class="entry-more">
-		<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="btn btn-theme-primary"><?php esc_html_e( 'read more', 'screenr' ); ?><i aria-hidden="true" class="fa fa-chevron-right"></i></a>
+		<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" class="btn btn-theme-primary"><?php esc_html_e( 'read more', 'screenr' ); ?><i aria-hidden="true" class="fa fa-chevron-right"></i></a>
 	</div>
 
 </article><!-- #post-## -->

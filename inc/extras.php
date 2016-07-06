@@ -116,7 +116,7 @@ if ( $layout != 'transparent' ) {
     if ( $header_bg_color ) {
         ?>
         .site-header, .is-fixed .site-header.header-fixed.transparent {
-            background: #<?php echo $header_bg_color; ?>;
+            background: #<?php echo esc_attr( $header_bg_color ); ?>;
             border-bottom: 0px none;
         }
     <?php
@@ -129,7 +129,7 @@ if ( $layout != 'transparent' ) {
     if ( $menu_color ) {
         ?>
         .nav-menu > li > a{
-            color: #<?php echo $menu_color; ?>;
+            color: #<?php echo esc_attr( $menu_color ); ?>;
         }
 
         <?php
@@ -143,7 +143,7 @@ if ( $layout != 'transparent' ) {
         ?>
         .nav-menu > li > a:hover,
         .nav-menu > li.current-menu-item > a {
-            color: #<?php echo $menu_hover_color; ?>;
+            color: #<?php echo esc_attr( $menu_hover_color ); ?>;
             -webkit-transition: all 0.5s ease-in-out;
             -moz-transition: all 0.5s ease-in-out;
             -o-transition: all 0.5s ease-in-out;
@@ -165,7 +165,7 @@ if ( $layout != 'transparent' ) {
 
             .nav-menu > li > a:hover,
             .nav-menu > li.current-menu-item > a {
-                background: #<?php echo $menu_hover_bg; ?>;
+                background: #<?php echo esc_attr( $menu_hover_bg ); ?>;
                 -webkit-transition: all 0.5s ease-in-out;
                 -moz-transition: all 0.5s ease-in-out;
                 -o-transition: all 0.5s ease-in-out;
@@ -187,7 +187,7 @@ if ( $layout != 'transparent' ) {
     if ( $header_bg_color ) {
     ?>
     .site-header.header-fixed.transparent {
-        background-color: <?php echo $header_bg_color; ?>;
+        background-color: <?php echo esc_attr( $header_bg_color ); ?>;
         border-bottom: 0px none;
     }
     <?php
@@ -202,7 +202,7 @@ if ( $layout != 'transparent' ) {
         .nav-menu > li > a,
         .no-scroll .sticky-header.transparent .nav-menu > li > a,
         .sticky-header.transparent .nav-menu > li > a {
-            color: #<?php echo $menu_color; ?>;
+            color: #<?php echo esc_attr( $menu_color ); ?>;
         }
 
         <?php
@@ -218,14 +218,14 @@ if ( $layout != 'transparent' ) {
         .nav-menu > li.current-menu-item > a,
         .no-scroll .sticky-header.transparent .nav-menu > li.current-menu-item > a,
         .sticky-header.transparent .nav-menu > li.current-menu-item > a {
-            color: #<?php echo $menu_hover_color; ?>;
+            color: #<?php echo esc_attr( $menu_hover_color ); ?>;
             -webkit-transition: all 0.5s ease-in-out;
             -moz-transition: all 0.5s ease-in-out;
             -o-transition: all 0.5s ease-in-out;
             transition: all 0.5s ease-in-out;
         }
         .sticky-header.transparent .nav-menu > li:hover > a::after, .sticky-header.transparent .nav-menu > li.current-menu-item > a::after {
-            border-bottom-color: #<?php echo $menu_hover_color; ?>;
+            border-bottom-color: #<?php echo esc_attr( $menu_hover_color ); ?>;
         }
     <?php
     } // END $menu_hover_color
@@ -235,7 +235,7 @@ if ( $layout != 'transparent' ) {
         ?>
         .sticky-header.transparent .nav-menu > li:hover > a::after,
         .sticky-header.transparent .nav-menu > li.current-menu-item > a::after {
-            border-bottom-color: #<?php  echo $menu_border_color; ?>;
+            border-bottom-color: #<?php  echo esc_attr( $menu_border_color ); ?>;
         }
         <?php
     }
@@ -253,7 +253,7 @@ if ( $layout != 'transparent' ) {
 
             .nav-menu > li > a:hover,
             .nav-menu > li.current-menu-item > a {
-                background: #<?php echo $menu_hover_bg; ?>;
+                background: #<?php echo esc_attr( $menu_hover_bg ); ?>;
                 -webkit-transition: all 0.5s ease-in-out;
                 -moz-transition: all 0.5s ease-in-out;
                 -o-transition: all 0.5s ease-in-out;
@@ -285,7 +285,7 @@ if ( $layout != 'transparent' ) {
     .transparent #nav-toggle.nav-is-visible span::before,
     .transparent #nav-toggle.nav-is-visible span::after
     {
-        background-color: #<?php echo $menu_button_color; ?>;
+        background-color: #<?php echo esc_attr( $menu_button_color ); ?>;
     }
 
     <?php
@@ -304,7 +304,7 @@ if ( $layout != 'transparent' ) {
     .site-branding .site-description,
     .transparent .site-branding .site-description,
     .transparent .site-branding .site-title a {
-        color: #<?php echo $logo_text_color; ?>;
+        color: #<?php echo esc_attr( $logo_text_color ); ?>;
     }
 
     <?php
@@ -318,7 +318,7 @@ if ( $layout != 'transparent' ) {
     ?>
     .swiper-slider .swiper-slide .overlay {
         background-color: <?php echo screenr_rgb2hex( $c['color'] ); ?>;
-        opacity: <?php echo $c['opacity']; ?>;
+        opacity: <?php echo esc_attr( $c['opacity'] ); ?>;
     }
     <?php
     }
@@ -327,7 +327,7 @@ if ( $layout != 'transparent' ) {
     if ( $v_overlay ){
     ?>
     .parallax-window.parallax-videolightbox .parallax-mirror::before{
-        background-color: <?php echo $v_overlay; ?>;
+        background-color: <?php echo esc_attr( $v_overlay ); ?>;
     }
     <?php
     }
@@ -346,7 +346,7 @@ if ( $layout != 'transparent' ) {
     }
     ?>
     #page-header-cover.swiper-slider.no-image .swiper-slide .overlay {
-        background-color: #<?php echo $bg_cover; ?>;
+        background-color: #<?php echo esc_attr( $bg_cover ); ?>;
         opacity: 1;
     }
     <?php
@@ -354,7 +354,7 @@ if ( $layout != 'transparent' ) {
     if ( $footer_w_bg ) {
     ?>
     .footer-widgets {
-        background-color: #<?php echo $footer_w_bg; ?>;
+        background-color: #<?php echo esc_attr( $footer_w_bg ); ?>;
     }
     <?php } ?>
 
@@ -364,7 +364,7 @@ if ( $layout != 'transparent' ) {
     ?>
     .footer-widgets, .footer-widgets a, .footer-widgets .sidebar .widget a, .footer-widgets caption,
     .footer-widgets .widget-title {
-        color: #<?php echo $footer_w_color; ?>;
+        color: #<?php echo esc_attr( $footer_w_color ); ?>;
     }
     <?php } ?>
 
@@ -373,7 +373,7 @@ if ( $layout != 'transparent' ) {
     if ( $footer_c_bg ) {
     ?>
     .site-footer .site-info {
-        background-color: #<?php echo $footer_c_bg; ?>;
+        background-color: #<?php echo esc_attr( $footer_c_bg ); ?>;
     }
     <?php } ?>
 
@@ -382,7 +382,7 @@ if ( $layout != 'transparent' ) {
     if ( $footer_c_color ) {
     ?>
     .site-footer .site-info, .site-footer .site-info a {
-        color: #<?php echo $footer_c_color; ?>;
+        color: #<?php echo esc_attr( $footer_c_color ); ?>;
     }
     <?php } ?>
 

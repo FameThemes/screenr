@@ -58,7 +58,7 @@ function screenr_posted_on() {
 	if ( $category[0] ) {
 		$cat = sprintf(
 			esc_html_x( 'Category: %s', 'category', 'screenr' ),
-			'<a href="' . get_category_link( $category[0]->term_id ) . '">' . $category[0]->cat_name . '</a>'
+			'<a href="' . esc_url( get_category_link( $category[0]->term_id ) ) . '">' . $category[0]->cat_name . '</a>'
 		);
 	}
 
@@ -172,7 +172,7 @@ if ( ! function_exists( 'screenr_loop_post_item' ) ) {
 				$category = get_the_category();
 				if ($category[0]) {
 					echo '<div class="entry-grid-cate">';
-					echo '<a href="' . get_category_link($category[0]->term_id) . '">' . $category[0]->cat_name . '</a>';
+					echo '<a href="' . esc_url( get_category_link( $category[0]->term_id ) ) . '">' . $category[0]->cat_name . '</a>';
 					echo '</div>';
 				}
 				?>
@@ -184,7 +184,7 @@ if ( ! function_exists( 'screenr_loop_post_item' ) ) {
 					echo wp_trim_words(get_the_content(), 13, ' ...'); ?>
 				</div><!-- .entry-content -->
 				<div class="entry-grid-more">
-					<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php esc_html_e('Read On', 'screenr'); ?> <i aria-hidden="true" class="fa fa-arrow-circle-o-right"></i></a>
+					<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php esc_html_e('Read On', 'screenr'); ?> <i aria-hidden="true" class="fa fa-arrow-circle-o-right"></i></a>
 				</div>
 			</div>
 		</article><!-- #post-## -->
