@@ -398,7 +398,7 @@ function screenr_customize_register( $wp_customize ) {
                     'title' 		=> esc_html__('Header upsell', 'screenr'),
                     'type' 		    => 'custom_message',
                     'section' 		=> 'page_header_settings',
-                    'description' 	=> wp_kses_post( 'Upgrade to <a target="_blank" href="#">Screenr Plus</a> to be able to add more items and unlock other premium features!', 'screenr' ),
+                    'description' 	=> sprintf( esc_html__( 'Upgrade to %1$s to be able to add more items and unlock other premium features!', 'screenr' ), '<a target="_blank" href="#">'.esc_html__( 'Screenr Plus', 'screenr' ).'</a>' ),
                 )
             )
         );
@@ -655,7 +655,7 @@ function screenr_customize_register( $wp_customize ) {
                 'live_title_id' => 'title', // apply for input text and textarea only
                 'title_format'  => esc_html__('[live_title]', 'screenr'), // [live_title]
                 'max_item'      => 1, // Maximum item can add
-                'limited_msg' 	=> wp_kses_post( 'Upgrade to <a target="_blank" href="#">Screenr Plus</a> to able add video background and enable sliders.', 'screenr' ),
+                'limited_msg' 	=> sprintf( esc_html__( 'Upgrade to %1$s to be able to add more items and unlock other premium features!', 'screenr' ), '<a target="_blank" href="#">'.esc_html__( 'Screenr Plus', 'screenr' ).'</a>' ),
                 'fields'    => array(
                     'layout' => array(
                         'title' => esc_html__('Content layout', 'screenr'),
@@ -669,10 +669,17 @@ function screenr_customize_register( $wp_customize ) {
                         'title' => esc_html__('Content layout 1', 'screenr'),
                         'type'  =>'editor',
                         'mod'   =>'html',
-                        'default' => wp_kses_post( '<h1><strong>Your business, your website</strong></h1>
-                                                    Screenr is a multiuse fullscreen WordPress theme.
-
-                                                    <a class="btn btn-lg btn-theme-primary" href="#features">Get Started</a><a class="btn btn-lg btn-secondary-outline" href="#contact">Contact Now</a>'
+                        'default' => wp_kses_post(
+                            sprintf(
+                                '<h1><strong>%1$s</strong></h1>
+                                %2$s
+                                <a class="btn btn-lg btn-theme-primary" href="#features">%3$s</a>
+                                <a class="btn btn-lg btn-secondary-outline" href="#contact">%4$s</a>',
+                                esc_html__( 'Your business, your website', 'screenr' ),
+                                esc_html__( 'Screenr is a multiuse fullscreen WordPress theme.', 'screenr' ),
+                                esc_html__( 'Get Started', 'screenr' ),
+                                esc_html__( 'Contact Now', 'screenr' )
+                            )
                         ),
                         "required" => array( 'layout', '=', 'layout_1' )
                     ),
@@ -929,7 +936,7 @@ function screenr_customize_register( $wp_customize ) {
                 'live_title_id' => 'page_id', // apply for unput text and textarea only
                 'title_format'  => esc_html__('[live_title]', 'screenr'), // [live_title]
                 'max_item'      => 3, // Maximum item can add
-                'limited_msg' 	=> wp_kses_post( 'Upgrade to <a target="_blank" href="#">Screenr Plus</a> to be able to add more items and unlock other premium features!', 'screenr' ),
+                'limited_msg' 	=> sprintf( esc_html__( 'Upgrade to %1$s to be able to add more items and unlock other premium features!', 'screenr' ), '<a target="_blank" href="#">'.esc_html__( 'Screenr Plus', 'screenr' ).'</a>' ),
                 //'allow_unlimited' => false, // Maximum item can add
                 'fields'    => array(
 
@@ -1477,7 +1484,7 @@ function screenr_customize_register( $wp_customize ) {
                 'live_title_id' => 'title', // apply for unput text and textarea only
                 'title_format'  => esc_html__('[live_title]', 'screenr'), // [live_title]
                 'max_item'      => 5, // Maximum item can add
-                'limited_msg' 	=> wp_kses_post( 'Upgrade to <a target="_blank" href="#">Screenr Plus</a> to be able to add more items and unlock other premium features!', 'screenr' ),
+                'limited_msg' 	=> sprintf( esc_html__( 'Upgrade to %1$s to be able to add more items and unlock other premium features!', 'screenr' ), '<a target="_blank" href="#">'.esc_html__( 'Screenr Plus', 'screenr' ).'</a>' ),
                 //'allow_unlimited' => false, // Maximum item can add
                 'fields'    => array(
 

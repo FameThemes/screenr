@@ -51,7 +51,7 @@ class Screenr_Misc_Control extends WP_Customize_Control {
 
 class Screenr_Theme_Support extends WP_Customize_Control {
 	public function render_content() {
-		echo wp_kses_post( 'Upgrade to <a href="#">Screenr Plus</a> to be able to change the section order and styling!', 'screenr' );
+		echo sprintf( esc_html__( 'Upgrade to %1$s to be able to add more items and unlock other premium features!', 'screenr' ), '<a target="_blank" href="#">'.esc_html__( 'Screenr Plus', 'screenr' ).'</a>' );
 	}
 }
 
