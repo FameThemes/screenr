@@ -27,14 +27,14 @@ if ( ! function_exists( 'screenr_get_media_url' ) ) {
         return $url;
     }
 }
-if ( ! function_exists( 'rgb2hex' ) ) {
-    function rgb2hex( $rgb )
+if ( ! function_exists( 'screenr_rgb2hex' ) ) {
+    function screenr_rgb2hex( $rgb )
     {
         return '#' . sprintf('%02x', $rgb['r']) . sprintf('%02x', $rgb['g']) . sprintf('%02x', $rgb['b']);
     }
 }
 
-function color_alpha_parse( $color_alpha ){
+function screenr_color_alpha_parse( $color_alpha ){
     $s = str_replace( array( 'rgba', '(', ')', ';' ), '', $color_alpha );
     $arr = explode(',', $s );
     $r = false;
@@ -313,11 +313,11 @@ if ( $layout != 'transparent' ) {
 
 
     $slider_overlay_color =  get_theme_mod( 'slider_overlay_color' );
-    $c =  color_alpha_parse( $slider_overlay_color );
+    $c =  screenr_color_alpha_parse( $slider_overlay_color );
     if ( $slider_overlay_color && $c ) {
     ?>
     .swiper-slider .swiper-slide .overlay {
-        background-color: <?php echo rgb2hex( $c['color'] ); ?>;
+        background-color: <?php echo screenr_rgb2hex( $c['color'] ); ?>;
         opacity: <?php echo $c['opacity']; ?>;
     }
     <?php
@@ -335,11 +335,11 @@ if ( $layout != 'transparent' ) {
     // Page header
     $page_header_bg_overlay =  get_theme_mod( 'page_header_bg_overlay' );
     $bg_cover = get_theme_mod( 'page_header_bg_color', 'e86240' );
-    $c =  color_alpha_parse( $page_header_bg_overlay );
+    $c =  screenr_color_alpha_parse( $page_header_bg_overlay );
     if ( $c ){
     ?>
     #page-header-cover.swiper-slider .swiper-slide .overlay {
-        background-color: <?php echo rgb2hex( $c['color'] ); ?>;
+        background-color: <?php echo screenr_rgb2hex( $c['color'] ); ?>;
         opacity: <?php echo $c['opacity']; ?>;
     }
     <?php
