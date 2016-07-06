@@ -49,11 +49,6 @@ class Screenr_Misc_Control extends WP_Customize_Control {
 	}
 }
 
-class Screenr_Theme_Support extends WP_Customize_Control {
-	public function render_content() {
-		echo sprintf( esc_html__( 'Upgrade to %1$s to be able to add more items and unlock other premium features!', 'screenr' ), '<a target="_blank" href="#">'.esc_html__( 'Screenr Plus', 'screenr' ).'</a>' );
-	}
-}
 
 if ( ! function_exists( 'screenr_sanitize_checkbox' ) ) {
     function screenr_sanitize_checkbox( $input ) {
