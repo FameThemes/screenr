@@ -330,11 +330,8 @@ class Screenr_Alpha_Color_Control extends WP_Customize_Control {
      */
     public function enqueue() {
         wp_enqueue_script( 'wp-color-picker' );
-        wp_register_script( 'screenr-customizer', get_template_directory_uri() . '/assets/js/customizer.js', array( 'customize-controls', 'wp-color-picker' ) );
-        wp_register_style( 'screenr-customizer',  get_template_directory_uri() . '/assets/css/customizer.css' );
-
-        wp_enqueue_script( 'screenr-customizer' );
-        wp_enqueue_style( 'screenr-customizer' );
+        wp_enqueue_script( 'screenr-customizer', get_template_directory_uri() . '/assets/js/customizer.js', array( 'customize-controls', 'wp-color-picker' ) );
+        wp_enqueue_style( 'screenr-customizer',  get_template_directory_uri() . '/assets/css/customizer.css' );
     }
 
     /**
