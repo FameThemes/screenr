@@ -132,9 +132,7 @@ function screenr_custom_style(){
 
     $layout = get_option( 'header_layout' );
     ob_start();
-    ?>
-    <style type="text/css">
-    <?php
+
 if ( $layout != 'transparent' ) {
      /**
      * Header background
@@ -411,14 +409,10 @@ if ( $layout != 'transparent' ) {
     .site-footer .site-info, .site-footer .site-info a {
         color: #<?php echo esc_attr( $footer_c_color ); ?>;
     }
-    <?php } ?>
+    <?php
+    }
 
-    <?php
-    ?>
-    </style>
-    <?php
     $css =  ob_get_clean();
-    $css = trim( preg_replace( '#<style[^>]*>(.*)</style>#is', '$1', $css ) );
     if ( screenr_is_selective_refresh() ) {
         return $css;
     } else {
