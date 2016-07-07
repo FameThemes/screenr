@@ -436,54 +436,22 @@ function screenr_page_header_cover()
     }
 
     $image = $title = $desc = '';
+
     if ( is_singular() ) {
         if ( is_single() ) {
             $title = get_theme_mod( 'page_blog_title', esc_html__( 'The Blog', 'screenr' ) );
         } else {
             $title = get_the_title();
         }
-    } elseif ( is_category() || is_tag() ||  is_tax() ) {
-        $title = single_cat_title( '', false );
-        $desc  = term_description();
-    } elseif ( is_search() ) {
-        $title = sprintf( esc_html__( 'Search Results for: %s', 'screenr' ), '<span>' . esc_html( get_search_query() ) . '</span>' );
-    } elseif (is_day()) {
-        $title = sprintf( esc_html__( 'Daily Archives: %s', 'screenr' ), get_the_date() );
-
-    } elseif ( is_month() ) {
-        $title = sprintf( esc_html__( 'Monthly Archives: %s', 'screenr' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'screenr') ) );
-    } elseif ( is_year() ) {
-        $title = printf( esc_html__( 'Yearly Archives: %s', 'screenr' ), get_the_date( _x( 'Y', 'yearly archives date format', 'screenr') ) );
-    } elseif ( is_home() || is_front_page() ) {
-        $title = get_theme_mod( 'page_blog_title', esc_html__( 'The Blog', 'screenr' ) );
-    } elseif ( is_author() ) {
-        if ( have_posts() ) {
-            /*
-             * Queue the first post, that way we know what author
-             * we're dealing with (if that is the case).
-             *
-             * We reset this later so we can run the loop properly
-             * with a call to rewind_posts().
-             */
-            the_post();
-            $title = sprintf( esc_html__('Author Archives: %s', 'screenr' ), get_the_author() );
-
-            /*
-             * Since we called the_post() above, we need to rewind
-             * the loop back to the beginning that way we can run
-             * the loop properly, in full.
-             */
-            rewind_posts();
-        }
-    }  else {
-        $title = esc_html__( 'Archives', 'screenr' );
+    } else {
+        $title = get_the_archive_title();
+        $desc  = get_the_archive_description();
     }
 
     if ( ! $image ) {
         $image = get_theme_mod( 'page_header_bg_image' );
     }
 
-   // $is_parallax  = get_theme_mod( 'page_header_parallax' ) == 1 ? true : false;
     $is_parallax  = true;
     $item = array(
         'position'  => 'center',
