@@ -223,13 +223,15 @@ if ( ! function_exists( 'screenr_ajax_load_more_posts' ) ) {
 				break;
 		}
 
-		if ($latest_posts->have_posts()) {
+		if ( $latest_posts->have_posts() ) {
 			while ($latest_posts->have_posts()) : $latest_posts->the_post();
 				screenr_loop_post_item($post_class);
 			endwhile;
-		} else {
-
 		}
+
+        wp_reset_postdata();
+        wp_die();
+
 	}
 
 }
