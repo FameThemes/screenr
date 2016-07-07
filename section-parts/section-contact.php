@@ -14,7 +14,7 @@ $classes    = 'section-contact section-padding onepage-section section-meta';
         <div class="section-title-area">
             <?php if ( $subtitle ) { ?><div class="section-subtitle"><?php echo esc_html( $subtitle ); ?></div><?php } ?>
             <?php if ( $title ) { ?><h2 class="section-title"><?php echo esc_html( $title ); ?></h2><?php } ?>
-            <?php if ( $desc ) { ?><div class="section-desc"><?php echo do_shortcode( apply_filters( 'the_content', $desc ) ); ?></div><?php } ?>
+            <?php if ( $desc ) { ?><div class="section-desc"><?php echo apply_filters( 'screenr_content_text', $desc ); ?></div><?php } ?>
         </div>
         <?php } ?>
         <div class="section-content">
@@ -45,7 +45,7 @@ $classes    = 'section-contact section-padding onepage-section section-meta';
                     <?php } ?>
                     <?php if ( $content ) { ?>
                     <div class="contact-form-fields">
-                        <?php echo do_shortcode( apply_filters( 'the_content', $content ) ); ?>
+                        <?php echo apply_filters( 'screenr_content_text', $content ); ?>
                     </div>
                     <?php } ?>
                 </div>

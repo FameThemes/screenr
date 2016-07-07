@@ -67,7 +67,7 @@ class Screenr_Slider {
 
                     }
                     if ( $content ) {
-                        $html .= apply_filters( 'the_content', $content );
+                        $html .= apply_filters( 'screenr_content_text', $content );
                     }
 
                 $html .= '</div>';

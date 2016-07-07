@@ -1,6 +1,5 @@
 <?php
 global $post;
-
 $title      = get_theme_mod( 'about_title', esc_html__( 'About us', 'screenr' ) );
 $subtitle   = get_theme_mod( 'about_subtitle' );
 $desc       = get_theme_mod( 'about_desc', esc_html__( 'We provide creative solutions that get attention and meaningful to clients around the world.', 'screenr' ) );
@@ -16,7 +15,7 @@ $classes = 'screenr-section section-about section-padding section-padding-larger
                 <div class="section-title-area">
                     <?php if ( $subtitle ) { ?><div class="section-subtitle"><?php echo esc_html( $subtitle ); ?></div><?php } ?>
                     <?php if ( $title ) { ?><h2 class="section-title"><?php echo esc_html( $title ); ?></h2><?php } ?>
-                    <?php if ( $desc ) { ?><div class="section-desc"><?php echo do_shortcode( apply_filters( 'the_content', $desc ) ); ?></div><?php } ?>
+                    <?php if ( $desc ) { ?><div class="section-desc"><?php echo apply_filters( 'screenr_content_text', $desc ); ?></div><?php } ?>
                 </div>
                 <?php } ?>
             </div>

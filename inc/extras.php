@@ -7,6 +7,33 @@
  * @package Screenr
  */
 
+
+/**
+ * Filter content just like `the_content`
+ *
+ * @see WP_Embed
+ * @see wp_make_content_images_responsive
+ * @see wptexturize
+ * @see convert_smilies
+ * @see convert_chars
+ * @see wpautop
+ * @see shortcode_unautop
+ * @see do_shortcode
+ * @see capital_P_dangit
+ */
+global $wp_embed;
+add_filter( 'screenr_content_text', array( $wp_embed, 'autoembed' ), 8 );
+add_filter( 'screenr_content_text', array( $wp_embed, 'run_shortcode' ), 9 );
+add_filter( 'screenr_content_text', 'wp_make_content_images_responsive', 10 );
+add_filter( 'screenr_content_text', 'wptexturize', 12 );
+add_filter( 'screenr_content_text', 'convert_smilies', 13 );
+add_filter( 'screenr_content_text', 'convert_chars', 14 );
+add_filter( 'screenr_content_text', 'wpautop', 15 );
+add_filter( 'screenr_content_text', 'shortcode_unautop', 16 );
+add_filter( 'screenr_content_text', 'do_shortcode', 17 );
+add_filter( 'screenr_content_text', 'capital_P_dangit', 18 );
+
+
 /**
  * Get media from a variable
  *
@@ -522,7 +549,7 @@ function screenr_page_header_cover()
                     $html .= '<h2 class="swiper-slide-heading">'.wp_kses_post( $item['title'] ).'</h2>';
                 }
                 if ( $item['desc'] ) {
-                    $html .= '<div class="swiper-slide-desc">'.apply_filters( 'the_content', $item['desc'] ).'</div>';
+                    $html .= '<div class="swiper-slide-desc">'.apply_filters( 'screenr_content_text', $item['desc'] ).'</div>';
                 }
 
                 $html .= '</div>';
