@@ -45,7 +45,7 @@ function screenr_admin_notice() {
         $theme_data = wp_get_theme();
         ?>
         <div class="updated notice is-dismissible">
-            <p><?php printf( esc_html__( 'Welcome! Thank you for choosing %1$s! To fully take advantage of the best our theme can offer please make sure you visit our %2$s', 'screenr' ),  $theme_data->Name, '<a href="'.esc_url(  admin_url( 'themes.php?page=ft_screenr' ) ).'">'.esc_html__( 'Welcome page', 'screenr' ).'</a>'  ); ?></p>
+            <p><?php printf( esc_html__( 'Welcome! Thank you for choosing %1$s! To fully take advantage of the best our theme can offer please make sure you visit our %2$s', 'screenr' ),  $theme_data->Name, '<a href="'.esc_url( add_query_arg( array( 'page' => 'ft_screenr' ), admin_url( 'themes.php' ) ) ).'">'.esc_html__( 'Welcome page', 'screenr' ).'</a>'  ); ?></p>
         </div>
         <?php
     }
@@ -88,7 +88,7 @@ function screenr_theme_info_page() {
     if ( $n && isset( $n['active'] ) ) {
         $number_action = $n['active'];
     }
-    $current_action_link =  admin_url( 'themes.php?page=ft_screenr&tab=actions_required' );
+    $current_action_link =  add_query_arg( array( 'page' => 'ft_screenr', 'tab' => 'actions_required' ), admin_url( 'themes.php' ) );
     ?>
     <div class="wrap about-wrap theme_info_wrapper">
         <h1><?php printf(esc_html__('Welcome to Screenr - Version %1s', 'screenr'), $theme_data->Version ); ?></h1>
