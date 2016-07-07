@@ -610,7 +610,7 @@ function screenr_sidebar_desc( $sidebar_id ) {
 function screenr_footer_credits(){
     ?>
     <div class="site-info">
-        <?php printf(esc_html__('Copyright %1$s %2$s %3$s', 'screenr'), '&copy;', esc_attr(date('Y')), esc_attr(get_bloginfo())); ?>
+        <?php printf(esc_html__('Copyright %1$s %2$s %3$s', 'screenr'), '&copy;', date_i18n('Y'), get_bloginfo() ); ?>
         <span class="sep"> &ndash; </span>
         <?php printf(esc_html__('%1$s theme by %2$s', 'screenr'), '<a href="' . esc_url('https://www.famethemes.com/themes/screenr', 'screenr') . '">Screenr</a>', 'FameThemes'); ?>
     </div><!-- .site-info -->
