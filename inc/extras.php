@@ -437,7 +437,7 @@ function screenr_page_header_cover()
 
     $image = $title = $desc = '';
 
-    if ( is_singular() ) {
+    if ( is_singular() && ! is_attachment() ) {
         if ( is_single() ) {
             $title = get_theme_mod( 'page_blog_title', esc_html__( 'The Blog', 'screenr' ) );
         } else {
@@ -445,13 +445,13 @@ function screenr_page_header_cover()
         }
     }elseif ( is_search() ) {
         $title = sprintf( esc_html__( 'Search Results for: %s', 'screenr' ), '<span>' . esc_html( get_search_query() ) . '</span>' );
-    } elseif ( is_home() || is_front_page() ) {
+    } elseif ( ( is_home() || is_front_page() ) && ! is_attachment() ) {
         $title = get_theme_mod( 'page_blog_title', esc_html__( 'The Blog', 'screenr' ) );
     } else {
         $title = get_the_archive_title();
         $desc  = get_the_archive_description();
     }
-    
+
     if ( ! $image ) {
         $image = get_theme_mod( 'page_header_bg_image' );
     }
