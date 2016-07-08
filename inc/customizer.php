@@ -734,7 +734,7 @@ function screenr_customize_register( $wp_customize ) {
             $wp_customize,
             'slider_items',
             array(
-                'label'     => esc_html__('Hero Items', 'screenr'),
+                'label'     => esc_html__('Hero Item', 'screenr'),
                 'description'   => '',
                 'section'       => 'section_slider',
                 'live_title_id' => 'title', // apply for input text and textarea only
