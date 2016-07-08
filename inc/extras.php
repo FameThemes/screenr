@@ -443,11 +443,15 @@ function screenr_page_header_cover()
         } else {
             $title = get_the_title();
         }
+    }elseif ( is_search() ) {
+        $title = sprintf( esc_html__( 'Search Results for: %s', 'screenr' ), '<span>' . esc_html( get_search_query() ) . '</span>' );
+    } elseif ( is_home() || is_front_page() ) {
+        $title = get_theme_mod( 'page_blog_title', esc_html__( 'The Blog', 'screenr' ) );
     } else {
         $title = get_the_archive_title();
         $desc  = get_the_archive_description();
     }
-
+    
     if ( ! $image ) {
         $image = get_theme_mod( 'page_header_bg_image' );
     }
