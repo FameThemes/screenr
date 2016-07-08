@@ -208,6 +208,9 @@ var {
 	padding: 5px 7px;
 	@include border-radius;
 }
+.site-content kbd {
+	color :#666666;
+}
 
 pre {
 	overflow: auto;

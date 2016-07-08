@@ -277,6 +277,10 @@ var {
 	border-radius: 2px;
 }
 
+.site-content kbd {
+	color: #666666;
+}
+
 pre {
 	overflow: auto;
 	white-space: pre-wrap;
