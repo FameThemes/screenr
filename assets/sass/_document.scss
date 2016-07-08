@@ -512,3 +512,12 @@ input[type="radio"],input[type="checkbox"] {
 .clearleft {
 	clear: left;
 }
+
+.page-links {
+	clear: both;
+	padding-top: 15px;
+	display: block;
+	a {
+		padding: 0 5px;
+	}
+}
