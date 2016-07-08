@@ -272,7 +272,9 @@
 ------------------------------*/
 
 .gallery {
+	margin: -5px;
 	margin-bottom: 1.5em;
+
 }
 
 .gallery-item {
@@ -280,7 +282,14 @@
 	text-align: center;
 	vertical-align: top;
 	width: 100%;
-
+	margin-bottom: 1em;
+	.gallery-icon {
+		padding: 5px;
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
 	.gallery-columns-2 & {
 		max-width: 50%;
 	}

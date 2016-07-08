@@ -1741,6 +1741,7 @@ input[type="radio"], input[type="checkbox"] {
 /* WordPress Gallery
 ------------------------------*/
 .gallery {
+	margin: -5px;
 	margin-bottom: 1.5em;
 }
 
@@ -1749,6 +1750,16 @@ input[type="radio"], input[type="checkbox"] {
 	text-align: center;
 	vertical-align: top;
 	width: 100%;
+	margin-bottom: 1em;
+}
+
+.gallery-item .gallery-icon {
+	padding: 5px;
+}
+
+.gallery-item .gallery-icon img {
+	width: 100%;
+	height: auto;
 }
 
 .gallery-columns-2 .gallery-item {
