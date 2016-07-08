@@ -374,6 +374,21 @@ function screenr_customize_register( $wp_customize ) {
             )
         );
 
+
+
+
+    /* Blog settings
+  ----------------------------------------------------------------------*/
+    $wp_customize->add_section( 'blog_settings' ,
+        array(
+            'priority'    => 13,
+            'title'       => esc_html__( 'Blog Settings', 'screenr' ),
+            'description' => '',
+            'panel'       => 'screenr_options',
+            //'active_callback'   => 'is_page', // function
+        )
+    );
+
         // Blog page title
         $wp_customize->add_setting( 'page_blog_title',
             array(
@@ -384,17 +399,101 @@ function screenr_customize_register( $wp_customize ) {
         $wp_customize->add_control( 'page_blog_title',
             array(
                 'label'       => esc_html__('Blog title', 'screenr'),
-                'section'     => 'page_header_settings',
+                'section'     => 'blog_settings',
                 'description' => esc_html__('Custom page header title on single posts.', 'screenr'),
             )
         );
+
+
+        // Disable featured image in single post
+        $wp_customize->add_setting( 'disable_featured_image',
+            array(
+                'sanitize_callback' => 'screenr_sanitize_checkbox',
+                'default'           => 0,
+            )
+        );
+        $wp_customize->add_control( 'disable_featured_image',
+            array(
+                'label'       => esc_html__('Disable featured image in single post', 'screenr'),
+                'type'        => 'checkbox',
+                'section'     => 'blog_settings',
+            )
+        );
+
+
+        // Blog post date
+        $wp_customize->add_setting( 'show_post_date',
+            array(
+                'sanitize_callback' => 'screenr_sanitize_checkbox',
+                'default'           => 1,
+            )
+        );
+        $wp_customize->add_control( 'show_post_date',
+            array(
+                'label'       => esc_html__('Display post date', 'screenr'),
+                'type'        => 'checkbox',
+                'section'     => 'blog_settings',
+                'description' => esc_html__('Display post date on single post or posts listing page.', 'screenr'),
+            )
+        );
+
+        // Blog post author
+        $wp_customize->add_setting( 'show_post_author',
+            array(
+                'sanitize_callback' => 'screenr_sanitize_checkbox',
+                'default'           => 1,
+            )
+        );
+        $wp_customize->add_control( 'show_post_author',
+            array(
+                'label'       => esc_html__('Display post author', 'screenr'),
+                'type'        => 'checkbox',
+                'section'     => 'blog_settings',
+                'description' => esc_html__('Display post author on single post or posts listing page.', 'screenr'),
+            )
+        );
+
+
+        // Blog post comment
+        $wp_customize->add_setting( 'show_post_comment',
+            array(
+                'sanitize_callback' => 'screenr_sanitize_checkbox',
+                'default'           => 1,
+            )
+        );
+        $wp_customize->add_control( 'show_post_comment',
+            array(
+                'label'       => esc_html__('Display post comments', 'screenr'),
+                'type'        => 'checkbox',
+                'section'     => 'blog_settings',
+                'description' => esc_html__('Display post comments on single post or posts listing page.', 'screenr'),
+            )
+        );
+
+        // Blog post cate
+        $wp_customize->add_setting( 'show_post_cate',
+            array(
+                'sanitize_callback' => 'screenr_sanitize_checkbox',
+                'default'           => 1,
+            )
+        );
+        $wp_customize->add_control( 'show_post_cate',
+            array(
+                'label'       => esc_html__('Display post category', 'screenr'),
+                'type'        => 'checkbox',
+                'section'     => 'blog_settings',
+                'description' => esc_html__('Display post category on single post or posts listing page.', 'screenr'),
+            )
+        );
+
+
 
 
     /* Page Footer
     ----------------------------------------------------------------------*/
     $wp_customize->add_section( 'page_footer_settings' ,
         array(
-            'priority'    => 10,
+            'priority'    => 20,
             'title'       => esc_html__( 'Footer', 'screenr' ),
             'description' => '',
             'panel'       => 'screenr_options',

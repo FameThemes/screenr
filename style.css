@@ -1592,6 +1592,12 @@ input[type="radio"], input[type="checkbox"] {
 	color: #999999;
 }
 
+.entry-meta::after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
 .entry-meta a {
 	color: #888888;
 }
@@ -1657,6 +1663,10 @@ input[type="radio"], input[type="checkbox"] {
 
 .entry-meta > span:last-child:before {
 	content: none;
+}
+
+.entry-meta > span:last-child:first-child {
+	float: left;
 }
 
 .entry-footer {

@@ -130,6 +130,9 @@
 	margin-bottom: 15px;
 	@include rem('font-size', 14px);
 	color: #999999;
+	&::after {
+		@include clearfix();
+	}
 	a {
 		color: #888888;
 		&:hover {
@@ -162,6 +165,7 @@
 				content: none;
 			}
 		}
+
 		&:first-child {
 			margin-left: 0px;
 			padding-left: 0px;
@@ -176,6 +180,12 @@
 			}
 			&:before {
 				content: none;
+			}
+		}
+
+		&:last-child {
+			&:first-child {
+				float: left;
 			}
 		}
 	}

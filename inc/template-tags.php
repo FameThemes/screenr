@@ -33,43 +33,73 @@ if ( ! function_exists( 'screenr_posted_on' ) ) :
 /**
  * Prints HTML with meta information for the current post-date/time and author.
  */
-function screenr_posted_on() {
-	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
+function screenr_posted_on( $echo = true ) {
+    $html = $posted_on = $byline = $cat = $comment = '';
+    if ( get_theme_mod( 'show_post_date', 1 ) ) {
+        $time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
+        $time_string = sprintf($time_string,
+            esc_attr(get_the_date('c')),
+            esc_html(get_the_date()),
+            esc_attr(get_the_modified_date('c')),
+            esc_html(get_the_modified_date())
+        );
 
-	$time_string = sprintf( $time_string,
-		esc_attr( get_the_date( 'c' ) ),
-		esc_html( get_the_date() ),
-		esc_attr( get_the_modified_date( 'c' ) ),
-		esc_html( get_the_modified_date() )
-	);
+        $posted_on = sprintf(
+            esc_html_x( '%s', 'post date', 'screenr' ),
+            '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
+        );
 
-	$posted_on = sprintf(
-		esc_html_x( '%s', 'post date', 'screenr' ),
-		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
-	);
+    }
 
-	$byline = sprintf(
-		esc_html_x( 'Author: %s', 'post author', 'screenr' ),
-		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
-	);
+    // show_post_author
+    if ( get_theme_mod( 'show_post_author', 1 ) ) {
+        $byline = sprintf(
+            esc_html_x('Author: %s', 'post author', 'screenr'),
+            '<span class="author vcard"><a class="url fn n" href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">' . esc_html(get_the_author()) . '</a></span>'
+        );
+    }
 
-	$category = get_the_category();
-	$cat = '';
-	if ( $category[0] ) {
-		$cat = sprintf(
-			esc_html_x( 'Category: %s', 'category', 'screenr' ),
-			'<a href="' . esc_url( get_category_link( $category[0]->term_id ) ) . '">' . $category[0]->cat_name . '</a>'
-		);
-	}
+    if ( get_theme_mod( 'show_post_cate', 1 ) ) {
+        $category = get_the_category();
+        if ($category[0]) {
+            $cat = sprintf(
+                esc_html_x('Category: %s', 'category', 'screenr'),
+                '<a href="' . esc_url(get_category_link($category[0]->term_id)) . '">' . $category[0]->cat_name . '</a>'
+            );
+        }
+    }
 
-	echo '<span class="posted-on"><i aria-hidden="true" class="fa fa-clock-o"></i> ' . $posted_on . '</span><span class="byline"> ' . $byline . '</span> ' . '<span class="meta-cate">' . $cat . '</span>'; // WPCS: XSS OK.
-	if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-		echo '<span class="comments-link">';
-		echo '<i class="fa fa-comments-o"></i> ';
-		comments_popup_link( '0', '1', '%' );
-		echo '</span>';
-	}
+    if ( get_post_meta( 'show_post_comment', 1 ) ) {
+        if (!post_password_required() && (comments_open() || get_comments_number())) {
+            $comment .= '<span class="comments-link">';
+            $comment .= '<i class="fa fa-comments-o"></i> ';
+            $comment .= get_comments_number_text(0, 1, '%');
+            $comment .= '</span>';
+        }
+    }
 
+    if ( $posted_on != '' ) {
+        $html .='<span class="posted-on"><i aria-hidden="true" class="fa fa-clock-o"></i> ' . $posted_on . '</span>';
+    }
+
+    if ( $byline ) {
+        $html .= '<span class="byline"> ' . $byline . '</span> ';
+    }
+
+    if ( $cat ) {
+        $html .= '<span class="meta-cate">' . $cat . '</span>';
+    }
+
+    if ( $comment ) {
+        $html .= $comment;
+    }
+
+
+    if ( $echo ) {
+        echo $html;
+    }
+
+    return $html;
 }
 endif;
 

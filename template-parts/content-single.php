@@ -13,19 +13,21 @@
 	<header class="entry-header">
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
-		<?php if ( 'post' === get_post_type() ) : ?>
+		<?php if ( 'post' === get_post_type() && $meta = screenr_posted_on( false ) ) : ?>
 		<div class="entry-meta">
-			<?php screenr_posted_on(); ?>
+			<?php echo $meta; ?>
 		</div><!-- .entry-meta -->
 		<?php
 		endif; ?>
 
 		<?php
-		if ( has_post_thumbnail( ) ) {
-			echo '<div class="entry-thumb">';
-				the_post_thumbnail( 'screenr-blog-list' );
-			echo '</div>';
-		}
+        if ( ! get_theme_mod( 'disable_featured_image', 0 ) ) {
+            if (has_post_thumbnail()) {
+                echo '<div class="entry-thumb">';
+                the_post_thumbnail('screenr-blog-list');
+                echo '</div>';
+            }
+        }
 		?>
 
 	</header><!-- .entry-header -->
