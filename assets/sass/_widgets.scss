@@ -1,5 +1,7 @@
 // main: style.scss
-
+.widget {
+	word-wrap: break-word;
+}
 .sidebar .widget {
 	margin-bottom: 40px;
 	.widget-title {
