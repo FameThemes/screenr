@@ -57,7 +57,7 @@
 			</div><!-- .site-branding -->
 
 			<div class="header-right-wrapper">
-				<a href="#" id="nav-toggle"><?php _e('Menu', 'screenr'); ?><span></span></a>
+				<a href="#" id="nav-toggle"><?php esc_html_e('Menu', 'screenr'); ?><span></span></a>
 				<nav id="site-navigation" class="main-navigation" role="navigation">
 					<ul class="nav-menu">
 						<?php wp_nav_menu(array('theme_location' => 'primary', 'container' => '', 'items_wrap' => '%3$s')); ?>

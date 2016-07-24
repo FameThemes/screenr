@@ -725,7 +725,7 @@ class Screenr_Customize_Repeatable_Control extends WP_Customize_Control {
                                                 <i class="fa fa-{{ field.value }}"></i>
                                                 <input data-live-id="{{ field.id }}" type="hidden" value="{{ field.value }}" data-repeat-name="_items[__i__][{{ field.id }}]" class="">
                                             </div>
-                                            <a href="#" class="remove-icon"><?php _e( 'Remove', 'screenr' ); ?></a>
+                                            <a href="#" class="remove-icon"><?php esc_html_e( 'Remove', 'screenr' ); ?></a>
                                         <# }  #>
 
                                     </div>
@@ -738,9 +738,9 @@ class Screenr_Customize_Repeatable_Control extends WP_Customize_Control {
                             <div class="widget-control-actions">
                                 <div class="alignleft">
                                     <span class="remove-btn-wrapper">
-                                        <a href="#" class="repeat-control-remove" title=""><?php _e( 'Remove', 'screenr' ); ?></a> |
+                                        <a href="#" class="repeat-control-remove" title=""><?php esc_html_e( 'Remove', 'screenr' ); ?></a> |
                                     </span>
-                                    <a href="#" class="repeat-control-close"><?php _e( 'Close', 'screenr' ); ?></a>
+                                    <a href="#" class="repeat-control-close"><?php esc_html_e( 'Close', 'screenr' ); ?></a>
                                 </div>
                                 <br class="clear">
                             </div>
