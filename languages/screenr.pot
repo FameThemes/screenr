@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Screenr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Fri Jul 08 2016 16:50:59 GMT+0700 (ICT)\n"
-"POT-Revision-Date: Fri Jul 08 2016 16:51:02 GMT+0700 (ICT)\n"
+"POT-Creation-Date: Sun Jul 24 2016 22:56:54 GMT+0700 (ICT)\n"
+"POT-Revision-Date: Sun Jul 24 2016 22:56:56 GMT+0700 (ICT)\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -122,10 +122,6 @@ msgstr ""
 
 #: ../header.php:60
 msgid "Menu"
-msgstr ""
-
-#. Name of the template
-msgid "Frontpage"
 msgstr ""
 
 #: ../inc/customizer-controls.php:438 ../inc/customizer-controls.php:585
@@ -1100,6 +1096,10 @@ msgstr ""
 
 #: ../section-parts/section-services.php:3
 msgid "Our Services"
+msgstr ""
+
+#. Name of the template
+msgid "Frontpage"
 msgstr ""
 
 #: ../template-parts/content-none.php:14

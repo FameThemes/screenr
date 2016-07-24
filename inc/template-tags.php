@@ -274,7 +274,7 @@ if ( ! function_exists( 'screenr_comment' ) ) {
      * Template for comments and pingbacks.
      *
      * To override this walker in a child theme without modifying the comments template
-     * simply create your own onepress_comment(), and that function will be used instead.
+     * simply create your own screenr_comment(), and that function will be used instead.
      *
      * Used as a callback by wp_list_comments() for displaying the comments.
      *
@@ -289,7 +289,7 @@ if ( ! function_exists( 'screenr_comment' ) ) {
                 // Display trackbacks differently than normal comments.
                 ?>
                 <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
-                <p><?php _e('Pingback:', 'onepress'); ?><?php comment_author_link(); ?><?php edit_comment_link(__('(Edit)', 'onepress'), '<span class="edit-link">', '</span>'); ?></p>
+                <p><?php _e('Pingback:', 'screenr'); ?><?php comment_author_link(); ?><?php edit_comment_link(__('(Edit)', 'screenr'), '<span class="edit-link">', '</span>'); ?></p>
                 <?php
                 break;
             default :
@@ -308,22 +308,22 @@ if ( ! function_exists( 'screenr_comment' ) ) {
                             printf('<cite><b class="fn">%1$s</b> %2$s</cite>',
                                 get_comment_author_link(),
                                 // If current post author is also comment author, make it known visually.
-                                ($comment->user_id === $post->post_author) ? '<span>' . __('Post author', 'onepress') . '</span>' : ''
+                                ($comment->user_id === $post->post_author) ? '<span>' . __('Post author', 'screenr') . '</span>' : ''
                             );
                             printf('<a class="comment-time" href="%1$s"><time datetime="%2$s">%3$s</time></a>',
                                 esc_url(get_comment_link($comment->comment_ID)),
                                 get_comment_time('c'),
                                 /* translators: 1: date, 2: time */
-                                sprintf(__('%1$s', 'onepress'), get_comment_date())
+                                sprintf(__('%1$s', 'screenr'), get_comment_date())
                             );
-                            comment_reply_link(array_merge($args, array('reply_text' => __('Reply', 'onepress'), 'after' => '', 'depth' => $depth, 'max_depth' => $args['max_depth'])));
-                            edit_comment_link(__('Edit', 'onepress'), '<span class="edit-link">', '</span>');
+                            comment_reply_link(array_merge($args, array('reply_text' => __('Reply', 'screenr'), 'after' => '', 'depth' => $depth, 'max_depth' => $args['max_depth'])));
+                            edit_comment_link(__('Edit', 'screenr'), '<span class="edit-link">', '</span>');
                             ?>
                         </header>
                         <!-- .comment-meta -->
 
                         <?php if ('0' == $comment->comment_approved) : ?>
-                            <p class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.', 'onepress'); ?></p>
+                            <p class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.', 'screenr'); ?></p>
                         <?php endif; ?>
 
                         <div class="comment-content entry-content">
