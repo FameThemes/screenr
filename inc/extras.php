@@ -35,6 +35,52 @@ add_filter( 'screenr_content_text', 'capital_P_dangit', 18 );
 
 
 /**
+ * Filter the except length to 50 characters.
+ *
+ * @param int $length Excerpt length.
+ * @return int (Maybe) modified excerpt length.
+ */
+function screenr_excerpt_length( $length = '' ) {
+
+    if ( isset( $GLOBALS['screenr_excerpt_length'] ) && $GLOBALS['screenr_excerpt_length'] > 0 ) {
+        return $GLOBALS['screenr_excerpt_length'];
+    } else {
+        return 50;
+    }
+}
+add_filter( 'excerpt_length', 'screenr_excerpt_length', 99 );
+
+/**
+ * Filter the excerpt "read more" string.
+ *
+ * @param string $more "Read more" excerpt string.
+ * @return string (Maybe) modified "read more" excerpt string.
+ */
+function screenr_excerpt_more( $more = '' ) {
+    return '...';
+}
+add_filter( 'excerpt_more', 'screenr_excerpt_more' );
+
+/**
+ * Add custom excerpt length
+ * @param $length
+ */
+function screenr_add_excerpt_length( $length ){
+    $length = absint( $length );
+    $GLOBALS['screenr_excerpt_length'] = $length;
+}
+
+/**
+ * REMOVE custom excerpt length
+ */
+function screenr_remove_excerpt_length (){
+    if ( isset( $GLOBALS['screenr_excerpt_length'] ) ) {
+        unset( $GLOBALS['screenr_excerpt_length'] );
+    }
+}
+
+
+/**
  * Get media from a variable
  *
  * @param array $media

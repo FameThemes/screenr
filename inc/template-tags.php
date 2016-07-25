@@ -211,7 +211,10 @@ if ( ! function_exists( 'screenr_loop_post_item' ) ) {
 				</header><!-- .entry-header -->
 				<div class="entry-excerpt">
 					<?php
-					echo wp_trim_words(get_the_content(), 13, ' ...'); ?>
+					screenr_add_excerpt_length( apply_filters( 'screenr_grid_excerpt_length', 13 ) );
+					the_excerpt();
+					screenr_remove_excerpt_length();
+					?>
 				</div><!-- .entry-content -->
 				<div class="entry-grid-more">
 					<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php esc_html_e('Read On', 'screenr'); ?> <i aria-hidden="true" class="fa fa-arrow-circle-o-right"></i></a>
