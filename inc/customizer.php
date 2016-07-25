@@ -47,7 +47,7 @@ function screenr_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'screenr_hide_tagline',
         array(
             'sanitize_callback' => 'screenr_sanitize_checkbox',
-            'default'           => 1,
+            'default'           => '',
             'transport'         => 'postMessage'
         )
     );
