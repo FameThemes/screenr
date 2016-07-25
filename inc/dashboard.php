@@ -93,7 +93,7 @@ function screenr_theme_info_page() {
     <div class="wrap about-wrap theme_info_wrapper">
         <h1><?php printf(esc_html__('Welcome to Screenr - Version %1s', 'screenr'), $theme_data->Version ); ?></h1>
         <div class="about-text"><?php esc_html_e( 'Screenr is a creative and flexible WordPress ONE PAGE theme well suited for business, portfolio, digital agency, product showcase, freelancers websites.', 'screenr' ); ?></div>
-        <a target="_blank" href="<?php echo esc_url('http://www.famethemes.com/?utm_source=theme_dashboard_page&utm_medium=badge_link&utm_campaign=theme_admin'); ?>" class="famethemes-badge wp-badge"><span>FameThemes</span></a>
+        <a target="_blank" href="<?php echo esc_url('http://www.famethemes.com/'); ?>" class="famethemes-badge wp-badge"><span>FameThemes</span></a>
         <h2 class="nav-tab-wrapper">
             <a href="?page=ft_screenr" class="nav-tab<?php echo is_null($tab) ? ' nav-tab-active' : null; ?>"><?php esc_html_e( 'Screenr', 'screenr' ) ?></a>
             <a href="?page=ft_screenr&tab=actions_required" class="nav-tab<?php echo $tab == 'actions_required' ? ' nav-tab-active' : null; ?>"><?php esc_html_e( 'Actions Required', 'screenr' ); echo ( $number_action > 0 ) ? "<span class='theme-action-count'>{$number_action}</span>" : ''; ?></a>
