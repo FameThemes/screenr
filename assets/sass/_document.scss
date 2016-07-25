@@ -114,26 +114,20 @@ h2 {
 }
 
 h3 {
-	@include rem('font-size', 20px);
-	font-weight: 500;
+	@include rem('font-size', 22px);
 }
 
 h4 {
-	@include rem('font-size', 17px);
+	@include rem('font-size', 20px);
 	margin-bottom: 12px;
 }
 
 h5 {
-	text-transform: uppercase;
-	@include rem('font-size', 15px);
-	font-weight: 700;
+	@include rem('font-size', 18px);
 }
 
 h6 {
-	font-weight: 700;
-	text-transform: uppercase;
-	@include rem('font-size', 12px);
-	letter-spacing: 1px;
+	@include rem('font-size', 16px);
 }
 
 /*------------------------------
