@@ -756,9 +756,8 @@ function screenr_customize_register( $wp_customize ) {
                         'mod'   =>'html',
                         'default' => wp_kses_post(
                             sprintf(
-                                '<h1><strong>%1$s</strong></h1>
-                                %2$s
-                                <a class="btn btn-lg btn-theme-primary" href="#features">%3$s</a> <a class="btn btn-lg btn-secondary-outline" href="#contact">%4$s</a>',
+                                '<h1><strong>%1$s</strong></h1>'
+                                ."\n\n". '%2$s'."\n\n".'<a class="btn btn-lg btn-theme-primary" href="#features">%3$s</a> <a class="btn btn-lg btn-secondary-outline" href="#contact">%4$s</a>',
                                 esc_html__( 'Your business, your website', 'screenr' ),
                                 esc_html__( 'Screenr is a multiuse fullscreen WordPress theme.', 'screenr' ),
                                 esc_html__( 'Get Started', 'screenr' ),
