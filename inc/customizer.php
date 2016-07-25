@@ -1158,7 +1158,7 @@ function screenr_customize_register( $wp_customize ) {
     );
     $wp_customize->add_control( 'about_title',
         array(
-            'label' 		=> '',
+            'label' 		=> esc_html__('Section Title:', 'screenr'),
             'section' 		=> 'section_about',
         )
     );
@@ -1240,7 +1240,7 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
-    
+
     /*------------------------------------------------------------------------*/
     /*  Section: VideoLight Box
     /*------------------------------------------------------------------------*/
