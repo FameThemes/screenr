@@ -628,86 +628,16 @@
 	table > thead > tr > th, table > tbody > tr > th, table > tfoot > tr > th, table > thead > tr > td, table > tbody > tr > td, table > tfoot > tr > td {
 		border-color: rgba(255, 255, 255, 0.1)
 	}
-    .footer-connect {
-        padding: 90px 0px;
-		@include rem('padding', 80px 0px);
-        text-align: center;
-        @include for(screens-medium) {
-            //@include rem('padding', 40px 0px);
-        }
-		@include media-breakpoint-down(sm) {
-			.footer-subscribe {
-				margin-bottom: 40px;
-			}
-		}
-        .follow-heading {
-            color: #FFFFFF;
-            margin-bottom: 20px;
-			letter-spacing: 0.8px;
-        }
-        .subs_input {
-            background: #333333;
-            color: #cccccc;
-            border-bottom: none;
-            box-shadow: none;
-            padding: 12px 15px 13px;
-            border-radius: 2px;
-            width: 60%;
-            font-size: 13px;
-            &:focus {
-                border: none;
-            }
-            @include for(screens-large) {
-                width: 100%;
-                margin-bottom: 4px;
-            }
-            @include for(screens-medium) {
-                width: 70%;
-                margin-bottom: 4px;
-            }
-            @include for(screens-small) {
-                width: 100%;
-                margin-bottom: 4px;
-            }
+	.footer-widgets.section-padding {
+		@include rem('padding', 60px 0px 20px 0px);
+	}
 
-        }
-
-        .subs-button {
-            margin: 0px;
-            position: relative;
-            top: 0px;
-            padding: 16px 23px 16px;
-            @include for(screens-large) {
-                width: 100%;
-            }
-            @include for(screens-medium) {
-                width: 70%;
-            }
-            @include for(screens-small) {
-                width: 100%;
-            }
-        }
-
-        input[type="text"]:focus {
-            border: none !important;
-        }
-    }
-    .footer-social {
-        text-align: center;
-        a {
-            font-size: 30px;
-            margin: 0px 13px;
-            color: #FFFFFF;
-            &:hover {
-                color: $primary;
-            }
-        }
-    }
     .site-info {
         position: relative;
         text-align: center;
-        padding: 35px 0px;
+        padding: 23px 0px;
         background: #222222;
+		border-top: 1px solid #333;
         font-weight: 500;
 		color: #bbbbbb;
 		a {
@@ -749,4 +679,16 @@
             left: 0;
         }
     }
+
+	/* Footer Widget */
+	.sidebar .widget .widget-title {
+		color: rgba(255,255,255,0.9);
+		margin-bottom: 20px;
+	}
+	.widget_recent_entries ul li {
+		border-bottom: 1px solid rgba(255,255,255,0.1);
+	}
+	.widget_tag_cloud a {
+		border-color: rgba(255,255,255,0.1);
+	}
 }

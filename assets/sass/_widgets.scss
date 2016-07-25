@@ -98,3 +98,13 @@
 		border-bottom: 1px solid $border;
 	}
 }
+
+/* Tags */
+.widget_tag_cloud a {
+    border: 1px solid #e9e9e9;
+    border-radius: 2px;
+    display: inline-block;
+    font-size: 13px !important;
+    margin-bottom: 5px;
+    padding: 2.5px 10px 3px;
+}
