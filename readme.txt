@@ -1,8 +1,7 @@
 === Screenr ===
 
 Contributors: famethemes
-Tags: one-column, two-columns, left-sidebar, right-sidebar, custom-colors, featured-images, sticky-post, theme-options, translation-ready, footer-widgets, blog, e-commerce, entertainment, food-and-drink, photography, portfolio
-
+Tags: one-column, two-columns, left-sidebar, right-sidebar, custom-colors, featured-images, sticky-post, theme-options, translation-ready, footer-widgets, blog, e-commerce, portfolio
 Requires at least: 4.0
 Tested up to: 4.3.1
 Stable tag: 0.0.2
@@ -44,5 +43,5 @@ Big - Bold and stylish, Screenr is a multiuse fullscreen theme.
 
 == Changelog ==
 
-= 1.0.2 =
+= 1.0.3 =
 * Initial release
