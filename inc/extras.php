@@ -405,7 +405,7 @@ if ( $layout != 'transparent' ) {
 
     // Page header
     $page_header_bg_overlay =  get_theme_mod( 'page_header_bg_overlay' );
-    $bg_cover = get_theme_mod( 'page_header_bg_color', 'e86240' );
+    $bg_cover = get_theme_mod( 'page_header_bg_color', '000000' );
     $c =  screenr_color_alpha_parse( $page_header_bg_overlay );
     if ( $c ){
     ?>

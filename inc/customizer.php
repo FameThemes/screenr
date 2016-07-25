@@ -305,7 +305,7 @@ function screenr_customize_register( $wp_customize ) {
             array(
                 'sanitize_callback'     => 'sanitize_hex_color_no_hash',
                 'sanitize_js_callback'  => 'maybe_hash_hex_color',
-                'default'               => 'e86240'
+                'default'               => '000000'
             ) );
         $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'page_header_bg_color',
             array(
