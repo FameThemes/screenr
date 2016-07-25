@@ -481,6 +481,9 @@
 ( function( api , $ ) {
     api.controlConstructor['wp_editor'] = api.Control.extend( {
         ready: function() {
+            if (  typeof window.screenr_enable_wp_editor === 'undefined' ) {
+                return false;
+            }
             var control = this;
             control.editing_area = $( '.wp-js-editor-textarea' , control.container );
             control.editing_area.uniqueId();
