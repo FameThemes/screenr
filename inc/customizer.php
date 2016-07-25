@@ -1240,7 +1240,135 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    
+    /*------------------------------------------------------------------------*/
+    /*  Section: VideoLight Box
+    /*------------------------------------------------------------------------*/
 
+    $wp_customize->add_section( 'section_videolightbox' ,
+        array(
+            'title'       => esc_html__( 'Video Lightbox', 'screenr' ),
+            'description' => '',
+            'panel'       => 'front_page_sections',
+        )
+    );
+
+    // Group Heading
+    $wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'video_lightbox_setting_group_heading',
+            array(
+                'type' 			=> 'group_heading_top',
+                'title'			=> esc_html__( 'Section Settings', 'screenr' ),
+                'section' 		=> 'section_videolightbox'
+            )
+        )
+    );
+
+    // Show section
+    $wp_customize->add_setting( 'videolightbox_disable',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_checkbox',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'videolightbox_disable',
+        array(
+            'type'        => 'checkbox',
+            'label'       => esc_html__('Hide this section?', 'screenr'),
+            'section'     => 'section_videolightbox',
+        )
+    );
+
+    // About ID
+    $wp_customize->add_setting( 'videolightbox_id',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('video', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'videolightbox_id',
+        array(
+            'label' 		=> esc_html__('Section ID:', 'screenr'),
+            'section' 		=> 'section_videolightbox',
+            'description'   => esc_html__('The section id, we will use this for link anchor.', 'screenr' )
+        )
+    );
+
+
+    // LightBox Title
+    $wp_customize->add_setting( 'videolightbox_title',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'videolightbox_title',
+        array(
+            'label' 		=> esc_html__('Title:', 'screenr'),
+            'section' 		=> 'section_videolightbox',
+            'description'   => esc_html__('Short text about this section.', 'screenr' )
+        )
+    );
+
+    // Group Heading
+    $wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'video_lightbox_content_group_heading',
+            array(
+                'type' 			=> 'group_heading',
+                'title'			=> esc_html__( 'Section Content', 'screenr' ),
+                'section' 		=> 'section_videolightbox'
+            )
+        )
+    );
+
+    // LightBox Video
+    $wp_customize->add_setting( 'videolightbox_video',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'videolightbox_video',
+        array(
+            'label' 		=> esc_html__('Video URL:', 'screenr'),
+            'section' 		=> 'section_videolightbox',
+            'description'   => esc_html__('Youtube or Vimeo url, e.g: https://www.youtube.com/watch?v=xxxxx', 'screenr' )
+        )
+    );
+
+    // LightBox Image Parallax
+    $wp_customize->add_setting( 'videolightbox_parallax_img',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control(
+        new WP_Customize_Image_Control(
+            $wp_customize,
+            'videolightbox_parallax_img',
+            array(
+                'label' 		=> esc_html__('Parallax image:', 'screenr'),
+                'section' 		=> 'section_videolightbox',
+            )
+        )
+    );
+
+    // Overlay color
+    $wp_customize->add_setting( 'videolightbox_overlay',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_color_alpha',
+            'default'           => 'rgba(0,0,0,.4)',
+            'transport' => 'refresh', // refresh or postMessage
+        )
+    );
+    $wp_customize->add_control( new Screenr_Alpha_Color_Control(
+            $wp_customize,
+            'videolightbox_overlay',
+            array(
+                'label' 		=> esc_html__('Background Overlay Color', 'screenr'),
+                'section' 		=> 'section_videolightbox',
+            )
+        )
+    );
 
     /*------------------------------------------------------------------------*/
     /*  Section: Services
@@ -1608,135 +1736,6 @@ function screenr_customize_register( $wp_customize ) {
                 4 => 4,
                 5 => 5,
                 6 => 6
-            )
-        )
-    );
-
-    /*------------------------------------------------------------------------*/
-    /*  Section: VideoLight Box
-    /*------------------------------------------------------------------------*/
-
-    $wp_customize->add_section( 'section_videolightbox' ,
-        array(
-            'title'       => esc_html__( 'Video Lightbox', 'screenr' ),
-            'description' => '',
-            'panel'       => 'front_page_sections',
-        )
-    );
-
-    // Group Heading
-    $wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'video_lightbox_setting_group_heading',
-            array(
-                'type' 			=> 'group_heading_top',
-                'title'			=> esc_html__( 'Section Settings', 'screenr' ),
-                'section' 		=> 'section_videolightbox'
-            )
-        )
-    );
-
-    // Show section
-    $wp_customize->add_setting( 'videolightbox_disable',
-        array(
-            'sanitize_callback' => 'screenr_sanitize_checkbox',
-            'default'           => '',
-        )
-    );
-    $wp_customize->add_control( 'videolightbox_disable',
-        array(
-            'type'        => 'checkbox',
-            'label'       => esc_html__('Hide this section?', 'screenr'),
-            'section'     => 'section_videolightbox',
-        )
-    );
-
-    // About ID
-    $wp_customize->add_setting( 'videolightbox_id',
-        array(
-            'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => esc_html__('video', 'screenr'),
-        )
-    );
-    $wp_customize->add_control( 'videolightbox_id',
-        array(
-            'label' 		=> esc_html__('Section ID:', 'screenr'),
-            'section' 		=> 'section_videolightbox',
-            'description'   => esc_html__('The section id, we will use this for link anchor.', 'screenr' )
-        )
-    );
-
-
-    // LightBox Title
-    $wp_customize->add_setting( 'videolightbox_title',
-        array(
-            'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => '',
-        )
-    );
-    $wp_customize->add_control( 'videolightbox_title',
-        array(
-            'label' 		=> esc_html__('Title:', 'screenr'),
-            'section' 		=> 'section_videolightbox',
-            'description'   => esc_html__('Short text about this section.', 'screenr' )
-        )
-    );
-
-    // Group Heading
-    $wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'video_lightbox_content_group_heading',
-            array(
-                'type' 			=> 'group_heading',
-                'title'			=> esc_html__( 'Section Content', 'screenr' ),
-                'section' 		=> 'section_videolightbox'
-            )
-        )
-    );
-
-    // LightBox Video
-    $wp_customize->add_setting( 'videolightbox_video',
-        array(
-            'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => '',
-        )
-    );
-    $wp_customize->add_control( 'videolightbox_video',
-        array(
-            'label' 		=> esc_html__('Video URL:', 'screenr'),
-            'section' 		=> 'section_videolightbox',
-            'description'   => esc_html__('Youtube or Vimeo url, e.g: https://www.youtube.com/watch?v=xxxxx', 'screenr' )
-        )
-    );
-
-    // LightBox Image Parallax
-    $wp_customize->add_setting( 'videolightbox_parallax_img',
-        array(
-            'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => '',
-        )
-    );
-    $wp_customize->add_control(
-        new WP_Customize_Image_Control(
-            $wp_customize,
-            'videolightbox_parallax_img',
-            array(
-                'label' 		=> esc_html__('Parallax image:', 'screenr'),
-                'section' 		=> 'section_videolightbox',
-            )
-        )
-    );
-
-    // Overlay color
-    $wp_customize->add_setting( 'videolightbox_overlay',
-        array(
-            'sanitize_callback' => 'screenr_sanitize_color_alpha',
-            'default'           => 'rgba(0,0,0,.4)',
-            'transport' => 'refresh', // refresh or postMessage
-        )
-    );
-    $wp_customize->add_control( new Screenr_Alpha_Color_Control(
-            $wp_customize,
-            'videolightbox_overlay',
-            array(
-                'label' 		=> esc_html__('Background Overlay Color', 'screenr'),
-                'section' 		=> 'section_videolightbox',
             )
         )
     );
