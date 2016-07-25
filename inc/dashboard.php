@@ -116,7 +116,7 @@ function screenr_theme_info_page() {
                             <h3><?php esc_html_e( 'Theme Documentation', 'screenr' ); ?></h3>
                             <p class="about"><?php printf(esc_html__('Need any help to setup and configure %s? Please have a look at our documentations instructions.', 'screenr'), $theme_data->Name); ?></p>
                             <p>
-                                <a href="<?php echo esc_url( 'http://docs.famethemes.com/category/75-screenr' ); ?>" target="_blank" class="button button-secondary"><?php esc_html_e('Screenr Documentation', 'screenr'); ?></a>
+                                <a href="<?php echo esc_url( 'http://docs.famethemes.com/category/76-screenr' ); ?>" target="_blank" class="button button-secondary"><?php esc_html_e('Screenr Documentation', 'screenr'); ?></a>
                             </p>
                             <?php do_action( 'screenr_dashboard_theme_links' ); ?>
                         </div>
