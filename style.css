@@ -774,6 +774,8 @@ input[type="radio"], input[type="checkbox"] {
 	font-size: 0.75rem;
 	margin-bottom: 0px;
 	margin-bottom: 0rem;
+	margin-top: 6px;
+	margin-top: 0.375rem;
 }
 
 .custom-logo-link {
