@@ -1667,9 +1667,9 @@ input[type="radio"], input[type="checkbox"] {
 	height: 12px;
 	position: absolute;
 	left: 0px;
-	top: 2px;
+	top: 7px;
 	font-size: 22px;
-	color: #aaaaaa;
+	color: #e86240;
 }
 
 /* WordPress caption style
