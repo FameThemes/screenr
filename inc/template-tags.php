@@ -289,7 +289,7 @@ if ( ! function_exists( 'screenr_comment' ) ) {
                 // Display trackbacks differently than normal comments.
                 ?>
                 <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
-                <p><?php _e('Pingback:', 'screenr'); ?><?php comment_author_link(); ?><?php edit_comment_link(__('(Edit)', 'screenr'), '<span class="edit-link">', '</span>'); ?></p>
+                <p><?php esc_html_e('Pingback:', 'screenr'); ?><?php comment_author_link(); ?><?php edit_comment_link(__('(Edit)', 'screenr'), '<span class="edit-link">', '</span>'); ?></p>
                 <?php
                 break;
             default :
@@ -323,7 +323,7 @@ if ( ! function_exists( 'screenr_comment' ) ) {
                         <!-- .comment-meta -->
 
                         <?php if ('0' == $comment->comment_approved) : ?>
-                            <p class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.', 'screenr'); ?></p>
+                            <p class="comment-awaiting-moderation"><?php esc_html_e('Your comment is awaiting moderation.', 'screenr'); ?></p>
                         <?php endif; ?>
 
                         <div class="comment-content entry-content">

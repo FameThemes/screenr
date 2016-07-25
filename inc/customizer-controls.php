@@ -563,7 +563,7 @@ class Screenr_Customize_Repeatable_Control extends WP_Customize_Control {
         </div>
 
         <div class="repeatable-actions">
-            <span class="button-secondary add-new-repeat-item"><?php _e( 'Add an item', 'screenr' ); ?></span>
+            <span class="button-secondary add-new-repeat-item"><?php esc_html_e( 'Add an item', 'screenr' ); ?></span>
         </div>
 
          <script type="text/html" class="repeatable-js-template">
@@ -582,7 +582,7 @@ class Screenr_Customize_Repeatable_Control extends WP_Customize_Control {
                         <a class="widget-action" href="#"></a>
                     </div>
                     <div class="widget-title">
-                        <h4 class="live-title"><?php _e( 'Item', 'screenr' ); ?></h4>
+                        <h4 class="live-title"><?php esc_html_e( 'Item', 'screenr' ); ?></h4>
                     </div>
                 </div>
 
@@ -711,8 +711,8 @@ class Screenr_Customize_Repeatable_Control extends WP_Customize_Control {
                                             <# } #>
 
                                             <div class="actions">
-                                                <button class="button remove-button " <# if ( ! field.value.url ){ #> style="display:none"; <# } #> type="button"><?php _e( 'Remove', 'screenr' ) ?></button>
-                                                <button class="button upload-button" data-media="{{field.media}}" data-add-txt="<?php esc_attr_e( 'Add', 'screenr' ); ?>" data-change-txt="<?php esc_attr_e( 'Change', 'screenr' ); ?>" type="button"><# if ( ! field.value.url  ){ #> <?php _e( 'Add', 'screenr' ); ?> <# } else { #> <?php _e( 'Change', 'screenr' ); ?> <# } #> </button>
+                                                <button class="button remove-button " <# if ( ! field.value.url ){ #> style="display:none"; <# } #> type="button"><?php esc_html_e( 'Remove', 'screenr' ) ?></button>
+                                                <button class="button upload-button" data-media="{{field.media}}" data-add-txt="<?php esc_attr_e( 'Add', 'screenr' ); ?>" data-change-txt="<?php esc_attr_e( 'Change', 'screenr' ); ?>" type="button"><# if ( ! field.value.url  ){ #> <?php esc_html_e( 'Add', 'screenr' ); ?> <# } else { #> <?php esc_html_e( 'Change', 'screenr' ); ?> <# } #> </button>
                                                 <div style="clear:both"></div>
                                             </div>
 
