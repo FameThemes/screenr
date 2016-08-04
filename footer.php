@@ -13,7 +13,6 @@
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<?php
 		$footer_columns = absint( get_theme_mod( 'footer_layout' , 4 ) );
-
 		$max_cols = 12;
 		$layouts = 12;
 		if ( $footer_columns > 1 ){
@@ -29,7 +28,7 @@
 					$default = '6+6';
 					break;
 			}
-			$layouts = get_theme_mod( 'footer_custom_'.$footer_columns.'_columns', $default );
+			$layouts = esc_html( get_theme_mod( 'footer_custom_'.$footer_columns.'_columns', $default ) );
 		}
 
 		$layouts = explode( '+', $layouts );
