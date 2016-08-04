@@ -7,11 +7,11 @@
 
 class Screenr_Misc_Control extends WP_Customize_Control {
 
-
 	public $settings = 'blogname';
 	public $description = '';
 	public $title = '';
 	public $group = '';
+	public $type = '';
 
 	/**
 	 * Render the description and title for the sections
