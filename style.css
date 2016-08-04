@@ -69,7 +69,6 @@ body {
 }
 
 .site {
-	background: #FFFFFF;
 	position: relative;
 }
 
@@ -1243,7 +1242,6 @@ input[type="radio"], input[type="checkbox"] {
 .site-content {
 	position: relative;
 	z-index: 10;
-	background: #fff;
 }
 
 .blog .site-content,
