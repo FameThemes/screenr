@@ -897,7 +897,7 @@ function screenr_customize_register( $wp_customize ) {
     );
 
     // Group Heading
-	$wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'feature_setting_group_heading',
+	$wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'feature_setting_group_heading',
 			array(
 				'type' 			=> 'group_heading_top',
 				'title'			=> esc_html__( 'Section Settings', 'screenr' ),
@@ -981,7 +981,7 @@ function screenr_customize_register( $wp_customize ) {
     );
 
     // Group Heading
-	$wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'feature_content_group_heading',
+	$wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'feature_content_group_heading',
 			array(
 				'type' 			=> 'group_heading',
 				'title'			=> esc_html__( 'Section Content', 'screenr' ),
@@ -1110,7 +1110,7 @@ function screenr_customize_register( $wp_customize ) {
     );
 
     // Group Heading
-	$wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'about_setting_group_heading',
+	$wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'about_setting_group_heading',
 			array(
 				'type' 			=> 'group_heading_top',
 				'title'			=> esc_html__( 'Section Settings', 'screenr' ),
@@ -1194,7 +1194,7 @@ function screenr_customize_register( $wp_customize ) {
     );
 
     // Group Heading
-	$wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'about_content_group_heading',
+	$wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'about_content_group_heading',
 			array(
 				'type' 			=> 'group_heading',
 				'title'			=> esc_html__( 'Section Content', 'screenr' ),
@@ -1254,7 +1254,7 @@ function screenr_customize_register( $wp_customize ) {
     );
 
     // Group Heading
-    $wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'video_lightbox_setting_group_heading',
+    $wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'video_lightbox_setting_group_heading',
             array(
                 'type' 			=> 'group_heading_top',
                 'title'			=> esc_html__( 'Section Settings', 'screenr' ),
@@ -1310,7 +1310,7 @@ function screenr_customize_register( $wp_customize ) {
     );
 
     // Group Heading
-    $wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'video_lightbox_content_group_heading',
+    $wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'video_lightbox_content_group_heading',
             array(
                 'type' 			=> 'group_heading',
                 'title'			=> esc_html__( 'Section Content', 'screenr' ),
@@ -1383,7 +1383,7 @@ function screenr_customize_register( $wp_customize ) {
     );
 
     // Group Heading
-	$wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'service_setting_group_heading',
+	$wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'service_setting_group_heading',
 			array(
 				'type' 			=> 'group_heading_top',
 				'title'			=> esc_html__( 'Section Settings', 'screenr' ),
@@ -1467,7 +1467,7 @@ function screenr_customize_register( $wp_customize ) {
     );
 
     // Group Heading
-    $wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'service_content_group_heading',
+    $wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'service_content_group_heading',
             array(
                 'type' 			=> 'group_heading',
                 'title'			=> esc_html__( 'Section Content', 'screenr' ),
@@ -1579,7 +1579,7 @@ function screenr_customize_register( $wp_customize ) {
     );
 
     // Group Heading
-    $wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'clients_setting_group_heading',
+    $wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'clients_setting_group_heading',
             array(
                 'type' 			=> 'group_heading_top',
                 'title'			=> esc_html__( 'Section Settings', 'screenr' ),
@@ -1665,7 +1665,7 @@ function screenr_customize_register( $wp_customize ) {
     );
 
     // Group Heading
-    $wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'clients_content_group_heading',
+    $wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'clients_content_group_heading',
             array(
                 'type' 			=> 'group_heading',
                 'title'			=> esc_html__( 'Section Content', 'screenr' ),
@@ -1754,7 +1754,7 @@ function screenr_customize_register( $wp_customize ) {
     );
 
     // Group Heading
-    $wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'counter_setting_group_heading',
+    $wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'counter_setting_group_heading',
             array(
                 'type' 			=> 'group_heading_top',
                 'title'			=> esc_html__( 'Section Settings', 'screenr' ),
@@ -1838,7 +1838,7 @@ function screenr_customize_register( $wp_customize ) {
     );
 
     // Group Heading
-    $wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'counter_content_group_heading',
+    $wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'counter_content_group_heading',
             array(
                 'type' 			=> 'group_heading',
                 'title'			=> esc_html__( 'Section Content', 'screenr' ),
@@ -1940,7 +1940,7 @@ function screenr_customize_register( $wp_customize ) {
     );
 
     // Group Heading
-    $wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'news_setting_group_heading',
+    $wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'news_setting_group_heading',
             array(
                 'type' 			=> 'group_heading_top',
                 'title'			=> esc_html__( 'Section Settings', 'screenr' ),
@@ -2022,7 +2022,7 @@ function screenr_customize_register( $wp_customize ) {
     );
 
     // Group Heading
-    $wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'news_content_group_heading',
+    $wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'news_content_group_heading',
             array(
                 'type' 			=> 'group_heading',
                 'title'			=> esc_html__( 'Section Content', 'screenr' ),
@@ -2129,7 +2129,7 @@ function screenr_customize_register( $wp_customize ) {
     );
 
     // Group Heading
-    $wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'contact_setting_group_heading',
+    $wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'contact_setting_group_heading',
             array(
                 'type' 			=> 'group_heading_top',
                 'title'			=> esc_html__( 'Section Settings', 'screenr' ),
@@ -2213,7 +2213,7 @@ function screenr_customize_register( $wp_customize ) {
     );
 
     // Group Heading
-    $wp_customize->add_control( new Screenr_Misc_Control( $wp_customize, 'contact_content_group_heading',
+    $wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'contact_content_group_heading',
             array(
                 'type' 			=> 'group_heading',
                 'title'			=> esc_html__( 'Section Content', 'screenr' ),

@@ -5,7 +5,7 @@
 /*  Screenr Customizer Controls
 /*-----------------------------------------------------------------------------------*/
 
-class Screenr_Misc_Control extends WP_Customize_Control {
+class Screenr_Group_Settings_Heading_Control extends WP_Customize_Control {
 
 	public $settings = 'blogname';
 	public $description = '';
