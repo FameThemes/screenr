@@ -317,7 +317,7 @@ if ( ! function_exists( 'screenr_comment' ) ) {
                                 esc_url(get_comment_link($comment->comment_ID)),
                                 get_comment_time('c'),
                                 /* translators: 1: date, 2: time */
-                                sprintf(__('%1$s', 'screenr'), get_comment_date())
+								get_comment_date()
                             );
                             comment_reply_link(array_merge($args, array('reply_text' => __('Reply', 'screenr'), 'after' => '', 'depth' => $depth, 'max_depth' => $args['max_depth'])));
                             edit_comment_link(__('Edit', 'screenr'), '<span class="edit-link">', '</span>');
