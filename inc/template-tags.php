@@ -44,10 +44,7 @@ function screenr_posted_on( $echo = true ) {
             esc_html(get_the_modified_date())
         );
 
-        $posted_on = sprintf(
-            esc_html_x( '%s', 'post date', 'screenr' ),
-            '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
-        );
+        $posted_on =  '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>';
 
     }
 
