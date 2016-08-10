@@ -26,6 +26,7 @@ Big - Bold and stylish, Screenr is a multiuse fullscreen theme.
 == Credits ==
 
 * Based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc., [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
+* Alpha Color Picker Customizer Control http://braadmartin.com/, (C) 2015 Braad Martin, [GPL](https://www.gnu.org/licenses/gpl-2.0.html)
 * normalize.css http://necolas.github.io/normalize.css/, (C) 2012-2015 Nicolas Gallagher and Jonathan Neal, [MIT](http://opensource.org/licenses/MIT)
 * Google Fonts https://www.google.com/fonts/specimen/Open+Sans, [OFL](scripts.sil.org/OFL)
 * Google Fonts https://www.google.com/fonts/specimen/Montserrat, [OFL](scripts.sil.org/OFL)
