@@ -34,14 +34,6 @@ class Screenr_Group_Settings_Heading_Control extends WP_Customize_Control {
 				}
 				break;
 
-			case 'heading':
-				echo '<span class="customize-control-title">' . $this->title . '</span>';
-				break;
-
-			case 'custom_message' :
-				echo '<p class="description">' . $this->description . '</p>';
-				break;
-
 			case 'hr' :
 				echo '<hr />';
 				break;
