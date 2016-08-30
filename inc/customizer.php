@@ -742,16 +742,6 @@ function screenr_customize_register( $wp_customize ) {
                 'max_item'      => 1, // Maximum item can add
                 'limited_msg' 	=> '',
                 'fields'    => array(
-                    /*
-                    'layout' => array(
-                        'title' => esc_html__('Content layout', 'screenr'),
-                        'type'  =>'select',
-                        'options' => apply_filters( 'screenr_slider_content_layout', array(
-                            'layout_1' => esc_html__('Layout 1', 'screenr'),
-                            'layout_2' => esc_html__('Layout 2', 'screenr'),
-                        ) )
-                    ),
-                    */
                     'content_layout_1' => array(
                         'title' => esc_html__('Content layout 1', 'screenr'),
                         'type'  =>'editor',
@@ -766,7 +756,6 @@ function screenr_customize_register( $wp_customize ) {
                                 esc_html__( 'Contact Now', 'screenr' )
                             )
                         ),
-                        //"required" => array( 'layout', '=', 'layout_1' )
                     ),
                     'media' => array(
                         'title' => esc_html__('Background Image', 'screenr'),
@@ -2279,7 +2268,7 @@ function screenr_customize_register( $wp_customize ) {
             )
         )
     );
-    
+
 
     do_action( 'screenr_customize_after_register', $wp_customize );
 }
@@ -2318,7 +2307,6 @@ function screenr_customize_controls_enqueue_scripts(){
 }
 
 add_action( 'customize_controls_enqueue_scripts', 'screenr_customize_controls_enqueue_scripts' );
-
 
 /*------------------------------------------------------------------------*/
 /*  Screenr Sanitize Functions.
@@ -2383,9 +2371,7 @@ function screenr_showon_frontpage() {
     return is_page_template( 'template-frontpage.php' );
 }
 
-
 require get_template_directory() . '/inc/customizer-selective-refresh.php';
-
 
 add_action( 'customize_controls_enqueue_scripts', 'screenr_customize_js_settings' );
 
