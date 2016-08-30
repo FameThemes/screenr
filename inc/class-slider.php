@@ -27,6 +27,9 @@ class Screenr_Slider {
             if ( ! $item['position'] ) {
                 $item['position']  = 'center';
             }
+            if ( ! $item['layout'] ) {
+                $item['layout']  = 'layout_1';
+            }
             $item['pd_top'] = esc_attr( get_theme_mod( 'slider_pd_top' ) );
             $item['pd_bottom'] = esc_attr( get_theme_mod( 'slider_pd_bottom' ) );
             $slider_data[ $k ] = $this->render_item( $item );

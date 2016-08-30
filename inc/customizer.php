@@ -742,6 +742,7 @@ function screenr_customize_register( $wp_customize ) {
                 'max_item'      => 1, // Maximum item can add
                 'limited_msg' 	=> '',
                 'fields'    => array(
+                    /*
                     'layout' => array(
                         'title' => esc_html__('Content layout', 'screenr'),
                         'type'  =>'select',
@@ -750,6 +751,7 @@ function screenr_customize_register( $wp_customize ) {
                             'layout_2' => esc_html__('Layout 2', 'screenr'),
                         ) )
                     ),
+                    */
                     'content_layout_1' => array(
                         'title' => esc_html__('Content layout 1', 'screenr'),
                         'type'  =>'editor',
@@ -764,14 +766,7 @@ function screenr_customize_register( $wp_customize ) {
                                 esc_html__( 'Contact Now', 'screenr' )
                             )
                         ),
-                        "required" => array( 'layout', '=', 'layout_1' )
-                    ),
-                    'content_layout_2' => array(
-                        'title' => esc_html__('Content layout 2', 'screenr'),
-                        'type'  =>'editor',
-                        'mod'   =>'html',
-                        'default' => '',
-                        "required" => array( 'layout', '=', 'layout_2' )
+                        //"required" => array( 'layout', '=', 'layout_1' )
                     ),
                     'media' => array(
                         'title' => esc_html__('Background Image', 'screenr'),
