@@ -1478,7 +1478,7 @@ jQuery( document ).ready( function( $ ){
             $('.control-section-themes h3.accordion-section-title').append('<a class="theme-action-count" href="' + screenr_customizer_settings.action_url + '">' + screenr_customizer_settings.number_action + '</a>');
         }
         if ( screenr_customizer_settings.is_plus_activated !== 'y' ) {
-            $('#customize-info .accordion-section-title').append('<a target="_blank" style="text-transform: uppercase; background: #D54E21; color: #fff; font-size: 10px; line-height: 14px; padding: 2px 5px; display: inline-block;" href="https://www.famethemes.com/plugins/screenr-plus/">Upgrade to Screenr Plus</a>');
+            $('#customize-info .accordion-section-title').append('<a target="_blank" style="text-transform: uppercase; background: #D54E21; color: #fff; font-size: 10px; line-height: 14px; padding: 3px 10px 1px; display: inline-block;letter-spacing: 1px;" href="https://www.famethemes.com/plugins/screenr-plus/">Upgrade to Screenr Plus</a>');
         }
     }
 } );
