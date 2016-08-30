@@ -67,7 +67,7 @@ function screenr_customize_register( $wp_customize ) {
     /*------------------------------------------------------------------------*/
     $wp_customize->add_panel( 'screenr_options',
         array(
-            'priority'       => 22,
+            'priority'       => 150,
             'capability'     => 'edit_theme_options',
             'theme_supports' => '',
             'title'          => esc_html__( 'Theme Options', 'screenr' ),
@@ -656,7 +656,7 @@ function screenr_customize_register( $wp_customize ) {
      */
     $wp_customize->add_panel( 'front_page_sections',
         array(
-            'priority'       => 25,
+            'priority'       => 147,
             'capability'     => 'edit_theme_options',
             'theme_supports' => '',
             'title'          => esc_html__( 'Frontpage Sections', 'screenr' ),
@@ -972,12 +972,12 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
     $wp_customize->add_control(
-        new Screenr_Editor_Custom_Control( $wp_customize,
-            'features_desc',
-            array(
-                'label' 		=> esc_html__('Section Description:', 'screenr'),
-                'section' 		=> 'section_features',
-            ) )
+        'features_desc',
+        array(
+            'label' 		=> esc_html__('Section Description:', 'screenr'),
+            'section' 		=> 'section_features',
+            'type' 		    => 'textarea',
+        )
     );
 
     // Group Heading
@@ -1185,12 +1185,12 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
     $wp_customize->add_control(
-        new Screenr_Editor_Custom_Control( $wp_customize,
-            'about_desc',
-            array(
-                'label' 		=> esc_html__('Section Description:', 'screenr'),
-                'section' 		=> 'section_about',
-            ) )
+        'about_desc',
+        array(
+            'label' 		=> esc_html__('Section Description:', 'screenr'),
+            'section' 		=> 'section_about',
+            'type' 		    => 'textarea',
+        )
     );
 
     // Group Heading
@@ -1458,12 +1458,12 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
     $wp_customize->add_control(
-        new Screenr_Editor_Custom_Control( $wp_customize,
-            'services_desc',
-            array(
-                'label' 		=> esc_html__('Section Description:', 'screenr'),
-                'section' 		=> 'section_services',
-            ) )
+        'services_desc',
+        array(
+            'label' 		=> esc_html__('Section Description:', 'screenr'),
+            'section' 		=> 'section_services',
+            'type' 		    => 'textarea',
+        )
     );
 
     // Group Heading
@@ -1654,13 +1654,11 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
     $wp_customize->add_control(
-        new Screenr_Editor_Custom_Control(
-            $wp_customize,
-            'clients_desc',
-            array(
-                'label' 		=> esc_html__('Section description:', 'screenr'),
-                'section' 		=> 'section_clients',
-            )
+        'clients_desc',
+        array(
+            'label' 		=> esc_html__('Section description:', 'screenr'),
+            'section' 		=> 'section_clients',
+            'type' 		    => 'textarea',
         )
     );
 
@@ -1829,12 +1827,12 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
     $wp_customize->add_control(
-        new Screenr_Editor_Custom_Control( $wp_customize,
-            'counter_desc',
-            array(
-                'label' 		=> esc_html__('Section Description:', 'screenr'),
-                'section' 		=> 'section_counter',
-            ) )
+        'counter_desc',
+        array(
+            'label' 		=> esc_html__('Section Description:', 'screenr'),
+            'section' 		=> 'section_counter',
+            'type' 		    => 'textarea',
+        )
     );
 
     // Group Heading
@@ -2013,12 +2011,12 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
     $wp_customize->add_control(
-        new Screenr_Editor_Custom_Control( $wp_customize,
-            'news_desc',
-            array(
-                'label' 		=> esc_html__('Section Description:', 'screenr'),
-                'section' 		=> 'section_news',
-            ) )
+        'news_desc',
+        array(
+            'label' 		=> esc_html__('Section Description:', 'screenr'),
+            'section' 		=> 'section_news',
+            'type' 		    => 'textarea',
+        )
     );
 
     // Group Heading
@@ -2204,12 +2202,12 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
     $wp_customize->add_control(
-        new Screenr_Editor_Custom_Control( $wp_customize,
-            'contact_desc',
-            array(
-                'label' 		=> esc_html__('Section Description:', 'screenr'),
-                'section' 		=> 'section_contact',
-            ) )
+        'contact_desc',
+        array(
+            'label' 		=> esc_html__('Section Description:', 'screenr'),
+            'section' 		=> 'section_contact',
+            'type' 		    => 'textarea',
+        )
     );
 
     // Group Heading
@@ -2230,14 +2228,12 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
     $wp_customize->add_control(
-        new Screenr_Editor_Custom_Control(
-            $wp_customize,
-            'contact_content',
-            array(
-                'label' 		=> esc_html__('Content:', 'screenr'),
-                'section' 		=> 'section_contact',
-                'description'   => esc_html__('You can install any contact form plugin such as Contact Form 7 and then paste the shortcode of the form here.', 'screenr'),
-            )
+        'contact_content',
+        array(
+            'label' 		=> esc_html__('Content:', 'screenr'),
+            'section' 		=> 'section_contact',
+            'type' 		    => 'textarea',
+            'description'   => esc_html__('You can install any contact form plugin such as Contact Form 7 and then paste the shortcode of the form here.', 'screenr'),
         )
     );
 

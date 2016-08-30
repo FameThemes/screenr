@@ -199,72 +199,6 @@ function screenr_sanitize_repeatable_data_field( $input , $setting ){
 }
 
 
-class Screenr_Editor_Custom_Control extends WP_Customize_Control
-{
-    /**
-     * The type of customize control being rendered.
-     *
-     * @since  1.0.0
-     * @access public
-     * @var    string
-     */
-    public $type = 'wp_editor';
-
-    /**
-     * Add support for palettes to be passed in.
-     *
-     * Supported palette values are true, false, or an array of RGBa and Hex colors.
-     */
-    public $mod;
-
-    /**
-     * Enqueue scripts/styles.
-     *
-     * @since  1.0.0
-     * @access public
-     * @return void
-     */
-    public function enqueue() {
-        wp_enqueue_script( 'wp-color-picker' );
-        wp_enqueue_script( 'screenr-customizer', get_template_directory_uri() . '/assets/js/customizer.js', array( 'customize-controls', 'wp-color-picker' ) );
-        wp_enqueue_style( 'screenr-customizer',  get_template_directory_uri() . '/assets/css/customizer.css' );
-
-        if ( ! class_exists( '_WP_Editors' ) ) {
-            require(ABSPATH . WPINC . '/class-wp-editor.php');
-        }
-
-        add_action( 'customize_controls_print_footer_scripts', array( __CLASS__, 'enqueue_editor' ),  2 );
-        add_action( 'customize_controls_print_footer_scripts', array( '_WP_Editors', 'editor_js' ), 50 );
-        add_action( 'customize_controls_print_footer_scripts', array( '_WP_Editors', 'enqueue_scripts' ), 1 );
-    }
-
-    public  static function enqueue_editor(){
-        if( ! isset( $GLOBALS['__wp_mce_editor__'] ) || ! $GLOBALS['__wp_mce_editor__'] ) {
-            $GLOBALS['__wp_mce_editor__'] = true;
-            ?>
-            <script id="_wp-mce-editor-tpl" type="text/html">
-                <?php wp_editor('', '__wp_mce_editor__'); ?>
-            </script>
-            <?php
-        }
-    }
-    public function render_content() {
-        $this->mod = strtolower( $this->mod );
-        if( ! $this->mod = 'html' ) {
-            $this->mod = 'tmce';
-        }
-        ?>
-        <div class="wp-js-editor">
-            <label>
-                <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-            </label>
-            <textarea class="wp-js-editor-textarea large-text" data-editor-mod="<?php echo esc_attr( $this->mod ); ?>" cols="20" rows="5" <?php $this->link(); ?>><?php echo esc_textarea( $this->value() ); ?></textarea>
-            <p class="description"><?php echo $this->description ?></p>
-        </div>
-    <?php
-    }
-}
-
 class Screenr_Alpha_Color_Control extends WP_Customize_Control {
 
     /**
@@ -373,7 +307,6 @@ class Screenr_Customize_Repeatable_Control extends WP_Customize_Control {
                     $args['fields'][ $key ]['value'] = '';
                 }
             }
-
         }
 
         $this->fields = $args['fields'];
@@ -489,27 +422,8 @@ class Screenr_Customize_Repeatable_Control extends WP_Customize_Control {
 
         wp_enqueue_script( 'screenr-customizer' );
         wp_enqueue_style( 'screenr-customizer' );
-
-        if ( ! class_exists( '_WP_Editors' ) ) {
-            require(ABSPATH . WPINC . '/class-wp-editor.php');
-        }
-
-        add_action( 'customize_controls_print_footer_scripts', array( __CLASS__, 'enqueue_editor' ),  2 );
-        add_action( 'customize_controls_print_footer_scripts', array( '_WP_Editors', 'editor_js' ), 50 );
-        add_action( 'customize_controls_print_footer_scripts', array( '_WP_Editors', 'enqueue_scripts' ), 1 );
-
     }
 
-    public  static function enqueue_editor(){
-        if( ! isset( $GLOBALS['__wp_mce_editor__'] ) || ! $GLOBALS['__wp_mce_editor__'] ) {
-            $GLOBALS['__wp_mce_editor__'] = true;
-            ?>
-            <script id="_wp-mce-editor-tpl" type="text/html">
-                <?php wp_editor('', '__wp_mce_editor__'); ?>
-            </script>
-        <?php
-        }
-    }
 
     public function render_content() {
 
@@ -606,7 +520,6 @@ class Screenr_Customize_Repeatable_Control extends WP_Customize_Control {
                                             <p class="field-desc description">{{ field.desc }}</p>
                                             <# } #>
 
-
                                         <# } else if ( field.type === 'select' ) { #>
 
                                             <# if ( field.multiple ) { #>
@@ -614,30 +527,23 @@ class Screenr_Customize_Repeatable_Control extends WP_Customize_Control {
                                             <# } else  { #>
                                                 <select data-live-id="{{ field.id }}"  class="select-one" data-repeat-name="_items[__i__][{{ field.id }}]">
                                             <# } #>
-
                                                 <# for ( k in field.options ) { #>
-
                                                     <# if ( _.isArray( field.value ) ) { #>
                                                         <option <# if ( _.contains( field.value , k ) ) { #> selected="selected" <# } #>  value="{{ k }}">{{ field.options[k] }}</option>
                                                     <# } else { #>
                                                         <option <# if ( field.value == k ) { #> selected="selected" <# } #>  value="{{ k }}">{{ field.options[k] }}</option>
                                                     <# } #>
-
                                                 <# } #>
-
                                             </select>
 
                                         <# } else if ( field.type === 'radio' ) { #>
 
                                             <# for ( k in field.options ) { #>
-
                                                 <# if ( field.options.hasOwnProperty( k ) ) { #>
-
                                                     <label>
                                                         <input data-live-id="{{ field.id }}"  type="radio" <# if ( field.value == k ) { #> checked="checked" <# } #> value="{{ k }}" data-repeat-name="_items[__i__][{{ field.id }}]" class="widefat">
                                                         {{ field.options[k] }}
                                                     </label>
-
                                                 <# } #>
                                             <# } #>
 
