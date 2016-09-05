@@ -50,7 +50,8 @@ function screenr_setup() {
     add_theme_support( 'post-thumbnails' );
 	add_image_size( 'screenr-blog-grid-small', 350, 200, true );
 	add_image_size( 'screenr-blog-grid', 540, 300, true );
-    add_image_size( 'screenr-blog-list', 790, 400, true );
+	add_image_size( 'screenr-blog-list', 790, 400, true );
+    add_image_size( 'screenr-service-small', 538, 280, true );
 
 	add_theme_support( 'custom-logo', array(
 		'height'      => 60,

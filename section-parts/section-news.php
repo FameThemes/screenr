@@ -1,5 +1,5 @@
 <?php
-$title      = get_theme_mod( 'news_title', esc_html__( 'News', 'screenr' ) );
+$title      = get_theme_mod( 'news_title', esc_html__( 'Latest News', 'screenr' ) );
 $subtitle   = get_theme_mod( 'news_subtitle', esc_html__( 'Section subtitle', 'screenr' ) );
 $desc       = get_theme_mod( 'news_desc' );
 
@@ -28,7 +28,7 @@ switch ( $layout ) {
         break;
 }
 
-$classes = 'section-news section-padding';
+$classes = 'section-news section-padding section-padding-lg';
 
 ?>
 <?php if ( ! screenr_is_selective_refresh() ) { ?>

@@ -112,8 +112,8 @@ $classes = 'section-services section-padding section-meta screenr-section';
                                     ?>
                                     <div class="card service__media top">
                                         <?php
-                                        if (has_post_thumbnail()) {
-                                            the_post_thumbnail('post-thumbnail', array('class' => 'card-img-top', 'width' => '', 'height' => ''));
+                                        if ( has_post_thumbnail() ) {
+                                            the_post_thumbnail( 'screenr-service-small' );
                                         }
                                         ?>
                                         <div class="card-ig-overlay card-block">
