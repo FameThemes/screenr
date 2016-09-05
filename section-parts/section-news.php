@@ -32,7 +32,7 @@ $classes = 'section-news section-padding';
 
 ?>
 <?php if ( ! screenr_is_selective_refresh() ) { ?>
-<section id="<?php get_theme_mod( 'news_id', 'news' ); ?>" class="<?php echo esc_attr( apply_filters( 'screenr_section_class', $classes, 'news' ) ); ?>">
+<section id="<?php echo esc_attr( get_theme_mod( 'news_id', 'news' ) ); ?>" class="<?php echo esc_attr( apply_filters( 'screenr_section_class', $classes, 'news' ) ); ?>">
 <?php } ?>
     <div class="container">
         <?php if (  $title || $subtitle || $desc ) { ?>
