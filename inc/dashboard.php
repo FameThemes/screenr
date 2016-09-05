@@ -124,7 +124,7 @@ function screenr_theme_info_page() {
                             <h3><?php esc_html_e( 'Having Trouble, Need Support?', 'screenr' ); ?></h3>
                             <p class="about"><?php printf(esc_html__('Support for %s WordPress theme is conducted through FameThemes support ticket system.', 'screenr'), $theme_data->Name); ?></p>
                             <p>
-                                <a href="<?php echo esc_url('https://www.famethemes.com/dashboard/tickets/' ); ?>" target="_blank" class="button button-secondary"><?php echo sprintf( esc_html('Create a support ticket', 'screenr'), $theme_data->Name); ?></a>
+                                <a href="<?php echo esc_url('https://www.famethemes.com/contact/' ); ?>" target="_blank" class="button button-secondary"><?php echo sprintf( esc_html('Create a support ticket', 'screenr'), $theme_data->Name); ?></a>
                             </p>
                         </div>
                     </div>
