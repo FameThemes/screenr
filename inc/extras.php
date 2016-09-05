@@ -499,7 +499,7 @@ function screenr_page_header_cover()
     }
 
     if ( ! $image ) {
-        $image = get_theme_mod( 'page_header_bg_image' );
+        $image = get_header_image();
     }
 
     $is_parallax  = true;

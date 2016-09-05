@@ -82,6 +82,22 @@ function screenr_setup() {
 		'default-image' => '',
 	) ) );
 
+
+    add_theme_support( 'custom-header', array(
+        'default-image'          => get_template_directory_uri() . '/assets/images/header.jpg',
+        'width'                  => 1600,
+        'height'                 => 800,
+        'flex-height'            => false,
+        'flex-width'             => false,
+        'uploads'                => true,
+        'random-default'         => false,
+        'header-text'            => true,
+        'default-text-color'     => '',
+        'wp-head-callback'       => '',
+        'admin-head-callback'    => '',
+        'admin-preview-callback' => '',
+    ) );
+
 }
 endif;
 add_action( 'after_setup_theme', 'screenr_setup' );

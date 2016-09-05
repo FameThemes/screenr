@@ -290,15 +290,6 @@ function screenr_customize_register( $wp_customize ) {
 
     /* Page Header
    ----------------------------------------------------------------------*/
-    $wp_customize->add_section( 'page_header_settings' ,
-        array(
-            'priority'    => 10,
-            'title'       => esc_html__( 'Page Header', 'screenr' ),
-            'description' => '',
-            'panel'       => 'screenr_options',
-            //'active_callback'   => 'is_page', // function
-        )
-    );
 
         // Header background BG Color
         $wp_customize->add_setting( 'page_header_bg_color',
@@ -310,22 +301,7 @@ function screenr_customize_register( $wp_customize ) {
         $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'page_header_bg_color',
             array(
                 'label'       => esc_html__( 'Background color', 'screenr' ),
-                'section'     => 'page_header_settings',
-                'description' => '',
-            )
-        ));
-
-        // Header background BG image
-        $wp_customize->add_setting( 'page_header_bg_image',
-            array(
-                'sanitize_callback' => 'screenr_sanitize_text',
-                'default' => ''
-            ) );
-        $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize,
-            'page_header_bg_image',
-            array(
-                'label'       => esc_html__( 'Background image', 'screenr' ),
-                'section'     => 'page_header_settings',
+                'section'     => 'header_image',
                 'description' => '',
             )
         ));
@@ -338,7 +314,7 @@ function screenr_customize_register( $wp_customize ) {
         $wp_customize->add_control( new Screenr_Alpha_Color_Control( $wp_customize, 'page_header_bg_overlay',
             array(
                 'label'       => esc_html__( 'Background image overlay color', 'screenr' ),
-                'section'     => 'page_header_settings',
+                'section'     => 'header_image',
                 'description' => '',
             )
         ));
@@ -354,7 +330,7 @@ function screenr_customize_register( $wp_customize ) {
         $wp_customize->add_control( 'page_header_pdtop',
             array(
                 'label'       => esc_html__('Padding top', 'screenr'),
-                'section'     => 'page_header_settings',
+                'section'     => 'header_image',
                 'description' => esc_html__('The page header padding top in percent (%).', 'screenr'),
             )
         );
@@ -369,7 +345,7 @@ function screenr_customize_register( $wp_customize ) {
         $wp_customize->add_control( 'page_header_pdbottom',
             array(
                 'label'       => esc_html__('Padding bottom', 'screenr'),
-                'section'     => 'page_header_settings',
+                'section'     => 'header_image',
                 'description' => esc_html__('The page header padding bottom in percent (%).', 'screenr'),
             )
         );
