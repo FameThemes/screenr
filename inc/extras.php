@@ -520,9 +520,7 @@ function screenr_page_header_cover()
     if ( $is_parallax ) {
         $classes[] = 'fixed';
     }
-
-
-
+    
     $item = apply_filters( 'screenr_page_header_item', $item );
 
     if ( $item['image'] ) {
