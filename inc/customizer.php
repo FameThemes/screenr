@@ -17,18 +17,13 @@ function screenr_customize_register( $wp_customize ) {
 
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
-
-    $wp_customize->remove_control( 'header_textcolor' );
-    $wp_customize->remove_setting( 'header_textcolor' );
-
-
+    
     $pages  =  get_pages();
     $option_pages = array();
     $option_pages[0] = esc_html__( 'Select page', 'screenr' );
     foreach( $pages as $p ){
         $option_pages[ $p->ID ] = $p->post_title;
     }
-
 
     $wp_customize->add_setting( 'screenr_hide_sitetitle',
         array(
