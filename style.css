@@ -2293,7 +2293,7 @@ input[type="radio"], input[type="checkbox"] {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	background-color: #e86240;
+	background-color: #222222;
 	/*
 		img, video {
 			position: absolute;

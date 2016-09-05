@@ -84,14 +84,14 @@ function screenr_setup() {
 
 
     add_theme_support( 'custom-header', array(
-        'default-image'          => get_template_directory_uri() . '/assets/images/header.jpg',
+        'default-image'          => get_template_directory_uri() . '/assets/images/header-default.jpg',
         'width'                  => 1600,
         'height'                 => 800,
         'flex-height'            => false,
         'flex-width'             => false,
         'uploads'                => true,
         'random-default'         => false,
-        'header-text'            => true,
+        'header-text'            => false,
         'default-text-color'     => '',
         'wp-head-callback'       => '',
         'admin-head-callback'    => '',
