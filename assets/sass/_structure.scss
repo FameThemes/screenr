@@ -574,6 +574,7 @@
 #page-header-cover {
 	.swiper-slide-heading {
 		@include rem('font-size', 40px);
+		font-weight: 600;
 		@include media-breakpoint-down(sm) {
 			@include rem('font-size', 30px);
 		}

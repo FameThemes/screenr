@@ -1054,6 +1054,7 @@ function screenr_customize_register( $wp_customize ) {
             'title'       => esc_html__( 'About', 'screenr' ),
             'description' => '',
             'panel'       => 'front_page_sections',
+            'priority'    => 7,
         )
     );
 
@@ -1198,6 +1199,7 @@ function screenr_customize_register( $wp_customize ) {
             'title'       => esc_html__( 'Video Lightbox', 'screenr' ),
             'description' => '',
             'panel'       => 'front_page_sections',
+            'priority'    => 9,
         )
     );
 
@@ -1327,6 +1329,7 @@ function screenr_customize_register( $wp_customize ) {
             'title'       => esc_html__( 'Services', 'screenr' ),
             'description' => '',
             'panel'       => 'front_page_sections',
+            'priority'    => 11,
         )
     );
 
@@ -1523,6 +1526,7 @@ function screenr_customize_register( $wp_customize ) {
             'title'       => esc_html__( 'Clients', 'screenr' ),
             'description' => '',
             'panel'       => 'front_page_sections',
+            'priority'    => 13,
         )
     );
 
@@ -1696,6 +1700,7 @@ function screenr_customize_register( $wp_customize ) {
             'title'       => esc_html__( 'Counter', 'screenr' ),
             'description' => '',
             'panel'       => 'front_page_sections',
+            'priority'    => 15,
         )
     );
 
@@ -1882,6 +1887,7 @@ function screenr_customize_register( $wp_customize ) {
             'title'       => esc_html__( 'Latest News', 'screenr' ),
             'description' => '',
             'panel'       => 'front_page_sections',
+            'priority'    => 21,
         )
     );
 
@@ -2071,6 +2077,7 @@ function screenr_customize_register( $wp_customize ) {
             'title'       => esc_html__( 'Contact', 'screenr' ),
             'description' => '',
             'panel'       => 'front_page_sections',
+            'priority'    => 22,
         )
     );
 

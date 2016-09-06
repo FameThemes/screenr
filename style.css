@@ -606,6 +606,13 @@ input[type="radio"], input[type="checkbox"] {
 	padding: 0 5px;
 }
 
+.transition5 {
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	-o-transition: all .5s ease;
+	transition: all .5s ease;
+}
+
 /*--------------------------------------------------------------
 3.0 Layout
 --------------------------------------------------------------*/
@@ -1232,6 +1239,7 @@ input[type="radio"], input[type="checkbox"] {
 #page-header-cover .swiper-slide-heading {
 	font-size: 40px;
 	font-size: 2.5rem;
+	font-weight: 600;
 }
 
 @media (max-width: 767px) {
