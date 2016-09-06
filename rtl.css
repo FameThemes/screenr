@@ -138,16 +138,6 @@
 	margin-right: 5px;
 }
 
-/* Section Service */
-.services-content .service__media-icon .service-card-content {
-	padding-right: 0px;
-	padding-left: 80px;
-}
-.services-content .service-card-icon {
-	right: auto;
-	left: 30px;
-}
-
 /**
 * Comments
 */
@@ -196,4 +186,15 @@
 		padding-left: 0;
 		padding-right: 90px;
 	}
+}
+
+/**
+* Footer
+*/
+.site-footer .site-info .site-copyright {
+	float: right;
+}
+
+.site-footer .site-info .theme-info {
+	float: left;
 }
