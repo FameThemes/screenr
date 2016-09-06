@@ -646,6 +646,15 @@
 				text-decoration: underline;
 			}
 		}
+		&::after {
+			@include clearfix-after();
+		}
+		.site-copyright {
+			float: left;
+		}
+		.theme-info {
+			float: right;
+		}
     }
     .btt a {
         border-radius: 0px 20px 0 0;
