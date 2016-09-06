@@ -656,6 +656,17 @@
 		.theme-info {
 			float: right;
 		}
+		@include media-breakpoint-down (sm) {
+			.site-copyright {
+				float: none;
+				text-align: center;
+				margin-bottom: 15px;
+			}
+			.theme-info {
+				float: none;
+				text-align: center;
+			}
+		}
     }
     .btt a {
         border-radius: 0px 20px 0 0;

@@ -1329,6 +1329,18 @@ input[type="radio"], input[type="checkbox"] {
 	float: right;
 }
 
+@media (max-width: 767px) {
+	.site-footer .site-info .site-copyright {
+		float: none;
+		text-align: center;
+		margin-bottom: 15px;
+	}
+	.site-footer .site-info .theme-info {
+		float: none;
+		text-align: center;
+	}
+}
+
 .site-footer .btt a {
 	border-radius: 0px 20px 0 0;
 	color: #999999;
