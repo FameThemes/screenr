@@ -17,7 +17,7 @@ function screenr_customize_register( $wp_customize ) {
 
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
-    
+
     $pages  =  get_pages();
     $option_pages = array();
     $option_pages[0] = esc_html__( 'Select page', 'screenr' );
@@ -1246,7 +1246,7 @@ function screenr_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'videolightbox_title',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => '',
+            'default'           => __( 'Parallax & Video Lightbox - Perfected', 'screenr' ),
         )
     );
     $wp_customize->add_control( 'videolightbox_title',

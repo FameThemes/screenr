@@ -138,6 +138,16 @@
 	margin-right: 5px;
 }
 
+/* Section Service */
+.services-content .service__media-icon .service-card-content {
+	padding-right: 0px;
+	padding-left: 80px;
+}
+.services-content .service-card-icon {
+	right: auto;
+	left: 30px;
+}
+
 /**
 * Comments
 */

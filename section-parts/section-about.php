@@ -46,4 +46,3 @@ $classes = 'screenr-section section-about section-padding section-padding-larger
 <?php if ( ! screenr_is_selective_refresh() ) { ?>
 </section>
 <?php } ?>
-

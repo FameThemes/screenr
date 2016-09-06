@@ -1,8 +1,8 @@
 <?php
 
 $video_url =  get_theme_mod( 'videolightbox_video', '#' );
+$title =  get_theme_mod( 'videolightbox_title', __( 'Parallax & Video Lightbox - Perfected', 'screenr' ) );
 
-$title =  get_theme_mod( 'videolightbox_title' );
 if ( ! screenr_is_selective_refresh() ) {
     $parallax_url = get_theme_mod( 'videolightbox_parallax_img' );
     $parallax_url =  apply_filters( 'video_parallax_bg', $parallax_url );
@@ -32,4 +32,3 @@ if ( ! screenr_is_selective_refresh() ) {
         <?php
     }
 }
-
