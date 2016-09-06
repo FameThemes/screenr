@@ -1,10 +1,9 @@
 <?php
-
 $slider = new Screenr_Slider( get_theme_mod( 'slider_items', array(
         array(
             'content_layout_1' => screenr_get_default_slider_content(),
-            'image'=> array(
-                'url' => '',
+            'media'=> array(
+                'url' => get_template_directory_uri() . '/assets/images/hero.jpg',
                 'id' => ''
             )
         )

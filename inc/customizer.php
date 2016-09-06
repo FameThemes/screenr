@@ -694,8 +694,8 @@ function screenr_customize_register( $wp_customize ) {
             'default' => array(
                 array(
                     'content_layout_1' => $slider_content,
-                    'image'=> array(
-                        'url' => '',
+                    'media'=> array(
+                        'url' => get_template_directory_uri() . '/assets/images/hero.jpg',
                         'id' => ''
                     )
                 )
