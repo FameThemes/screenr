@@ -44,5 +44,12 @@ Big - Bold and stylish, Screenr is a multiuse fullscreen theme.
 
 == Changelog ==
 
+= 1.0.8 =
+* Improve 404 page.
+* Add Full-Width page template.
+* Support for RTL language.
+* Improve section default style.
+* Improve site info layout.
+
 = 1.0.7 =
 * Initial release
