@@ -4,7 +4,7 @@ Contributors: famethemes
 Tags: one-column, two-columns, left-sidebar, right-sidebar, custom-colors, featured-images, sticky-post, theme-options, translation-ready, footer-widgets, blog, e-commerce, portfolio
 Requires at least: 4.6
 Tested up to: 4.6
-Stable tag: 1.0.6
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,12 @@ Big - Bold and stylish, Screenr is a multiuse fullscreen theme.
 * Image use in screenshot: https://www.pexels.com/photo/night-building-architecture-3766/. [CC0](https://creativecommons.org/publicdomain/zero/1.0/)
 
 == Changelog ==
+
+= 1.0.8 =
+* Remove wrong fonts call.
+* Update site footer layout.
+* Add business footer widget style.
+* Improve hero section text.
 
 = 1.0.8 =
 * Improve 404 page.
