@@ -220,24 +220,14 @@ if ( ! function_exists( 'screenr_fonts_url' ) ) :
 	    */
 	    $open_sans = _x( 'on', 'Open Sans font: on or off', 'screenr' );
 
-	    /* Translators: If there are characters in your language that are not
-	    * supported by Merriweather, translate this to 'off'. Do not translate
-	    * into your own language.
-	    */
-	    $raleway = _x( 'on', 'Merriweather font: on or off', 'screenr' );
-
 		/* Translators: If there are characters in your language that are not
 	    * supported by Montserrat, translate this to 'off'. Do not translate
 	    * into your own language.
 	    */
 	    $montserrat = _x( 'on', 'Montserrat font: on or off', 'screenr' );
 
-	    if ( 'off' !== $raleway || 'off' !== $open_sans ) {
+	    if ( 'off' !== $montserrat || 'off' !== $open_sans ) {
 	        $font_families = array();
-
-	        if ( 'off' !== $raleway ) {
-	            $font_families[] = 'Merriweather:400,400italic,700,700italic,900,900italic,300italic,300';
-	        }
 
 	        if ( 'off' !== $open_sans ) {
 	            $font_families[] = 'Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic';
