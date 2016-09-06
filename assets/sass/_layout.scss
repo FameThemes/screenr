@@ -34,7 +34,11 @@
 .no-sidebar .content-area {
 	width: 100%;
 }
-
+.no-sidebar {
+	.entry-content {
+		max-width: 100%;
+	}
+}
 @include for(medium-screens) {
 	.left-sidebar .content-area {
 		float: right;

@@ -159,9 +159,14 @@ function screenr_body_classes( $classes ) {
         $classes[] = 'has-site-tagline';
     }
 
-
     if ( get_option( 'header_layout' ) != 'default' ) {
         $classes[] = 'header-layout-fixed';
+    }
+
+    if ( is_page() ) {
+        if( is_page_template( 'templates/full-width-page.php' ) ) {
+            $classes[] = 'full-width-page';
+        }
     }
 
 	return $classes;
