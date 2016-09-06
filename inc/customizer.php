@@ -64,7 +64,7 @@ function screenr_customize_register( $wp_customize ) {
     /*------------------------------------------------------------------------*/
     $wp_customize->add_panel( 'screenr_options',
         array(
-            'priority'       => 150,
+            'priority'       => 170,
             'capability'     => 'edit_theme_options',
             'theme_supports' => '',
             'title'          => esc_html__( 'Theme Options', 'screenr' ),
@@ -629,7 +629,7 @@ function screenr_customize_register( $wp_customize ) {
      */
     $wp_customize->add_panel( 'front_page_sections',
         array(
-            'priority'       => 147,
+            'priority'       => 150,
             'capability'     => 'edit_theme_options',
             'theme_supports' => '',
             'title'          => esc_html__( 'Frontpage Sections', 'screenr' ),
