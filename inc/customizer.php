@@ -763,6 +763,22 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    // Enable Parallax Effect.
+    $wp_customize->add_setting( 'slider_parallax',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_checkbox',
+            'default'           => 1,
+        )
+    );
+    $wp_customize->add_control( 'slider_parallax',
+        array(
+            'type'        => 'checkbox',
+            'label'       => esc_html__('Enable parallax effect', 'screenr'),
+            'section'     => 'section_slider',
+            'description' => esc_html__('Check this box to enable parallax effect for hero section.', 'screenr'),
+        )
+    );
+
     // Show slider full screen
     $wp_customize->add_setting( 'slider_fullscreen',
         array(
@@ -773,26 +789,9 @@ function screenr_customize_register( $wp_customize ) {
     $wp_customize->add_control( 'slider_fullscreen',
         array(
             'type'        => 'checkbox',
-            'label'       => esc_html__('Make slider section full screen', 'screenr'),
+            'label'       => esc_html__('Make hero section full screen', 'screenr'),
             'section'     => 'section_slider',
-            'description' => esc_html__('Check this box to make slider section full screen.', 'screenr'),
-        )
-    );
-
-
-    // Show slider full screen
-    $wp_customize->add_setting( 'slider_parallax',
-        array(
-            'sanitize_callback' => 'screenr_sanitize_checkbox',
-            'default'           => 1,
-        )
-    );
-    $wp_customize->add_control( 'slider_parallax',
-        array(
-            'type'        => 'checkbox',
-            'label'       => esc_html__('Enable slider parallax', 'screenr'),
-            'section'     => 'section_slider',
-            'description' => esc_html__('Check this box to enable slider parallax.', 'screenr'),
+            'description' => esc_html__('Check this box to make hero section full screen.', 'screenr'),
         )
     );
 
