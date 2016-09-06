@@ -714,7 +714,7 @@ function screenr_customize_register( $wp_customize ) {
                 'live_title_id' => 'title', // apply for input text and textarea only
                 'title_format'  => esc_html__('[live_title]', 'screenr'), // [live_title]
                 'max_item'      => 1, // Maximum item can add
-                'limited_msg' 	=> sprintf( esc_html__( 'Upgrade to %1$s to be able to add more items and unlock other premium features!', 'screenr' ), '<a target="_blank" href="'.esc_url( screenr_get_plus_url() ).'">'.esc_html__( 'Screenr Plus', 'screenr' ).'</a>' ),
+                'limited_msg' 	=> sprintf( esc_html__( 'Upgrade to %1$s to be able to add more items (display as a slider) and self-hosted background video option.', 'screenr' ), '<a target="_blank" href="'.esc_url( screenr_get_plus_url() ).'">'.esc_html__( 'Screenr Plus', 'screenr' ).'</a>' ),
                 'fields'    => array(
                     'content_layout_1' => array(
                         'title' => esc_html__('Content', 'screenr'),
