@@ -501,3 +501,12 @@ body .wp-full-overlay{
     }
 
 }
+
+/* Highlight section title color */
+#customize-theme-controls #accordion-section-screenr_portfolios .accordion-section-title,
+#customize-theme-controls #accordion-section-screenr_testimonials .accordion-section-title,
+#customize-theme-controls #accordion-section-screenr_pricing .accordion-section-title,
+#customize-theme-controls #accordion-section-screenr_cta .accordion-section-title,
+#customize-theme-controls #accordion-section-screenr_team .accordion-section-title {
+    color: #a00;
+}
