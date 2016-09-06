@@ -1288,7 +1288,7 @@ input[type="radio"], input[type="checkbox"] {
 ------------------------------*/
 .site-footer {
 	background: #111111;
-	color: #BBBBBB;
+	color: #888888;
 	font-size: 14px;
 	/* Footer Widget */
 }
@@ -1306,10 +1306,18 @@ input[type="radio"], input[type="checkbox"] {
 	padding:  3.75rem 0rem 1.25rem 0rem;
 }
 
+.site-footer .sidebar .widget a {
+	color: #bbbbbb;
+}
+
+.site-footer .sidebar .widget a:hover {
+	text-decoration: underline;
+}
+
 .site-footer .site-info {
 	position: relative;
 	text-align: center;
-	padding: 25px 0px;
+	padding: 21px 0px;
 	background: #222222;
 	border-top: 1px solid #333;
 	font-weight: 500;
@@ -2192,6 +2200,69 @@ input[type="radio"], input[type="checkbox"] {
 	font-size: 13px !important;
 	margin-bottom: 5px;
 	padding: 2.5px 10px 3px;
+}
+
+/* Business Text Widget */
+.contact-info-item {
+	margin-bottom: 13px;
+}
+
+.contact-info-item .contact-text {
+	display: block;
+	float: left;
+	width: 130px;
+	font-size: 14px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	margin-top: 2px;
+	position: relative;
+}
+
+.contact-info-item .contact-value {
+	display: block;
+	margin-left: 135px;
+}
+
+.contact-info-item .contact-text {
+	width: 30px;
+}
+
+.contact-info-item .contact-text i {
+	font-size: 16px;
+}
+
+.contact-info-item .contact-text i.fa-envelope {
+	font-size: 12px;
+	position: relative;
+	top: -3px;
+}
+
+.contact-info-item .contact-text i.fa-fax {
+	font-size: 14px;
+	position: relative;
+	top: -3px;
+}
+
+.contact-info-item .contact-value {
+	margin-left: 35px;
+}
+
+.contact-info-box img {
+	margin-bottom: 30px;
+}
+
+ul.hours li {
+	border-top: 1px dotted rgba(255, 255, 255, 0.1);
+	padding: 5px 0px 1px;
+}
+
+ul.hours li:first-child {
+	border-top: none;
+}
+
+ul.hours span {
+	float: right;
+	font-weight: bold;
 }
 
 /*--------------------------------------------------------------

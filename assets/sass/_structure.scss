@@ -618,7 +618,7 @@
 ------------------------------*/
 .site-footer {
     background: #111111;
-    color: #BBBBBB;
+    color: #888888;
     font-size: 14px;
     a {
         color: $primary;
@@ -633,10 +633,17 @@
 		@include rem('padding', 60px 0px 20px 0px);
 	}
 
+	.sidebar .widget a {
+		color: #bbbbbb;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
     .site-info {
         position: relative;
         text-align: center;
-        padding: 25px 0px;
+        padding: 21px 0px;
         background: #222222;
 		border-top: 1px solid #333;
         font-weight: 500;

@@ -108,3 +108,59 @@
     margin-bottom: 5px;
     padding: 2.5px 10px 3px;
 }
+
+/* Business Text Widget */
+.contact-info-item {
+	margin-bottom: 13px;
+	.contact-text {
+		display: block;
+		float: left;
+		width: 130px;
+		font-size: 14px;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		margin-top: 2px;
+		position: relative;
+	}
+	.contact-value {
+		display: block;
+		margin-left: 135px;
+	}
+}
+.contact-info-item .contact-text {
+	width: 30px;
+	i {
+		font-size: 16px;
+	}
+	i.fa-envelope {
+		font-size: 12px;
+		position: relative;
+		top: -3px;
+	}
+	i.fa-fax {
+		font-size: 14px;
+		position: relative;
+		top: -3px;
+	}
+}
+
+.contact-info-item .contact-value {
+	margin-left: 35px;
+}
+
+.contact-info-box img {
+	margin-bottom: 30px;
+}
+ul.hours {
+	li {
+		border-top: 1px dotted rgba(255, 255, 255, 0.1);
+		padding: 5px 0px 1px;
+	}
+	li:first-child {
+		border-top: none;
+	}
+	span {
+		float: right;
+		font-weight: bold;
+	}
+}
