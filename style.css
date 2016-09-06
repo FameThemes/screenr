@@ -1372,11 +1372,32 @@ input[type="radio"], input[type="checkbox"] {
 --------------------------------------------------------------*/
 /* Page: 404
 ------------------------------*/
-.error-404 .search-form, .error-404 .widget {
-	margin-bottom: 40px;
+.error404 {
+	text-align: center;
 }
 
-.error-404 .widgettitle, .error-404 .widget-title {
+.error404 .fa-frown-o {
+	margin-bottom: 10px;
+}
+
+.error404 .search-form, .error404 .widget {
+	margin-bottom: 40px;
+	text-align: center;
+}
+
+.error404 .search-form {
+	margin-top: 30px;
+}
+
+.error404 .search-form input {
+	margin: 0;
+}
+
+.error404 .page-header, .error404 .page-title {
+	text-align: center;
+}
+
+.error404 .widgettitle, .error404 .widget-title {
 	font-size: 15px;
 	text-transform: uppercase;
 	letter-spacing: 2px;
@@ -1384,11 +1405,11 @@ input[type="radio"], input[type="checkbox"] {
 	font-weight: 700;
 }
 
-.error-404 ul {
+.error404 ul {
 	padding-left: 0px;
 }
 
-.error-404 ul li {
+.error404 ul li {
 	list-style: none;
 }
 

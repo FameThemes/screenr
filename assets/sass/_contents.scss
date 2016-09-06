@@ -2,9 +2,23 @@
 
 /* Page: 404
 ------------------------------*/
-.error-404 {
+.error404 {
+	text-align: center;
+	.fa-frown-o {
+		margin-bottom: 10px;
+	}
 	.search-form, .widget {
 		margin-bottom: 40px;
+		text-align: center;
+	}
+	.search-form {
+		margin-top: 30px;
+		input {
+			margin: 0;
+		}
+	}
+	.page-header, .page-title {
+		text-align: center;
 	}
 	.widgettitle, .widget-title {
 		font-size: 15px;

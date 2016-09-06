@@ -494,10 +494,12 @@ function screenr_page_header_cover()
         } else {
             $title = get_the_title();
         }
-    }elseif ( is_search() ) {
+    } elseif ( is_search() ) {
         $title = sprintf( esc_html__( 'Search Results for: %s', 'screenr' ), '<span>' . esc_html( get_search_query() ) . '</span>' );
     } elseif ( ( is_home() || is_front_page() ) && ! is_attachment() ) {
         $title = esc_html( get_theme_mod( 'page_blog_title', esc_html__( 'The Blog', 'screenr' ) ) );
+    } elseif ( is_404() ) {
+        $title = sprintf( esc_html__( '%s 404 Not Found!', 'screenr' ), '<i class="fa fa-frown-o"></i><br>' );
     } else {
         $title = get_the_archive_title();
         $desc  = get_the_archive_description();
