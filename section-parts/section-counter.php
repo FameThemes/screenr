@@ -34,6 +34,7 @@ if ( ! screenr_is_selective_refresh() ) {
                                 'bg_color' => '',
                                 'before_number' => '',
                                 'after_number' => '',
+                                'style' => '',
                             ));
 
                             ?>
