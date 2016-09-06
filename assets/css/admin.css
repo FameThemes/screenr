@@ -131,3 +131,8 @@
     text-decoration: none;
     color: #d54e21;
 }
+
+[dir="rtl"] .famethemes-badge {
+    right: auto;
+    left: 0px;
+}
