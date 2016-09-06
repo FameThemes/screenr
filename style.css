@@ -1316,6 +1316,18 @@ input[type="radio"], input[type="checkbox"] {
 	text-decoration: underline;
 }
 
+.site-footer .site-info::after {
+	clear: both;
+}
+
+.site-footer .site-info .site-copyright {
+	float: left;
+}
+
+.site-footer .site-info .theme-info {
+	float: right;
+}
+
 .site-footer .btt a {
 	border-radius: 0px 20px 0 0;
 	color: #999999;

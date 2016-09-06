@@ -679,10 +679,15 @@ function screenr_get_default_slider_content(){
  */
 function screenr_footer_credits(){
     ?>
-    <div class="site-info">
-        <?php printf(esc_html__('Copyright %1$s %2$s %3$s', 'screenr'), '&copy;', date_i18n('Y'), get_bloginfo() ); ?>
-        <span class="sep"> &ndash; </span>
-        <?php printf(esc_html__('%1$s theme by %2$s', 'screenr'), '<a href="https://www.famethemes.com/themes/screenr">Screenr</a>', 'FameThemes'); ?>
+    <div class=" site-info">
+        <div class="container">
+            <div class="site-copyright">
+                <?php printf(esc_html__('Copyright %1$s %2$s %3$s. All Rights Reserved.', 'screenr'), '&copy;', date_i18n('Y'), get_bloginfo() ); ?>
+            </div><!-- .site-copyright -->
+            <div class="theme-info">
+                <?php printf(esc_html__('%1$s theme by %2$s', 'screenr'), 'Screenr', '<a href="https://www.famethemes.com/themes/screenr">FameThemes</a>'); ?>
+            </div>
+        </div>
     </div><!-- .site-info -->
     <?php
 }
