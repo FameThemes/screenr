@@ -1238,7 +1238,7 @@ function screenr_customize_register( $wp_customize ) {
     // About ID
     $wp_customize->add_setting( 'videolightbox_id',
         array(
-            'sanitize_callback' => 'screenr_sanitize_text',
+            'sanitize_callback' => 'sanitize_text_field',
             'default'           => esc_html__('video', 'screenr'),
         )
     );
@@ -2337,7 +2337,7 @@ function screenr_sanitize_text( $string ) {
 }
 
 function screenr_sanitize_html_input( $string ) {
-    return wp_kses_allowed_html( $string );
+    return screenr_sanitize_text( $string );
 }
 
 function screenr_showon_frontpage() {

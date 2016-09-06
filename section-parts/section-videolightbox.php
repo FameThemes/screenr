@@ -16,7 +16,7 @@ if ( ! screenr_is_selective_refresh() ) {
 <?php } ?>
         <div class="container">
             <?php if ( $title ){ ?>
-            <h2 class="videolightbox__heading"><?php echo esc_html( $title ) ?></h2>
+            <h2 class="videolightbox__heading"><?php echo wp_kses_post( balanceTags( $title ) ) ; ?></h2>
             <?php } ?>
             <div class="videolightbox__icon">
                 <a href="<?php echo esc_url( $video_url ); ?>" class="popup-video">
