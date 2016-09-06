@@ -478,7 +478,7 @@ function screenr_customize_register( $wp_customize ) {
         $wp_customize->add_setting( 'footer_layout',
             array(
                 'sanitize_callback' => 'sanitize_text_field',
-                'default'           => 3,
+                'default'           => 4,
             )
         );
         $wp_customize->add_control( 'footer_layout',
