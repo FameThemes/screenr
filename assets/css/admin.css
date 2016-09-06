@@ -24,6 +24,14 @@
     text-decoration: none;
 }
 
+.about-wrap .nav-tab {
+    font-size: 15px;
+}
+
+.nav-tab.nav-tab-upgrade {
+    color: #d54e21;
+}
+
 .theme_info_wrapper p span {
     margin-left: 30px;
 }
