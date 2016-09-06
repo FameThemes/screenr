@@ -635,13 +635,14 @@
     .site-info {
         position: relative;
         text-align: center;
-        padding: 23px 0px;
+        padding: 25px 0px;
         background: #222222;
 		border-top: 1px solid #333;
         font-weight: 500;
-		color: #bbbbbb;
+		color: #777777;
+		font-size: 13px;
 		a {
-			color: #dddddd;
+			color: #777777;
 			&:hover {
 				text-decoration: underline;
 			}
