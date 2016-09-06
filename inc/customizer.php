@@ -691,12 +691,13 @@ function screenr_customize_register( $wp_customize ) {
         array(
             'sanitize_callback' => 'screenr_sanitize_repeatable_data_field',
             'transport' => 'refresh', // refresh or postMessage
-            'default' => array(
-                array(
-                    'content_layout_1' => $slider_content,
-                    'media'=> array(
-                        'url' => get_template_directory_uri() . '/assets/images/hero.jpg',
-                        'id' => ''
+            'default' => apply_filters( 'screenr_default_slider_items', array(
+                    array(
+                        'content_layout_1' => $slider_content,
+                        'media'=> array(
+                            'url' => get_template_directory_uri() . '/assets/images/hero.jpg',
+                            'id' => ''
+                        )
                     )
                 )
             )
@@ -716,7 +717,7 @@ function screenr_customize_register( $wp_customize ) {
                 'limited_msg' 	=> sprintf( esc_html__( 'Upgrade to %1$s to be able to add more items and unlock other premium features!', 'screenr' ), '<a target="_blank" href="'.esc_url( screenr_get_plus_url() ).'">'.esc_html__( 'Screenr Plus', 'screenr' ).'</a>' ),
                 'fields'    => array(
                     'content_layout_1' => array(
-                        'title' => esc_html__('Content layout 1', 'screenr'),
+                        'title' => esc_html__('Content', 'screenr'),
                         'type'  =>'editor',
                         'mod'   =>'html',
                         'default' => $slider_content

@@ -1,5 +1,5 @@
 <?php
-$slider = new Screenr_Slider( get_theme_mod( 'slider_items', array(
+$default = apply_filters( 'screenr_default_slider_items',  array(
         array(
             'content_layout_1' => screenr_get_default_slider_content(),
             'media'=> array(
@@ -8,7 +8,8 @@ $slider = new Screenr_Slider( get_theme_mod( 'slider_items', array(
             )
         )
     )
-) );
+);
+$slider = new Screenr_Slider( get_theme_mod( 'slider_items', $default ) ) ;
 $autoplay = get_theme_mod( 'slider_autoplay' , 7000 );
 ?>
 <?php if ( ! screenr_is_selective_refresh() ) { ?>
