@@ -684,9 +684,8 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
-    /**
-     * @see screenr_sanitize_repeatable_data_field
-     */
+    $slider_content = screenr_get_default_slider_content();
+
     $wp_customize->add_setting(
         'slider_items',
         array(
@@ -694,8 +693,9 @@ function screenr_customize_register( $wp_customize ) {
             'transport' => 'refresh', // refresh or postMessage
             'default' => array(
                 array(
+                    'content_layout_1' => $slider_content,
                     'image'=> array(
-                        'url' => get_template_directory_uri().'/assets/images/slider5.jpg',
+                        'url' => get_template_directory_uri().'/assets/images/slider.jpg',
                         'id' => ''
                     )
                 )
@@ -719,16 +719,7 @@ function screenr_customize_register( $wp_customize ) {
                         'title' => esc_html__('Content layout 1', 'screenr'),
                         'type'  =>'editor',
                         'mod'   =>'html',
-                        'default' => wp_kses_post(
-                            sprintf(
-                                '<h1><strong>%1$s</strong></h1>'
-                                ."\n\n". '%2$s'."\n\n".'<a class="btn btn-lg btn-theme-primary" href="#features">%3$s</a> <a class="btn btn-lg btn-secondary-outline" href="#contact">%4$s</a>',
-                                esc_html__( 'Your business, your website', 'screenr' ),
-                                esc_html__( 'Screenr is a multiuse fullscreen WordPress theme.', 'screenr' ),
-                                esc_html__( 'Get Started', 'screenr' ),
-                                esc_html__( 'Contact Now', 'screenr' )
-                            )
-                        ),
+                        'default' => $slider_content
                     ),
                     'media' => array(
                         'title' => esc_html__('Background Image', 'screenr'),

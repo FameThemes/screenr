@@ -651,6 +651,21 @@ function screenr_sidebar_desc( $sidebar_id ) {
     return esc_html( $desc );
 }
 
+function screenr_get_default_slider_content(){
+    $slider_content = wp_kses_post(
+        sprintf(
+            '<h1><strong>%1$s</strong></h1>'
+            ."\n\n". '%2$s'."\n\n".'<a class="btn btn-lg btn-theme-primary" href="#features">%3$s</a> <a class="btn btn-lg btn-secondary-outline" href="#contact">%4$s</a>',
+            esc_html__( 'Your business, your website', 'screenr' ),
+            esc_html__( 'Screenr is a multiuse fullscreen WordPress theme.', 'screenr' ),
+            esc_html__( 'Get Started', 'screenr' ),
+            esc_html__( 'Contact Now', 'screenr' )
+        )
+    );
+
+    return $slider_content;
+}
+
 
 /**
  * Add footer theme info
