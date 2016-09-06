@@ -695,7 +695,7 @@ function screenr_customize_register( $wp_customize ) {
                 array(
                     'content_layout_1' => $slider_content,
                     'image'=> array(
-                        'url' => get_template_directory_uri().'/assets/images/slider.jpg',
+                        'url' => '',
                         'id' => ''
                     )
                 )
