@@ -692,3 +692,12 @@ function screenr_footer_credits(){
     <?php
 }
 add_action( 'screenr_footer', 'screenr_footer_credits' );
+
+/**
+ * Get Plus version
+ *
+ * @return string
+ */
+function screenr_get_plus_url(){
+    return 'https://www.famethemes.com/plugins/screenr-plus/';
+}
