@@ -91,9 +91,16 @@ function screenr_theme_info_page() {
     $current_action_link =  add_query_arg( array( 'page' => 'ft_screenr', 'tab' => 'actions_required' ), admin_url( 'themes.php' ) );
     ?>
     <div class="wrap about-wrap theme_info_wrapper">
-        <h1><?php printf(esc_html__('Welcome to Screenr - Version %1s', 'screenr'), $theme_data->Version ); ?></h1>
-        <div class="about-text"><?php esc_html_e( 'Big - Bold and stylish, Screenr is a multiuse fullscreen theme well suited for business, portfolio, digital agency, freelancers and everyone else who appreciate good design.', 'screenr' ); ?></div>
+        <h1><?php printf( esc_html__('Welcome to Screenr - Version %1s', 'screenr'), $theme_data->Version ); ?></h1>
+        <div class="about-text">
+            <?php esc_html_e( 'Big - Bold and stylish, Screenr is a multiuse parallax fullscreen theme well suited for business, portfolio, digital agency, freelancers and everyone else who appreciate good design.', 'screenr' ); ?>
+        </div>
+        <div class="demo-text">
+            <?php printf( esc_html__( 'Be sure to check out the %1s or %2s to see some of the possibilities.', 'screenr' ), '<a target="_blank" href="http://demos.famethemes.com/screenr">Screenr Demo</a>', '<a target="_blank" href="http://demos.famethemes.com/screenr-plus">Screenr Plus Demo</a>'); ?>
+        </div>
+
         <a target="_blank" href="<?php echo esc_url('http://www.famethemes.com/'); ?>" class="famethemes-badge wp-badge"><span>FameThemes</span></a>
+
         <h2 class="nav-tab-wrapper">
             <a href="?page=ft_screenr" class="nav-tab<?php echo is_null($tab) ? ' nav-tab-active' : null; ?>"><?php esc_html_e( 'Screenr', 'screenr' ) ?></a>
             <a href="?page=ft_screenr&tab=actions_required" class="nav-tab<?php echo $tab == 'actions_required' ? ' nav-tab-active' : null; ?>"><?php esc_html_e( 'Actions Required', 'screenr' ); echo ( $number_action > 0 ) ? "<span class='theme-action-count'>{$number_action}</span>" : ''; ?></a>

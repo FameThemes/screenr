@@ -40,6 +40,14 @@
     margin-left: 15px;
 }
 
+.about-wrap.theme_info_wrapper .about-text {
+
+}
+
+.theme_info_wrapper .demo-text {
+    margin: -5px 0px 30px 0px;
+}
+
 .info-tab-content {
     margin: 50px 0px;
 }
