@@ -681,6 +681,65 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    /*------------------------------------------------------------------------*/
+    /*  Panel: Section Order & Styling
+    /*------------------------------------------------------------------------*/
+    $wp_customize->add_section( 'front_page_sections_order_styling',
+        array(
+            'priority'       => 151,
+            'capability'     => 'edit_theme_options',
+            'theme_supports' => '',
+            'title'          => esc_html__( 'Sections Order & Styling', 'screenr' ),
+            'description'    => '',
+            'active_callback' => 'screenr_showon_frontpage'
+        )
+    );
+
+        $wp_customize->add_setting( 'sections_order_message',
+            array(
+                'sanitize_callback' => 'screenr_sanitize_text',
+                'default'           => '',
+            )
+        );
+    	$wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'sections_order_message',
+    			array(
+                    'type'        => 'group_heading_message',
+                    'title'       => esc_html__('Drag & Drop Section Orders', 'screenr'),
+                    'section'     => 'front_page_sections_order_styling',
+                    'description' => sprintf( esc_html__('Check out the %1s version for full control over the frontpage SECTIONS ORDER!', 'screenr'), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ),
+    			)
+    		)
+    	);
+        $wp_customize->add_setting( 'sections_styling_text',
+            array(
+                'sanitize_callback' => 'screenr_sanitize_text',
+                'default'           => '',
+            )
+        );
+    	$wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'sections_styling_text',
+    			array(
+                    'type'        => 'group_heading_message',
+                    'title'       => esc_html__('Advandced Section Styling', 'screenr'),
+                    'section'     => 'front_page_sections_order_styling',
+                    'description' => sprintf( esc_html__('Check out the %1s version for full control over the section styling which includes background color, image, video, parallax effect, darked style and more ...', 'screenr'), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ),
+    			)
+    		)
+    	);
+
+
+    /**
+     * @see screen_showon_frontpage
+     */
+    $wp_customize->add_panel( 'front_page_sections',
+        array(
+            'priority'       => 150,
+            'capability'     => 'edit_theme_options',
+            'theme_supports' => '',
+            'title'          => esc_html__( 'Frontpage Sections', 'screenr' ),
+            'description'    => '',
+            'active_callback' => 'screenr_showon_frontpage'
+        )
+    );
 
 
     /*------------------------------------------------------------------------*/
