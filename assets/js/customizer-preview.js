@@ -21,7 +21,6 @@
 
 	wp.customize( 'screenr_hide_sitetitle', function( value ) {
 		value.bind( function( to ) {
-			console.log( to );
 			if ( to ) {
 				$( 'body' ).addClass( 'no-site-title' ).removeClass('has-site-title');
 			} else {
@@ -61,16 +60,13 @@
 		} );
 	} );
 
-    /**
-     * Handle rendering of partials.
-     *
-     * @param {api.selectiveRefresh.Placement} placement
-     */
-   //wp.customize.selectiveRefresh.bind( 'partial-content-rendered', function( placement ) {
-        //$( window ).resize();
-        //console.log( placement );
-        //$( '.swiper-slider' ).trigger( 'preview_event_changed' );
-    //} );
+
+    wp.customize( 'screenr_custom_css', function( value ) {
+        value.bind( function( to ) {
+            console.log( to );
+            $( '#screenr-user-custom-css' ).html( to );
+        } );
+    } );
 
 
 } )( jQuery );

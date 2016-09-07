@@ -652,6 +652,34 @@ function screenr_customize_register( $wp_customize ) {
 
 
 
+    /* Theme styling
+    ----------------------------------------------------------------------*/
+    $wp_customize->add_section( 'custom_css' ,
+        array(
+            'priority'    => 500,
+            'title'       => esc_html__( 'Custom CSS', 'screenr' ),
+            'description' => '',
+            'panel'       => 'screenr_options',
+            'capability' => 'edit_theme_options',
+        )
+    );
+
+    $wp_customize->add_setting( 'screenr_custom_css',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_css',
+            'default' => '',
+            'type' => 'option',
+            'transport' => 'postMessage',
+        ) );
+    $wp_customize->add_control(
+        'screenr_custom_css',
+        array(
+            'label'       => esc_html__( 'Custom CSS', 'screenr' ),
+            'section'     => 'custom_css',
+            'description' => '',
+            'type'        => 'textarea',
+        )
+    );
 
 
 
@@ -2284,7 +2312,7 @@ add_action( 'customize_register', 'screenr_customize_register' );
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
 function screenr_customize_preview_js() {
-	wp_enqueue_script( 'screenr_customizer_preview', get_template_directory_uri() . '/assets/js/customizer-preview.js', array( 'customize-preview', 'customize-selective-refresh' ), false, true );
+	wp_enqueue_script( 'screenr_customizer_preview', get_template_directory_uri() . '/assets/js/customizer-preview.js', array( 'customize-selective-refresh' ), false, true );
 }
 add_action( 'customize_preview_init', 'screenr_customize_preview_js', 65 );
 
@@ -2372,6 +2400,59 @@ function screenr_sanitize_text( $string ) {
 function screenr_sanitize_html_input( $string ) {
     return screenr_sanitize_text( $string );
 }
+
+/**
+ * Sanitize CSS code
+ *
+ * @param $string
+ * @return string
+ */
+function screenr_sanitize_css( $string ) {
+    $string = preg_replace( '@<(script|style)[^>]*?>.*?</\\1>@si', '', $string );
+    $string = strip_tags($string);
+    return trim( $string );
+}
+
+
+if ( ! function_exists( 'screenr_sanitize_checkbox' ) ) {
+    function screenr_sanitize_checkbox( $input ) {
+        if ( $input == 1 ) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+}
+
+
+function screenr_sanitize_color_alpha( $color ){
+    $color = str_replace( '#', '', $color );
+    if ( '' === $color ){
+        return '';
+    }
+
+    // 3 or 6 hex digits, or the empty string.
+    if ( preg_match('|^#([A-Fa-f0-9]{3}){1,2}$|', '#' . $color ) ) {
+        // convert to rgb
+        $colour = $color;
+        if ( strlen( $colour ) == 6 ) {
+            list( $r, $g, $b ) = array( $colour[0] . $colour[1], $colour[2] . $colour[3], $colour[4] . $colour[5] );
+        } elseif ( strlen( $colour ) == 3 ) {
+            list( $r, $g, $b ) = array( $colour[0] . $colour[0], $colour[1] . $colour[1], $colour[2] . $colour[2] );
+        } else {
+            return false;
+        }
+        $r = hexdec( $r );
+        $g = hexdec( $g );
+        $b = hexdec( $b );
+        return 'rgba('.join( ',', array( 'r' => $r, 'g' => $g, 'b' => $b, 'a' => 1 ) ).')';
+
+    }
+
+    return strpos( trim( $color ), 'rgb' ) !== false ?  $color : false;
+}
+
+
 
 function screenr_showon_frontpage() {
     return is_page_template( 'template-frontpage.php' );

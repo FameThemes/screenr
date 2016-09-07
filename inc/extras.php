@@ -461,8 +461,6 @@ if ( $layout != 'transparent' ) {
     <?php
     }
 
-
-
     $primary = get_theme_mod( 'primary_color' );
     if ( $primary ) {
         ?>
@@ -544,6 +542,16 @@ if ( $layout != 'transparent' ) {
 }
 
 add_action( 'wp_enqueue_scripts', 'screenr_custom_style', 55 );
+
+function screenr_user_custom_css_code(){
+    $custom = get_option( 'screenr_custom_css' );
+    if ( $custom || is_customize_preview() ){
+        $custom = screenr_sanitize_css( $custom );
+        echo '<style id="screenr-user-custom-css" type="text/css">'.$custom.'</style>';
+    }
+}
+
+add_action( 'wp_head', 'screenr_user_custom_css_code' );
 
 
 /**

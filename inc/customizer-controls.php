@@ -42,57 +42,6 @@ class Screenr_Group_Settings_Heading_Control extends WP_Customize_Control {
 }
 
 
-if ( ! function_exists( 'screenr_sanitize_checkbox' ) ) {
-    function screenr_sanitize_checkbox( $input ) {
-        if ( $input == 1 ) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-}
-
-/**
- * Sanitize CSS code
- *
- * @param $string
- * @return string
- */
-function screenr_sanitize_css($string) {
-    $string = preg_replace( '@<(script|style)[^>]*?>.*?</\\1>@si', '', $string );
-    $string = strip_tags($string);
-    return trim( $string );
-}
-
-
-function screenr_sanitize_color_alpha( $color ){
-    $color = str_replace( '#', '', $color );
-    if ( '' === $color ){
-        return '';
-    }
-
-    // 3 or 6 hex digits, or the empty string.
-    if ( preg_match('|^#([A-Fa-f0-9]{3}){1,2}$|', '#' . $color ) ) {
-        // convert to rgb
-        $colour = $color;
-        if ( strlen( $colour ) == 6 ) {
-            list( $r, $g, $b ) = array( $colour[0] . $colour[1], $colour[2] . $colour[3], $colour[4] . $colour[5] );
-        } elseif ( strlen( $colour ) == 3 ) {
-            list( $r, $g, $b ) = array( $colour[0] . $colour[0], $colour[1] . $colour[1], $colour[2] . $colour[2] );
-        } else {
-            return false;
-        }
-        $r = hexdec( $r );
-        $g = hexdec( $g );
-        $b = hexdec( $b );
-        return 'rgba('.join( ',', array( 'r' => $r, 'g' => $g, 'b' => $b, 'a' => 1 ) ).')';
-
-    }
-
-    return strpos( trim( $color ), 'rgb' ) !== false ?  $color : false;
-}
-
-
 /**
  * Sanitize repeatable data
  *
