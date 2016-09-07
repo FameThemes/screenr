@@ -617,6 +617,22 @@ function screenr_customize_register( $wp_customize ) {
             )
         );
 
+        $wp_customize->add_setting( 'footer_copyright_editor_message',
+            array(
+                'sanitize_callback' => 'screenr_sanitize_text',
+                'default'           => '',
+            )
+        );
+    	$wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'footer_copyright_editor_message',
+    			array(
+                    'type'        => 'group_heading_message',
+                    'title'       => esc_html__('Change Footer Copyright Text and Hide Theme Author Link', 'screenr'),
+                    'section'     => 'page_footer_settings',
+                    'description' => sprintf( esc_html__('Upgrade to %1s in order to change site footer copyright information and hide theme author link via Customiser.', 'screenr'), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ),
+    			)
+    		)
+    	);
+
 
     /* Theme styling
     ----------------------------------------------------------------------*/
@@ -2361,6 +2377,98 @@ function screenr_customize_register( $wp_customize ) {
             )
         )
     );
+
+    /*------------------------------------------------------------------------*/
+    /*  Section: More Sections
+    /*------------------------------------------------------------------------*/
+    $wp_customize->add_section( 'front_page_more_sections',
+        array(
+            'priority'       => 30,
+            'title'          => esc_html__( 'More Sections (Plus Version)', 'screenr' ),
+            'panel'          => 'front_page_sections',
+            'description'    => '',
+        )
+    );
+
+        $wp_customize->add_setting( 'front_page_more_sections_projects',
+            array(
+                'sanitize_callback' => 'screenr_sanitize_text',
+                'default'           => '',
+            )
+        );
+    	$wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'front_page_more_sections_projects',
+    			array(
+                    'type'        => 'group_heading_message',
+                    'title'       => esc_html__('Project Section', 'screenr'),
+                    'section'     => 'front_page_more_sections',
+                    'description' => sprintf( esc_html__('Check out the %1s version for full control over the project section!', 'screenr'), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ),
+    			)
+    		)
+    	);
+
+        $wp_customize->add_setting( 'front_page_more_sections_testimonials',
+            array(
+                'sanitize_callback' => 'screenr_sanitize_text',
+                'default'           => '',
+            )
+        );
+    	$wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'front_page_more_sections_testimonials',
+    			array(
+                    'type'        => 'group_heading_message',
+                    'title'       => esc_html__('Testimonial Section', 'screenr'),
+                    'section'     => 'front_page_more_sections',
+                    'description' => sprintf( esc_html__('Check out the %1s version for full control over the testimonial section!', 'screenr'), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ),
+    			)
+    		)
+    	);
+
+        $wp_customize->add_setting( 'front_page_more_sections_team',
+            array(
+                'sanitize_callback' => 'screenr_sanitize_text',
+                'default'           => '',
+            )
+        );
+    	$wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'front_page_more_sections_team',
+    			array(
+                    'type'        => 'group_heading_message',
+                    'title'       => esc_html__('Team Section', 'screenr'),
+                    'section'     => 'front_page_more_sections',
+                    'description' => sprintf( esc_html__('Check out the %1s version for full control over the team section!', 'screenr'), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ),
+    			)
+    		)
+    	);
+
+        $wp_customize->add_setting( 'front_page_more_sections_pricing',
+            array(
+                'sanitize_callback' => 'screenr_sanitize_text',
+                'default'           => '',
+            )
+        );
+    	$wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'front_page_more_sections_pricing',
+    			array(
+                    'type'        => 'group_heading_message',
+                    'title'       => esc_html__('Pricing Section', 'screenr'),
+                    'section'     => 'front_page_more_sections',
+                    'description' => sprintf( esc_html__('Check out the %1s version for full control over the pricing section!', 'screenr'), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ),
+    			)
+    		)
+    	);
+
+        $wp_customize->add_setting( 'front_page_more_sections_cta',
+            array(
+                'sanitize_callback' => 'screenr_sanitize_text',
+                'default'           => '',
+            )
+        );
+    	$wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'front_page_more_sections_cta',
+    			array(
+                    'type'        => 'group_heading_message',
+                    'title'       => esc_html__('Call To Action Section', 'screenr'),
+                    'section'     => 'front_page_more_sections',
+                    'description' => sprintf( esc_html__('Check out the %1s version for full control over the call to action section!', 'screenr'), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ),
+    			)
+    		)
+    	);
 
 
     do_action( 'screenr_customize_after_register', $wp_customize );
