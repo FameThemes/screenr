@@ -158,6 +158,8 @@ function screenr_customizer_partials( $wp_customize )
         'footer_widgets_color',
         'footer_copyright_bg',
         'footer_copyright_color',
+        // Primary color
+        'primary_color',
     );
 
     foreach ( $custom_css as $index => $key ) {

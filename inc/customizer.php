@@ -618,6 +618,41 @@ function screenr_customize_register( $wp_customize ) {
         );
 
 
+    /* Theme styling
+    ----------------------------------------------------------------------*/
+    $wp_customize->add_section( 'theme_styling' ,
+        array(
+            'priority'    => 170,
+            'title'       => esc_html__( 'Styling', 'screenr' ),
+            'description' => '',
+            'panel'       => 'screenr_options',
+            //'active_callback'   => 'is_page', // function
+        )
+    );
+
+    // Move background setting to theme styling
+    if ( $wp_customize->get_control('background_color') ) {
+        $wp_customize->get_control('background_color')->section = 'theme_styling';
+    }
+
+    $wp_customize->add_setting( 'primary_color',
+        array(
+            'sanitize_callback' => 'sanitize_hex_color_no_hash',
+            'sanitize_js_callback' => 'maybe_hash_hex_color',
+            'default' => ''
+        ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'primary_color',
+        array(
+            'label'       => esc_html__( 'Primary color', 'screenr' ),
+            'section'     => 'theme_styling',
+            'description' => '',
+            'priority'    => 5,
+        )
+    ));
+
+
+
+
 
 
     /*------------------------------------------------------------------------*/

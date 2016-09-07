@@ -386,8 +386,6 @@ if ( $layout != 'transparent' ) {
     <?php
     }
 
-
-
     $slider_overlay_color =  get_theme_mod( 'slider_overlay_color' );
     $c =  screenr_color_alpha_parse( $slider_overlay_color );
     if ( $slider_overlay_color && $c ) {
@@ -463,7 +461,81 @@ if ( $layout != 'transparent' ) {
     <?php
     }
 
-    $css =  ob_get_clean();
+
+
+    $primary = get_theme_mod( 'primary_color' );
+    if ( $primary ) {
+        ?>
+        input[type="reset"], input[type="submit"], input[type="submit"],
+        .btn-theme-primary,
+        .btn-theme-primary-outline:hover,
+        .features-content .features__item,
+        .nav-links a:hover,
+        .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button, .woocommerce button.button.alt
+        {
+            background-color: #<?php echo esc_attr( $primary ); ?>;
+        }
+        textarea:focus,
+        input[type="date"]:focus,
+        input[type="datetime"]:focus,
+        input[type="datetime-local"]:focus,
+        input[type="email"]:focus,
+        input[type="month"]:focus,
+        input[type="number"]:focus,
+        input[type="password"]:focus,
+        input[type="search"]:focus,
+        input[type="tel"]:focus,
+        input[type="text"]:focus,
+        input[type="time"]:focus,
+        input[type="url"]:focus,
+        input[type="week"]:focus {
+            border-color: #<?php echo esc_attr( $primary ); ?>;
+        }
+
+        a,
+        .screen-reader-text:hover,
+        .screen-reader-text:active,
+        .screen-reader-text:focus,
+        .header-social a,
+        .nav-menu li.current-menu-item > a,
+        .nav-menu a:hover,
+        .nav-menu ul li a:hover,
+        .nav-menu li.onepress-current-item > a,
+        .nav-menu ul li.current-menu-item > a,
+        .nav-menu > li a.menu-actived,
+        .nav-menu.nav-menu-mobile li.nav-current-item > a,
+        .site-footer a,
+        .site-footer .btt a:hover,
+        .highlight,
+        .entry-meta a:hover,
+        .entry-meta i,
+        .sticky .entry-title:after,
+        #comments .comment .comment-wrapper .comment-meta .comment-time:hover, #comments .comment .comment-wrapper .comment-meta .comment-reply-link:hover, #comments .comment .comment-wrapper .comment-meta .comment-edit-link:hover,
+        .sidebar .widget a:hover,
+        .services-content .service-card-icon i,
+        .contact-details i,
+        .contact-details a .contact-detail-value:hover, .contact-details .contact-detail-value:hover,
+        .btn-theme-primary-outline
+        {
+            color: #<?php echo esc_attr( $primary ); ?>;
+        }
+
+        .entry-content blockquote {
+            border-left: 3px solid #<?php echo esc_attr( $primary ); ?>;
+        }
+
+        .btn-theme-primary-outline, .btn-theme-primary-outline:hover {
+            border-color: #<?php echo esc_attr( $primary ); ?>;
+        }
+        .section-news .entry-grid-elements {
+            border-top-color: #<?php echo esc_attr( $primary ); ?>;
+        }
+
+        <?php
+    }
+
+    $css = ob_get_clean();
+    $css = apply_filters( 'screenr_custom_style', $css );
     if ( screenr_is_selective_refresh() ) {
         return $css;
     } else {
