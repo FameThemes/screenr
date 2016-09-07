@@ -105,7 +105,7 @@ function screenr_theme_info_page() {
 
             <a href="?page=ft_screenr" class="nav-tab<?php echo is_null($tab) ? ' nav-tab-active' : null; ?>"><?php esc_html_e( 'Screenr', 'screenr' ) ?></a>
             <a href="?page=ft_screenr&tab=actions_required" class="nav-tab<?php echo $tab == 'actions_required' ? ' nav-tab-active' : null; ?>"><?php esc_html_e( 'Actions Required', 'screenr' ); echo ( $number_action > 0 ) ? "<span class='theme-action-count'>{$number_action}</span>" : ''; ?></a>
-            <?php do_action( 'screenr_admin_more_tabs' ); ?>
+            <?php do_action( 'screenr_admin_more_tabs', $tab ); ?>
             <a href="?page=ft_screenr&tab=contribute" class="nav-tab<?php echo $tab == 'contribute' ? ' nav-tab-active' : null; ?>"><?php esc_html_e( 'Contribute', 'screenr' ); ?><span class="dashicons dashicons-thumbs-up"></span></a>
 
         </h2>
@@ -228,7 +228,7 @@ function screenr_theme_info_page() {
             </div>
         <?php } ?>
 
-        <?php do_action( 'screenr_more_tabs_details', $actions ); ?>
+        <?php do_action( 'screenr_more_tabs_details', $tab ); ?>
 
     </div> <!-- END .theme_info -->
     <?php
