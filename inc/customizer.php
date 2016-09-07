@@ -15,11 +15,17 @@ function screenr_customize_register( $wp_customize ) {
     // Load custom controls.
     require get_template_directory() . '/inc/customizer-controls.php';
 
+    // Load custom sections.
+    require get_template_directory() . '/inc/customizer-sections.php';
+
+    // Register custom section types.
+    $wp_customize->register_section_type( 'Screenr_Customize_Section_Plus' );
+
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 
-    $pages  =  get_pages();
-    $option_pages = array();
+    $pages           = get_pages();
+    $option_pages    = array();
     $option_pages[0] = esc_html__( 'Select page', 'screenr' );
     foreach( $pages as $p ){
         $option_pages[ $p->ID ] = $p->post_title;
@@ -58,6 +64,18 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    /*------------------------------------------------------------------------*/
+    /*  Upgrade Panel
+    /*------------------------------------------------------------------------*/
+    $wp_customize->add_section( new Screenr_Customize_Section_Plus( $wp_customize, 'screenr_plus_upgrade',
+            array(
+                'title'     => esc_html__( 'Screenr Plus', 'screenr' ),
+                'priority'  => 180,
+                'plus_text' => esc_html__( 'Upgrade Now', 'screenr' ),
+                'plus_url'  => screenr_get_plus_url()
+            )
+        )
+    );
 
     /*------------------------------------------------------------------------*/
     /*  Site Options
@@ -72,11 +90,56 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+
+    /* Theme styling
+    ----------------------------------------------------------------------*/
+    $wp_customize->add_section( 'theme_styling' ,
+        array(
+            'priority'    => 3,
+            'title'       => esc_html__( 'Styling', 'screenr' ),
+            'description' => '',
+            'panel'       => 'screenr_options',
+        )
+    );
+
+    // Move background setting to theme styling
+    if ( $wp_customize->get_control('background_color') ) {
+        $wp_customize->get_control('background_color')->section = 'theme_styling';
+    }
+
+    $wp_customize->add_setting( 'primary_color',
+        array(
+            'sanitize_callback' => 'sanitize_hex_color_no_hash',
+            'sanitize_js_callback' => 'maybe_hash_hex_color',
+            'default' => ''
+        ) );
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'primary_color',
+        array(
+            'label'       => esc_html__( 'Primary color', 'screenr' ),
+            'section'     => 'theme_styling',
+            'description' => '',
+            'priority'    => 3,
+        )
+    ));
+
+    /* Typography
+    ----------------------------------------------------------------------*/
+    $wp_customize->add_section( new Screenr_Customize_Section_Plus( $wp_customize, 'screenr_typography_plus',
+            array(
+                'title'     => esc_html__( 'Typography', 'screenr' ),
+                'priority'  => 4,
+                'panel'     => 'screenr_options',
+                'plus_text' => esc_html__( 'Go Plus', 'screenr' ),
+                'plus_url'  => screenr_get_plus_url()
+            )
+        )
+    );
+
     /* Header
     ----------------------------------------------------------------------*/
     $wp_customize->add_section( 'header_settings' ,
         array(
-            'priority'    => 5,
+            'priority'    => 7,
             'title'       => esc_html__( 'Header', 'screenr' ),
             'description' => '',
             'panel'       => 'screenr_options',
@@ -88,8 +151,7 @@ function screenr_customize_register( $wp_customize ) {
         array(
             'sanitize_callback' => 'sanitize_text_field',
             'default'           => 'default',
-            //'active_callback'   => '', // function
-            'type'              => 'option' // make this settings value can use in child theme.
+            'type'              => 'option'
         )
     );
     $wp_customize->add_control( 'header_layout',
@@ -354,11 +416,10 @@ function screenr_customize_register( $wp_customize ) {
   ----------------------------------------------------------------------*/
     $wp_customize->add_section( 'blog_settings' ,
         array(
-            'priority'    => 13,
+            'priority'    => 5,
             'title'       => esc_html__( 'Blog Settings', 'screenr' ),
             'description' => '',
             'panel'       => 'screenr_options',
-            //'active_callback'   => 'is_page', // function
         )
     );
 
@@ -470,7 +531,6 @@ function screenr_customize_register( $wp_customize ) {
             'title'       => esc_html__( 'Footer', 'screenr' ),
             'description' => '',
             'panel'       => 'screenr_options',
-            //'active_callback'   => 'is_page', // function
         )
     );
 
@@ -636,43 +696,9 @@ function screenr_customize_register( $wp_customize ) {
 
     /* Theme styling
     ----------------------------------------------------------------------*/
-    $wp_customize->add_section( 'theme_styling' ,
-        array(
-            'priority'    => 170,
-            'title'       => esc_html__( 'Styling', 'screenr' ),
-            'description' => '',
-            'panel'       => 'screenr_options',
-            //'active_callback'   => 'is_page', // function
-        )
-    );
-
-    // Move background setting to theme styling
-    if ( $wp_customize->get_control('background_color') ) {
-        $wp_customize->get_control('background_color')->section = 'theme_styling';
-    }
-
-    $wp_customize->add_setting( 'primary_color',
-        array(
-            'sanitize_callback' => 'sanitize_hex_color_no_hash',
-            'sanitize_js_callback' => 'maybe_hash_hex_color',
-            'default' => ''
-        ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'primary_color',
-        array(
-            'label'       => esc_html__( 'Primary color', 'screenr' ),
-            'section'     => 'theme_styling',
-            'description' => '',
-            'priority'    => 5,
-        )
-    ));
-
-
-
-    /* Theme styling
-    ----------------------------------------------------------------------*/
     $wp_customize->add_section( 'custom_css' ,
         array(
-            'priority'    => 500,
+            'priority'    => 100,
             'title'       => esc_html__( 'Custom CSS', 'screenr' ),
             'description' => '',
             'panel'       => 'screenr_options',
@@ -705,7 +731,7 @@ function screenr_customize_register( $wp_customize ) {
             'priority'       => 151,
             'capability'     => 'edit_theme_options',
             'theme_supports' => '',
-            'title'          => esc_html__( 'Sections Order & Styling', 'screenr' ),
+            'title'          => esc_html__( 'Frontpage Sections Order & Styling', 'screenr' ),
             'description'    => '',
             'active_callback' => 'screenr_showon_frontpage'
         )
@@ -737,7 +763,7 @@ function screenr_customize_register( $wp_customize ) {
                     'type'        => 'group_heading_message',
                     'title'       => esc_html__('Advandced Section Styling', 'screenr'),
                     'section'     => 'front_page_sections_order_styling',
-                    'description' => sprintf( esc_html__('Check out the %1s version for full control over the section styling which includes background color, image, video, parallax effect, darked style and more ...', 'screenr'), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ),
+                    'description' => sprintf( esc_html__('Check out the %1s version for full control over the section styling which includes background color, image, video, parallax effect, custom style and more ...', 'screenr'), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ),
     			)
     		)
     	);
@@ -756,7 +782,6 @@ function screenr_customize_register( $wp_customize ) {
             'active_callback' => 'screenr_showon_frontpage'
         )
     );
-
 
     /*------------------------------------------------------------------------*/
     /*  Panel: Sections
@@ -2379,97 +2404,58 @@ function screenr_customize_register( $wp_customize ) {
     );
 
     /*------------------------------------------------------------------------*/
-    /*  Section: More Sections
+    /*  Premium Sections
     /*------------------------------------------------------------------------*/
-    $wp_customize->add_section( 'front_page_more_sections',
-        array(
-            'priority'       => 30,
-            'title'          => esc_html__( 'More Sections (Plus Version)', 'screenr' ),
-            'panel'          => 'front_page_sections',
-            'description'    => '',
+    $wp_customize->add_section( new Screenr_Customize_Section_Plus( $wp_customize, 'premium_section_projects',
+            array(
+                'title'     => esc_html__( 'Projects', 'screenr' ),
+                'priority'  => 30,
+                'panel'     => 'front_page_sections',
+                'plus_text' => esc_html__( 'Go Plus', 'screenr' ),
+                'plus_url'  => screenr_get_plus_url()
+            )
         )
     );
-
-        $wp_customize->add_setting( 'front_page_more_sections_projects',
+    $wp_customize->add_section( new Screenr_Customize_Section_Plus( $wp_customize, 'premium_section_testimonials',
             array(
-                'sanitize_callback' => 'screenr_sanitize_text',
-                'default'           => '',
+                'title'     => esc_html__( 'Testimonials', 'screenr' ),
+                'priority'  => 32,
+                'panel'     => 'front_page_sections',
+                'plus_text' => esc_html__( 'Go Plus', 'screenr' ),
+                'plus_url'  => screenr_get_plus_url()
             )
-        );
-    	$wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'front_page_more_sections_projects',
-    			array(
-                    'type'        => 'group_heading_message',
-                    'title'       => esc_html__('Project Section', 'screenr'),
-                    'section'     => 'front_page_more_sections',
-                    'description' => sprintf( esc_html__('Check out the %1s version for full control over the project section!', 'screenr'), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ),
-    			)
-    		)
-    	);
-
-        $wp_customize->add_setting( 'front_page_more_sections_testimonials',
+        )
+    );
+    $wp_customize->add_section( new Screenr_Customize_Section_Plus( $wp_customize, 'premium_section_team',
             array(
-                'sanitize_callback' => 'screenr_sanitize_text',
-                'default'           => '',
+                'title'     => esc_html__( 'Team', 'screenr' ),
+                'priority'  => 32,
+                'panel'     => 'front_page_sections',
+                'plus_text' => esc_html__( 'Go Plus', 'screenr' ),
+                'plus_url'  => screenr_get_plus_url()
             )
-        );
-    	$wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'front_page_more_sections_testimonials',
-    			array(
-                    'type'        => 'group_heading_message',
-                    'title'       => esc_html__('Testimonial Section', 'screenr'),
-                    'section'     => 'front_page_more_sections',
-                    'description' => sprintf( esc_html__('Check out the %1s version for full control over the testimonial section!', 'screenr'), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ),
-    			)
-    		)
-    	);
-
-        $wp_customize->add_setting( 'front_page_more_sections_team',
+        )
+    );
+    $wp_customize->add_section( new Screenr_Customize_Section_Plus( $wp_customize, 'premium_section_pricing',
             array(
-                'sanitize_callback' => 'screenr_sanitize_text',
-                'default'           => '',
+                'title'     => esc_html__( 'Pricing', 'screenr' ),
+                'priority'  => 32,
+                'panel'     => 'front_page_sections',
+                'plus_text' => esc_html__( 'Go Plus', 'screenr' ),
+                'plus_url'  => screenr_get_plus_url()
             )
-        );
-    	$wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'front_page_more_sections_team',
-    			array(
-                    'type'        => 'group_heading_message',
-                    'title'       => esc_html__('Team Section', 'screenr'),
-                    'section'     => 'front_page_more_sections',
-                    'description' => sprintf( esc_html__('Check out the %1s version for full control over the team section!', 'screenr'), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ),
-    			)
-    		)
-    	);
-
-        $wp_customize->add_setting( 'front_page_more_sections_pricing',
+        )
+    );
+    $wp_customize->add_section( new Screenr_Customize_Section_Plus( $wp_customize, 'premium_section_cta',
             array(
-                'sanitize_callback' => 'screenr_sanitize_text',
-                'default'           => '',
+                'title'     => esc_html__( 'Call To Action', 'screenr' ),
+                'priority'  => 32,
+                'panel'     => 'front_page_sections',
+                'plus_text' => esc_html__( 'Go Plus', 'screenr' ),
+                'plus_url'  => screenr_get_plus_url()
             )
-        );
-    	$wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'front_page_more_sections_pricing',
-    			array(
-                    'type'        => 'group_heading_message',
-                    'title'       => esc_html__('Pricing Section', 'screenr'),
-                    'section'     => 'front_page_more_sections',
-                    'description' => sprintf( esc_html__('Check out the %1s version for full control over the pricing section!', 'screenr'), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ),
-    			)
-    		)
-    	);
-
-        $wp_customize->add_setting( 'front_page_more_sections_cta',
-            array(
-                'sanitize_callback' => 'screenr_sanitize_text',
-                'default'           => '',
-            )
-        );
-    	$wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'front_page_more_sections_cta',
-    			array(
-                    'type'        => 'group_heading_message',
-                    'title'       => esc_html__('Call To Action Section', 'screenr'),
-                    'section'     => 'front_page_more_sections',
-                    'description' => sprintf( esc_html__('Check out the %1s version for full control over the call to action section!', 'screenr'), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ),
-    			)
-    		)
-    	);
-
+        )
+    );
 
     do_action( 'screenr_customize_after_register', $wp_customize );
 }
@@ -2643,7 +2629,6 @@ function screenr_customize_js_settings(){
 
     wp_localize_script( 'customize-controls', 'screenr_customizer_settings', array(
         'number_action' => $number_action,
-        'is_plus_activated' => class_exists( 'Screenr_PLus' ) ? 'y' : 'n',
         'action_url' => add_query_arg( array( 'page' => 'ft_screenr', 'tab' => 'actions_required' ), admin_url( 'themes.php' ) )
     ) );
 }

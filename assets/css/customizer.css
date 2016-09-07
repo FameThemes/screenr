@@ -540,3 +540,54 @@ body .wp-full-overlay{
 #customize-theme-controls #accordion-section-screenr_team .accordion-section-title {
     color: #007cb2;
 }
+
+/* Custom Plus Section */
+.control-section-upgrade-plus .accordion-section-title::after {
+	display: none;
+}
+
+#customize-controls .current-panel .control-section.control-section-upgrade-plus > h3.accordion-section-title {
+    padding-right: 20px;
+}
+
+#customize-controls .control-section-upgrade-plus .accordion-section-title:hover,
+#customize-controls .control-section-upgrade-plus .accordion-section-title:focus {
+	cursor:           default;
+	background-color: #fff;
+}
+
+.control-section-upgrade-plus .accordion-section-title .button {
+	float:       right;
+	margin-left: 8px;
+}
+
+.control-section-upgrade-plus .accordion-section-title a {
+	float:       right;
+	margin-left: 8px;
+}
+
+.rtl .control-section-upgrade-plus .accordion-section-title .button {
+	float:        left;
+	margin-left:  0;
+	margin-right: 8px;
+}
+
+#accordion-section-screenr_plus_upgrade .accordion-section-title {
+    padding: 10px 20px 11px 14px;
+}
+
+#accordion-section-screenr_plus_upgrade .accordion-section-title,
+#customize-controls #accordion-section-screenr_plus_upgrade .accordion-section-title:hover,
+#customize-controls #accordion-section-screenr_plus_upgrade .accordion-section-title:active,
+#customize-controls #accordion-section-screenr_plus_upgrade .accordion-section-title:focus {
+    background: #656a6f;
+    color: #FFFFFF;
+}
+
+#customize-controls #accordion-section-screenr_plus_upgrade .accordion-section-title a {
+    color: #FFFFFF;
+}
+
+#customize-controls #accordion-section-screenr_plus_upgrade .accordion-section-title a:hover {
+    color: #cccccc;
+}

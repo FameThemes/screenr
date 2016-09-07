@@ -273,3 +273,5 @@ require get_template_directory() . '/inc/class-slider.php';
  * Add theme info page
  */
 require get_template_directory() . '/inc/dashboard.php';
+
+//require_once( trailingslashit( get_template_directory() ) . 'trt-customizer-pro/example-1/class-customize.php' );
