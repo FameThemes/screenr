@@ -91,7 +91,6 @@ function screenr_posted_on( $echo = true ) {
         $html .= $comment;
     }
 
-
     if ( $echo ) {
         echo $html;
     }

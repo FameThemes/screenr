@@ -533,7 +533,12 @@ if ( $layout != 'transparent' ) {
     }
 
     $css = ob_get_clean();
+    $custom = get_option( 'screenr_custom_css' );
+    if ( $custom ){
+        $css.= "\n/* --- Begin custom CSS --- */\n". $custom."\n/* --- End custom CSS --- */\n";
+    }
     $css = apply_filters( 'screenr_custom_style', $css );
+
     if ( screenr_is_selective_refresh() ) {
         return $css;
     } else {
@@ -542,16 +547,6 @@ if ( $layout != 'transparent' ) {
 }
 
 add_action( 'wp_enqueue_scripts', 'screenr_custom_style', 55 );
-
-function screenr_user_custom_css_code(){
-    $custom = get_option( 'screenr_custom_css' );
-    if ( $custom || is_customize_preview() ){
-        $custom = screenr_sanitize_css( $custom );
-        echo '<style id="screenr-user-custom-css" type="text/css">'.$custom.'</style>';
-    }
-}
-
-add_action( 'wp_head', 'screenr_user_custom_css_code' );
 
 
 /**

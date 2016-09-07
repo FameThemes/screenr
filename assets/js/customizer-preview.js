@@ -59,15 +59,7 @@
 			}
 		} );
 	} );
-
-
-    wp.customize( 'screenr_custom_css', function( value ) {
-        value.bind( function( to ) {
-            console.log( to );
-            $( '#screenr-user-custom-css' ).html( to );
-        } );
-    } );
-
+    
 
 } )( jQuery );
 

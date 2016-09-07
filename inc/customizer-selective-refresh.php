@@ -160,6 +160,9 @@ function screenr_customizer_partials( $wp_customize )
         'footer_copyright_color',
         // Primary color
         'primary_color',
+        // Custom css
+        'screenr_custom_css',
+
     );
 
     foreach ( $custom_css as $index => $key ) {
