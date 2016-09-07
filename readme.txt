@@ -49,6 +49,7 @@ Big - Bold and stylish, Screenr is a multiuse fullscreen theme.
 * Update site footer layout.
 * Add business footer widget style.
 * Improve hero section text.
+* Fixed footer columns customizer issue.
 
 = 1.0.8 =
 * Improve 404 page.

@@ -104,6 +104,7 @@ function screenr_theme_info_page() {
         <h2 class="nav-tab-wrapper">
             <a href="?page=ft_screenr" class="nav-tab<?php echo is_null($tab) ? ' nav-tab-active' : null; ?>"><?php esc_html_e( 'Screenr', 'screenr' ) ?></a>
             <a href="?page=ft_screenr&tab=actions_required" class="nav-tab<?php echo $tab == 'actions_required' ? ' nav-tab-active' : null; ?>"><?php esc_html_e( 'Actions Required', 'screenr' ); echo ( $number_action > 0 ) ? "<span class='theme-action-count'>{$number_action}</span>" : ''; ?></a>
+            <a href="?page=ft_screenr&tab=contribute" class="nav-tab<?php echo $tab == 'contribute' ? ' nav-tab-active' : null; ?>"><?php esc_html_e( 'Contribute', 'screenr' ); ?><span class="dashicons dashicons-thumbs-up"></span></a>
             <?php do_action( 'screenr_admin_more_tabs' ); ?>
         </h2>
 
@@ -191,6 +192,37 @@ function screenr_theme_info_page() {
                     <h3><?php  printf( esc_html__( 'Keep update with %s', 'screenr' ) , $theme_data->Name ); ?></h3>
                     <p><?php esc_html_e( 'Hooray! There are no required actions for you right now.', 'screenr' ); ?></p>
                 <?php } ?>
+            </div>
+        <?php } ?>
+
+        <?php if ( $tab == 'contribute' ) { ?>
+            <div class="contribute-tab-content feature-section three-col">
+                <h2>How can I contribute?</h2>
+                <div class="col">
+                    <div class="theme_info_boxed">
+                        <p><strong><?php esc_html_e( 'Found a bug? Want to contribute with a fix or create a new feature?', 'screenr' ); ?></strong></p>
+                        <p><?php esc_html_e('GitHub is the place to go!', 'screenr'); ?></p>
+                        <p>
+                            <a href="https://github.com/FameThemes/screenr" target="_blank" class="button button-primary"><?php esc_html_e('Screenr on GitHub', 'screenr'); ?> <span class="dashicons dashicons-external"></span></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="theme_info_boxed">
+                        <p><strong><?php esc_html_e( 'Are you a polyglot? Want to translate Screenr into your own language?', 'screenr' ); ?></strong></p>
+                        <p><?php esc_html_e('Get involved at WordPress.org.', 'screenr'); ?></p>
+                        <p>
+                            <a href="https://translate.wordpress.org/projects/wp-themes/screenr" target="_blank" class="button button-primary"><?php esc_html_e('Translate Screenr', 'screenr'); ?> <span class="dashicons dashicons-external"></span></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="theme_info_boxed">
+                        <p><strong><?php esc_html_e( 'Are you enjoying Screenr theme?', 'screenr' ); ?></strong></p>
+                        <p><?php _e('Rate our theme on <a target="_blank" href="https://wordpress.org/support/theme/screenr/reviews/?filter=5#postform">WordPress.org</a>. We\'d really appreciate it!', 'screenr'); ?></p>
+                        <p><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span></p>
+                    </div>
+                </div>
             </div>
         <?php } ?>
 
