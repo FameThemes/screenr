@@ -688,7 +688,7 @@ function screenr_customize_register( $wp_customize ) {
                     'type'        => 'group_heading_message',
                     'title'       => esc_html__('Change Footer Copyright Text and Hide Theme Author Link', 'screenr'),
                     'section'     => 'page_footer_settings',
-                    'description' => sprintf( esc_html__('Upgrade to %1s in order to change site footer copyright information and hide theme author link via Customiser.', 'screenr'), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ),
+                    'description' => sprintf( esc_html__('Upgrade to %1s in order to change site footer copyright information and hide theme author link via Customizer.', 'screenr'), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ),
     			)
     		)
     	);
