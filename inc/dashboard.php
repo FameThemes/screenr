@@ -74,7 +74,7 @@ function screenr_one_activation_admin_notice(){
     if ( is_admin() && ('themes.php' == $pagenow) && isset( $_GET['activated'] ) ) {
         add_action( 'admin_notices', 'screenr_admin_notice' );
     }
-    
+
     if ( is_admin() && 'themes.php' == $pagenow ) {
         if ( 1 != get_option( 'ft_hide_demo_importer' ) ) {
             add_action( 'admin_notices', 'screenr_admin_import_notice' );
