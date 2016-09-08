@@ -44,8 +44,11 @@ function screenr_admin_notice() {
     if ( $number_action > 0 ) {
         $theme_data = wp_get_theme();
         ?>
-        <div class="updated notice is-dismissible">
+        <div class="updated notice notice-success notice-alt is-dismissible">
             <p><?php printf( esc_html__( 'Welcome! Thank you for choosing %1$s! To fully take advantage of the best our theme can offer please make sure you visit our %2$s', 'screenr' ),  $theme_data->Name, '<a href="'.esc_url( add_query_arg( array( 'page' => 'ft_screenr' ), admin_url( 'themes.php' ) ) ).'">'.esc_html__( 'Welcome Page', 'screenr' ).'</a>'  ); ?></p>
+        </div>
+        <div class="updated notice notice-success notice-alt is-dismissible">
+            <p><?php printf( esc_html__( 'Save time by import our demo data, your website will be set up and ready to customize in minutes. %s', 'screenr' ), '<a class="button button-secondary" href="'.esc_url( add_query_arg( array( 'page' => 'ft_screenr&tab=demo-data-importer' ), admin_url( 'themes.php' ) ) ).'">'.esc_html__( 'Import Demo Data', 'screenr' ).'</a>'  ); ?></p>
         </div>
         <?php
     }
@@ -202,7 +205,7 @@ function screenr_theme_info_page() {
         <?php if ( $tab == 'demo-data-importer' ) { ?>
             <div class="demo-import-tab-content info-tab-content">
                 <div class="demo-import-boxed">
-                    <p><?php  printf( __( '<b>Notice:</b> You will need to install and activate the FameThemes Demo Importer plugin first, %s now from Github.', 'screenr' ) , '<a href="https://github.com/FameThemes/famethemes-demo-importer/archive/master.zip">'. esc_html__( 'download it', 'screenr' ) .'</a>' ); ?></p>
+                    <p><?php  printf( __( '<b>Hey,</b> you will need to install and activate the FameThemes Demo Importer plugin first, %s now from Github.', 'screenr' ) , '<a href="https://github.com/FameThemes/famethemes-demo-importer/archive/master.zip">'. esc_html__( 'download it', 'screenr' ) .'</a>' ); ?></p>
                 </div>
             </div>
         <?php } ?>
