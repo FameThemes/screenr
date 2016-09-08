@@ -106,7 +106,9 @@ function screenr_theme_info_page() {
             <a href="?page=ft_screenr" class="nav-tab<?php echo is_null($tab) ? ' nav-tab-active' : null; ?>"><?php esc_html_e( 'Screenr', 'screenr' ) ?></a>
             <a href="?page=ft_screenr&tab=actions_required" class="nav-tab<?php echo $tab == 'actions_required' ? ' nav-tab-active' : null; ?>"><?php esc_html_e( 'Actions Required', 'screenr' ); echo ( $number_action > 0 ) ? "<span class='theme-action-count'>{$number_action}</span>" : ''; ?></a>
             <?php do_action( 'screenr_admin_more_tabs', $tab ); ?>
+            <a href="?page=ft_screenr&tab=demo-data-importer" class="nav-tab<?php echo $tab == 'demo-data-importer' ? ' nav-tab-active' : null; ?>"><?php esc_html_e( 'One Click Demo Import', 'screenr' ); ?></span></a>
             <a href="?page=ft_screenr&tab=contribute" class="nav-tab<?php echo $tab == 'contribute' ? ' nav-tab-active' : null; ?>"><?php esc_html_e( 'Contribute', 'screenr' ); ?><span class="dashicons dashicons-thumbs-up"></span></a>
+
 
         </h2>
 
@@ -194,6 +196,14 @@ function screenr_theme_info_page() {
                     <h3><?php  printf( esc_html__( 'Keep update with %s', 'screenr' ) , $theme_data->Name ); ?></h3>
                     <p><?php esc_html_e( 'Hooray! There are no required actions for you right now.', 'screenr' ); ?></p>
                 <?php } ?>
+            </div>
+        <?php } ?>
+
+        <?php if ( $tab == 'demo-data-importer' ) { ?>
+            <div class="demo-import-tab-content info-tab-content">
+                <div class="demo-import-boxed">
+                    <p><?php  printf( __( '<b>Notice:</b> You will need to install and activate the FameThemes Demo Importer plugin first, %s now from Github!.', 'screenr' ) , '<a href="https://github.com/FameThemes/famethemes-demo-importer/archive/master.zip">'. esc_html__( 'download it', 'screenr' ) .'</a>' ); ?></p>
+                </div>
             </div>
         <?php } ?>
 
