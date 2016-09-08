@@ -204,9 +204,13 @@ function screenr_theme_info_page() {
 
         <?php if ( $tab == 'demo-data-importer' ) { ?>
             <div class="demo-import-tab-content info-tab-content">
-                <div class="demo-import-boxed">
-                    <p><?php  printf( __( '<b>Hey,</b> you will need to install and activate the FameThemes Demo Importer plugin first, %s now from Github.', 'screenr' ) , '<a href="https://github.com/FameThemes/famethemes-demo-importer/archive/master.zip">'. esc_html__( 'download it', 'screenr' ) .'</a>' ); ?></p>
-                </div>
+                <?php if ( has_action( 'screenr_demo_import_content_tab' ) ) {
+                    do_action( 'screenr_demo_import_content_tab' );
+                } else { ?>
+                    <div class="demo-import-boxed">
+                        <p><?php  printf( __( '<b>Hey,</b> you will need to install and activate the FameThemes Demo Importer plugin first, %s now from Github.', 'screenr' ) , '<a href="https://github.com/FameThemes/famethemes-demo-importer/archive/master.zip">'. esc_html__( 'download it', 'screenr' ) .'</a>' ); ?></p>
+                    </div>
+                <?php } ?>
             </div>
         <?php } ?>
 
