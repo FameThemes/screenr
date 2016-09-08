@@ -181,7 +181,7 @@ add_filter( 'body_class', 'screenr_body_classes' );
 function screenr_custom_style(){
     $css = '';
 
-    $layout = get_option( 'header_layout' );
+    $layout = get_theme_mod( 'header_layout' );
     ob_start();
 
 if ( $layout != 'transparent' ) {

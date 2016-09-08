@@ -23,11 +23,10 @@
 <body <?php body_class(); ?>>
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'screenr' ); ?></a>
-
     <?php
     $header_classes = array();
     $header_classes[] = 'site-header';
-    $header_layout = get_option( 'header_layout' );
+    $header_layout = get_theme_mod( 'header_layout' );
     if ( $header_layout == 'fixed' ){
         $header_classes[] = 'sticky-header';
     } else if (  $header_layout == 'transparent' ) {

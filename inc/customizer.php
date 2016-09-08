@@ -151,7 +151,6 @@ function screenr_customize_register( $wp_customize ) {
         array(
             'sanitize_callback' => 'sanitize_text_field',
             'default'           => 'default',
-            'type'              => 'option'
         )
     );
     $wp_customize->add_control( 'header_layout',

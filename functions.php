@@ -195,7 +195,7 @@ function screenr_scripts() {
         array(
             'ajax_url' 			 => admin_url( 'admin-ajax.php' ),
             'full_screen_slider' => ( get_theme_mod( 'slider_fullscreen' ) ) ? true : false,
-            'header_layout' 	 => get_option( 'header_layout' ),
+            'header_layout' 	 => get_theme_mod( 'header_layout' ),
             'slider_parallax' 	 => ( get_theme_mod( 'slider_parallax', 1 ) == 1 ) ? 1 : 0,
             'is_home_front_page' => ( is_page_template( 'template-frontpage.php' ) && is_front_page() ) ? 1 : 0,
             'autoplay'           => 7000,
