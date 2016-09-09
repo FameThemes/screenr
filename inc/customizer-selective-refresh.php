@@ -158,6 +158,10 @@ function screenr_customizer_partials( $wp_customize )
         'footer_widgets_color',
         'footer_copyright_bg',
         'footer_copyright_color',
+
+        'footer_widgets_link_color',
+        'footer_widgets_link_hover_color',
+        'footer_copyright_border_top',
         // Primary color
         'primary_color',
         // Custom css

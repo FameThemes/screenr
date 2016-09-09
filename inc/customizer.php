@@ -552,8 +552,6 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
-
-
     /* Page Footer
     ----------------------------------------------------------------------*/
     $wp_customize->add_section( 'page_footer_settings' ,
@@ -666,6 +664,60 @@ function screenr_customize_register( $wp_customize ) {
                 'footer_widgets_color',
                 array(
                     'label'       => esc_html__('Footer widgets text color', 'screenr'),
+                    'section'     => 'page_footer_settings',
+                )
+            )
+        );
+
+        // Footer widgets link color
+        $wp_customize->add_setting( 'footer_widgets_link_color',
+            array(
+                'sanitize_callback' => 'sanitize_hex_color_no_hash',
+                'sanitize_js_callback' => 'maybe_hash_hex_color',
+                'default'           => '',
+            )
+        );
+        $wp_customize->add_control( new WP_Customize_Color_Control(
+                $wp_customize,
+                'footer_widgets_link_color',
+                array(
+                    'label'       => esc_html__('Footer widgets link color', 'screenr'),
+                    'section'     => 'page_footer_settings',
+                )
+            )
+        );
+
+        // Footer widgets link hover color
+        $wp_customize->add_setting( 'footer_widgets_link_hover_color',
+            array(
+                'sanitize_callback' => 'sanitize_hex_color_no_hash',
+                'sanitize_js_callback' => 'maybe_hash_hex_color',
+                'default'           => '',
+            )
+        );
+        $wp_customize->add_control( new WP_Customize_Color_Control(
+                $wp_customize,
+                'footer_widgets_link_hover_color',
+                array(
+                    'label'       => esc_html__('Footer widgets link hover color', 'screenr'),
+                    'section'     => 'page_footer_settings',
+                )
+            )
+        );
+
+        // Footer copyright border top
+        $wp_customize->add_setting( 'footer_copyright_border_top',
+            array(
+                'sanitize_callback' => 'sanitize_hex_color_no_hash',
+                'sanitize_js_callback' => 'maybe_hash_hex_color',
+                'default'           => '',
+            )
+        );
+        $wp_customize->add_control( new WP_Customize_Color_Control(
+                $wp_customize,
+                'footer_copyright_border_top',
+                array(
+                    'label'       => esc_html__('Footer copyright border top color', 'screenr'),
                     'section'     => 'page_footer_settings',
                 )
             )
