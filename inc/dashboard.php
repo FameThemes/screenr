@@ -54,31 +54,18 @@ function screenr_admin_notice() {
 
 
 function screenr_admin_import_notice(){
-
-    if ( isset( $_GET['ft_hide_demo_importer'] ) && $_GET['ft_hide_demo_importer'] == 1 ) {
-        update_option( 'ft_hide_demo_importer', 1 );
-    } else {
-        $url = admin_url( 'themes.php' );
-        $url = add_query_arg( array( 'ft_hide_demo_importer'=> 1 ), $url );
-        ?>
-        <div style="position: relative;" class=" notice notice-success notice-alt">
-            <p><?php printf( esc_html__( 'Save time by import our demo data, your website will be set up and ready to customize in minutes. %s', 'screenr' ), '<a class="button button-secondary" href="'.esc_url( add_query_arg( array( 'page' => 'ft_screenr&tab=demo-data-importer' ), admin_url( 'themes.php' ) ) ).'">'.esc_html__( 'Import Demo Data', 'screenr' ).'</a>'  ); ?></p>
-            <a style="text-decoration: none;" href="<?php echo esc_url( $url ); ?>" class="notice-dismiss" type="button"><span class="screen-reader-text">Dismiss this notice.</span></a>
-        </div>
-        <?php
-    }
+    ?>
+    <div class="updated notice notice-success notice-alt is-dismissible">
+        <p><?php printf( esc_html__( 'Save time by import our demo data, your website will be set up and ready to customize in minutes. %s', 'screenr' ), '<a class="button button-secondary" href="'.esc_url( add_query_arg( array( 'page' => 'ft_screenr&tab=demo-data-importer' ), admin_url( 'themes.php' ) ) ).'">'.esc_html__( 'Import Demo Data', 'screenr' ).'</a>'  ); ?></p>
+    </div>
+    <?php
 }
 
 function screenr_one_activation_admin_notice(){
     global $pagenow;
     if ( is_admin() && ('themes.php' == $pagenow) && isset( $_GET['activated'] ) ) {
         add_action( 'admin_notices', 'screenr_admin_notice' );
-    }
-
-    if ( is_admin() && 'themes.php' == $pagenow ) {
-        if ( 1 != get_option( 'ft_hide_demo_importer' ) ) {
-            add_action( 'admin_notices', 'screenr_admin_import_notice' );
-        }
+        add_action( 'admin_notices', 'screenr_admin_import_notice' );
     }
 }
 

@@ -415,7 +415,7 @@ function screenr_customize_register( $wp_customize ) {
   ----------------------------------------------------------------------*/
     $wp_customize->add_section( 'blog_settings' ,
         array(
-            'priority'    => 5,
+            'priority'    => 4,
             'title'       => esc_html__( 'Blog Settings', 'screenr' ),
             'description' => '',
             'panel'       => 'screenr_options',
@@ -519,6 +519,38 @@ function screenr_customize_register( $wp_customize ) {
             )
         );
 
+
+    /* Blog settings
+ ----------------------------------------------------------------------*/
+    $wp_customize->add_section( 'layout_settings' ,
+        array(
+            'priority'    => 5,
+            'title'       => esc_html__( 'Layout Settings', 'screenr' ),
+            'description' => '',
+            'panel'       => 'screenr_options',
+        )
+    );
+
+    // Blog page title
+    $wp_customize->add_setting( 'layout_settings',
+        array(
+            'sanitize_callback' => 'sanitize_text_field',
+            'default'           => 'right',
+        )
+    );
+    $wp_customize->add_control( 'layout_settings',
+        array(
+            'label'       => esc_html__('Site Layout', 'screenr'),
+            'section'     => 'layout_settings',
+            'type' => 'select',
+            'choices' => array(
+                'right' => esc_html__('Right Sidebar', 'screenr'),
+                'left'  => esc_html__('Left Sidebar', 'screenr'),
+                'no'  => esc_html__('No Sidebar', 'screenr'),
+            ),
+            'description' => esc_html__('Select your site layout', 'screenr'),
+        )
+    );
 
 
 

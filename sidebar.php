@@ -7,6 +7,11 @@
  * @package Screenr
  */
 
+$layout = esc_attr( get_theme_mod( 'layout_settings', 'right' ) );
+if ( 'no' == $layout ) {
+    return ;
+}
+
 if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 	return;
 }
