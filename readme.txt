@@ -44,6 +44,11 @@ Big - Bold and stylish, Screenr is a multiuse fullscreen theme.
 
 == Changelog ==
 
+= 1.1.0 =
+* Left sidebar layout option.
+* More footer styling options.
+* Demo data welcome message.
+
 = 1.0.9 =
 * Remove wrong fonts call.
 * Update site footer layout.
