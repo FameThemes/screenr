@@ -442,11 +442,19 @@ if ( $layout != 'transparent' ) {
     <?php } ?>
 
     <?php
+    $footer_widgets_heading = get_theme_mod( 'footer_widgets_heading' );
+    if ( $footer_widgets_heading ) {
+    ?>
+    .footer-widgets .widget-title, .site-footer .sidebar .widget .widget-title {
+        color: #<?php echo esc_attr( $footer_widgets_heading ); ?>;
+    }
+    <?php } ?>
+
+    <?php
     $footer_w_link_color = get_theme_mod( 'footer_widgets_link_color' );
     if ( $footer_w_link_color ) {
     ?>
-    .footer-widgets a, .footer-widgets .sidebar .widget a,
-    .footer-widgets .widget-title, .site-footer .sidebar .widget .widget-title {
+    .footer-widgets a, .footer-widgets .sidebar .widget a{
         color: #<?php echo esc_attr( $footer_w_link_color ); ?>;
     }
     <?php } ?>

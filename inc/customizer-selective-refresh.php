@@ -159,6 +159,7 @@ function screenr_customizer_partials( $wp_customize )
         'footer_copyright_bg',
         'footer_copyright_color',
 
+        'footer_widgets_heading',
         'footer_widgets_link_color',
         'footer_widgets_link_hover_color',
         'footer_copyright_border_top',

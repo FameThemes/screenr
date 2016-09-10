@@ -546,7 +546,6 @@ function screenr_customize_register( $wp_customize ) {
             'choices' => array(
                 'right' => esc_html__('Right Sidebar', 'screenr'),
                 'left'  => esc_html__('Left Sidebar', 'screenr'),
-                'no'  => esc_html__('No Sidebar', 'screenr'),
             ),
             'description' => esc_html__('Select your site layout', 'screenr'),
         )
@@ -646,6 +645,24 @@ function screenr_customize_register( $wp_customize ) {
                 'footer_widgets_bg',
                 array(
                     'label'       => esc_html__('Footer widgets background color', 'screenr'),
+                    'section'     => 'page_footer_settings',
+                )
+            )
+        );
+
+        // Footer widgets text color
+        $wp_customize->add_setting( 'footer_widgets_heading',
+            array(
+                'sanitize_callback' => 'sanitize_hex_color_no_hash',
+                'sanitize_js_callback' => 'maybe_hash_hex_color',
+                'default'           => '',
+            )
+        );
+        $wp_customize->add_control( new WP_Customize_Color_Control(
+                $wp_customize,
+                'footer_widgets_heading',
+                array(
+                    'label'       => esc_html__('Footer widgets heading', 'screenr'),
                     'section'     => 'page_footer_settings',
                 )
             )
