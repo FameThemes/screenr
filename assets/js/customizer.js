@@ -414,9 +414,6 @@
                 max_item = parseInt( control.params.max_item );
             }
 
-            //if ( control.params.changeable === 'no' ) {
-            //}
-
             /**
              * Toggle show/hide item
              */
@@ -446,6 +443,9 @@
             control.container.on( 'click', '.repeat-control-remove' , function( e ){
                 e.preventDefault();
                 var $context =  $( this ).closest( '.repeatable-customize-control' );
+
+                $( "body").trigger( "repeat-control-remove-item", [$context ] );
+
                 control.remove_editor( $context );
 
                 $context.remove();
@@ -774,9 +774,7 @@
                 }
 
                 // Setup editor
-                $( '.item-editor textarea', $context ).each( function(){
-                    control.editor( $( this ) );
-                } );
+                $( 'body' ).trigger( 'repeater-control-init-item', [ $context ] );
 
             };
 
