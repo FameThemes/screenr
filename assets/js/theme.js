@@ -499,7 +499,7 @@ jQuery( document ).ready( function( $ ){
 		//direction: 'vertical',
 		pagination: '.swiper-pagination',
 		paginationClickable: true,
-		grabCursor: true,
+		grabCursor: false,
 
 		nextButton: '.swiper-button-next',
 		prevButton: '.swiper-button-prev',

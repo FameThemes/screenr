@@ -48,6 +48,7 @@ Big - Bold and stylish, Screenr is a multiuse fullscreen theme.
 * Left sidebar layout option.
 * More footer styling options.
 * Demo data welcome message.
+* Remove hero grab cursor
 
 = 1.0.9 =
 * Remove wrong fonts call.
