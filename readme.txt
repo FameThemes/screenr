@@ -1,10 +1,9 @@
 === Screenr ===
 
 Contributors: famethemes
-Tags: one-column, two-columns, left-sidebar, right-sidebar, custom-colors, featured-images, sticky-post, theme-options, translation-ready, footer-widgets, blog, e-commerce, portfolio
-Requires at least: 4.6
+Tags: one-column, two-columns, left-sidebar, right-sidebar, custom-background, custom-colors, custom-header, custom-logo, editor-style, featured-image-header, featured-images, footer-widgets, full-width-template, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready, blog, portfolio
 Tested up to: 4.6
-Stable tag: 1.0.8
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
