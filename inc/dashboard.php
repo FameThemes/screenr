@@ -259,8 +259,7 @@ function screenr_theme_info_page() {
 
                         echo '<p>';
                         printf( esc_html__(
-                            '%1$s you will need to install and activate the %2$s plugin first.', 'screenr' ),
-                            '<b>'.esc_html__( 'Hey.', 'screenr' ).'</b>',
+                            'Hey, you will need to install and activate the %1$s plugin first.', 'screenr' ),
                             '<a class="thickbox open-plugin-details-modal" href="'.esc_url( $detail_link ).'">'.esc_html__( 'FameThemes Demo Importer', 'screenr' ).'</a>'
                         );
                         echo '</p>';
