@@ -696,7 +696,6 @@ function screenr_page_header_cover()
 add_action( 'screenr_after_site_header', 'screenr_page_header_cover' );
 
 
-
 if ( ! function_exists( 'screenr_admin_scripts' ) ) {
     /**
      * Enqueue scripts for admin page only: Theme info page
@@ -705,6 +704,11 @@ if ( ! function_exists( 'screenr_admin_scripts' ) ) {
     {
         if ($hook === 'widgets.php' || $hook === 'appearance_page_ft_screenr') {
             wp_enqueue_style('screenr-admin-css', get_template_directory_uri() . '/assets/css/admin.css');
+            // Add recommend plugin css
+            wp_enqueue_style( 'plugin-install' );
+            wp_enqueue_script( 'plugin-install' );
+            wp_enqueue_script( 'updates' );
+            add_thickbox();
         }
     }
 }
