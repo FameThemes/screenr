@@ -492,7 +492,6 @@
                 } );
             };
 
-
             var frame = wp.media({
                 title: wp.media.view.l10n.addMedia,
                 multiple: false,
