@@ -25,6 +25,7 @@ get_header(); ?>
 						'services',
 						'clients',
 						'counter',
+						'gallery',
 						'news',
 						'contact'
                 	)

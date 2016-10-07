@@ -341,3 +341,196 @@ if ( ! function_exists( 'screenr_comment' ) ) {
         endswitch; // end comment_type check
     }
 }
+
+
+
+if ( ! function_exists( 'screenr_get_section_gallery_data' ) ) {
+	/**
+	 * Get Gallery data
+	 *
+	 * @since 1.2.6
+	 *
+	 * @return array
+	 */
+	function screenr_get_section_gallery_data()
+	{
+
+		$source = 'page';
+		if( has_filter( 'screenr_get_section_gallery_data' ) ) {
+			$data =  apply_filters( 'screenr_get_section_gallery_data', false );
+			return $data;
+		}
+
+		$data = array();
+
+		switch ( $source ) {
+			default:
+				$page_id = get_theme_mod( 'gallery_source_page' );
+				$images = '';
+				if ( $page_id ) {
+					$gallery = get_post_gallery( $page_id , false );
+					if ( $gallery ) {
+						$images = $gallery['ids'];
+					}
+				}
+
+				$image_thumb_size = apply_filters( 'screenr_gallery_page_img_size', 'screenr-service-small' );
+
+				if ( ! empty( $images ) ) {
+					$images = explode( ',', $images );
+					foreach ( $images as $post_id ) {
+						$post = get_post( $post_id );
+						if ( $post ) {
+							$img_thumb = wp_get_attachment_image_src($post_id, $image_thumb_size );
+							if ($img_thumb) {
+								$img_thumb = $img_thumb[0];
+							}
+
+							$img_full = wp_get_attachment_image_src( $post_id, 'full' );
+							if ($img_full) {
+								$img_full = $img_full[0];
+							}
+
+							if ( $img_thumb && $img_full ) {
+								$data[ $post_id ] = array(
+									'id'        => $post_id,
+									'thumbnail' => $img_thumb,
+									'full'      => $img_full,
+									'title'     => $post->post_title,
+									'content'   => $post->post_content,
+								);
+							}
+						}
+					}
+				}
+				break;
+		}
+
+		return $data;
+
+	}
+}
+
+/**
+ * Generate HTML content for gallery items.
+ *
+ * @since 1.2.6
+ *
+ * @param $data
+ * @param bool|true $inner
+ * @return string
+ */
+function screenr_gallery_html( $data, $inner = true, $size = 'thumbnail' ) {
+	$max_item = get_theme_mod( 'gallery_number', 10 );
+	$html = '';
+	if ( ! is_array( $data ) ) {
+		return $html;
+	}
+	$n = count( $data );
+	if ( $max_item > $n ) {
+		$max_item =  $n;
+	}
+	$i = 0;
+	while( $i < $max_item ){
+		$photo = current( $data );
+		$i ++ ;
+		if ( $size == 'full' ) {
+			$thumb = $photo['full'];
+		} else {
+			$thumb = $photo['thumbnail'];
+		}
+
+		$html .= '<a href="'.esc_attr( $photo['full'] ).'" class="g-item" title="'.esc_attr( wp_strip_all_tags( $photo['title'] ) ).'">';
+		if ( $inner ) {
+			$html .= '<span class="inner">';
+			$html .= '<span class="inner-content">';
+			$html .= '<img src="'.esc_url( $thumb ).'" alt="">';
+			$html .= '</span>';
+			$html .= '</span>';
+		} else {
+			$html .= '<img src="'.esc_url( $thumb ).'" alt="">';
+		}
+
+		$html .= '</a>';
+		next( $data );
+	}
+	reset( $data );
+
+	return $html;
+}
+
+
+/**
+ * Generate Gallery HTML
+ *
+ * @since 1.2.6
+ * @param bool|true $echo
+ * @return string
+ */
+function screenr_gallery_generate( $echo = true ){
+
+	$div = '';
+
+	$data = screenr_get_section_gallery_data();
+	$display_type = get_theme_mod( 'gallery_display', 'grid' );
+	$lightbox = get_theme_mod( 'gallery_lightbox', 1 );
+	$class = '';
+	if ( $lightbox ) {
+		$class = ' enable-lightbox ';
+	}
+	$col = absint( get_theme_mod( 'gallery_col', 4 ) );
+	if ( $col <= 0 ) {
+		$col = 4;
+	}
+	switch( $display_type ) {
+		case 'masonry':
+			$html = screenr_gallery_html( $data );
+			if ( $html ) {
+				$div .= '<div data-col="'.$col.'" class="g-zoom-in gallery-masonry '.$class.' gallery-grid g-col-'.$col.'">';
+				$div .= $html;
+				$div .= '</div>';
+			}
+			break;
+		case 'carousel':
+			$html = screenr_gallery_html( $data );
+			if ( $html ) {
+				$div .= '<div data-col="'.$col.'" class="g-zoom-in gallery-carousel'.$class.'">';
+				$div .= $html;
+				$div .= '</div>';
+			}
+			break;
+		case 'slider':
+			$html = screenr_gallery_html( $data , true , 'full' );
+			if ( $html ) {
+				$div .= '<div class="gallery-slider'.$class.'">';
+				$div .= $html;
+				$div .= '</div>';
+			}
+			break;
+		case 'justified':
+			$html = screenr_gallery_html( $data, false );
+			if ( $html ) {
+				$gallery_spacing = absint( get_theme_mod( 'gallery_spacing', 20 ) );
+				$div .= '<div data-spacing="'.$gallery_spacing.'" class="g-zoom-in gallery-justified'.$class.'">';
+				$div .= $html;
+				$div .= '</div>';
+			}
+			break;
+		default: // grid
+			$html = screenr_gallery_html( $data );
+			if ( $html ) {
+				$div .= '<div class="gallery-grid g-zoom-in '.$class.' g-col-'.$col .'">';
+				$div .= $html;
+				$div .= '</div>';
+			}
+			break;
+	}
+
+	if ( $echo ) {
+		echo $div;
+	} else {
+		return $div;
+	}
+
+}
+

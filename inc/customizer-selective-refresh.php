@@ -51,6 +51,26 @@ function screenr_customizer_partials( $wp_customize )
                // 'videolightbox_parallax_img',
             ),
         ),
+
+        // section gallery
+        'gallery' => array(
+            'id' => 'gallery',
+            'selector' => '.section-gallery',
+            'settings' => array(
+                'gallery_source',
+
+                'gallery_title',
+                'gallery_subtitle',
+                'gallery_desc',
+                'gallery_source_page',
+                'gallery_layout',
+                'gallery_display',
+                'gallery_number',
+                'gallery_row_height',
+                'gallery_col',
+            ),
+        ),
+
         // section services
         array(
             'id' => 'services',

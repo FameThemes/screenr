@@ -496,7 +496,6 @@ if ( $layout != 'transparent' ) {
     <?php
     }
 
-
     $primary = get_theme_mod( 'primary_color' );
     if ( $primary ) {
         ?>
@@ -564,9 +563,26 @@ if ( $layout != 'transparent' ) {
         .section-news .entry-grid-elements {
             border-top-color: #<?php echo esc_attr( $primary ); ?>;
         }
-
         <?php
     }
+
+    $gallery_spacing = absint( get_theme_mod( 'gallery_spacing', 20 ) );
+    ?>
+    .gallery-carousel .g-item{
+        padding: 0px <?php echo intval( $gallery_spacing / 2 ); ?>px;
+    }
+    .gallery-carousel {
+        margin-left: -<?php echo intval( $gallery_spacing / 2 ); ?>px;
+        margin-right: -<?php echo intval( $gallery_spacing / 2 ); ?>px;
+    }
+    .gallery-grid .g-item, .gallery-masonry .g-item .inner {
+        padding: <?php echo intval( $gallery_spacing / 2 ); ?>px;
+    }
+    .gallery-grid, .gallery-masonry {
+        margin: -<?php echo intval( $gallery_spacing / 2 ); ?>px;
+    }
+    <?php
+
 
     $css = ob_get_clean();
     $custom = get_option( 'screenr_custom_css' );

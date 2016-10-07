@@ -1583,6 +1583,291 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+
+    /*------------------------------------------------------------------------*/
+    /*  Section: Gallery
+    /*------------------------------------------------------------------------*/
+    $wp_customize->add_section( 'section_gallery' ,
+        array(
+            'priority'        => 16,
+            'title'           => esc_html__( 'Gallery', 'screenr' ),
+            'description'     => '',
+            'panel'           => 'front_page_sections',
+        )
+    );
+
+    // Group Heading
+    $wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'gallery_setting_group_heading',
+            array(
+                'type' 			=> 'group_heading_top',
+                'title'			=> esc_html__( 'Section Settings', 'screenr' ),
+                'section' 		=> 'section_gallery'
+            )
+        )
+    );
+
+    // Show Content
+    $wp_customize->add_setting( 'gallery_disable',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_checkbox',
+            'default'           => 1,
+        )
+    );
+    $wp_customize->add_control( 'gallery_disable',
+        array(
+            'type'        => 'checkbox',
+            'label'       => esc_html__('Hide this section?', 'screenr'),
+            'section'     => 'section_gallery',
+            'description' => esc_html__('Check this box to hide this section.', 'screenr'),
+        )
+    );
+
+    // Section ID
+    $wp_customize->add_setting( 'gallery_id',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => esc_html__('gallery', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'gallery_id',
+        array(
+            'label'     => esc_html__('Section ID:', 'screenr'),
+            'section' 		=> 'section_gallery',
+            'description'   => esc_html__( 'The section id, we will use this for link anchor.', 'screenr' )
+        )
+    );
+
+    // Title
+    $wp_customize->add_setting( 'gallery_title',
+        array(
+            'sanitize_callback' => 'sanitize_text_field',
+            'default'           => esc_html__('Gallery', 'screenr'),
+        )
+    );
+    $wp_customize->add_control( 'gallery_title',
+        array(
+            'label'     => esc_html__('Section Title', 'screenr'),
+            'section' 		=> 'section_gallery',
+            'description'   => '',
+        )
+    );
+
+    // Sub Title
+    $wp_customize->add_setting( 'gallery_subtitle',
+        array(
+            'sanitize_callback' => 'sanitize_text_field',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'gallery_subtitle',
+        array(
+            'label'     => esc_html__('Section Subtitle', 'screenr'),
+            'section' 		=> 'section_gallery',
+            'description'   => '',
+        )
+    );
+
+    // Description
+    $wp_customize->add_setting( 'gallery_desc',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_text',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control(
+        'gallery_desc',
+        array(
+            'label' 		=> esc_html__('Section Description', 'screenr'),
+            'section' 		=> 'section_gallery',
+            'description'   => '',
+            'type'          => 'textarea',
+        )
+    );
+
+    // Group Heading
+    $wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'gallery_content_group_heading',
+            array(
+                'type' 			=> 'group_heading',
+                'title'			=> esc_html__( 'Section Content', 'screenr' ),
+                'section' 		=> 'section_gallery',
+                'priority'      => 30,
+            )
+        )
+    );
+    // Gallery Source
+    $wp_customize->add_setting( 'gallery_source',
+        array(
+            'sanitize_callback' => 'sanitize_text_field',
+            'validate_callback' => 'screenr_gallery_source_validate',
+            'default'           => 'page',
+        )
+    );
+    $wp_customize->add_control( 'gallery_source',
+        array(
+            'label'     	=> esc_html__('Select Gallery Source', 'screenr'),
+            'section' 		=> 'section_gallery',
+            'type'          => 'select',
+            'priority'      => 35,
+            'choices'       => array(
+                'page'      => esc_html__('Page', 'screenr'),
+                'facebook'  => 'Facebook',
+                'instagram' => 'Instagram',
+                'flickr'    => 'Flickr',
+            )
+        )
+    );
+
+    // Source page settings
+    $wp_customize->add_setting( 'gallery_source_page',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_number',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control( 'gallery_source_page',
+        array(
+            'label'     	=> esc_html__('Select Gallery Page', 'screenr'),
+            'section' 		=> 'section_gallery',
+            'type'          => 'select',
+            'priority'      => 60,
+            'choices'       => $option_pages,
+            'description'   => esc_html__('Select a page which have content contain [gallery] shortcode.', 'screenr'),
+        )
+    );
+
+
+    // Gallery Layout
+    $wp_customize->add_setting( 'gallery_layout',
+        array(
+            'sanitize_callback' => 'sanitize_text_field',
+            'default'           => 'default',
+        )
+    );
+    $wp_customize->add_control( 'gallery_layout',
+        array(
+            'label'     	=> esc_html__('Layout', 'screenr'),
+            'section' 		=> 'section_gallery',
+            'type'          => 'select',
+            'priority'      => 65,
+            'choices'       => array(
+                'default'      => esc_html__('Default, inside container', 'screenr'),
+                'full-width'  => esc_html__('Full Width', 'screenr'),
+            )
+        )
+    );
+
+    // Gallery Display
+    $wp_customize->add_setting( 'gallery_display',
+        array(
+            'sanitize_callback' => 'sanitize_text_field',
+            'default'           => 'default',
+        )
+    );
+    $wp_customize->add_control( 'gallery_display',
+        array(
+            'label'     	=> esc_html__('Display', 'screenr'),
+            'section' 		=> 'section_gallery',
+            'type'          => 'select',
+            'priority'      => 70,
+            'choices'       => array(
+                'grid'      => esc_html__('Grid', 'screenr'),
+                'carousel'    => esc_html__('Carousel', 'screenr'),
+                'slider'      => esc_html__('Slider', 'screenr'),
+                'justified'   => esc_html__('Justified', 'screenr'),
+                'masonry'     => esc_html__('Masonry', 'screenr'),
+            )
+        )
+    );
+
+    // Gallery grid spacing
+    $wp_customize->add_setting( 'gallery_spacing',
+        array(
+            'sanitize_callback' => 'sanitize_text_field',
+            'default'           => 20,
+        )
+    );
+    $wp_customize->add_control( 'gallery_spacing',
+        array(
+            'label'     	=> esc_html__('Item Spacing', 'screenr'),
+            'section' 		=> 'section_gallery',
+            'priority'      => 75,
+
+        )
+    );
+
+    // Gallery grid spacing
+    $wp_customize->add_setting( 'gallery_row_height',
+        array(
+            'sanitize_callback' => 'sanitize_text_field',
+            'default'           => 120,
+        )
+    );
+    $wp_customize->add_control( 'gallery_row_height',
+        array(
+            'label'     	=> esc_html__('Row Height', 'screenr'),
+            'section' 		=> 'section_gallery',
+            'priority'      => 80,
+
+        )
+    );
+
+    // Gallery grid gird col
+    $wp_customize->add_setting( 'gallery_col',
+        array(
+            'sanitize_callback' => 'sanitize_text_field',
+            'default'           => '4',
+        )
+    );
+    $wp_customize->add_control( 'gallery_col',
+        array(
+            'label'     	=> esc_html__('Layout columns', 'screenr'),
+            'section' 		=> 'section_gallery',
+            'priority'      => 85,
+            'type'          => 'select',
+            'choices'       => array(
+                '1'      => 1,
+                '2'      => 2,
+                '3'      => 3,
+                '4'      => 4,
+                '5'      => 5,
+                '6'      => 6,
+            )
+
+        )
+    );
+
+    // Gallery max number
+    $wp_customize->add_setting( 'gallery_number',
+        array(
+            'sanitize_callback' => 'sanitize_text_field',
+            'default'           => 10,
+        )
+    );
+    $wp_customize->add_control( 'gallery_number',
+        array(
+            'label'     	=> esc_html__('Number items', 'screenr'),
+            'section' 		=> 'section_gallery',
+            'priority'      => 90,
+        )
+    );
+    // Gallery grid spacing
+    $wp_customize->add_setting( 'gallery_lightbox',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_checkbox',
+            'default'           => 1,
+        )
+    );
+    $wp_customize->add_control( 'gallery_lightbox',
+        array(
+            'label'     	=> esc_html__('Enable Lightbox', 'screenr'),
+            'section' 		=> 'section_gallery',
+            'priority'      => 95,
+            'type'          => 'checkbox',
+        )
+    );
+
+
+
     /*------------------------------------------------------------------------*/
     /*  Section: Services
     /*------------------------------------------------------------------------*/
@@ -2705,6 +2990,15 @@ function screenr_sanitize_color_alpha( $color ){
     return strpos( trim( $color ), 'rgb' ) !== false ?  $color : false;
 }
 
+
+function screenr_gallery_source_validate( $validity, $value ){
+    if ( ! class_exists( 'Screenr_PLus' ) ) {
+        if ( $value != 'page' ) {
+            $validity->add('notice', esc_html__('Upgrade to Screenr Plus to unlock this feature.', 'screenr' ) );
+        }
+    }
+    return $validity;
+}
 
 
 function screenr_showon_frontpage() {
