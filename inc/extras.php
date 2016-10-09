@@ -730,47 +730,7 @@ if ( ! function_exists( 'screenr_admin_scripts' ) ) {
 }
 add_action( 'admin_enqueue_scripts', 'screenr_admin_scripts' );
 
-/**
- * Get theme actions required
- *
- * @return array|mixed|void
- */
-function screenr_get_actions_required( ) {
 
-    $actions = array();
-    $front_page = get_option( 'page_on_front' );
-    $actions['page_on_front'] = 'dismiss';
-    $actions['page_template'] = 'dismiss';
-    if ( $front_page <= 0  ) {
-        $actions['page_on_front'] = 'active';
-        $actions['page_template'] = 'active';
-
-    } else {
-        if ( get_post_meta( $front_page, '_wp_page_template', true ) == 'template-frontpage.php' ) {
-            $actions['page_template'] = 'dismiss';
-        } else {
-            $actions['page_template'] = 'active';
-        }
-    }
-
-    $actions = apply_filters( 'screenr_get_actions_required', $actions );
-    $actions_dismiss =  get_option( 'screenr_actions_dismiss' );
-
-    if (  $actions_dismiss && is_array( $actions_dismiss ) ) {
-        foreach ( $actions_dismiss as $k => $v ) {
-            if ( isset ( $actions[ $k ] ) ) {
-                $actions[ $k ] = 'dismiss';
-            }
-        }
-    }
-
-    return $actions;
-}
-
-add_action('switch_theme', 'screenr_reset_actions_required');
-function screenr_reset_actions_required () {
-    delete_option('screenr_actions_dismiss');
-}
 
 /**
  * Output the status of widets for footer column.

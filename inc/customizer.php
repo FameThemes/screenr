@@ -3010,17 +3010,12 @@ require get_template_directory() . '/inc/customizer-selective-refresh.php';
 add_action( 'customize_controls_enqueue_scripts', 'screenr_customize_js_settings' );
 
 function screenr_customize_js_settings(){
-    $n = 0;
+    $number_action =  0;
     if ( function_exists( 'screenr_get_actions_required' ) ) {
         $actions = screenr_get_actions_required();
-        $n = array_count_values( $actions );
+        $number_action = $actions['number_notice'];
     }
-
-    $number_action =  0;
-    if ( $n && isset( $n['active'] ) ) {
-        $number_action = $n['active'];
-    }
-
+    
     wp_localize_script( 'customize-controls', 'screenr_customizer_settings', array(
         'number_action' => $number_action,
         'action_url' => add_query_arg( array( 'page' => 'ft_screenr', 'tab' => 'actions_required' ), admin_url( 'themes.php' ) )

@@ -99,6 +99,15 @@ function screenr_setup() {
         'admin-preview-callback' => '',
     ) );
 
+
+	// Recommend plugins
+	add_theme_support( 'recommend-plugins', array(
+		'contact-form-7' => array(
+			'name' => esc_html__( 'Contact Form 7', 'screenr' ),
+			'active_filename' => 'contact-form-7/wp-contact-form-7.php',
+		),
+	) );
+
 }
 endif;
 add_action( 'after_setup_theme', 'screenr_setup' );

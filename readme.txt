@@ -47,6 +47,9 @@ Big - Bold and stylish, Screenr is a multiuse fullscreen theme.
 
 
 == Changelog ==
+= 1.1.1 =
+* Improve admin panel.
+* Add gallery section.
 
 = 1.1.0 =
 * Left sidebar layout option.
