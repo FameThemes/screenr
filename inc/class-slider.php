@@ -1,4 +1,5 @@
 <?php
+if ( ! class_exists( 'Screenr_Slider' ) ) {
 class Screenr_Slider {
     public $has_video =  false;
     public $number_item = 0;
@@ -81,4 +82,5 @@ class Screenr_Slider {
         return $html;
     }
 
+}
 }
