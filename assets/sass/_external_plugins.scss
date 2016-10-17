@@ -1462,12 +1462,13 @@ button.swiper-pagination-bullet {
       margin-top: 0px;
       padding: 4px 10px 5px;
       transform: translateY( -50% );
+	  line-height: 22px;
       &:hover {
         background-color: rgba(0, 0, 0, 0.6);
         color: #fff;
       }
 	  i {
-		  line-height: 22px;
+		  line-height: 32px;
 		  vertical-align: middle;
 	  }
     }

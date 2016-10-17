@@ -57,8 +57,7 @@ class Screenr_Customize_Section_Plus extends WP_Customize_Section {
 	protected function render_template() { ?>
 
 		<li id="accordion-section-{{ data.id }}" class="accordion-section control-section control-section-{{ data.type }}">
-
-			<h3 class="accordion-section-title" tabindex="0">
+			<h3 class="accordion-section-title">
 				{{ data.title }}
 
 				<# if ( data.plus_text && data.plus_url ) { #>
