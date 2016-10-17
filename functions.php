@@ -184,6 +184,14 @@ function screenr_widgets_init() {
 add_action( 'widgets_init', 'screenr_widgets_init' );
 
 /**
+ * Add Google Fonts, editor styles to WYSIWYG editor
+ */
+function screenr_editor_styles() {
+	add_editor_style( array( 'assets/css/editor-style.css', screenr_fonts_url() ) );
+}
+add_action( 'after_setup_theme', 'screenr_editor_styles' );
+
+/**
  * Enqueue scripts and styles.
  */
 function screenr_scripts() {
