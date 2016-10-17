@@ -3,7 +3,7 @@
 $title      = get_theme_mod( 'gallery_title', esc_html__( 'Gallery', 'screenr' ) );
 $subtitle   = get_theme_mod( 'gallery_subtitle' );
 $desc       = get_theme_mod( 'gallery_desc' );
-$classes    = 'section-gallery section-padding onepage-section section-meta';
+$classes    = 'section-gallery section-padding onepage-section';
 
 $layout = get_theme_mod( 'gallery_layout', 'default' );
 ?>
