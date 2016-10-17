@@ -492,7 +492,6 @@
                 } );
             };
 
-
             var frame = wp.media({
                 title: wp.media.view.l10n.addMedia,
                 multiple: false,
@@ -1036,6 +1035,55 @@ jQuery( document ).ready( function( $ ){
     $( '#customize-control-news_loadmore select' ).on( 'change', function ()  {
         new_load_more_settings( $( this ).val() );
     } );
+
+
+    /**
+     * For Gallery content settings
+     */
+    $( 'select[data-customize-setting-link="gallery_source"]').on( 'change on_custom_load', function(){
+        var v = $( this).val() || '';
+
+        $( "li[id^='customize-control-gallery_source_']").hide();
+        $( "li[id^='customize-control-gallery_api_']").hide();
+        $( "li[id^='customize-control-gallery_settings_']").hide();
+        $( "li[id^='customize-control-gallery_source_"+v+"']").show();
+        $( "li[id^='customize-control-gallery_api_"+v+"']").show();
+        $( "li[id^='customize-control-gallery_settings_"+v+"']").show();
+
+    } );
+
+    $( 'select[data-customize-setting-link="gallery_source"]').trigger( 'on_custom_load' );
+
+    /**
+     * For Gallery display settings
+     */
+    $( 'select[data-customize-setting-link="gallery_display"]').on( 'change on_custom_load', function(){
+        var v = $( this).val() || '';
+        switch ( v ) {
+            case 'slider':
+                $( "#customize-control-gallery_row_height, #customize-control-gallery_col, #customize-control-gallery_spacing").hide();
+                break;
+            case 'justified':
+                $( "#customize-control-gallery_col, #customize-control-gallery_spacing").hide();
+                $( "#customize-control-gallery_row_height").show();
+                break;
+            case 'carousel':
+                $( "#customize-control-gallery_row_height, #customize-control-gallery_col").hide();
+                $( "#customize-control-onepress_g_col, #customize-control-onepress_g_spacing").show();
+                break;
+            case 'masonry':
+                $( "#customize-control-onepress_g_row_height").hide();
+                $( "#customize-control-gallery_col, #customize-control-gallery_spacing").show();
+                break;
+            default:
+                $( "#customize-control-gallery_row_height").hide();
+                $( "#customize-control-gallery_col, #customize-control-gallery_spacing").show();
+        }
+
+    } );
+    $( 'select[data-customize-setting-link="gallery_display"]').trigger( 'on_custom_load' );
+
+
 
 } );
 

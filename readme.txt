@@ -40,8 +40,16 @@ Big - Bold and stylish, Screenr is a multiuse fullscreen theme.
 * Bootstrap https://github.com/twbs/bootstrap, (C) 2011-2016 Twitter, Inc. [MIT](https://opensource.org/licenses/MIT)
 * Magnific Popup https://github.com/dimsemenov/Magnific-Popup, Copyright (c) 2014-2016 Dmitry Semenov, http://dimsemenov.com. [MIT](https://opensource.org/licenses/MIT)
 * Image use in screenshot: https://www.pexels.com/photo/night-building-architecture-3766/. [CC0](https://creativecommons.org/publicdomain/zero/1.0/)
+* Isotope, Source http://isotope.metafizzy.co, Licensed GPLv3 for open source use. Isotope Commercial License for commercial use.
+* lightGallery, Source http://sachinchoolur.github.io/lightGallery/, License: Apache 2.0
+* Justified Gallery, Source http://miromannino.github.io/Justified-Gallery/ License: Licensed under the MIT license.
+* jQuery OwlCarousel, Source: http://www.owlgraphic.com/owlcarousel/ License: Licensed under MIT.
+
 
 == Changelog ==
+= 1.1.1 =
+* Improve admin panel.
+* Add gallery section.
 
 = 1.1.0 =
 * Left sidebar layout option.

@@ -22,6 +22,7 @@ get_header(); ?>
 						'features',
 						'about',
 						'videolightbox',
+						'gallery',
 						'services',
 						'clients',
 						'counter',
