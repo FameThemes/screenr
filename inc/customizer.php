@@ -1589,7 +1589,7 @@ function screenr_customize_register( $wp_customize ) {
     /*------------------------------------------------------------------------*/
     $wp_customize->add_section( 'section_gallery' ,
         array(
-            'priority'        => 16,
+            'priority'        => 10,
             'title'           => esc_html__( 'Gallery', 'screenr' ),
             'description'     => '',
             'panel'           => 'front_page_sections',
