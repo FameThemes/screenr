@@ -4837,8 +4837,9 @@ button.swiper-pagination-bullet {
 	display: block;
 	font-size: 22px;
 	margin-top: 0px;
-	padding: 5px 10px 3px;
+	padding: 4px 10px 5px;
 	transform: translateY(-50%);
+	line-height: 22px;
 }
 
 .owl-carousel .owl-buttons > div:hover {
@@ -4847,7 +4848,8 @@ button.swiper-pagination-bullet {
 }
 
 .owl-carousel .owl-buttons > div i {
-	line-height: 22px;
+	line-height: 32px;
+	vertical-align: middle;
 }
 
 .owl-carousel .owl-buttons .owl-prev {
