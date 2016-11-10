@@ -440,7 +440,7 @@ function screenr_gallery_html( $data, $inner = true, $size = 'thumbnail' ) {
 			$thumb = $photo['thumbnail'];
 		}
 
-		$html .= '<a href="'.esc_attr( $photo['full'] ).'" class="g-item" title="'.esc_attr( wp_strip_all_tags( $photo['title'] ) ).'">';
+		$html .= '<a href="'.esc_attr( $photo['full'] ).'" class="g-item" title="'.esc_attr( sanitize_text_field( $photo['title'] ) ).'">';
 		if ( $inner ) {
 			$html .= '<span class="inner">';
 			$html .= '<span class="inner-content">';
