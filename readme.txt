@@ -46,32 +46,3 @@ Big - Bold and stylish, Screenr is a multiuse fullscreen theme.
 * jQuery OwlCarousel, Source: http://www.owlgraphic.com/owlcarousel/ License: Licensed under MIT.
 
 
-== Changelog ==
-= 1.1.1 =
-* Improve admin panel.
-* Add gallery section.
-
-= 1.1.0 =
-* Left sidebar layout option.
-* More footer styling options.
-* Demo data welcome message.
-* Remove hero grab cursor
-
-= 1.0.9 =
-* Remove wrong fonts call.
-* Update site footer layout.
-* Add business footer widget style.
-* Improve hero section text.
-* Fixed footer columns customizer issue.
-* Add primary color settings.
-* Add custom css options.
-
-= 1.0.8 =
-* Improve 404 page.
-* Add Full-Width page template.
-* Support for RTL language.
-* Improve section default style.
-* Improve site info layout.
-
-= 1.0.7 =
-* Initial release
