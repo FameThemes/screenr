@@ -4,6 +4,7 @@
 * Visual editor show textarea instead when use disable visual editor.
 * Update validate data.
 * Cannot scroll down on navigation bar.
+* Adding translation capabilities.
 
 
 = 1.1.1 =
