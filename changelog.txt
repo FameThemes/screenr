@@ -1,6 +1,7 @@
 == Changelog ==
 = 1.1.2 =
 * Improve customizer js.
+* Visual editor show textarea instead when use disable visual editor.
 
 
 = 1.1.1 =
