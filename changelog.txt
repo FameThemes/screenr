@@ -2,6 +2,8 @@
 = 1.1.2 =
 * Improve customizer js.
 * Visual editor show textarea instead when use disable visual editor.
+* Update validate data.
+* Cannot scroll down on navigation bar.
 
 
 = 1.1.1 =
