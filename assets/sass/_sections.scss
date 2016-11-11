@@ -155,23 +155,7 @@
 		-o-background-size: cover;
 		background-size: cover;
 		background-color: #222222;
-		/*
-		img, video {
-			position: absolute;
 
-			min-width: 100.011111%;
-			min-height: 100.011111%;
-			max-width: initial;
-			max-height: initial;
-			height: initial;
-			width: initial;
-
-			top: 50.01111111%;
-			left: 50.01111111%;
-			-webkit-transform: translate(-50.01111111%, -50.01111111%);
-			transform: translate(-50.01111111%, -50.01111111%);
-		}
-		*/
 			.swiper-intro-inner {
 				padding-top: 25%;
 				padding-bottom: 25%;
@@ -509,8 +493,18 @@
 	//@include rem('font-size', 22px);
 }
 
+@include media-breakpoint-down(md) {
+	.header-layout-fixed {
+		.swiper-slide-intro {
+			.swiper-intro-inner {
+				//padding-top: 85px;
+				padding-left: 30px;
+				padding-right: 30px;
+			}
 
-
+		}
+	}
+}
 
 /* Section: Features
 ------------------------------*/

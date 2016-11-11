@@ -5,7 +5,7 @@ Author: FameThemes
 Author URI: https://www.famethemes.com
 Description: Big - Bold and stylish, Screenr is a multiuse fullscreen theme well suited for business, portfolio, digital agency, product showcase, freelancers and everyone else who appreciate good design. Also with the flexible of the header and navigation, it can be use for one page or multiple pages website. The theme was built on Bootstrap 4, so you know it contains clean, precise code that makes for a highly streamlined site. (Live preview : http://www.famethemes.com/preview/?theme=Screenr)
 
-Version: 1.1.1
+Version: 1.1.2
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: screenr
@@ -2424,23 +2424,6 @@ ul.hours span {
 	-o-background-size: cover;
 	background-size: cover;
 	background-color: #222222;
-	/*
-		img, video {
-			position: absolute;
-
-			min-width: 100.011111%;
-			min-height: 100.011111%;
-			max-width: initial;
-			max-height: initial;
-			height: initial;
-			width: initial;
-
-			top: 50.01111111%;
-			left: 50.01111111%;
-			-webkit-transform: translate(-50.01111111%, -50.01111111%);
-			transform: translate(-50.01111111%, -50.01111111%);
-		}
-		*/
 }
 
 .swiper-slider .swiper-slide .swiper-intro-inner {
@@ -2822,6 +2805,13 @@ ul.hours span {
 	margin: 0 auto;
 	color: #fff;
 	text-align: center;
+}
+
+@media (max-width: 991px) {
+	.header-layout-fixed .swiper-slide-intro .swiper-intro-inner {
+		padding-left: 30px;
+		padding-right: 30px;
+	}
 }
 
 /* Section: Features
