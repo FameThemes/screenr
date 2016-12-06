@@ -1,7 +1,7 @@
 == Changelog ==
 = 1.1.3 =
 * Support WP 4.7 customizer shortcut.
-
+* Update option to disable slider.
 
 = 1.1.2 =
 * Improve customizer js.
