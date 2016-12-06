@@ -2,6 +2,7 @@
 /**
  * Plus customizer section.
  */
+if(!class_exists('Screenr_Customize_Section_Plus')):
 class Screenr_Customize_Section_Plus extends WP_Customize_Section {
 
 	/**
@@ -61,9 +62,10 @@ class Screenr_Customize_Section_Plus extends WP_Customize_Section {
 				{{ data.title }}
 
 				<# if ( data.plus_text && data.plus_url ) { #>
-					<a href="{{ data.plus_url }}" class="" target="_blank">{{ data.plus_text }} →</a>
+					<a href="{{ data.plus_url }}" class="" target="_blank">{{ data.plus_text }} â†’</a>
 				<# } #>
 			</h3>
 		</li>
 	<?php }
 }
+endif;
