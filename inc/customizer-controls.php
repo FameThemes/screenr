@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 /*  Screenr Customizer Controls
 /*-----------------------------------------------------------------------------------*/
-
+if(!class_exists('Screenr_Group_Settings_Heading_Control')):
 class Screenr_Group_Settings_Heading_Control extends WP_Customize_Control {
 
 	public $settings = 'blogname';
@@ -47,7 +47,7 @@ class Screenr_Group_Settings_Heading_Control extends WP_Customize_Control {
 		}
 	}
 }
-
+endif;
 
 /**
  * Sanitize repeatable data
@@ -56,6 +56,7 @@ class Screenr_Group_Settings_Heading_Control extends WP_Customize_Control {
  * @param $setting object $wp_customize
  * @return bool|mixed|string|void
  */
+if(!function_exists('screenr_sanitize_repeatable_data_field')):
 function screenr_sanitize_repeatable_data_field( $input , $setting ){
     $control = $setting->manager->get_control( $setting->id );
 
@@ -153,8 +154,9 @@ function screenr_sanitize_repeatable_data_field( $input , $setting ){
 
     return $data;
 }
+endif;
 
-
+if(!class_exists('Screenr_Alpha_Color_Control')):
 class Screenr_Alpha_Color_Control extends WP_Customize_Control {
 
     /**
@@ -217,7 +219,7 @@ class Screenr_Alpha_Color_Control extends WP_Customize_Control {
     <?php
     }
 }
-
+endif;
 
 
 /**
@@ -226,6 +228,7 @@ class Screenr_Alpha_Color_Control extends WP_Customize_Control {
  * @since  1.0.0
  * @access public
  */
+if(!class_exists('Screenr_Customize_Repeatable_Control')):
 class Screenr_Customize_Repeatable_Control extends WP_Customize_Control {
 
     /**
@@ -587,3 +590,5 @@ class Screenr_Customize_Repeatable_Control extends WP_Customize_Control {
     }
 
 }
+
+endif;
