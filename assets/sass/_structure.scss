@@ -225,7 +225,7 @@
 // Essential Styles
 .nav-menu {
     float: right;
-    @extend .clearfix;
+    @extend .clearfix !optional;
     ul {
         position: absolute;
         display: none;

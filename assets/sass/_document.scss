@@ -85,7 +85,7 @@ h6 {
 	margin-bottom: 15px;
 	@include rem('margin-bottom', 15px);
 	margin-top: 0;
-	@extend .break;
+	@extend .break !optional;
 	color: #444444;
 	& a {
 		color: #444444;
@@ -137,7 +137,7 @@ ul,ol,dl,p,details,address,.vcard,figure,pre,fieldset,table,dt,dd,hr {
 	margin-top: 0;
 }
 p,ul,ol,dl,blockquote {
-	@extend .break;
+	@extend .break !optional;
 }
 
 
@@ -212,7 +212,7 @@ pre {
 	line-height: 1.7;
 	margin: $base 0;
 	padding: $base;
-	@extend .break;
+	@extend .break !optional;
 }
 
 details {
