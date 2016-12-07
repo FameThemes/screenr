@@ -321,7 +321,7 @@ function screenr_theme_info_page() {
                             <h3><?php esc_html_e( 'Having Trouble, Need Support?', 'screenr' ); ?></h3>
                             <p class="about"><?php printf(esc_html__('Support for %s WordPress theme is conducted through FameThemes support ticket system.', 'screenr'), $theme_data->Name); ?></p>
                             <p>
-                                <a href="<?php echo esc_url('https://www.famethemes.com/contact/' ); ?>" target="_blank" class="button button-secondary"><?php echo sprintf( esc_html('Create a support ticket', 'screenr'), $theme_data->Name); ?></a>
+                                <a href="<?php echo esc_url('https://www.famethemes.com/contact/' ); ?>" target="_blank" class="button button-secondary"><?php echo sprintf( esc_html__('Create a support ticket', 'screenr'), $theme_data->Name); ?></a>
                             </p>
                         </div>
                     </div>
@@ -479,7 +479,7 @@ function screenr_theme_info_page() {
 
         <?php if ( $tab == 'contribute' ) { ?>
             <div class="contribute-tab-content feature-section three-col">
-                <h2>How can I contribute?</h2>
+                <h2><?php esc_html_e( 'How can I contribute?', 'screenr' ); ?></h2>
                 <div class="col">
                     <div class="theme_info_boxed">
                         <p><strong><?php esc_html_e( 'Found a bug? Want to contribute with a fix or create a new feature?', 'screenr' ); ?></strong></p>
