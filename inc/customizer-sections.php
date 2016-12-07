@@ -60,9 +60,8 @@ class Screenr_Customize_Section_Plus extends WP_Customize_Section {
 		<li id="accordion-section-{{ data.id }}" class="accordion-section control-section control-section-{{ data.type }}">
 			<h3 class="accordion-section-title">
 				{{ data.title }}
-
 				<# if ( data.plus_text && data.plus_url ) { #>
-					<a href="{{ data.plus_url }}" class="" target="_blank">{{ data.plus_text }} â†’</a>
+					<a href="{{ data.plus_url }}" class="" target="_blank">{{ data.plus_text }} &rarr;</a>
 				<# } #>
 			</h3>
 		</li>
