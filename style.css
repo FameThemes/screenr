@@ -1157,6 +1157,9 @@ input[type="radio"], input[type="checkbox"] {
 	#nav-toggle {
 		display: block;
 	}
+	.site-branding {
+		width: 80%;
+	}
 }
 
 #nav-toggle {
