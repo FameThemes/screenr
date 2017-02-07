@@ -794,6 +794,35 @@ function screenr_customize_register( $wp_customize ) {
     	);
 
 
+    /* Theme styling
+    ----------------------------------------------------------------------*/
+    $wp_customize->add_section( 'custom_css' ,
+        array(
+            'priority'    => 100,
+            'title'       => esc_html__( 'Custom CSS', 'screenr' ),
+            'description' => '',
+            'panel'       => 'screenr_options',
+            'capability' => 'edit_theme_options',
+        )
+    );
+
+    $wp_customize->add_setting( 'screenr_custom_css',
+        array(
+            'sanitize_callback' => 'screenr_sanitize_css',
+            'default' => '',
+            'type' => 'option',
+            'transport' => 'postMessage',
+        ) );
+    $wp_customize->add_control(
+        'screenr_custom_css',
+        array(
+            'label'       => esc_html__( 'Custom CSS', 'screenr' ),
+            'section'     => 'custom_css',
+            'description' => '',
+            'type'        => 'textarea',
+        )
+    );
+
     /*------------------------------------------------------------------------*/
     /*  Panel: Section Order & Styling
     /*------------------------------------------------------------------------*/
@@ -2986,7 +3015,7 @@ function screenr_customize_js_settings(){
         $actions = screenr_get_actions_required();
         $number_action = $actions['number_notice'];
     }
-
+    
     wp_localize_script( 'customize-controls', 'screenr_customizer_settings', array(
         'number_action' => $number_action,
         'action_url' => add_query_arg( array( 'page' => 'ft_screenr', 'tab' => 'actions_required' ), admin_url( 'themes.php' ) )
