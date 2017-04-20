@@ -3237,22 +3237,70 @@ ul.hours span {
 
 /* Section: Parallax
 ------------------------------*/
-.parallax-window section {
-	z-index: 10;
+.section-parallax {
+	background: none;
 	position: relative;
-	background: transparent !important;
+	overflow: hidden;
 }
 
-.parallax-window .parallax-mirror::before {
+.section-parallax > section, .section-parallax .onepage-section, .section-parallax .section-inverse {
+	background: none;
+}
+
+.section-parallax .parallax-bg {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	width: 100%;
+	height: 120%;
+	display: block;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+}
+
+.section-parallax .parallax-bg:before {
 	content: " ";
 	position: absolute;
 	top: 0px;
 	left: 0px;
 	right: 0px;
 	bottom: 0px;
+	background: rgba(0, 0, 0, 0.3);
 	display: block;
+	width: 100%;
+	height: 100%;
 	z-index: 2;
-	background: rgba(0, 0, 0, 0.4);
+}
+
+.parallax_bg_overlay {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	z-index: 5;
+	opacity: 0.4;
+}
+
+.parallax-content {
+	z-index: 10;
+	position: relative;
+	padding: 100px 0px;
+	text-align: center;
+}
+
+.parallax-content h1, .parallax-content h2, .parallax-content h3, .parallax-content h4, .parallax-content h5, .parallax-content h6 {
+	color: #FFFFFF;
+	line-height: 1.5;
+}
+
+.parallax-content p, .parallax-content a {
+	color: #FFFFFF;
 }
 
 /* Section: Counter

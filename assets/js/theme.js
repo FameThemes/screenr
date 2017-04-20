@@ -188,24 +188,7 @@ function string_to_bool( v ) {
 
         var testMobile = isMobile.any();
 
-        jQuery('.section-has-parallax').each(function() {
-            var $this = jQuery(this);
-            var bg    = $this.find('.parallax_bg');
 
-            jQuery(bg).css('backgroundImage', 'url(' + $this.data('bg') + ')');
-
-            if (testMobile == null) {
-                jQuery(bg).addClass('not-mobile');
-                jQuery(bg).removeClass('is-mobile');
-                jQuery(bg).parallax('50%', 0.4);
-            }
-            else {
-                //jQuery(bg).css('backgroundAttachment', 'inherit');
-                jQuery(bg).removeClass('not-mobile');
-                jQuery(bg).addClass('is-mobile');
-
-            }
-        });
     }
 })();
 
@@ -816,34 +799,81 @@ jQuery( document ).ready( function( $ ){
         $( window ).trigger( 'scroll' );
     } );
 
-    $( document ).trigger( 'scroll' );
 
 	$( '.swiper-slider' ).bind( 'preview_event_changed', function(){
 		alert( 'section_slider_changed' );
 	} );
 
 
+    $('.section-parallax, .parallax-hero').bind('inview', function ( event, visible ) {
+        if ( visible == true ) {
+        } else {
+        }
+    });
+
+    var lastScrollTop = 0;
+    // Paralax effect
+    function parallaxPosition( direction ){
+        var top = $( window ).scrollTop();
+        var wh = $( window).height();
+        $('.section-parallax, .parallax-hero').each( function(  ){
+            var $el = $( this );
+            var h = $el.width();
+            var r = .3;
+            if ( wh > h ) {
+                r = .3;
+            } else {
+                r = .6;
+            }
+
+            var is_inview = $el.data( 'inview' );
+            if ( is_inview ) {
+                var offsetTop = $el.offset().top;
+                var diff, bgTop;
+                diff = top - offsetTop;
+                bgTop = diff * r;
+                $( '.parallax-bg', $el ) .css( 'background-position', '50% '+( bgTop )+'px' );
+            }
+
+        } );
+    }
+    $(window).scroll(function(e){
+        var top = $( window ).scrollTop();
+        var direction = '';
+        if ( top > lastScrollTop ){
+            direction = 'down';
+        } else {
+            direction = 'up';
+        }
+        lastScrollTop = top ;
+        parallaxPosition( );
+    });
+    $(window).resize( function(){
+        parallaxPosition( );
+    } );
+
+    $(window).trigger('scroll');
+
+
 } );
 
 
 
-// Counter Up
-jQuery( document ).ready( function( $ ){
-	$('.counter').counterUp({
-		delay: 10,
-		time: 1000
-	});
-} );
 
 
-// Video
+
 jQuery( document ).ready( function( $ ){
+
+    // Counter
+    $('.counter').counterUp({
+        delay: 10,
+        time: 1000
+    });
+
+    // Video
     jQuery('.site-content').fitVids();
-} );
 
-
-// Ajax load more posts
-jQuery( document ).ready( function( $ ){
+    // Ajax load more posts
 	$( 'body' ).on( 'click', '.content-grid-loadmore.blt-ajax', function( e ){
 		e.preventDefault();
 		var button = $( this );
