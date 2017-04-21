@@ -859,9 +859,6 @@ jQuery( document ).ready( function( $ ){
 
 
 
-
-
-
 jQuery( document ).ready( function( $ ){
 
     // Counter
@@ -930,123 +927,131 @@ jQuery( document ).ready( function( $ ){
 	function _gallery_init( $context ){
 		// justified
 		if ( $.fn.justifiedGallery ) {
-			$( '.gallery-justified', $context).each( function(){
-				var margin = $( this).attr( 'data-spacing' ) || 20;
-				margin = string_to_number( margin );
-				$( this ).justifiedGallery({
-					rowHeight: 120,
-					margins: margin,
-					selector: 'a, div:not(.spinner), .inner'
-				});
-			} );
+            $( '.gallery-justified', $context ).imagesLoaded( function() {
+                $( '.gallery-justified', $context).each( function(){
+                    var margin = $( this).attr( 'data-spacing' ) || 20;
+                    margin = string_to_number( margin );
+                    $( this ).justifiedGallery({
+                        rowHeight: 120,
+                        margins: margin,
+                        selector: 'a, div:not(.spinner), .inner'
+                    });
+                } );
+            });
 		}
 
 
 		// Slider
 		if ( $.fn.owlCarousel ) {
-			// Slider
-			$( '.gallery-slider', $context ).owlCarousel({
-				items: 1,
-				itemsCustom: false,
-				itemsDesktop: 1,
-				itemsDesktopSmall: 1,
-				itemsTablet: 1,
-				itemsTabletSmall: false,
-				itemsMobile: 1,
-				singleItem: true,
-				itemsScaleUp: false,
 
-				slideSpeed : 200,
-				paginationSpeed : 800,
-				rewindSpeed : 1000,
-				autoPlay : 4000,
-				stopOnHover : true,
+            $( '.gallery-slider', $context ).imagesLoaded( function() {
+                // Slider
+                $( '.gallery-slider', $context ).owlCarousel({
+                    items: 1,
+                    itemsCustom: false,
+                    itemsDesktop: 1,
+                    itemsDesktopSmall: 1,
+                    itemsTablet: 1,
+                    itemsTabletSmall: false,
+                    itemsMobile: 1,
+                    singleItem: true,
+                    itemsScaleUp: false,
 
-				navigation : true,
-				navigationText : ["<i class='lg-icon'></i>", "<i class='lg-icon'></i>"],
+                    slideSpeed : 200,
+                    paginationSpeed : 800,
+                    rewindSpeed : 1000,
+                    autoPlay : 4000,
+                    stopOnHover : true,
 
-				pagination : false,
-				paginationNumbers : false,
-				autoHeight : true,
-			});
+                    navigation : true,
+                    navigationText : ["<i class='lg-icon'></i>", "<i class='lg-icon'></i>"],
 
-			$('.gallery-carousel', $context).each( function(){
-				var n = $( this ).attr( 'data-col' ) || 5;
-				n = string_to_number( n );
-				if( n <= 0 ) {
-					n = 5;
-				}
+                    pagination : false,
+                    paginationNumbers : false,
+                    autoHeight : true,
+                });
+            });
 
-				$( this ).owlCarousel({
-					items: n,
-					itemsCustom : false,
-					itemsDesktop : [1199, ( n > 4) ? 4 : n ],
-					itemsDesktopSmall : [979, ( n > 3) ? 3 : n ],
-					itemsTablet : [768, ( n > 2) ? 2 : n ],
-					itemsTabletSmall : false,
-					itemsMobile : [479, ( n > 2) ? 2 : n ],
-					singleItem : false,
-					itemsScaleUp : false,
+            $('.gallery-carousel', $context).imagesLoaded( function() {
+                $('.gallery-carousel', $context).each(function () {
+                    var n = $(this).attr('data-col') || 5;
+                    n = string_to_number(n);
+                    if (n <= 0) {
+                        n = 5;
+                    }
 
-					slideSpeed : 200,
-					paginationSpeed : 800,
-					rewindSpeed : 1000,
-					autoPlay : 4000,
-					stopOnHover : true,
+                    $(this).owlCarousel({
+                        items: n,
+                        itemsCustom: false,
+                        itemsDesktop: [1199, ( n > 4) ? 4 : n],
+                        itemsDesktopSmall: [979, ( n > 3) ? 3 : n],
+                        itemsTablet: [768, ( n > 2) ? 2 : n],
+                        itemsTabletSmall: false,
+                        itemsMobile: [479, ( n > 2) ? 2 : n],
+                        singleItem: false,
+                        itemsScaleUp: false,
 
-					navigation : true,
-					navigationText : ["<i class='lg-icon'></i>", "<i class='lg-icon'></i>"],
+                        slideSpeed: 200,
+                        paginationSpeed: 800,
+                        rewindSpeed: 1000,
+                        autoPlay: 4000,
+                        stopOnHover: true,
 
-					pagination : false,
-					paginationNumbers : false,
-				});
+                        navigation: true,
+                        navigationText: ["<i class='lg-icon'></i>", "<i class='lg-icon'></i>"],
 
-			} );
+                        pagination: false,
+                        paginationNumbers: false,
+                    });
 
-
+                });
+            });
 
 		}
 
 
 		function isotope_init (){
 			if ( $.fn.isotope ) {
-				$(".gallery-masonry", $context ).each(function () {
-					var m = $(this);
-					var gutter = m.attr('data-gutter') || 10;
-					var columns = m.attr('data-col') || 5;
 
-					console.log( columns );
+                $(".gallery-masonry", $context).imagesLoaded( function() {
+                    $(".gallery-masonry", $context).each(function () {
+                        var m = $(this);
+                        var gutter = m.attr('data-gutter') || 10;
+                        var columns = m.attr('data-col') || 5;
 
-					gutter = string_to_number(gutter);
-					columns = string_to_number(columns);
+                        //console.log(columns);
 
-					var w = $(window).width();
-					if ( w <= 940 ) {
-						columns = columns > 2 ? columns - 1 : columns;
-					}
+                        gutter = string_to_number(gutter);
+                        columns = string_to_number(columns);
 
-					if ( w <= 720 ) {
-						columns = columns > 3 ? 3 : columns;
-					}
+                        var w = $(window).width();
+                        if (w <= 940) {
+                            columns = columns > 2 ? columns - 1 : columns;
+                        }
 
-					if ( w <= 576 ) {
-						columns = columns > 2 ? 2 : columns;
-					}
+                        if (w <= 720) {
+                            columns = columns > 3 ? 3 : columns;
+                        }
 
-					//gutter = gutter / 2;
-					// m.parent().css({'margin-left': -gutter, 'margin-right': -gutter});
-					m.find('.g-item').css({'width': ( 100 / columns  ) + '%', 'float': 'left', 'padding': 0});
-					// m.find('.g-item .inner').css({'padding': gutter / 2});
-					m.isotope({
-						// options
-						itemSelector: '.g-item',
-						percentPosition: true,
-						masonry: {
-							columnWidth: '.inner'
-						}
-					});
+                        if (w <= 576) {
+                            columns = columns > 2 ? 2 : columns;
+                        }
 
-				});
+                        //gutter = gutter / 2;
+                        // m.parent().css({'margin-left': -gutter, 'margin-right': -gutter});
+                        m.find('.g-item').css({'width': ( 100 / columns  ) + '%', 'float': 'left', 'padding': 0});
+                        // m.find('.g-item .inner').css({'padding': gutter / 2});
+                        m.isotope({
+                            // options
+                            itemSelector: '.g-item',
+                            percentPosition: true,
+                            masonry: {
+                                columnWidth: '.inner'
+                            }
+                        });
+
+                    });
+                });
 			}
 		}
 
