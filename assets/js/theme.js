@@ -155,63 +155,6 @@ function string_to_bool( v ) {
 
 } )();
 
-/**
- * Parallax Section
- */
-( function() {
-
-    jQuery(window).resize(function(){
-        screenrParallax();
-    });
-
-    function screenrParallax() {
-        var isMobile = {
-            Android: function() {
-                return navigator.userAgent.match(/Android/i);
-            },
-            BlackBerry: function() {
-                return navigator.userAgent.match(/BlackBerry/i);
-            },
-            iOS: function() {
-                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-            },
-            Opera: function() {
-                return navigator.userAgent.match(/Opera Mini/i);
-            },
-            Windows: function() {
-                return navigator.userAgent.match(/IEMobile/i);
-            },
-            any: function() {
-                return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-            }
-        };
-
-        var testMobile = isMobile.any();
-
-
-    }
-})();
-
-/**
- * Call magnificPopup when use
- */
-( function() {
-
-    jQuery('.popup-video').magnificPopup({
-        //disableOn: 700,
-        type: 'iframe',
-        mainClass: 'mfp-fade',
-        removalDelay: 160,
-        preloader: false,
-        fixedContentPos: false,
-        zoom: {
-            enabled:true
-        }
-    });
-
-})();
-
-
 
 jQuery( document ).ready( function( $ ){
 
@@ -227,7 +170,6 @@ jQuery( document ).ready( function( $ ){
 		jQuery('#nav-toggle').toggleClass('nav-is-visible');
 		jQuery('.main-navigation .nav-menu').toggleClass("nav-menu-mobile");
 		jQuery('.header-widget').toggleClass("header-widget-mobile");
-
 
         if ( main_navigation.hasClass( 'nav-menu-mobile' ) && $( window).width() <= mobile_max_width ) {
             var h = $( window).height( ) - stite_header.height();
@@ -818,7 +760,7 @@ jQuery( document ).ready( function( $ ){
         var wh = $( window).height();
         $('.section-parallax, .parallax-hero').each( function(  ){
             var $el = $( this );
-            var h = $el.width();
+            var h = $el.height();
             var r = .3;
             if ( wh > h ) {
                 r = .3;
@@ -826,12 +768,16 @@ jQuery( document ).ready( function( $ ){
                 r = .6;
             }
 
+            var section_h = $el.height();
             var is_inview = $el.data( 'inview' );
             if ( is_inview ) {
                 var offsetTop = $el.offset().top;
                 var diff, bgTop;
                 diff = top - offsetTop;
-                bgTop = diff * r;
+                bgTop = Math.round( diff * r );
+                if ( bgTop > h ) {
+                    bgTop = h;
+                }
                 $( '.parallax-bg', $el ) .css( 'background-position', '50% '+( bgTop )+'px' );
             }
 
@@ -860,6 +806,13 @@ jQuery( document ).ready( function( $ ){
 
 
 jQuery( document ).ready( function( $ ){
+
+    /**
+     * Video lightbox
+     */
+    if ($.fn.lightGallery ) {
+        $(".videolightbox-popup").lightGallery({});
+    }
 
     // Counter
     $('.counter').counterUp({

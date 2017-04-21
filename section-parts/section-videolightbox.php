@@ -19,11 +19,12 @@ if ( ! screenr_is_selective_refresh() ) {
             <?php if ( $title ){ ?>
             <h2 class="videolightbox__heading"><?php echo wp_kses_post( balanceTags( $title ) ) ; ?></h2>
             <?php } ?>
-            <div class="videolightbox__icon">
-                <a href="<?php echo esc_url( $video_url ); ?>" class="popup-video">
+            <div class="videolightbox__icon videolightbox-popup">
+                <a href="<?php echo esc_attr( $video_url ); ?>" data-scr="<?php echo esc_attr( $video_url ); ?>" class="popup-video">
                     <span class="video_icon"><i class="fa fa-play"></i></span>
                 </a>
             </div>
+
         </div>
 <?php if ( ! screenr_is_selective_refresh() ) { ?>
     </section>
