@@ -1,4 +1,12 @@
 == Changelog ==
+= 1.1.4 =
+* Update parallax.
+* Add images loaded for gallery.
+* Fix site title & tagline is hidden when use logo.
+* Remove Magnific Popup, use light gallery instead.
+* Remove theme built-in custom css.
+
+
 = 1.1.3 =
 * WP 4.7 compatible.
 * Support WP 4.7 customizer shortcut.
