@@ -778,7 +778,11 @@ jQuery( document ).ready( function( $ ){
                 if ( bgTop > h ) {
                     bgTop = h;
                 }
-                $( '.parallax-bg', $el ) .css( 'background-position', '50% '+( bgTop )+'px' );
+                if ( wh > h * 2 ) {
+                    $('.parallax-bg', $el).css('background-position', '50% ' + ( 0 - ( section_h + bgTop ) ) + 'px');
+                } else {
+                    $('.parallax-bg', $el).css('background-position', '50% ' + ( bgTop ) + 'px');
+                }
             }
 
         } );
