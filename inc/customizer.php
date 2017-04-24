@@ -796,32 +796,37 @@ function screenr_customize_register( $wp_customize ) {
 
     /* Theme styling
     ----------------------------------------------------------------------*/
-    $wp_customize->add_section( 'custom_css' ,
-        array(
-            'priority'    => 100,
-            'title'       => esc_html__( 'Custom CSS', 'screenr' ),
-            'description' => '',
-            'panel'       => 'screenr_options',
-            'capability' => 'edit_theme_options',
-        )
-    );
+    if ( ! function_exists( 'wp_get_custom_css' ) ) {  // Back-compat for WordPress < 4.7.
 
-    $wp_customize->add_setting( 'screenr_custom_css',
-        array(
-            'sanitize_callback' => 'screenr_sanitize_css',
-            'default' => '',
-            'type' => 'option',
-            'transport' => 'postMessage',
-        ) );
-    $wp_customize->add_control(
-        'screenr_custom_css',
-        array(
-            'label'       => esc_html__( 'Custom CSS', 'screenr' ),
-            'section'     => 'custom_css',
-            'description' => '',
-            'type'        => 'textarea',
-        )
-    );
+        $wp_customize->add_section('custom_css',
+            array(
+                'priority' => 100,
+                'title' => esc_html__('Custom CSS', 'screenr'),
+                'description' => '',
+                'panel' => 'screenr_options',
+                'capability' => 'edit_theme_options',
+            )
+        );
+
+        $wp_customize->add_setting('screenr_custom_css',
+            array(
+                'sanitize_callback' => 'screenr_sanitize_css',
+                'default' => '',
+                'type' => 'option',
+                'transport' => 'postMessage',
+            ));
+        $wp_customize->add_control(
+            'screenr_custom_css',
+            array(
+                'label' => esc_html__('Custom CSS', 'screenr'),
+                'section' => 'custom_css',
+                'description' => '',
+                'type' => 'textarea',
+            )
+        );
+    } else {
+        $wp_customize->get_section( 'custom_css' )->priority = 994;
+    }
 
     /*------------------------------------------------------------------------*/
     /*  Panel: Section Order & Styling

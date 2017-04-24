@@ -155,80 +155,6 @@ function string_to_bool( v ) {
 
 } )();
 
-/**
- * Parallax Section
- */
-( function() {
-
-    jQuery(window).resize(function(){
-        screenrParallax();
-    });
-
-    function screenrParallax() {
-        var isMobile = {
-            Android: function() {
-                return navigator.userAgent.match(/Android/i);
-            },
-            BlackBerry: function() {
-                return navigator.userAgent.match(/BlackBerry/i);
-            },
-            iOS: function() {
-                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-            },
-            Opera: function() {
-                return navigator.userAgent.match(/Opera Mini/i);
-            },
-            Windows: function() {
-                return navigator.userAgent.match(/IEMobile/i);
-            },
-            any: function() {
-                return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-            }
-        };
-
-        var testMobile = isMobile.any();
-
-        jQuery('.section-has-parallax').each(function() {
-            var $this = jQuery(this);
-            var bg    = $this.find('.parallax_bg');
-
-            jQuery(bg).css('backgroundImage', 'url(' + $this.data('bg') + ')');
-
-            if (testMobile == null) {
-                jQuery(bg).addClass('not-mobile');
-                jQuery(bg).removeClass('is-mobile');
-                jQuery(bg).parallax('50%', 0.4);
-            }
-            else {
-                //jQuery(bg).css('backgroundAttachment', 'inherit');
-                jQuery(bg).removeClass('not-mobile');
-                jQuery(bg).addClass('is-mobile');
-
-            }
-        });
-    }
-})();
-
-/**
- * Call magnificPopup when use
- */
-( function() {
-
-    jQuery('.popup-video').magnificPopup({
-        //disableOn: 700,
-        type: 'iframe',
-        mainClass: 'mfp-fade',
-        removalDelay: 160,
-        preloader: false,
-        fixedContentPos: false,
-        zoom: {
-            enabled:true
-        }
-    });
-
-})();
-
-
 
 jQuery( document ).ready( function( $ ){
 
@@ -244,7 +170,6 @@ jQuery( document ).ready( function( $ ){
 		jQuery('#nav-toggle').toggleClass('nav-is-visible');
 		jQuery('.main-navigation .nav-menu').toggleClass("nav-menu-mobile");
 		jQuery('.header-widget').toggleClass("header-widget-mobile");
-
 
         if ( main_navigation.hasClass( 'nav-menu-mobile' ) && $( window).width() <= mobile_max_width ) {
             var h = $( window).height( ) - stite_header.height();
@@ -816,34 +741,93 @@ jQuery( document ).ready( function( $ ){
         $( window ).trigger( 'scroll' );
     } );
 
-    $( document ).trigger( 'scroll' );
 
 	$( '.swiper-slider' ).bind( 'preview_event_changed', function(){
 		alert( 'section_slider_changed' );
 	} );
 
 
+    $('.section-parallax, .parallax-hero').bind('inview', function ( event, visible ) {
+        if ( visible == true ) {
+        } else {
+        }
+    });
+
+    var lastScrollTop = 0;
+    // Paralax effect
+    function parallaxPosition( direction ){
+        var top = $( window ).scrollTop();
+        var wh = $( window).height();
+        $('.section-parallax, .parallax-hero').each( function(  ){
+            var $el = $( this );
+            var h = $el.height();
+            var r = .3;
+            if ( wh > h ) {
+                r = .3;
+            } else {
+                r = .6;
+            }
+
+            var section_h = $el.height();
+            var is_inview = $el.data( 'inview' );
+            if ( is_inview ) {
+                var offsetTop = $el.offset().top;
+                var diff, bgTop;
+                diff = top - offsetTop;
+                bgTop = Math.round( diff * r );
+                if ( bgTop > h ) {
+                    bgTop = h;
+                }
+                if ( wh > h * 2 ) {
+                    $('.parallax-bg', $el).css('background-position', '50% ' + ( 0 - ( section_h + bgTop ) ) + 'px');
+                } else {
+                    $('.parallax-bg', $el).css('background-position', '50% ' + ( bgTop ) + 'px');
+                }
+            }
+
+        } );
+    }
+    $(window).scroll(function(e){
+        var top = $( window ).scrollTop();
+        var direction = '';
+        if ( top > lastScrollTop ){
+            direction = 'down';
+        } else {
+            direction = 'up';
+        }
+        lastScrollTop = top ;
+        parallaxPosition( );
+    });
+    $(window).resize( function(){
+        parallaxPosition( );
+    } );
+
+    $(window).trigger('scroll');
+
+
 } );
 
 
 
-// Counter Up
 jQuery( document ).ready( function( $ ){
-	$('.counter').counterUp({
-		delay: 10,
-		time: 1000
-	});
-} );
 
+    /**
+     * Video lightbox
+     */
+    if ($.fn.lightGallery ) {
+        $(".videolightbox-popup").lightGallery({});
+    }
 
-// Video
-jQuery( document ).ready( function( $ ){
+    // Counter
+    $('.counter').counterUp({
+        delay: 10,
+        time: 1000
+    });
+
+    // Video
     jQuery('.site-content').fitVids();
-} );
 
-
-// Ajax load more posts
-jQuery( document ).ready( function( $ ){
+    // Ajax load more posts
 	$( 'body' ).on( 'click', '.content-grid-loadmore.blt-ajax', function( e ){
 		e.preventDefault();
 		var button = $( this );
@@ -900,123 +884,131 @@ jQuery( document ).ready( function( $ ){
 	function _gallery_init( $context ){
 		// justified
 		if ( $.fn.justifiedGallery ) {
-			$( '.gallery-justified', $context).each( function(){
-				var margin = $( this).attr( 'data-spacing' ) || 20;
-				margin = string_to_number( margin );
-				$( this ).justifiedGallery({
-					rowHeight: 120,
-					margins: margin,
-					selector: 'a, div:not(.spinner), .inner'
-				});
-			} );
+            $( '.gallery-justified', $context ).imagesLoaded( function() {
+                $( '.gallery-justified', $context).each( function(){
+                    var margin = $( this).attr( 'data-spacing' ) || 20;
+                    margin = string_to_number( margin );
+                    $( this ).justifiedGallery({
+                        rowHeight: 120,
+                        margins: margin,
+                        selector: 'a, div:not(.spinner), .inner'
+                    });
+                } );
+            });
 		}
 
 
 		// Slider
 		if ( $.fn.owlCarousel ) {
-			// Slider
-			$( '.gallery-slider', $context ).owlCarousel({
-				items: 1,
-				itemsCustom: false,
-				itemsDesktop: 1,
-				itemsDesktopSmall: 1,
-				itemsTablet: 1,
-				itemsTabletSmall: false,
-				itemsMobile: 1,
-				singleItem: true,
-				itemsScaleUp: false,
 
-				slideSpeed : 200,
-				paginationSpeed : 800,
-				rewindSpeed : 1000,
-				autoPlay : 4000,
-				stopOnHover : true,
+            $( '.gallery-slider', $context ).imagesLoaded( function() {
+                // Slider
+                $( '.gallery-slider', $context ).owlCarousel({
+                    items: 1,
+                    itemsCustom: false,
+                    itemsDesktop: 1,
+                    itemsDesktopSmall: 1,
+                    itemsTablet: 1,
+                    itemsTabletSmall: false,
+                    itemsMobile: 1,
+                    singleItem: true,
+                    itemsScaleUp: false,
 
-				navigation : true,
-				navigationText : ["<i class='lg-icon'></i>", "<i class='lg-icon'></i>"],
+                    slideSpeed : 200,
+                    paginationSpeed : 800,
+                    rewindSpeed : 1000,
+                    autoPlay : 4000,
+                    stopOnHover : true,
 
-				pagination : false,
-				paginationNumbers : false,
-				autoHeight : true,
-			});
+                    navigation : true,
+                    navigationText : ["<i class='lg-icon'></i>", "<i class='lg-icon'></i>"],
 
-			$('.gallery-carousel', $context).each( function(){
-				var n = $( this ).attr( 'data-col' ) || 5;
-				n = string_to_number( n );
-				if( n <= 0 ) {
-					n = 5;
-				}
+                    pagination : false,
+                    paginationNumbers : false,
+                    autoHeight : true,
+                });
+            });
 
-				$( this ).owlCarousel({
-					items: n,
-					itemsCustom : false,
-					itemsDesktop : [1199, ( n > 4) ? 4 : n ],
-					itemsDesktopSmall : [979, ( n > 3) ? 3 : n ],
-					itemsTablet : [768, ( n > 2) ? 2 : n ],
-					itemsTabletSmall : false,
-					itemsMobile : [479, ( n > 2) ? 2 : n ],
-					singleItem : false,
-					itemsScaleUp : false,
+            $('.gallery-carousel', $context).imagesLoaded( function() {
+                $('.gallery-carousel', $context).each(function () {
+                    var n = $(this).attr('data-col') || 5;
+                    n = string_to_number(n);
+                    if (n <= 0) {
+                        n = 5;
+                    }
 
-					slideSpeed : 200,
-					paginationSpeed : 800,
-					rewindSpeed : 1000,
-					autoPlay : 4000,
-					stopOnHover : true,
+                    $(this).owlCarousel({
+                        items: n,
+                        itemsCustom: false,
+                        itemsDesktop: [1199, ( n > 4) ? 4 : n],
+                        itemsDesktopSmall: [979, ( n > 3) ? 3 : n],
+                        itemsTablet: [768, ( n > 2) ? 2 : n],
+                        itemsTabletSmall: false,
+                        itemsMobile: [479, ( n > 2) ? 2 : n],
+                        singleItem: false,
+                        itemsScaleUp: false,
 
-					navigation : true,
-					navigationText : ["<i class='lg-icon'></i>", "<i class='lg-icon'></i>"],
+                        slideSpeed: 200,
+                        paginationSpeed: 800,
+                        rewindSpeed: 1000,
+                        autoPlay: 4000,
+                        stopOnHover: true,
 
-					pagination : false,
-					paginationNumbers : false,
-				});
+                        navigation: true,
+                        navigationText: ["<i class='lg-icon'></i>", "<i class='lg-icon'></i>"],
 
-			} );
+                        pagination: false,
+                        paginationNumbers: false,
+                    });
 
-
+                });
+            });
 
 		}
 
 
 		function isotope_init (){
 			if ( $.fn.isotope ) {
-				$(".gallery-masonry", $context ).each(function () {
-					var m = $(this);
-					var gutter = m.attr('data-gutter') || 10;
-					var columns = m.attr('data-col') || 5;
 
-					console.log( columns );
+                $(".gallery-masonry", $context).imagesLoaded( function() {
+                    $(".gallery-masonry", $context).each(function () {
+                        var m = $(this);
+                        var gutter = m.attr('data-gutter') || 10;
+                        var columns = m.attr('data-col') || 5;
 
-					gutter = string_to_number(gutter);
-					columns = string_to_number(columns);
+                        //console.log(columns);
 
-					var w = $(window).width();
-					if ( w <= 940 ) {
-						columns = columns > 2 ? columns - 1 : columns;
-					}
+                        gutter = string_to_number(gutter);
+                        columns = string_to_number(columns);
 
-					if ( w <= 720 ) {
-						columns = columns > 3 ? 3 : columns;
-					}
+                        var w = $(window).width();
+                        if (w <= 940) {
+                            columns = columns > 2 ? columns - 1 : columns;
+                        }
 
-					if ( w <= 576 ) {
-						columns = columns > 2 ? 2 : columns;
-					}
+                        if (w <= 720) {
+                            columns = columns > 3 ? 3 : columns;
+                        }
 
-					//gutter = gutter / 2;
-					// m.parent().css({'margin-left': -gutter, 'margin-right': -gutter});
-					m.find('.g-item').css({'width': ( 100 / columns  ) + '%', 'float': 'left', 'padding': 0});
-					// m.find('.g-item .inner').css({'padding': gutter / 2});
-					m.isotope({
-						// options
-						itemSelector: '.g-item',
-						percentPosition: true,
-						masonry: {
-							columnWidth: '.inner'
-						}
-					});
+                        if (w <= 576) {
+                            columns = columns > 2 ? 2 : columns;
+                        }
 
-				});
+                        //gutter = gutter / 2;
+                        // m.parent().css({'margin-left': -gutter, 'margin-right': -gutter});
+                        m.find('.g-item').css({'width': ( 100 / columns  ) + '%', 'float': 'left', 'padding': 0});
+                        // m.find('.g-item .inner').css({'padding': gutter / 2});
+                        m.isotope({
+                            // options
+                            itemSelector: '.g-item',
+                            percentPosition: true,
+                            masonry: {
+                                columnWidth: '.inner'
+                            }
+                        });
+
+                    });
+                });
 			}
 		}
 

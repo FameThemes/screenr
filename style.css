@@ -5,7 +5,7 @@ Author: FameThemes
 Author URI: https://www.famethemes.com
 Description: Big - Bold and stylish, Screenr is a multiuse fullscreen theme well suited for business, portfolio, digital agency, product showcase, freelancers and everyone else who appreciate good design. Also with the flexible of the header and navigation, it can be use for one page or multiple pages website. The theme was built on Bootstrap 4, so you know it contains clean, precise code that makes for a highly streamlined site. (Live preview : http://www.famethemes.com/preview/?theme=Screenr)
 
-Version: 1.1.3
+Version: 1.1.4
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: screenr
@@ -3237,22 +3237,70 @@ ul.hours span {
 
 /* Section: Parallax
 ------------------------------*/
-.parallax-window section {
-	z-index: 10;
+.section-parallax {
+	background: none;
 	position: relative;
-	background: transparent !important;
+	overflow: hidden;
 }
 
-.parallax-window .parallax-mirror::before {
+.section-parallax > section, .section-parallax .onepage-section, .section-parallax .section-inverse {
+	background: none;
+}
+
+.section-parallax .parallax-bg {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	width: 100%;
+	height: 120%;
+	display: block;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+}
+
+.section-parallax .parallax-bg:before {
 	content: " ";
 	position: absolute;
 	top: 0px;
 	left: 0px;
 	right: 0px;
 	bottom: 0px;
+	background: rgba(0, 0, 0, 0.3);
 	display: block;
+	width: 100%;
+	height: 100%;
 	z-index: 2;
-	background: rgba(0, 0, 0, 0.4);
+}
+
+.parallax_bg_overlay {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	z-index: 5;
+	opacity: 0.4;
+}
+
+.parallax-content {
+	z-index: 10;
+	position: relative;
+	padding: 100px 0px;
+	text-align: center;
+}
+
+.parallax-content h1, .parallax-content h2, .parallax-content h3, .parallax-content h4, .parallax-content h5, .parallax-content h6 {
+	color: #FFFFFF;
+	line-height: 1.5;
+}
+
+.parallax-content p, .parallax-content a {
+	color: #FFFFFF;
 }
 
 /* Section: Counter
