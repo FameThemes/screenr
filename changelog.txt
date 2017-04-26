@@ -1,4 +1,7 @@
 == Changelog ==
+= 1.1.5 =
+* Fix issue sometime can not load video lightbox style.
+
 = 1.1.4 =
 * Update parallax.
 * Add images loaded for gallery.
