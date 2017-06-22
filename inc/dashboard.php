@@ -19,11 +19,14 @@ function screenr_get_actions_required( ) {
         $actions['page_on_front'] = 'active';
         $actions['page_template'] = 'active';
     } else {
+        $actions['page_template'] = 'dismiss';
+        /*
         if ( get_post_meta( $front_page, '_wp_page_template', true ) == 'template-frontpage.php' ) {
             $actions['page_template'] = 'dismiss';
         } else {
             $actions['page_template'] = 'active';
         }
+        */
     }
 
     $recommend_plugins = get_theme_support( 'recommend-plugins' );

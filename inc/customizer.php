@@ -2117,6 +2117,121 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    if ( class_exists( 'WooCommerce' ) ) {
+        /*------------------------------------------------------------------------*/
+        /*  Section: Products
+        /*------------------------------------------------------------------------*/
+
+        $wp_customize->add_section('section_products',
+            array(
+                'title' => esc_html__('Products', 'screenr'),
+                'description' => '',
+                'panel' => 'front_page_sections',
+                'priority' => 12,
+            )
+        );
+
+        // Group Heading
+        $wp_customize->add_control(new Screenr_Group_Settings_Heading_Control($wp_customize, 'service_setting_group_heading',
+                array(
+                    'type' => 'group_heading_top',
+                    'title' => esc_html__('Section Settings', 'screenr'),
+                    'section' => 'section_products'
+                )
+            )
+        );
+
+        // Show section
+        $wp_customize->add_setting('products_disable',
+            array(
+                'sanitize_callback' => 'screenr_sanitize_checkbox',
+                'default' => '',
+            )
+        );
+        $wp_customize->add_control('products_disable',
+            array(
+                'type' => 'checkbox',
+                'label' => esc_html__('Hide this section?', 'screenr'),
+                'section' => 'section_products',
+            )
+        );
+
+        // Service ID
+        $wp_customize->add_setting('products_id',
+            array(
+                'sanitize_callback' => 'screenr_sanitize_text',
+                'default' => esc_html__('products', 'screenr'),
+            )
+        );
+        $wp_customize->add_control('products_id',
+            array(
+                'label' => esc_html__('Section ID:', 'screenr'),
+                'section' => 'section_products',
+                'description' => esc_html__('The section id, we will use this for link anchor.', 'screenr')
+            )
+        );
+
+        // Section title
+        $wp_customize->add_setting('products_title',
+            array(
+                'sanitize_callback' => 'screenr_sanitize_text',
+                'default' => esc_html__('Products', 'screenr'),
+            )
+        );
+        $wp_customize->add_control('products_title',
+            array(
+                'label' => esc_html__('Section title:', 'screenr'),
+                'section' => 'section_products',
+            )
+        );
+
+        // Section subtitle
+        $wp_customize->add_setting('products_subtitle',
+            array(
+                'sanitize_callback' => 'screenr_sanitize_text',
+                'default' => esc_html__('Section subtitle', 'screenr'),
+            )
+        );
+        $wp_customize->add_control('products_subtitle',
+            array(
+                'label' => esc_html__('Section subtitle:', 'screenr'),
+                'section' => 'section_products',
+            )
+        );
+
+        // products Description
+        $wp_customize->add_setting('products_desc',
+            array(
+                'sanitize_callback' => 'screenr_sanitize_text',
+                'default' => '',
+            )
+        );
+        $wp_customize->add_control(
+            'products_desc',
+            array(
+                'label' => esc_html__('Section Description:', 'screenr'),
+                'section' => 'section_products',
+                'type' => 'textarea',
+            )
+        );
+
+        // products Description
+        $wp_customize->add_setting('products_content',
+            array(
+                'sanitize_callback' => 'wp_kses_post',
+                'default' => '[recent_products per_page="4" columns="4"]',
+            )
+        );
+        $wp_customize->add_control(
+            'products_content',
+            array(
+                'label' => esc_html__('Section Description:', 'screenr'),
+                'section' => 'section_products',
+                'type' => 'textarea',
+            )
+        );
+
+    }
 
     /*------------------------------------------------------------------------*/
     /*  Section: Clients
@@ -3055,7 +3170,7 @@ function screenr_gallery_source_validate( $validity, $value ){
 
 
 function screenr_showon_frontpage() {
-    return is_page_template( 'template-frontpage.php' );
+    return is_page_template( 'template-frontpage.php' ) || is_front_page();
 }
 
 require get_template_directory() . '/inc/customizer-selective-refresh.php';

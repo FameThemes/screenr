@@ -1,4 +1,8 @@
 == Changelog ==
+= 1.1.6 =
+ * Support WooCommerce Plugin.
+ * Add product section.
+
 = 1.1.5 =
 * Fix issue sometime can not load video lightbox style.
 

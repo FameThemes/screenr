@@ -1,8 +1,6 @@
 <?php
 /**
- *Template Name: Frontpage
- *
- * A copy version of front-page.php
+ * Front page
  *
  * @package Screenr
  */
