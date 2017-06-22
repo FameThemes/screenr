@@ -26,7 +26,6 @@ get_header(); ?>
 						'videolightbox',
 						'gallery',
 						'services',
-						'products',
 						'clients',
 						'counter',
 						'news',

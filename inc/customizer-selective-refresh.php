@@ -83,18 +83,6 @@ function screenr_customizer_partials( $wp_customize )
             ),
         ),
 
-
-        // section products
-        array(
-            'id' => 'products',
-            'settings' => array(
-                'products_title',
-                'products_subtitle',
-                'products_desc',
-                'products_content',
-            ),
-        ),
-
         // section counter
         array(
             'id' => 'counter',
