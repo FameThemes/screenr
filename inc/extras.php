@@ -632,6 +632,16 @@ function screenr_page_header_cover()
         $desc  = get_the_archive_description();
     }
 
+    if ( function_exists( 'is_woocommerce' ) ) {
+        if ( is_shop() || is_singular( 'product' ) ) {
+            $title = get_the_title( wc_get_page_id( 'shop' ) );
+        }
+
+        if ( is_product_category() || is_product_tag() ) {
+            $title = single_term_title( '', false );
+        }
+    }
+
     if ( ! $image ) {
         $image = get_header_image();
     }

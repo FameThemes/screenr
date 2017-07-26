@@ -145,6 +145,19 @@ function screenr_widgets_init() {
 	) );
 
 
+    if ( class_exists( 'WooCommerce' ) ) {
+        register_sidebar( array(
+            'name'          => esc_html__( 'Shop', 'screenr' ),
+            'id'            => 'sidebar-shop',
+            'description'   => '',
+            'before_widget' => '<section id="%1$s" class="widget %2$s">',
+            'after_widget'  => '</section>',
+            'before_title'  => '<h2 class="widget-title">',
+            'after_title'   => '</h2>',
+        ) );
+    }
+
+
 	register_sidebar( array(
 		'name'          => esc_html__( 'Footer 1', 'screenr' ),
 		'id'            => 'footer-1',
@@ -259,6 +272,10 @@ function screenr_scripts() {
 
     wp_localize_script( 'screenr-theme', 'Screenr', apply_filters( 'screenr_localize_script', $screenr_js ) );
 
+    if ( class_exists( 'WooCommerce' ) ) {
+        wp_enqueue_style( 'screenr-woocommerce', get_template_directory_uri().'/woocommerce.css' );
+    }
+
 }
 add_action( 'wp_enqueue_scripts', 'screenr_scripts' );
 
@@ -323,6 +340,14 @@ require get_template_directory() . '/inc/customizer.php';
  * Slider
  */
 require get_template_directory() . '/inc/class-slider.php';
+
+if ( class_exists( 'WooCommerce' ) ) {
+    /**
+     * Woocommerce
+     */
+    require get_template_directory() . '/inc/wc.php';
+
+}
 
 /**
  * Add theme info page

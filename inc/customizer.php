@@ -551,6 +551,54 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    if ( class_exists( 'WooCommerce' ) ) {
+        // Shop layout
+
+        $wp_customize->add_section( 'shop_layout_settings' ,
+            array(
+                'priority'    => 6,
+                'title'       => esc_html__( 'Shop Layout Settings', 'screenr' ),
+                'description' => '',
+                'panel'       => 'screenr_options',
+            )
+        );
+
+        $wp_customize->add_setting( 'shop_layout_settings',
+            array(
+                'sanitize_callback' => 'sanitize_text_field',
+                'default'           => 'no',
+            )
+        );
+        $wp_customize->add_control( 'shop_layout_settings',
+            array(
+                'label'       => esc_html__('Shop Layout', 'screenr'),
+                'section'     => 'shop_layout_settings',
+                'type' => 'select',
+                'choices' => array(
+                    'no' => esc_html__('No Sidebar', 'screenr'),
+                    'right' => esc_html__('Right Sidebar', 'screenr'),
+                    'left'  => esc_html__('Left Sidebar', 'screenr'),
+                ),
+                'description' => esc_html__('Select your shop layout', 'screenr'),
+            )
+        );
+
+        $wp_customize->add_setting( 'shop_number_product',
+            array(
+                'sanitize_callback' => 'sanitize_text_field',
+                'default'           => 20,
+            )
+        );
+        $wp_customize->add_control( 'shop_number_product',
+            array(
+                'label'       => esc_html__('Number product display', 'screenr'),
+                'section'     => 'shop_layout_settings',
+            )
+        );
+
+    }
+
+
     /* Page Footer
     ----------------------------------------------------------------------*/
     $wp_customize->add_section( 'page_footer_settings' ,
@@ -3007,7 +3055,7 @@ function screenr_gallery_source_validate( $validity, $value ){
 
 
 function screenr_showon_frontpage() {
-    return is_page_template( 'template-frontpage.php' );
+    return is_page_template( 'template-frontpage.php' ) || is_front_page();
 }
 
 require get_template_directory() . '/inc/customizer-selective-refresh.php';
