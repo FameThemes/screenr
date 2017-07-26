@@ -76,6 +76,14 @@
 }
 
 .site-branding {
+	img {
+		max-height: 100%;
+		max-width: 100%;
+		height: auto;
+		width: auto;
+		-webkit-transition: all 1s ease-out; /* Safari */
+		transition: all .5s ease-out;
+	}
 	.site-title, .site-text-logo {
 		margin: 0px;
 		line-height: 1;
