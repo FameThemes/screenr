@@ -746,6 +746,10 @@ input[type="radio"], input[type="checkbox"] {
 	position: fixed;
 }
 
+.site-header-wrapper.is-fixed .header-fixed img {
+	max-height: 70px;
+}
+
 .is-fixed .site-header.header-fixed {
 	top: 0px;
 	left: 0px;
@@ -760,14 +764,12 @@ input[type="radio"], input[type="checkbox"] {
 	float: left;
 }
 
-.site-branding img {
+.site-branding img, .site-branding a {
 	max-height: 100%;
 	max-width: 100%;
 	height: auto;
 	width: auto;
-	-webkit-transition: all 1s ease-out;
-	/* Safari */
-	transition: all .5s ease-out;
+	display: block;
 }
 
 .site-branding .site-title, .site-branding .site-text-logo {
