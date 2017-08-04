@@ -87,7 +87,7 @@ if ( ! screenr_is_selective_refresh() ) {
                     ?>
                     <div class="features__item-content">
                         <h3><?php echo get_the_title($item['page_id']); ?></h3>
-                        <?php echo get_the_excerpt($item['page_id']); ?>
+                        <?php the_excerpt() ?>
                         <?php if ($item['readmore']) { ?>
                             <div class="features__item-content-button">
                                 <a href="<?php the_permalink(); ?>"
@@ -113,4 +113,3 @@ if ( ! screenr_is_selective_refresh() ) {
 <?php if ( ! screenr_is_selective_refresh() ) { ?>
 </section>
 <?php }
-
