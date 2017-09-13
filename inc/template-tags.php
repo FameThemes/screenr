@@ -230,6 +230,7 @@ if ( ! function_exists( 'screenr_ajax_load_more_posts' ) ) {
 			'posts_per_page' => absint(get_theme_mod('news_num_post', 3)),
 			'ignore_sticky_posts' => true,
 			'paged' => $paged,
+			'post_status' => 'publish'
 		));
 
 		$layout = absint(get_theme_mod('news_layout', 3));

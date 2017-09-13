@@ -6,6 +6,7 @@ $desc       = get_theme_mod( 'news_desc' );
 $latest_posts = new WP_Query( array(
     'posts_per_page'      => absint( get_theme_mod( 'news_num_post', 3 ) ),
     'ignore_sticky_posts' => true,
+    'post_status' => 'publish'
 ) );
 
 $layout = absint( get_theme_mod( 'news_layout', 3 ) );
