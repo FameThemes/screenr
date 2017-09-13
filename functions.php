@@ -106,6 +106,10 @@ function screenr_setup() {
 			'name' => esc_html__( 'Contact Form 7', 'screenr' ),
 			'active_filename' => 'contact-form-7/wp-contact-form-7.php',
 		),
+		'easymega' => array(
+			'name' => esc_html__( 'Mega Menu Plugin for WordPress', 'screenr' ),
+			'active_filename' => 'easymega/easymega.php',
+		),
 	) );
 
 
