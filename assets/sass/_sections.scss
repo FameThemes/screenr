@@ -861,7 +861,7 @@
 .contact-details {
 	padding: 0px;
 	text-align: center;
-	&:after(){
+	&:after{
 		@include clearfix();
 	}
 	@include for( medium-screens ) {
