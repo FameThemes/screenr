@@ -3047,7 +3047,7 @@ function screenr_sanitize_color_alpha( $color ){
 function screenr_gallery_source_validate( $validity, $value ){
     if ( ! class_exists( 'Screenr_PLus' ) ) {
         if ( $value != 'page' ) {
-            $validity->add('notice', esc_html__('Upgrade to Screenr Plus to unlock this feature.', 'screenr' ) );
+            $validity->add('notice', sprintf( esc_html__('Upgrade to %1s to unlock this feature.', 'screenr' ), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ) );
         }
     }
     return $validity;
