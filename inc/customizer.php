@@ -3071,6 +3071,7 @@ function screenr_customize_js_settings(){
     
     wp_localize_script( 'customize-controls', 'screenr_customizer_settings', array(
         'number_action' => $number_action,
+        'is_plus' => defined( 'SCREENR_PLUS_PATH' ) && SCREENR_PLUS_PATH ? true : false,
         'action_url' => add_query_arg( array( 'page' => 'ft_screenr', 'tab' => 'actions_required' ), admin_url( 'themes.php' ) )
     ) );
 }

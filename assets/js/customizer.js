@@ -1037,6 +1037,8 @@ jQuery( document ).ready( function( $ ){
     } );
 
 
+    var gallery_fields = '#customize-control-gallery_layout, #customize-control-gallery_display, #customize-control-gallery_spacing, #customize-control-gallery_row_height, #customize-control-gallery_col, #customize-control-gallery_number, #customize-control-gallery_lightbox';
+
     /**
      * For Gallery content settings
      */
@@ -1049,6 +1051,16 @@ jQuery( document ).ready( function( $ ){
         $( "li[id^='customize-control-gallery_source_"+v+"']").show();
         $( "li[id^='customize-control-gallery_api_"+v+"']").show();
         $( "li[id^='customize-control-gallery_settings_"+v+"']").show();
+
+        if ( v != 'page' && v ) {
+            if ( ! screenr_customizer_settings.is_plus || screenr_customizer_settings.is_plus == '' ) {
+                  $( gallery_fields ).hide();
+            } else {
+                $( gallery_fields ).show();
+            }
+        } else {
+            $( gallery_fields ).show();
+        }
 
     } );
 
