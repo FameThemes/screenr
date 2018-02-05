@@ -2291,6 +2291,20 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+	$wp_customize->add_setting( 'screenr_clients_target',
+		array(
+			'sanitize_callback' => 'screenr_sanitize_checkbox',
+			'default'           => null,
+		)
+	);
+	$wp_customize->add_control( 'screenr_clients_target',
+		array(
+			'label' 		=> __('Open Link In New Window', 'screenr'),
+			'section' 		=> 'section_clients',
+			'type'          => 'checkbox',
+		)
+	);
+
 
     /*------------------------------------------------------------------------*/
     /*  Section: Counter

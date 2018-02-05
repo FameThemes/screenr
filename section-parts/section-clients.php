@@ -18,6 +18,13 @@ $classes = 'section-clients section-padding section-padding-lg screenr-section';
         <?php
         $items = get_theme_mod( 'clients_items' );
 
+        $target = get_theme_mod( 'screenr_clients_target' );
+        if ( $target == 1 ) {
+	        $target = ' target="_blank" ';
+        } else {
+	        $target  = '';
+        }
+
         if ( is_array( $items ) && ! empty( $items ) ) {
             $layout = absint( get_theme_mod( 'clients_layout', 5 ) );
             if ( $layout == 0 ){
@@ -40,7 +47,7 @@ $classes = 'section-clients section-padding section-padding-lg screenr-section';
                         }
                         ?>
                         <div class="client-col" title="<?php echo esc_attr( $item['title'] ); ?>">
-                            <?php if ( $item['url'] ){ ?><a title="<?php echo esc_attr( $item['title'] ); ?>" href="<?php echo esc_url( $item['url'] ); ?>"><?php } ?>
+                            <?php if ( $item['url'] ){ ?><a title="<?php echo esc_attr( $item['title'] ); ?>" <?php echo $target ?> href="<?php echo esc_url( $item['url'] ); ?>"><?php } ?>
                             <img src="<?php echo esc_url( $image ) ?>" alt="<?php echo esc_attr( $item['title'] ); ?>">
                             <?php if ( $item['url'] ){ ?></a><?php } ?>
                         </div>
