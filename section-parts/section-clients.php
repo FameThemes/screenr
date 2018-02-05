@@ -1,6 +1,6 @@
 <?php
 $title      = get_theme_mod( 'clients_title' );
-$subtitle   = get_theme_mod( 'clients_subtitle', esc_html__( 'We had been featured on', 'screenr' ) );
+$subtitle   = get_theme_mod( 'clients_subtitle', esc_html__( 'We have been featured on', 'screenr' ) );
 $desc       = get_theme_mod( 'clients_desc' );
 $classes = 'section-clients section-padding section-padding-lg screenr-section';
 ?>

@@ -645,7 +645,7 @@ function screenr_customize_register( $wp_customize ) {
             array(
                 'label'       => esc_html__('Custom footer 2 columns width', 'screenr'),
                 'section'     => 'page_footer_settings',
-                'description' => esc_html__('Enter int numbers and sum of them must smaller or equal 12, separated by "+"', 'screenr'),
+                'description' => esc_html__('Enter numbers with a total maximum value of 12, separated by "+"', 'screenr'),
             )
         );
 
@@ -660,7 +660,7 @@ function screenr_customize_register( $wp_customize ) {
             array(
                 'label'       => esc_html__('Custom footer 3 columns width', 'screenr'),
                 'section'     => 'page_footer_settings',
-                'description' => esc_html__('Enter int numbers and sum of them must smaller or equal 12, separated by "+"', 'screenr'),
+                'description' => esc_html__('Enter numbers with a total maximum value of 12, separated by "+"', 'screenr'),
             )
         );
 
@@ -675,7 +675,7 @@ function screenr_customize_register( $wp_customize ) {
             array(
                 'label'       => esc_html__('Custom footer 4 columns width', 'screenr'),
                 'section'     => 'page_footer_settings',
-                'description' => esc_html__('Enter int numbers and sum of them must smaller or equal 12, separated by "+"', 'screenr'),
+                'description' => esc_html__('Enter numbers with a total maximum value of 12, separated by "+"', 'screenr'),
             )
         );
 
@@ -1446,7 +1446,7 @@ function screenr_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'about_desc',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => esc_html__( 'We provide creative solutions that get attention and meaningful to clients around the world.', 'screenr' ),
+            'default'           => esc_html__( 'We provide creative solutions that gets the attention of our global clients.', 'screenr' ),
         )
     );
     $wp_customize->add_control(
@@ -2189,7 +2189,7 @@ function screenr_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'clients_subtitle',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => esc_html__('We had been featured on', 'screenr'),
+            'default'           => esc_html__('We have been featured on', 'screenr'),
         )
     );
     $wp_customize->add_control( 'clients_subtitle',
