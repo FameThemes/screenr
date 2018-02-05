@@ -205,7 +205,7 @@ function screenr_render_recommend_plugins( $recommend_plugins = array() ){
                     '_wpnonce' => wp_create_nonce('activate-plugin_' . $active_file_name ),
                 ), network_admin_url('plugins.php'));
                 $button_class = 'activate-now button-primary';
-                $button_txt = esc_html__( 'Active Now', 'screenr' );
+                $button_txt = esc_html__( 'Activate Now', 'screenr' );
             }
 
             $detail_link = add_query_arg(
@@ -449,7 +449,7 @@ function screenr_theme_info_page() {
                                 '_wpnonce' => wp_create_nonce('activate-plugin_' . $plugin_name . '/' . $plugin_name . '.php'),
                             ), network_admin_url('plugins.php'));
                             $button_class = 'activate-now button-primary';
-                            $button_txt = esc_html__( 'Active Now', 'screenr' );
+                            $button_txt = esc_html__( 'Activate Now', 'screenr' );
                         }
 
                         $detail_link = add_query_arg(

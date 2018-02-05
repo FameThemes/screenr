@@ -591,7 +591,7 @@ function screenr_customize_register( $wp_customize ) {
         );
         $wp_customize->add_control( 'shop_number_product',
             array(
-                'label'       => esc_html__('Number product display', 'screenr'),
+                'label'       => esc_html__('Number of products to display', 'screenr'),
                 'section'     => 'shop_layout_settings',
             )
         );
@@ -914,7 +914,7 @@ function screenr_customize_register( $wp_customize ) {
     	$wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'sections_styling_text',
     			array(
                     'type'        => 'group_heading_message',
-                    'title'       => esc_html__('Advandced Section Styling', 'screenr'),
+                    'title'       => esc_html__('Advanced Section Styling', 'screenr'),
                     'section'     => 'front_page_sections_order_styling',
                     'description' => sprintf( esc_html__('Check out the %1s version for full control over the section styling which includes background color, image, video, parallax effect, custom style and more ...', 'screenr'), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ),
     			)
