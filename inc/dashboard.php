@@ -69,10 +69,11 @@ function screenr_admin_switch_theme_notice(){
     }
     ?>
     <div class="<?php echo esc_attr( $class ); ?>">
-        <p><?php _e( 'Checkout Customify - improved version of Screenr', 'screenr' ); ?></p>
-        <p>
-            <a href="<?php echo esc_url( $url ); ?>" class="screenr-install-swt button button-primary"><?php _e( 'Install Now', 'screenr' ); ?></a>
-            <a href="<?php echo esc_url( $dismiss_url ); ?>" class="screenr-dismiss-swt  button-secondary"><?php _e( 'No, Thank you', 'screenr' ); ?></a>
+        <h4><?php _e('Meet Customify - the improved version of Screenr theme by the same team!', 'screenr') ?></h4>
+        <div class="notice-text"><?php _e( 'Customify is both a WordPress Theme and a WordPress Theme Editor. It’s a powerful styling platform that ensures exceptional design control over your website’s looks and feel. The most highlight feature is the <strong>comprehensive Header & Footer builder</strong>.', 'screenr' ); ?></div>
+        <p style="margin-top: 20px;">
+            <a href="<?php echo esc_url( $url ); ?>" class="screenr-install-swt button button-primary"><?php _e( 'Install Customify Now', 'screenr' ); ?></a>
+            <a href="<?php echo esc_url( $dismiss_url ); ?>" class="screenr-dismiss-swt  button-secondary button-dismiss"><?php _e( 'Don\'t show this again', 'screenr' ); ?></a>
         </p>
     </div>
     <?php
