@@ -349,6 +349,22 @@ add_action( 'admin_init', 'screenr_admin_dismiss_actions' );
 
 add_action( 'load-themes.php',  'screenr_one_activation_admin_notice'  );
 function screenr_theme_info_page() {
+
+    // Action for copy options
+    if ( isset( $_POST['copy_from'] ) && isset( $_POST['copy_to'] ) ) {
+        $from = sanitize_text_field( $_POST['copy_from'] );
+        $to = sanitize_text_field( $_POST['copy_to'] );
+        if ( $from && $to ) {
+            $mods = get_option("theme_mods_" . $from);
+            update_option("theme_mods_" . $to, $mods);
+            $url = wp_unslash( $_SERVER['REQUEST_URI'] );
+            $url = add_query_arg(array('copied' => 1), $url);
+            wp_redirect($url);
+            die();
+        }
+    }
+
+
     $theme_data = wp_get_theme('screenr');
     // Check for current viewing tab
     $tab = null;
@@ -412,6 +428,7 @@ function screenr_theme_info_page() {
                             </p>
                             <?php do_action( 'screenr_dashboard_theme_links' ); ?>
                         </div>
+
                         <div class="theme_link">
                             <h3><?php esc_html_e( 'Having Trouble, Need Support?', 'screenr' ); ?></h3>
                             <p class="about"><?php printf(esc_html__('Support for %s WordPress theme is conducted through FameThemes support ticket system.', 'screenr'), $theme_data->Name); ?></p>
@@ -430,6 +447,42 @@ function screenr_theme_info_page() {
 
         <?php if ( $tab == 'actions_required' ) { ?>
             <div class="action-required-tab info-tab-content">
+
+                <?php if ( is_child_theme() ){
+                    $child_theme = wp_get_theme();
+                    ?>
+                    <form method="post" action="<?php echo esc_attr( $current_action_link ); ?>" class="demo-import-boxed copy-settings-form">
+                        <p>
+                            <strong> <?php printf( esc_html__(  'You\'re using %1$s theme, It\'s a child theme of Screenr', 'screenr' ) ,  $child_theme->Name ); ?></strong>
+                        </p>
+                        <p><?php printf( esc_html__(  "Child theme uses it's own theme setting name, would you like to copy setting data from parent theme to this child theme?", 'screenr' ) ); ?></p>
+                        <p>
+
+                            <?php
+                            $select = '<select name="copy_from">';
+                            $select .= '<option value="">'.esc_html__( 'From Theme', 'screenr' ).'</option>';
+                            $select .= '<option value="screenr">Screenr</option>';
+                            $select .= '<option value="'.esc_attr( $child_theme->get_stylesheet() ).'">'.( $child_theme->Name ).'</option>';
+                            $select .='</select>';
+
+                            $select_2 = '<select name="copy_to">';
+                            $select_2 .= '<option value="">'.esc_html__( 'To Theme', 'screenr' ).'</option>';
+                            $select_2 .= '<option value="'.esc_attr( $child_theme->get_stylesheet() ).'">'.( $child_theme->Name ).'</option>';
+                            $select_2 .= '<option value="screenr">Screer</option>';
+                            $select_2 .='</select>';
+
+                            echo $select . ' to '. $select_2;
+
+                            ?>
+                            <input type="submit" class="button button-secondary" value="<?php esc_attr_e( 'Copy now', 'screenr' ); ?>">
+                        </p>
+                        <?php if ( isset( $_GET['copied'] ) && $_GET['copied'] == 1 ) { ?>
+                            <p><?php esc_html_e( 'Your settings were copied.', 'screenr' ); ?></p>
+                        <?php } ?>
+                    </form>
+
+                <?php } ?>
+
                 <?php if ( $actions_r['number_active'] > 0 ) { ?>
                     <?php $actions = wp_parse_args( $actions, array( 'page_on_front' => '', 'page_template' ) ) ?>
 
