@@ -7,7 +7,7 @@
  * @package Screenr
  */
 
-$layout = esc_attr( get_theme_mod( 'layout_settings', 'right' ) );
+$layout = screenr_get_layout();
 if ( 'no' == $layout ) {
     return ;
 }

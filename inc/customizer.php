@@ -64,6 +64,25 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    // Retina Logo
+    $wp_customize->add_setting( 'retina_logo',
+        array(
+            'sanitize_callback' => 'sanitize_text_field',
+            'default'           => '',
+            'transport'			=> 'postMessage'
+        )
+    );
+    $wp_customize->add_control(
+        new WP_Customize_Image_Control(
+            $wp_customize,
+            'retina_logo',
+            array(
+                'label'       => esc_html__('Retina Logo', 'screenr'),
+                'section'     => 'title_tagline',
+            )
+        )
+    );
+
     /*------------------------------------------------------------------------*/
     /*  Upgrade Panel
     /*------------------------------------------------------------------------*/
@@ -546,6 +565,7 @@ function screenr_customize_register( $wp_customize ) {
             'choices' => array(
                 'right' => esc_html__('Right Sidebar', 'screenr'),
                 'left'  => esc_html__('Left Sidebar', 'screenr'),
+                'no'  => esc_html__('No Sidebar', 'screenr'),
             ),
             'description' => esc_html__('Select your site layout', 'screenr'),
         )
@@ -591,7 +611,7 @@ function screenr_customize_register( $wp_customize ) {
         );
         $wp_customize->add_control( 'shop_number_product',
             array(
-                'label'       => esc_html__('Number product display', 'screenr'),
+                'label'       => esc_html__('Number of products to display', 'screenr'),
                 'section'     => 'shop_layout_settings',
             )
         );
@@ -645,7 +665,7 @@ function screenr_customize_register( $wp_customize ) {
             array(
                 'label'       => esc_html__('Custom footer 2 columns width', 'screenr'),
                 'section'     => 'page_footer_settings',
-                'description' => esc_html__('Enter int numbers and sum of them must smaller or equal 12, separated by "+"', 'screenr'),
+                'description' => esc_html__('Enter numbers with a total maximum value of 12, separated by "+"', 'screenr'),
             )
         );
 
@@ -660,7 +680,7 @@ function screenr_customize_register( $wp_customize ) {
             array(
                 'label'       => esc_html__('Custom footer 3 columns width', 'screenr'),
                 'section'     => 'page_footer_settings',
-                'description' => esc_html__('Enter int numbers and sum of them must smaller or equal 12, separated by "+"', 'screenr'),
+                'description' => esc_html__('Enter numbers with a total maximum value of 12, separated by "+"', 'screenr'),
             )
         );
 
@@ -675,7 +695,7 @@ function screenr_customize_register( $wp_customize ) {
             array(
                 'label'       => esc_html__('Custom footer 4 columns width', 'screenr'),
                 'section'     => 'page_footer_settings',
-                'description' => esc_html__('Enter int numbers and sum of them must smaller or equal 12, separated by "+"', 'screenr'),
+                'description' => esc_html__('Enter numbers with a total maximum value of 12, separated by "+"', 'screenr'),
             )
         );
 
@@ -914,7 +934,7 @@ function screenr_customize_register( $wp_customize ) {
     	$wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize, 'sections_styling_text',
     			array(
                     'type'        => 'group_heading_message',
-                    'title'       => esc_html__('Advandced Section Styling', 'screenr'),
+                    'title'       => esc_html__('Advanced Section Styling', 'screenr'),
                     'section'     => 'front_page_sections_order_styling',
                     'description' => sprintf( esc_html__('Check out the %1s version for full control over the section styling which includes background color, image, video, parallax effect, custom style and more ...', 'screenr'), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ),
     			)
@@ -1446,7 +1466,7 @@ function screenr_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'about_desc',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => esc_html__( 'We provide creative solutions that get attention and meaningful to clients around the world.', 'screenr' ),
+            'default'           => esc_html__( 'We provide creative solutions that gets the attention of our global clients.', 'screenr' ),
         )
     );
     $wp_customize->add_control(
@@ -2189,7 +2209,7 @@ function screenr_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'clients_subtitle',
         array(
             'sanitize_callback' => 'screenr_sanitize_text',
-            'default'           => esc_html__('We had been featured on', 'screenr'),
+            'default'           => esc_html__('We have been featured on', 'screenr'),
         )
     );
     $wp_customize->add_control( 'clients_subtitle',
@@ -2290,6 +2310,20 @@ function screenr_customize_register( $wp_customize ) {
             )
         )
     );
+
+	$wp_customize->add_setting( 'screenr_clients_target',
+		array(
+			'sanitize_callback' => 'screenr_sanitize_checkbox',
+			'default'           => null,
+		)
+	);
+	$wp_customize->add_control( 'screenr_clients_target',
+		array(
+			'label' 		=> __('Open Link In New Window', 'screenr'),
+			'section' 		=> 'section_clients',
+			'type'          => 'checkbox',
+		)
+	);
 
 
     /*------------------------------------------------------------------------*/
@@ -3047,7 +3081,7 @@ function screenr_sanitize_color_alpha( $color ){
 function screenr_gallery_source_validate( $validity, $value ){
     if ( ! class_exists( 'Screenr_PLus' ) ) {
         if ( $value != 'page' ) {
-            $validity->add('notice', esc_html__('Upgrade to Screenr Plus to unlock this feature.', 'screenr' ) );
+            $validity->add('notice', sprintf( esc_html__('Upgrade to %1s to unlock this feature.', 'screenr' ), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ) );
         }
     }
     return $validity;
@@ -3071,6 +3105,7 @@ function screenr_customize_js_settings(){
     
     wp_localize_script( 'customize-controls', 'screenr_customizer_settings', array(
         'number_action' => $number_action,
+        'is_plus' => defined( 'SCREENR_PLUS_PATH' ) && SCREENR_PLUS_PATH ? true : false,
         'action_url' => add_query_arg( array( 'page' => 'ft_screenr', 'tab' => 'actions_required' ), admin_url( 'themes.php' ) )
     ) );
 }

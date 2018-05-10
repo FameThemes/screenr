@@ -168,7 +168,6 @@
     font-weight: 600;
     margin: 1px 0 0 2px;
     vertical-align: top;
-    -webkit-border-radius: 10px;
     border-radius: 10px;
     z-index: 26;
     margin-top: 5px;
@@ -239,3 +238,22 @@
     font-weight: bold;
 }
 */
+
+.screenr-notice {
+    background: #fff;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+    margin: 5px 15px 2px;
+    padding: 1px 15px 10px;
+    border-left: 4px solid #ffb900  !important;
+}
+.screenr-notice div {
+    margin-top: -10px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+.screenr-notice .button-dismiss {
+    margin-left: 10px;
+}
+.theme_info_wrapper .screenr-notice{
+    margin: 15px 0px;
+}

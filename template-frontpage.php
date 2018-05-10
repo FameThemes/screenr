@@ -2,7 +2,6 @@
 /**
  *Template Name: Frontpage
  *
- * A copy version of front-page.php
  *
  * @package Screenr
  */

@@ -1,4 +1,9 @@
 == Changelog ==
+= 1.1.7 =
+ * Support Retina Logo.
+ * Add more option no sidebar for layout settings.
+ * Add copy theme settings form parent theme to child theme.
+
 = 1.1.6 =
  * Support WooCommerce Plugin.
 

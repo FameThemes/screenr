@@ -2,7 +2,7 @@
 global $post;
 $title      = get_theme_mod( 'about_title', esc_html__( 'About us', 'screenr' ) );
 $subtitle   = get_theme_mod( 'about_subtitle' );
-$desc       = get_theme_mod( 'about_desc', esc_html__( 'We provide creative solutions that get attention and meaningful to clients around the world.', 'screenr' ) );
+$desc       = get_theme_mod( 'about_desc', esc_html__( 'We provide creative solutions that gets the attention of our global clients.', 'screenr' ) );
 $classes = 'screenr-section section-about section-padding section-padding-larger';
 ?>
 <?php if ( ! screenr_is_selective_refresh() ) { ?>

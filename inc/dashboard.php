@@ -1,4 +1,96 @@
 <?php
+/**
+ * Check maybe show admin notice
+ * @since 1.1.7
+ */
+function screenr_maybe_show_switch_theme_notice(){
+    if ( get_option( 'screenr_dismiss_switch_theme_notice' ) ) {
+        return false;
+    }
+    $keys = array(
+        'slider_items',
+        'features_items',
+        'about_desc',
+        'about_page_id',
+        'about_page_content_type',
+        'clients_items',
+        'counter_items',
+        'contact_items',
+    );
+
+    foreach( $keys as $k ) {
+        if ( get_theme_mod( $k ) ) {
+            return false;
+        }
+    }
+
+    return true;
+
+}
+
+
+/**
+ * @since 1.1.7
+ */
+function screenr_admin_switch_theme_notice(){
+
+    if ( isset( $_GET['dismiss'], $_GET['_nonce'] ) && $_GET['dismiss'] == 1 ) {
+        if ( wp_verify_nonce( sanitize_text_field( $_GET['_nonce'] ), 'screenr_dismiss_switch_theme_notice' ) ) {
+            update_option( 'screenr_dismiss_switch_theme_notice', 1 );
+            return;
+        }
+    }
+
+    $show = screenr_maybe_show_switch_theme_notice();
+    if ( ! $show ) {
+        update_option( 'screenr_dismiss_switch_theme_notice', 1 );
+        return;
+    }
+
+    // Theme slug here
+    $theme_slug = 'customify';
+
+    $install_url = add_query_arg( array(
+        'action' => 'install-theme',
+        'theme'  => $theme_slug,
+    ), self_admin_url( 'update.php' ) );
+    $url  = wp_nonce_url( $install_url, 'install-theme_' . $theme_slug );
+
+    $dismiss_url = add_query_arg( array(
+        'page' => 'ft_screenr',
+        'dismiss' => '1',
+        '_nonce'  => wp_create_nonce( 'screenr_dismiss_switch_theme_notice' ),
+    ), self_admin_url( 'themes.php' ) );
+
+    $current_screen = get_current_screen();
+    $class = 'screenr-notice';
+    if ( $current_screen && $current_screen->id != 'appearance_page_ft_screenr' ) {
+        $class .= ' notice notice-warning';
+    }
+    ?>
+    <div class="<?php echo esc_attr( $class ); ?>">
+        <h4><?php _e('Meet Customify - the improved version of Screenr theme by the same team!', 'screenr') ?></h4>
+        <div class="notice-text"><?php _e( 'Customify is both a WordPress Theme and a WordPress Theme Editor. It’s a powerful styling platform that ensures exceptional design control over your website’s looks and feel. The most highlight feature is the <strong>comprehensive Header & Footer builder</strong>.', 'screenr' ); ?></div>
+        <p style="margin-top: 20px;">
+            <a href="<?php echo esc_url( $url ); ?>" class="screenr-install-swt button button-primary"><?php _e( 'Install Customify Now', 'screenr' ); ?></a>
+            <a href="<?php echo esc_url( $dismiss_url ); ?>" class="screenr-dismiss-swt  button-secondary button-dismiss"><?php _e( 'Don\'t show this again', 'screenr' ); ?></a>
+        </p>
+    </div>
+    <?php
+}
+
+/**
+ * @since 1.1.7
+ */
+function screenr_add_admin_switch_theme_notice(){
+    $current_screen = get_current_screen();
+    if ( $current_screen && $current_screen->id == 'appearance_page_ft_screenr' || $current_screen->base != 'themes' ) {
+        return;
+    }
+    screenr_admin_switch_theme_notice();
+}
+add_action( 'admin_notices', 'screenr_add_admin_switch_theme_notice', 15 );
+
 
 /**
  * Get theme actions required
@@ -205,7 +297,7 @@ function screenr_render_recommend_plugins( $recommend_plugins = array() ){
                     '_wpnonce' => wp_create_nonce('activate-plugin_' . $active_file_name ),
                 ), network_admin_url('plugins.php'));
                 $button_class = 'activate-now button-primary';
-                $button_txt = esc_html__( 'Active Now', 'screenr' );
+                $button_txt = esc_html__( 'Activate Now', 'screenr' );
             }
 
             $detail_link = add_query_arg(
@@ -258,6 +350,22 @@ add_action( 'admin_init', 'screenr_admin_dismiss_actions' );
 
 add_action( 'load-themes.php',  'screenr_one_activation_admin_notice'  );
 function screenr_theme_info_page() {
+
+    // Action for copy options
+    if ( isset( $_POST['copy_from'] ) && isset( $_POST['copy_to'] ) ) {
+        $from = sanitize_text_field( $_POST['copy_from'] );
+        $to = sanitize_text_field( $_POST['copy_to'] );
+        if ( $from && $to ) {
+            $mods = get_option("theme_mods_" . $from);
+            update_option("theme_mods_" . $to, $mods);
+            $url = wp_unslash( $_SERVER['REQUEST_URI'] );
+            $url = add_query_arg(array('copied' => 1), $url);
+            wp_redirect($url);
+            die();
+        }
+    }
+
+
     $theme_data = wp_get_theme('screenr');
     // Check for current viewing tab
     $tab = null;
@@ -291,6 +399,7 @@ function screenr_theme_info_page() {
 
         <a target="_blank" href="<?php echo esc_url('http://www.famethemes.com/'); ?>" class="famethemes-badge wp-badge"><span>FameThemes</span></a>
 
+        <?php screenr_admin_switch_theme_notice(); ?>
         <h2 class="nav-tab-wrapper">
 
             <a href="?page=ft_screenr" class="nav-tab<?php echo is_null($tab) ? ' nav-tab-active' : null; ?>"><?php esc_html_e( 'Screenr', 'screenr' ) ?></a>
@@ -320,6 +429,7 @@ function screenr_theme_info_page() {
                             </p>
                             <?php do_action( 'screenr_dashboard_theme_links' ); ?>
                         </div>
+
                         <div class="theme_link">
                             <h3><?php esc_html_e( 'Having Trouble, Need Support?', 'screenr' ); ?></h3>
                             <p class="about"><?php printf(esc_html__('Support for %s WordPress theme is conducted through FameThemes support ticket system.', 'screenr'), $theme_data->Name); ?></p>
@@ -338,6 +448,42 @@ function screenr_theme_info_page() {
 
         <?php if ( $tab == 'actions_required' ) { ?>
             <div class="action-required-tab info-tab-content">
+
+                <?php if ( is_child_theme() ){
+                    $child_theme = wp_get_theme();
+                    ?>
+                    <form method="post" action="<?php echo esc_attr( $current_action_link ); ?>" class="demo-import-boxed copy-settings-form">
+                        <p>
+                            <strong> <?php printf( esc_html__(  'You\'re using %1$s theme, It\'s a child theme of Screenr', 'screenr' ) ,  $child_theme->Name ); ?></strong>
+                        </p>
+                        <p><?php printf( esc_html__(  "Child theme uses it's own theme setting name, would you like to copy setting data from parent theme to this child theme?", 'screenr' ) ); ?></p>
+                        <p>
+
+                            <?php
+                            $select = '<select name="copy_from">';
+                            $select .= '<option value="">'.esc_html__( 'From Theme', 'screenr' ).'</option>';
+                            $select .= '<option value="screenr">Screenr</option>';
+                            $select .= '<option value="'.esc_attr( $child_theme->get_stylesheet() ).'">'.( $child_theme->Name ).'</option>';
+                            $select .='</select>';
+
+                            $select_2 = '<select name="copy_to">';
+                            $select_2 .= '<option value="">'.esc_html__( 'To Theme', 'screenr' ).'</option>';
+                            $select_2 .= '<option value="'.esc_attr( $child_theme->get_stylesheet() ).'">'.( $child_theme->Name ).'</option>';
+                            $select_2 .= '<option value="screenr">Screer</option>';
+                            $select_2 .='</select>';
+
+                            echo $select . ' to '. $select_2;
+
+                            ?>
+                            <input type="submit" class="button button-secondary" value="<?php esc_attr_e( 'Copy now', 'screenr' ); ?>">
+                        </p>
+                        <?php if ( isset( $_GET['copied'] ) && $_GET['copied'] == 1 ) { ?>
+                            <p><?php esc_html_e( 'Your settings were copied.', 'screenr' ); ?></p>
+                        <?php } ?>
+                    </form>
+
+                <?php } ?>
+
                 <?php if ( $actions_r['number_active'] > 0 ) { ?>
                     <?php $actions = wp_parse_args( $actions, array( 'page_on_front' => '', 'page_template' ) ) ?>
 
@@ -449,7 +595,7 @@ function screenr_theme_info_page() {
                                 '_wpnonce' => wp_create_nonce('activate-plugin_' . $plugin_name . '/' . $plugin_name . '.php'),
                             ), network_admin_url('plugins.php'));
                             $button_class = 'activate-now button-primary';
-                            $button_txt = esc_html__( 'Active Now', 'screenr' );
+                            $button_txt = esc_html__( 'Activate Now', 'screenr' );
                         }
 
                         $detail_link = add_query_arg(

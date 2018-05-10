@@ -57,6 +57,7 @@ function screenr_setup() {
 		'height'      => 60,
 		'width'       => 240,
 		'flex-height' => true,
+		'flex-width'  => true,
 		//'header-text' => array( 'site-title', 'site-description' ),
 	) );
 
@@ -105,6 +106,10 @@ function screenr_setup() {
 		'contact-form-7' => array(
 			'name' => esc_html__( 'Contact Form 7', 'screenr' ),
 			'active_filename' => 'contact-form-7/wp-contact-form-7.php',
+		),
+		'easymega' => array(
+			'name' => esc_html__( 'Mega Menu Plugin for WordPress', 'screenr' ),
+			'active_filename' => 'easymega/easymega.php',
 		),
 	) );
 
@@ -218,7 +223,7 @@ function screenr_scripts() {
 	wp_enqueue_style( 'screenr-fonts', screenr_fonts_url(), array(), null );
 	wp_enqueue_style( 'font-awesome', get_template_directory_uri() .'/assets/css/font-awesome.min.css', false, '4.0.0' );
 	wp_enqueue_style( 'bootstrap', get_template_directory_uri() .'/assets/css/bootstrap.min.css', false, '4.0.0' );
-	wp_enqueue_style( 'screenr-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'screenr-style', get_template_directory_uri().'/style.css' );
 
     wp_enqueue_script( 'screenr-plugin', get_template_directory_uri() . '/assets/js/plugins.js', array( 'jquery' ), '4.0.0', true );
 	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array(), '4.0.0', true );
