@@ -34,8 +34,23 @@ add_filter( 'screenr_content_text', 'do_shortcode', 17 );
 add_filter( 'screenr_content_text', 'capital_P_dangit', 18 );
 
 /**
+ * Get site layout
+ * @since 1.1.7
+ * @return string
+ */
+function screenr_get_layout( $default = 'right' ){
+    if ( class_exists( 'WooCommerce' ) ) {
+        if ( is_shop() || is_product() || is_product_taxonomy() ) {
+            $default  = 'no';
+            return get_theme_mod( 'shop_layout_settings', $default );
+        }
+    }
+    return  get_theme_mod( 'layout_settings', $default );
+}
+
+/**
  * Display header brand
- * @since 1.2.1
+ * @since 1.1.7
  */
 function screenr_add_retina_logo( $html = '' ){
     $custom_logo_id = get_theme_mod( 'custom_logo' );

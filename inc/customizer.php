@@ -565,6 +565,7 @@ function screenr_customize_register( $wp_customize ) {
             'choices' => array(
                 'right' => esc_html__('Right Sidebar', 'screenr'),
                 'left'  => esc_html__('Left Sidebar', 'screenr'),
+                'no'  => esc_html__('No Sidebar', 'screenr'),
             ),
             'description' => esc_html__('Select your site layout', 'screenr'),
         )

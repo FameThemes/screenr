@@ -13,10 +13,10 @@
  */
 
 get_header();
-$layout = get_theme_mod( 'shop_layout_settings', 'no' );
+$layout = screenr_get_layout('no');
 ?>
 <div id="content" class="site-content">
-    <div id="content-inside" class="container <?php echo esc_attr( get_theme_mod( 'shop_layout_settings', 'no' ) ); ?>-sidebar">
+    <div id="content-inside" class="container <?php echo esc_attr( screenr_get_layout( 'no') ); ?>-sidebar">
         <div id="primary" class="content-area">
             <main id="main" class="site-main" role="main">
                 <?php

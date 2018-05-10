@@ -24,7 +24,7 @@
         if ( ! get_theme_mod( 'disable_featured_image', 0 ) ) {
             if (has_post_thumbnail()) {
                 echo '<div class="entry-thumb">';
-                the_post_thumbnail('screenr-blog-list');
+                the_post_thumbnail(screenr_get_layout() == 'no' ? 'large' : 'screenr-blog-list');
                 echo '</div>';
             }
         }
