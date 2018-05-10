@@ -33,6 +33,101 @@ add_filter( 'screenr_content_text', 'shortcode_unautop', 16 );
 add_filter( 'screenr_content_text', 'do_shortcode', 17 );
 add_filter( 'screenr_content_text', 'capital_P_dangit', 18 );
 
+/**
+ * Display header brand
+ * @since 1.2.1
+ */
+function screenr_add_retina_logo( $html = '' ){
+    $custom_logo_id = get_theme_mod( 'custom_logo' );
+
+    $custom_logo_attr = array(
+        'class'    => 'custom-logo',
+        'itemprop' => 'logo',
+    );
+    $image_retina_url = false;
+    $retina_id = false;
+    $retina_url = sanitize_text_field( get_theme_mod( 'retina_logo' ) ) ;
+    if ( $retina_url ) {
+        $retina_id = attachment_url_to_postid( $retina_url );
+        if ( $retina_id ){
+            $image_retina_url = wp_get_attachment_image_src( $retina_id, 'full' );
+            if ( $image_retina_url ) {
+                $custom_logo_attr['srcset'] = $image_retina_url[0].' 2x';
+            }
+
+        }
+    }
+
+    if( ! $custom_logo_id ) {
+        $custom_logo_id = $retina_id;
+    }
+
+    $t_logo_html = '';
+
+    if ( get_theme_mod( 'header_layout' ) == 'transparent' ){
+        $t_logo = sanitize_text_field( get_theme_mod( 'transparent_logo' ) ) ;
+        $t_logo_r = sanitize_text_field( get_theme_mod( 'transparent_retina_logo' ) ) ;
+        $t_logo_attr = array(
+            'class'    => 'custom-logo-transparent',
+            'itemprop' => 'logo',
+        );
+
+        if ( $t_logo_r ) {
+            $t_logo_r = attachment_url_to_postid( $t_logo_r );
+            if ( $t_logo_r ){
+                $image_tr_url = wp_get_attachment_image_src( $t_logo_r, 'full' );
+                if ( $image_tr_url ) {
+                    $t_logo_attr['srcset'] = $image_tr_url[0].' 2x';
+                }
+            }
+        }
+
+        if ( $t_logo ) {
+            $t_logo = attachment_url_to_postid( $t_logo );
+        }
+        if ( ! $t_logo ) {
+            $t_logo = $t_logo_r;
+        }
+
+        if ( $t_logo ){
+            $t_logo_html = wp_get_attachment_image( $t_logo, 'full', false, $t_logo_attr );
+        }
+
+    }
+
+    // We have a logo. Logo is go.
+    if ( $custom_logo_id ) {
+
+        /*
+         * If the logo alt attribute is empty, get the site title and explicitly
+         * pass it to the attributes used by wp_get_attachment_image().
+         */
+        $image_alt = get_post_meta( $custom_logo_id, '_wp_attachment_image_alt', true );
+        if ( empty( $image_alt ) ) {
+            $custom_logo_attr['alt'] = get_bloginfo( 'name', 'display' );
+        }
+
+        if ( ! $t_logo_html ) {
+            $class = ' no-t-logo';
+        } else {
+            $class = ' has-t-logo';
+        }
+
+        /*
+         * If the alt attribute is not empty, there's no need to explicitly pass
+         * it because wp_get_attachment_image() already adds the alt attribute.
+         */
+        $html = sprintf( '<a href="%1$s" class="custom-logo-link '.esc_attr( $class ).'" rel="home" itemprop="url">%2$s</a>',
+            esc_url( home_url( '/' ) ),
+            wp_get_attachment_image( $custom_logo_id, 'full', false, $custom_logo_attr ).$t_logo_html
+        );
+    }
+
+    return $html;
+}
+
+add_filter( 'get_custom_logo', 'screenr_add_retina_logo', 15 );
+
 
 /**
  * Filter the except length to 50 characters.

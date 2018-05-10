@@ -64,6 +64,25 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    // Retina Logo
+    $wp_customize->add_setting( 'retina_logo',
+        array(
+            'sanitize_callback' => 'sanitize_text_field',
+            'default'           => '',
+            'transport'			=> 'postMessage'
+        )
+    );
+    $wp_customize->add_control(
+        new WP_Customize_Image_Control(
+            $wp_customize,
+            'retina_logo',
+            array(
+                'label'       => esc_html__('Retina Logo', 'screenr'),
+                'section'     => 'title_tagline',
+            )
+        )
+    );
+
     /*------------------------------------------------------------------------*/
     /*  Upgrade Panel
     /*------------------------------------------------------------------------*/

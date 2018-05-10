@@ -1,4 +1,7 @@
 == Changelog ==
+= 1.1.7 =
+ * Support Retina Logo
+
 = 1.1.6 =
  * Support WooCommerce Plugin.
 

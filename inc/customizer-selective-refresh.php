@@ -204,6 +204,22 @@ function screenr_customizer_partials( $wp_customize )
         'render_callback' => 'screenr_custom_style',
     ));
 
+
+    $wp_customize->selective_refresh->remove_partial( 'custom_logo' );
+    $wp_customize->selective_refresh->add_partial( 'screenr_branding' , array(
+        'selector' => '.site-branding',
+        'settings' => array(
+            'custom_logo',
+            'blogname',
+            'blogdescription',
+            'retina_logo',
+        ),
+        'container_inclusive' => true,
+        'render_callback' => 'screenr_branding',
+    ));
+
+
+
 }
 add_action( 'customize_register', 'screenr_customizer_partials', 95 );
 
