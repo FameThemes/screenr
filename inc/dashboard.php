@@ -1,96 +1,4 @@
 <?php
-/**
- * Check maybe show admin notice
- * @since 1.1.7
- */
-function screenr_maybe_show_switch_theme_notice(){
-    if ( get_option( 'screenr_dismiss_switch_theme_notice' ) ) {
-        return false;
-    }
-    $keys = array(
-        'slider_items',
-        'features_items',
-        'about_desc',
-        'about_page_id',
-        'about_page_content_type',
-        'clients_items',
-        'counter_items',
-        'contact_items',
-    );
-
-    foreach( $keys as $k ) {
-        if ( get_theme_mod( $k ) ) {
-            return false;
-        }
-    }
-
-    return true;
-
-}
-
-
-/**
- * @since 1.1.7
- */
-function screenr_admin_switch_theme_notice(){
-
-    if ( isset( $_GET['dismiss'], $_GET['_nonce'] ) && $_GET['dismiss'] == 1 ) {
-        if ( wp_verify_nonce( sanitize_text_field( $_GET['_nonce'] ), 'screenr_dismiss_switch_theme_notice' ) ) {
-            update_option( 'screenr_dismiss_switch_theme_notice', 1 );
-            return;
-        }
-    }
-
-    $show = screenr_maybe_show_switch_theme_notice();
-    if ( ! $show ) {
-        update_option( 'screenr_dismiss_switch_theme_notice', 1 );
-        return;
-    }
-
-    // Theme slug here
-    $theme_slug = 'customify';
-
-    $install_url = add_query_arg( array(
-        'action' => 'install-theme',
-        'theme'  => $theme_slug,
-    ), self_admin_url( 'update.php' ) );
-    $url  = wp_nonce_url( $install_url, 'install-theme_' . $theme_slug );
-
-    $dismiss_url = add_query_arg( array(
-        'page' => 'ft_screenr',
-        'dismiss' => '1',
-        '_nonce'  => wp_create_nonce( 'screenr_dismiss_switch_theme_notice' ),
-    ), self_admin_url( 'themes.php' ) );
-
-    $current_screen = get_current_screen();
-    $class = 'screenr-notice';
-    if ( $current_screen && $current_screen->id != 'appearance_page_ft_screenr' ) {
-        $class .= ' notice notice-warning';
-    }
-    ?>
-    <div class="<?php echo esc_attr( $class ); ?>">
-        <h4><?php _e('Meet Customify - the improved version of Screenr theme by the same team!', 'screenr') ?></h4>
-        <div class="notice-text"><?php _e( 'Customify is both a WordPress Theme and a WordPress Theme Editor. It’s a powerful styling platform that ensures exceptional design control over your website’s looks and feel. The most highlight feature is the <strong>comprehensive Header & Footer builder</strong>.', 'screenr' ); ?></div>
-        <p style="margin-top: 20px;">
-            <a href="<?php echo esc_url( $url ); ?>" class="screenr-install-swt button button-primary"><?php _e( 'Install Customify Now', 'screenr' ); ?></a>
-            <a href="<?php echo esc_url( $dismiss_url ); ?>" class="screenr-dismiss-swt  button-secondary button-dismiss"><?php _e( 'Don\'t show this again', 'screenr' ); ?></a>
-        </p>
-    </div>
-    <?php
-}
-
-/**
- * @since 1.1.7
- */
-function screenr_add_admin_switch_theme_notice(){
-    $current_screen = get_current_screen();
-    if ( $current_screen && $current_screen->id == 'appearance_page_ft_screenr' || $current_screen->base != 'themes' ) {
-        return;
-    }
-    screenr_admin_switch_theme_notice();
-}
-add_action( 'admin_notices', 'screenr_add_admin_switch_theme_notice', 15 );
-
 
 /**
  * Get theme actions required
@@ -399,7 +307,6 @@ function screenr_theme_info_page() {
 
         <a target="_blank" href="<?php echo esc_url('http://www.famethemes.com/'); ?>" class="famethemes-badge wp-badge"><span>FameThemes</span></a>
 
-        <?php screenr_admin_switch_theme_notice(); ?>
         <h2 class="nav-tab-wrapper">
 
             <a href="?page=ft_screenr" class="nav-tab<?php echo is_null($tab) ? ' nav-tab-active' : null; ?>"><?php esc_html_e( 'Screenr', 'screenr' ) ?></a>
