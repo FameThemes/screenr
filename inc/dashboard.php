@@ -306,7 +306,7 @@ function screenr_theme_info_page() {
         </div>
 
         <a target="_blank" href="<?php echo esc_url('http://www.famethemes.com/'); ?>" class="famethemes-badge wp-badge"><span>FameThemes</span></a>
-        
+
         <h2 class="nav-tab-wrapper">
 
             <a href="?page=ft_screenr" class="nav-tab<?php echo is_null($tab) ? ' nav-tab-active' : null; ?>"><?php esc_html_e( 'Screenr', 'screenr' ) ?></a>
