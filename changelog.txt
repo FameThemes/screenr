@@ -1,4 +1,7 @@
 == Changelog ==
+= 1.1.8 =
+* Add WooCommerce support.
+
 = 1.1.7 =
  * Support Retina Logo.
  * Add more option no sidebar for layout settings.
