@@ -61,7 +61,10 @@ function screenr_sanitize_repeatable_data_field( $input , $setting ){
     $control = $setting->manager->get_control( $setting->id );
 
     $fields = $control->fields;
-    $input = json_decode( $input , true );
+    if ( is_string( $input ) ) {
+	    $input = json_decode( $input , true );
+    }
+
     $data = wp_parse_args( $input, array() );
 
     if ( ! is_array( $data ) ) {
