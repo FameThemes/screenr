@@ -646,86 +646,88 @@ jQuery( document ).ready( function( $ ){
 				'opacity': _oo
 			});
 
-			var sch = swiper.container.outerHeight();
+			if ( swiper && swiper.length ) {
+                var sch = swiper.container.outerHeight();
 
-			if (scrolled >= sch / 4) {
-				swiper.container.addClass('over-1-4');
-			} else {
-				swiper.container.removeClass('over-1-4');
-			}
-			if (scrolled >= sch / 3) {
-				swiper.container.addClass('over-1-3');
-			} else {
-				swiper.container.removeClass('over-1-3');
-			}
-			if (scrolled >= sch / 2) {
-				swiper.container.addClass('over-1-2');
-			} else {
-				swiper.container.removeClass('over-1-2');
-			}
+                if (scrolled >= sch / 4) {
+                    swiper.container.addClass('over-1-4');
+                } else {
+                    swiper.container.removeClass('over-1-4');
+                }
+                if (scrolled >= sch / 3) {
+                    swiper.container.addClass('over-1-3');
+                } else {
+                    swiper.container.removeClass('over-1-3');
+                }
+                if (scrolled >= sch / 2) {
+                    swiper.container.addClass('over-1-2');
+                } else {
+                    swiper.container.removeClass('over-1-2');
+                }
 
-			if (scrolled >= sch * 2 / 3) {
-				swiper.container.addClass('over-2-3');
-			} else {
-				swiper.container.removeClass('over-2-3');
-			}
+                if (scrolled >= sch * 2 / 3) {
+                    swiper.container.addClass('over-2-3');
+                } else {
+                    swiper.container.removeClass('over-2-3');
+                }
 
-			var next_button = swiper.container.find('.btn-next-section');
-			var _btn_top = next_button.attr('data-top') || '';
+                var next_button = swiper.container.find('.btn-next-section');
+                var _btn_top = next_button.attr('data-top') || '';
 
-			var btop = 0;
-			if (!_btn_top || _btn_top === '') {
-				btop = next_button.css('top');
-			} else {
-				btop = _btn_top;
-			}
-			if (top === '') {
-				btop = 0;
-			} else {
-				btop = parseInt(btop);
-			}
-			if ( ! _btn_top ) {
-				next_button.attr('data-top', btop);
-			}
-			if ( _t > 0 ) {
-				next_button.css({'top': ( btop - _t ) + 'px'});
-			} else {
-				next_button.css({'top': ''});
-			}
+                var btop = 0;
+                if (!_btn_top || _btn_top === '') {
+                    btop = next_button.css('top');
+                } else {
+                    btop = _btn_top;
+                }
+                if (top === '') {
+                    btop = 0;
+                } else {
+                    btop = parseInt(btop);
+                }
+                if (!_btn_top) {
+                    next_button.attr('data-top', btop);
+                }
+                if (_t > 0) {
+                    next_button.css({'top': (btop - _t) + 'px'});
+                } else {
+                    next_button.css({'top': ''});
+                }
 
-			$.each( swiper.slides, function ( index, slide ) {
-				var slider = $( slide );
-				var intro = slider.find('.swiper-slide-intro'), intro_inner = intro.find('.swiper-intro-inner');
-				var _padding_top = intro_inner.css('padding-top') || 0;
-				_padding_top = parseFloat( _padding_top );
-				var intro_top = _padding_top;
+                $.each(swiper.slides, function (index, slide) {
+                    var slider = $(slide);
+                    var intro = slider.find('.swiper-slide-intro'), intro_inner = intro.find('.swiper-intro-inner');
+                    var _padding_top = intro_inner.css('padding-top') || 0;
+                    _padding_top = parseFloat(_padding_top);
+                    var intro_top = _padding_top;
 
-				intro.css({'top': ''});
-				var top = intro.css('top');
-				top = parseInt(top);
+                    intro.css({'top': ''});
+                    var top = intro.css('top');
+                    top = parseInt(top);
 
-				if ( scrolled > 0 ) {
-					var _s_t, pt_top = 0;
-					if ( intro_top > 0 ) {
-						pt_top = scrolled /  intro_top ;
-					} else {
-						pt_top = .6;
-					}
-					if ( pt_top >= 1 ) {
-						pt_top = 1;
-					}
-					if ( pt_top < .3 ) {
-						pt_top = .3 ;
-					}
+                    if (scrolled > 0) {
+                        var _s_t, pt_top = 0;
+                        if (intro_top > 0) {
+                            pt_top = scrolled / intro_top;
+                        } else {
+                            pt_top = .6;
+                        }
+                        if (pt_top >= 1) {
+                            pt_top = 1;
+                        }
+                        if (pt_top < .3) {
+                            pt_top = .3;
+                        }
 
-					_s_t = top - scrolled + _t ;
-					_s_t -= _s_t * pt_top;
-					intro.css({'top': ( _s_t ) + 'px'});
-				} else {
-					intro.css({'top': ''});
-				}
+                        _s_t = top - scrolled + _t;
+                        _s_t -= _s_t * pt_top;
+                        intro.css({'top': (_s_t) + 'px'});
+                    } else {
+                        intro.css({'top': ''});
+                    }
 
-			});
+                });
+            }
 		});
 	}
 
@@ -737,8 +739,10 @@ jQuery( document ).ready( function( $ ){
 	}
 
     $( window ).resize( function(){
-        swiper.container.find( '.swiper-slide-intro, .btn-next-section' ).removeAttr( 'data-top' ).removeAttr( 'style' );
-        $( window ).trigger( 'scroll' );
+    	if ( swiper && swiper.length ) {
+            swiper.container.find('.swiper-slide-intro, .btn-next-section').removeAttr('data-top').removeAttr('style');
+            $(window).trigger('scroll');
+        }
     } );
 
 
