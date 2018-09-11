@@ -759,9 +759,10 @@ jQuery( document ).ready( function( $ ){
 
     var lastScrollTop = 0;
     // Paralax effect
-    function parallaxPosition( direction ){
+    function parallaxPosition( scrollTop,  direction ){
         var top = $( window ).scrollTop();
         var wh = $( window).height();
+        var ww = $( window).width();
         $('.section-parallax, .parallax-hero').each( function(  ){
             var $el = $( this );
             var h = $el.height();
@@ -772,22 +773,73 @@ jQuery( document ).ready( function( $ ){
                 r = .6;
             }
 
-            var section_h = $el.height();
-            var is_inview = $el.data( 'inview' );
-            if ( is_inview ) {
-                var offsetTop = $el.offset().top;
-                var diff, bgTop;
-                diff = top - offsetTop;
-                bgTop = Math.round( diff * r );
-                if ( bgTop > h ) {
-                    bgTop = h;
-                }
-                if ( wh > h * 2 ) {
-                    $('.parallax-bg', $el).css('background-position', '50% ' + ( 0 - ( section_h + bgTop ) ) + 'px');
+            var pl = $( '.parallax-bg', $el );
+
+            var w = $el.width();
+            var h = $el.height();
+            var img = $( 'img', pl );
+
+            if ( img.length ) {
+
+                var imageNaturalWidth = img.prop('naturalWidth');
+                var imageNaturalHeight = img.prop('naturalHeight');
+
+                var containerHeight = h > 0 ? h : 500;
+                var imgHeight = img.height();
+                var parallaxDist = imgHeight - containerHeight;
+                var top =  $el.offset().top;
+                var windowHeight = window.innerHeight;
+                var windowBottom = scrollTop + windowHeight;
+                var percentScrolled = (windowBottom - top) / (containerHeight + windowHeight);
+
+                var parallaxTop = parallaxDist * percentScrolled;
+                var l;
+                var max_width = imageNaturalWidth;
+
+                if ( imageNaturalWidth > w ){
                 } else {
-                    $('.parallax-bg', $el).css('background-position', '50% ' + ( bgTop ) + 'px');
+                    max_width = ww;
                 }
-            }
+
+                if( max_width > ww*2 && imageNaturalHeight > containerHeight * 2) {
+                    max_width = max_width - ww;
+                }
+
+                l = (max_width - ww ) / 2;
+                if ( l < 0 ) {
+                    l = 0;
+                }
+
+                img.css( {
+                    top: '-' + ( parallaxTop ) + 'px',
+                    left: '-' + ( l ) + 'px',
+                    //maxWidth: ww+'px'
+                    maxWidth: max_width+'px'
+                });
+
+            } else {
+
+                var section_h = $el.height();
+                var is_inview = $el.data( 'inview' );
+                if ( is_inview ) {
+                    var offsetTop = $el.offset().top;
+                    var diff, bgTop;
+                    diff = top - offsetTop;
+                    bgTop = Math.round( diff * r );
+                    if ( bgTop > h ) {
+                        bgTop = h;
+                    }
+                    if ( wh > h * 2 ) {
+                        $('.parallax-bg', $el).css('background-position', '50% ' + ( 0 - ( section_h + bgTop ) ) + 'px');
+                    } else {
+                        $('.parallax-bg', $el).css('background-position', '50% ' + ( bgTop ) + 'px');
+                    }
+                }
+
+			}
+
+
+
 
         } );
     }
@@ -800,10 +852,11 @@ jQuery( document ).ready( function( $ ){
             direction = 'up';
         }
         lastScrollTop = top ;
-        parallaxPosition( );
+        parallaxPosition( top );
     });
     $(window).resize( function(){
-        parallaxPosition( );
+        var top = $( window ).scrollTop();
+        parallaxPosition( top );
     } );
 
     $(window).trigger('scroll');

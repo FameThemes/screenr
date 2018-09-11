@@ -935,6 +935,16 @@
 		background-repeat: no-repeat;
 		background-attachment: scroll;
 		//background-position: top center;
+		img {
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			min-width: 100%;
+			min-height: 100%;
+			width: auto;
+			height: auto;
+			max-width: 9999999px;
+		}
 	}
 
 }

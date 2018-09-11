@@ -912,3 +912,10 @@ add_action( 'screenr_footer', 'screenr_footer_credits' );
 function screenr_get_plus_url(){
     return 'https://www.famethemes.com/plugins/screenr-plus/';
 }
+
+function screenr_parallax_html( $url ){
+?>
+    <div class="parallax-bg"><img alt="" src="<?php echo esc_url( $url ); ?>" /> </div>
+<?php
+
+}
