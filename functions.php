@@ -351,6 +351,12 @@ require get_template_directory() . '/inc/customizer.php';
  */
 require get_template_directory() . '/inc/class-slider.php';
 
+/**
+ * Section navigation
+ * @since 1.1.9
+ */
+require get_template_directory() . '/inc/class-sections-navigation.php';
+
 if ( class_exists( 'WooCommerce' ) ) {
     /**
      * Woocommerce

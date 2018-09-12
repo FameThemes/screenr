@@ -428,6 +428,18 @@ function screenr_customize_register( $wp_customize ) {
         );
 
 
+	/* Section Navigation
+	   ----------------------------------------------------------------------*/
+	$wp_customize->add_section( 'sections_navigation' ,
+		array(
+			'priority'    => 7,
+			'title'       => esc_html__( 'Sections Navigation', 'screenr' ),
+			'description' => '',
+			'panel'       => 'screenr_options',
+		)
+	);
+
+	Screenr_Dots_Navigation::get_instance()->add_customize( $wp_customize, 'sections_navigation' );
 
 
     /* Blog settings
