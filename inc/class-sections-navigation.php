@@ -114,9 +114,8 @@ class Screenr_Dots_Navigation {
 		);
 
 		$new = array(
-			'hero' => $sections_config['hero']
+			'slider' => $sections_config['slider']
 		);
-
 
 		foreach ( $sorted_sections as $id ) {
 			if ( isset( $sections_config[ $id ] ) ) {
