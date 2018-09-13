@@ -11,7 +11,7 @@ if ( ! screenr_is_selective_refresh() ) {
     if ( $parallax_url ) {
     ?>
     <div class="parallax-videolightbox section-parallax">
-        <div class="parallax-bg" style="<?php echo esc_attr( "background-image: url('".$parallax_url."')  "); ?>"></div>
+        <?php screenr_parallax_html( $parallax_url ); ?>
     <?php } ?>
     <section id="<?php echo esc_attr( get_theme_mod( 'videolightbox_id', 'video' ) ); ?>" class="<?php echo esc_attr( apply_filters( 'screenr_section_class', $classes, 'videolightbox' ) ); ?>">
 <?php } ?>

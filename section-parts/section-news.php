@@ -2,12 +2,19 @@
 $title      = get_theme_mod( 'news_title', esc_html__( 'Latest News', 'screenr' ) );
 $subtitle   = get_theme_mod( 'news_subtitle', esc_html__( 'Section subtitle', 'screenr' ) );
 $desc       = get_theme_mod( 'news_desc' );
+$cat_id     = absint( get_theme_mod( 'news_cat' ) );
 
-$latest_posts = new WP_Query( array(
-    'posts_per_page'      => absint( get_theme_mod( 'news_num_post', 3 ) ),
-    'ignore_sticky_posts' => true,
-    'post_status' => 'publish'
-) );
+$args = array(
+	'posts_per_page'      => absint( get_theme_mod( 'news_num_post', 3 ) ),
+	'ignore_sticky_posts' => true,
+	'post_status' => 'publish'
+);
+
+if ( $cat_id > 0 ) {
+	$args['category__in'] = array( $cat_id );
+}
+
+$latest_posts = new WP_Query( $args );
 
 $layout = absint( get_theme_mod( 'news_layout', 3 ) );
 if ( ! $layout ) {
