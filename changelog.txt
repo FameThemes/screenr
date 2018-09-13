@@ -1,4 +1,9 @@
 == Changelog ==
+= 1.1.9 =
+* Add sections navigation.
+* Fix feature items does not display full width under 991px.
+* Fix parallax issue on mobile.
+
 = 1.1.8 =
 * Add WooCommerce support.
 

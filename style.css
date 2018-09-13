@@ -2612,6 +2612,7 @@ ul.hours span {
   .features-content .features__item {
     margin-bottom: 0px;
     display: inherit;
+    width: 100%;
   }
 }
 .features-content .features__item h3 {

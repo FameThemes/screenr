@@ -520,6 +520,7 @@
 		@include media-breakpoint-down(md) {
 			margin-bottom: 0px;
 			display: inherit;
+			width: 100%;
 		}
 		border-radius: 0px;
 		background: $primary;
