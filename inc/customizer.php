@@ -2630,6 +2630,23 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+	$wp_customize->add_setting( 'news_cat',
+		array(
+			'sanitize_callback' => 'sanitize_text_field',
+			'default'           => 0,
+		)
+	);
+
+	$wp_customize->add_control( new Screenr_Category_Control(
+		$wp_customize,
+		'news_cat',
+		array(
+			'label'       => esc_html__( 'Category to show', 'screenr' ),
+			'section'     => 'section_news',
+			'description' => '',
+		)
+	) );
+
     // Number posts to show
     $wp_customize->add_setting( 'news_num_post',
         array(
