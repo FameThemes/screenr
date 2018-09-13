@@ -101,7 +101,9 @@
     position: absolute;
     top: 50%;
     right: 0px;
-    transform: translateY(-50%) rotate(180deg);
+    -webkit-transform: translateY(-50%) rotate(180deg);
+        -ms-transform: translateY(-50%) rotate(180deg);
+            transform: translateY(-50%) rotate(180deg);
 }
 .list-repeatable .widget-title-action .widget-action::after{
     content: "\f142";
