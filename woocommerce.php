@@ -20,14 +20,9 @@ $layout = screenr_get_layout('no');
         <div id="primary" class="content-area">
             <main id="main" class="site-main" role="main">
                 <?php
-                do_action( 'woocommerce_before_main_content' );
+
                 woocommerce_content();
-                /**
-                 * Hook: woocommerce_after_main_content.
-                 *
-                 * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
-                 */
-                do_action( 'woocommerce_after_main_content' );
+                
                 ?>
             </main><!-- #main -->
         </div><!-- #primary -->
