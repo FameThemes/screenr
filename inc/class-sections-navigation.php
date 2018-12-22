@@ -262,7 +262,7 @@ class Screenr_Dots_Navigation {
 			);
 			$wp_customize->add_control( $name.'_label',
 				array(
-					'label'       => __( 'Custom navigation label', 'Screenr' ),
+					'label'       => __( 'Custom navigation label', 'screenr' ),
 					'section'     => $section_id,
 				)
 			);
