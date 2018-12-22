@@ -1,4 +1,7 @@
 == Changelog ==
+= 1.2.0 =
+* Improve WooCommerce shop page description.
+
 = 1.1.9 =
 * Add sections navigation.
 * Add category selection in section News.

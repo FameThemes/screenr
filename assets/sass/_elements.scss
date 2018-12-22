@@ -56,3 +56,9 @@ section > .customize-partial-edit-shortcut {
         left: 30px;
     }
 }
+
+.section-slider {
+	.prevent_swiper_swiping {
+		transform: none!important;
+	}
+}

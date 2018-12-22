@@ -1,74 +1,80 @@
 <?php
 
 // Change number product to show
-function screenr_number_products_to_show(){
+function screenr_number_products_to_show() {
 
-    $n = absint( get_theme_mod( 'shop_number_product', 20 ) );
-    if ( ! $n ) {
-        $n = 20;
-    }
-    return $n;
+	$n = absint( get_theme_mod( 'shop_number_product', 20 ) );
+	if ( ! $n ) {
+		$n = 20;
+	}
+	return $n;
 }
-add_filter( 'loop_shop_per_page','screenr_number_products_to_show', 20 );
+add_filter( 'loop_shop_per_page', 'screenr_number_products_to_show', 20 );
 
-function screenr_shop_change_page_layout( $value ){
-    if ( is_cart() || is_checkout() || is_account_page() ) {
-        return 'no';
-    }
-    return $value;
+function screenr_shop_change_page_layout( $value ) {
+	if ( is_cart() || is_checkout() || is_account_page() ) {
+		return 'no';
+	}
+	return $value;
 }
 
 add_filter( 'theme_mod_layout_settings', 'screenr_shop_change_page_layout' );
 
 if ( ! function_exists( 'woocommerce_content' ) ) {
 
-    /**
-     * Output WooCommerce content.
-     *
-     * This function is only used in the optional 'woocommerce.php' template.
-     * which people can add to their themes to add basic woocommerce support.
-     * without hooks or modifying core templates.
-     *
-     */
-    function woocommerce_content() {
+	/**
+	 * Output WooCommerce content.
+	 *
+	 * This function is only used in the optional 'woocommerce.php' template.
+	 * which people can add to their themes to add basic woocommerce support.
+	 * without hooks or modifying core templates.
+	 */
+	function woocommerce_content() {
 
-        if ( is_singular( 'product' ) ) {
+		if ( is_singular( 'product' ) ) {
 
-            while ( have_posts() ) : the_post();
+			while ( have_posts() ) :
+				the_post();
 
-                wc_get_template_part( 'content', 'single-product' );
+				wc_get_template_part( 'content', 'single-product' );
 
-            endwhile;
+			endwhile;
 
-        } else { ?>
+		} else { ?>
 
 
-            <?php if ( have_posts() ) : ?>
+			<?php if ( have_posts() ) : ?>
 
-                <?php do_action( 'woocommerce_before_shop_loop' ); ?>
+				<?php do_action( 'woocommerce_before_shop_loop' ); ?>
 
-                <?php woocommerce_product_loop_start(); ?>
+				<?php woocommerce_product_loop_start(); ?>
 
-                <?php woocommerce_product_subcategories(); ?>
+				<?php woocommerce_product_subcategories(); ?>
 
-                <?php while ( have_posts() ) : the_post(); ?>
+				<?php while ( have_posts() ) :
+					the_post(); ?>
 
-                    <?php wc_get_template_part( 'content', 'product' ); ?>
+					<?php wc_get_template_part( 'content', 'product' ); ?>
 
-                <?php endwhile; // end of the loop. ?>
+				<?php endwhile; // end of the loop. ?>
 
-                <?php woocommerce_product_loop_end(); ?>
+				<?php woocommerce_product_loop_end(); ?>
 
-                <?php do_action( 'woocommerce_after_shop_loop' ); ?>
+				<?php do_action( 'woocommerce_after_shop_loop' ); ?>
 
-            <?php elseif ( ! woocommerce_product_subcategories( array( 'before' => woocommerce_product_loop_start( false ), 'after' => woocommerce_product_loop_end( false ) ) ) ) : ?>
+			<?php elseif ( ! woocommerce_product_subcategories(
+				array(
+					'before' => woocommerce_product_loop_start( false ),
+					'after' => woocommerce_product_loop_end( false ),
+				)
+			) ) : ?>
 
-                <?php do_action( 'woocommerce_no_products_found' ); ?>
+				<?php do_action( 'woocommerce_no_products_found' ); ?>
 
-            <?php endif;
+			<?php endif;
 
-        }
-    }
+		}
+	}
 }
 
 /**
@@ -81,3 +87,26 @@ remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_l
  */
 remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' );
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
+
+/**
+ * Hooked to screenr_woo_shop_page_description on shop page to remove default shop desc.
+ *
+ * @since 1.2.0
+ */
+add_filter( 'screenr_page_header_item', 'screenr_woo_shop_page_description' );
+if ( ! function_exists( 'screenr_woo_shop_page_description' ) ) {
+	function screenr_woo_shop_page_description( $item ) {
+		if ( is_shop() ) {
+			$item['desc'] = '';
+			$shop_page_id = get_option( 'woocommerce_shop_page_id' );
+			if ( is_numeric( $shop_page_id ) ) {
+				$shop_page_excerpt = apply_filters( 'the_excerpt', get_post_field( 'post_excerpt', $shop_page_id ) );
+				if ( '' != $shop_page_excerpt ) {
+					$item['desc'] = $shop_page_excerpt;
+				}
+			}
+		}
+
+		return $item;
+	}
+}
