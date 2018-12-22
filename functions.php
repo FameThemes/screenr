@@ -404,4 +404,9 @@ if ( class_exists( 'WooCommerce' ) ) {
  */
 require get_template_directory() . '/inc/dashboard.php';
 
+/**
+ * Add admin editor style
+ */
+require get_template_directory() . '/inc/admin/class-editor.php';
+
 // require_once( trailingslashit( get_template_directory() ) . 'trt-customizer-pro/example-1/class-customize.php' );

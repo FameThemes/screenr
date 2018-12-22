@@ -1,5 +1,6 @@
 == Changelog ==
 = 1.2.0 =
+* NEW Gutenberg compatible.
 * IMPROVE WooCommerce shop page description.
 * FIX The hero slider and page cover title does not work/appear when enabling the Elementor.
 
