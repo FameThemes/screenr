@@ -5,7 +5,7 @@ Author: FameThemes
 Author URI: https://www.famethemes.com
 Description: Big - Bold and stylish, Screenr is a multiuse fullscreen theme well suited for business, portfolio, digital agency, product showcase, freelancers and everyone else who appreciate good design. Also with the flexible of the header and navigation, it can be use for one page or multiple pages website. The theme was built on Bootstrap 4, so you know it contains clean, precise code that makes for a highly streamlined site. (Live preview : http://www.famethemes.com/preview/?theme=Screenr)
 
-Version: 1.1.8
+Version: 1.1.9
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: screenr
@@ -2584,6 +2584,7 @@ ul.hours span {
   .features-content .features__item {
     margin-bottom: 0px;
     display: inherit;
+    width: 100%;
   }
 }
 .features-content .features__item h3 {
@@ -2964,6 +2965,16 @@ ul.hours span {
   width: 100%;
   height: 100%;
   z-index: 2;
+}
+.section-parallax .parallax-bg img {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  max-width: 9999999px;
 }
 
 .parallax_bg_overlay {
@@ -3783,7 +3794,6 @@ img.mfp-img {
 
 .swiper-container-vertical > .swiper-wrapper {
   -webkit-box-orient: vertical;
-  -ms-flex-direction: column;
   flex-direction: column;
 }
 
@@ -3793,7 +3803,6 @@ img.mfp-img {
   height: 100%;
   z-index: 1;
   display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   -webkit-transition-property: -webkit-transform;
   transition-property: -webkit-transform;
@@ -3812,7 +3821,6 @@ img.mfp-img {
 .swiper-container-multirow > .swiper-wrapper {
   -webkit-box-lines: multiple;
   -moz-box-lines: multiple;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
@@ -3825,8 +3833,7 @@ img.mfp-img {
 .swiper-slide {
   -webkit-flex-shrink: 0;
   -ms-flex: 0 0 auto;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
+  flex-shrink: 0;
   width: 100%;
   height: 100%;
   position: relative;
@@ -3840,7 +3847,6 @@ img.mfp-img {
 
 .swiper-container-autoheight .swiper-wrapper {
   -webkit-box-align: start;
-  -ms-flex-align: start;
   align-items: flex-start;
   -webkit-transition-property: -webkit-transform, height;
   -webkit-transition-property: height, -webkit-transform;
@@ -3861,12 +3867,10 @@ img.mfp-img {
 
 /* IE10 Windows Phone 8 Fixes */
 .swiper-wp8-horizontal {
-  -ms-touch-action: pan-y;
   touch-action: pan-y;
 }
 
 .swiper-wp8-vertical {
-  -ms-touch-action: pan-x;
   touch-action: pan-x;
 }
 
@@ -4431,4 +4435,187 @@ button.swiper-pagination-bullet {
 }
 .owl-carousel .owl-buttons .owl-next .lg-icon::before {
   content: "\e095";
+}
+
+/**
+* JQuery Bullly
+* @see https://github.com/pixelgrade/rellax/blob/gh-pages/assets/css/bully.css
+ */
+[class*="c-bully"],
+[class*="c-bully"]:before,
+[class*="c-bully"]:after {
+  box-sizing: border-box;
+}
+
+.c-bully {
+  position: fixed;
+  top: 50%;
+  right: 28px;
+  font-size: 12px;
+  -webkit-transform: translate(0, -50%);
+      -ms-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  z-index: 600;
+  color: #333;
+  text-transform: uppercase;
+}
+@media screen and (max-width: 940px) {
+  .c-bully {
+    right: 10px;
+  }
+}
+.c-bully.c-bully--inversed {
+  color: #FFF;
+}
+
+.c-bully__bullet {
+  padding: 0.5em;
+  opacity: 0;
+  cursor: pointer;
+  position: relative;
+}
+.c-bully__bullet:hover .c-bully__title {
+  opacity: 1;
+  -webkit-transform: scale(1) translateY(-50%);
+      -ms-transform: scale(1) translateY(-50%);
+          transform: scale(1) translateY(-50%);
+}
+.c-bully__title {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  left: auto;
+  background: #333333;
+  padding: 5px 10px;
+  border-radius: 2px;
+  -webkit-transition: scale 0.2s ease-out;
+  transition: scale 0.2s ease-out;
+  display: block;
+  opacity: 0;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.8);
+  -webkit-transform: scale(0.6) translateY(-50%);
+      -ms-transform: scale(0.6) translateY(-50%);
+          transform: scale(0.6) translateY(-50%);
+}
+.c-bully__title::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 0 8px 8px;
+  border-color: transparent transparent transparent #333333;
+  display: inline-block;
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  -webkit-transform: translate(100%, -50%);
+      -ms-transform: translate(100%, -50%);
+          transform: translate(100%, -50%);
+}
+
+.c-bully__bullet:after {
+  content: "";
+  display: block;
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+.c-bully__bullet--active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transition: top 0.2s ease-out;
+  transition: top 0.2s ease-out;
+}
+
+.c-bully__bullet--active:before {
+  content: "";
+  width: 1em;
+  height: 1em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 14px;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background: currentColor;
+  border-radius: 50%;
+}
+
+.c-bully__bullet--active:after {
+  border-color: transparent;
+}
+
+.c-bully__bullet--pop {
+  -webkit-animation: bully-pop 0.6s cubic-bezier(0.485, 1.63, 0.43, 2) forwards, fade-in 0.2s 0.2s ease-out forwards;
+          animation: bully-pop 0.6s cubic-bezier(0.485, 1.63, 0.43, 2) forwards, fade-in 0.2s 0.2s ease-out forwards;
+}
+
+.c-bully__bullet--squash {
+  opacity: 1;
+  -webkit-animation: bully-squash 0.2s ease-out forwards;
+          animation: bully-squash 0.2s ease-out forwards;
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes bully-pop {
+  50% {
+    -webkit-transform: scale(0.7);
+            transform: scale(0.7);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes bully-pop {
+  50% {
+    -webkit-transform: scale(0.7);
+            transform: scale(0.7);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@-webkit-keyframes bully-squash {
+  50% {
+    -webkit-transform: scale(0.6, 1.8);
+            transform: scale(0.6, 1.8);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes bully-squash {
+  50% {
+    -webkit-transform: scale(0.6, 1.8);
+            transform: scale(0.6, 1.8);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
 }

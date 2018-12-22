@@ -102,6 +102,7 @@ function screenr_customizer_partials( $wp_customize )
                 'news_title',
                 'news_subtitle',
                 'news_desc',
+                'news_cat',
                 'news_num_post',
                 'news_layout',
 

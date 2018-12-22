@@ -87,9 +87,31 @@
 .list-repeatable  .widget-top:after {
     clear: both; display: block; content: " ";
 }
-
-.list-repeatable .explained .widget-title-action .widget-action::after{
+.list-repeatable  .widget-title-action .widget-action {
+    text-decoration: none;
+    height: 23px;
+    display: block;
+}
+.list-repeatable .widget-top {
+    position: relative;
+}
+.list-repeatable .widget-title-action {
+    display: block;
+    text-decoration: none;
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    -webkit-transform: translateY(-50%) rotate(180deg);
+        -ms-transform: translateY(-50%) rotate(180deg);
+            transform: translateY(-50%) rotate(180deg);
+}
+.list-repeatable .widget-title-action .widget-action::after{
     content: "\f142";
+    font-family: "dashicons";
+    font-size: 18px;
+}
+.list-repeatable .explained .widget-title-action .widget-action::after{
+    content: "\f140";
 }
 .list-repeatable .widget .widget-inside{
     display: none;

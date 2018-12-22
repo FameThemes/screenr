@@ -646,86 +646,88 @@ jQuery( document ).ready( function( $ ){
 				'opacity': _oo
 			});
 
-			var sch = swiper.container.outerHeight();
+			if ( swiper && swiper.length ) {
+                var sch = swiper.container.outerHeight();
 
-			if (scrolled >= sch / 4) {
-				swiper.container.addClass('over-1-4');
-			} else {
-				swiper.container.removeClass('over-1-4');
-			}
-			if (scrolled >= sch / 3) {
-				swiper.container.addClass('over-1-3');
-			} else {
-				swiper.container.removeClass('over-1-3');
-			}
-			if (scrolled >= sch / 2) {
-				swiper.container.addClass('over-1-2');
-			} else {
-				swiper.container.removeClass('over-1-2');
-			}
+                if (scrolled >= sch / 4) {
+                    swiper.container.addClass('over-1-4');
+                } else {
+                    swiper.container.removeClass('over-1-4');
+                }
+                if (scrolled >= sch / 3) {
+                    swiper.container.addClass('over-1-3');
+                } else {
+                    swiper.container.removeClass('over-1-3');
+                }
+                if (scrolled >= sch / 2) {
+                    swiper.container.addClass('over-1-2');
+                } else {
+                    swiper.container.removeClass('over-1-2');
+                }
 
-			if (scrolled >= sch * 2 / 3) {
-				swiper.container.addClass('over-2-3');
-			} else {
-				swiper.container.removeClass('over-2-3');
-			}
+                if (scrolled >= sch * 2 / 3) {
+                    swiper.container.addClass('over-2-3');
+                } else {
+                    swiper.container.removeClass('over-2-3');
+                }
 
-			var next_button = swiper.container.find('.btn-next-section');
-			var _btn_top = next_button.attr('data-top') || '';
+                var next_button = swiper.container.find('.btn-next-section');
+                var _btn_top = next_button.attr('data-top') || '';
 
-			var btop = 0;
-			if (!_btn_top || _btn_top === '') {
-				btop = next_button.css('top');
-			} else {
-				btop = _btn_top;
-			}
-			if (top === '') {
-				btop = 0;
-			} else {
-				btop = parseInt(btop);
-			}
-			if ( ! _btn_top ) {
-				next_button.attr('data-top', btop);
-			}
-			if ( _t > 0 ) {
-				next_button.css({'top': ( btop - _t ) + 'px'});
-			} else {
-				next_button.css({'top': ''});
-			}
+                var btop = 0;
+                if (!_btn_top || _btn_top === '') {
+                    btop = next_button.css('top');
+                } else {
+                    btop = _btn_top;
+                }
+                if (top === '') {
+                    btop = 0;
+                } else {
+                    btop = parseInt(btop);
+                }
+                if (!_btn_top) {
+                    next_button.attr('data-top', btop);
+                }
+                if (_t > 0) {
+                    next_button.css({'top': (btop - _t) + 'px'});
+                } else {
+                    next_button.css({'top': ''});
+                }
 
-			$.each( swiper.slides, function ( index, slide ) {
-				var slider = $( slide );
-				var intro = slider.find('.swiper-slide-intro'), intro_inner = intro.find('.swiper-intro-inner');
-				var _padding_top = intro_inner.css('padding-top') || 0;
-				_padding_top = parseFloat( _padding_top );
-				var intro_top = _padding_top;
+                $.each(swiper.slides, function (index, slide) {
+                    var slider = $(slide);
+                    var intro = slider.find('.swiper-slide-intro'), intro_inner = intro.find('.swiper-intro-inner');
+                    var _padding_top = intro_inner.css('padding-top') || 0;
+                    _padding_top = parseFloat(_padding_top);
+                    var intro_top = _padding_top;
 
-				intro.css({'top': ''});
-				var top = intro.css('top');
-				top = parseInt(top);
+                    intro.css({'top': ''});
+                    var top = intro.css('top');
+                    top = parseInt(top);
 
-				if ( scrolled > 0 ) {
-					var _s_t, pt_top = 0;
-					if ( intro_top > 0 ) {
-						pt_top = scrolled /  intro_top ;
-					} else {
-						pt_top = .6;
-					}
-					if ( pt_top >= 1 ) {
-						pt_top = 1;
-					}
-					if ( pt_top < .3 ) {
-						pt_top = .3 ;
-					}
+                    if (scrolled > 0) {
+                        var _s_t, pt_top = 0;
+                        if (intro_top > 0) {
+                            pt_top = scrolled / intro_top;
+                        } else {
+                            pt_top = .6;
+                        }
+                        if (pt_top >= 1) {
+                            pt_top = 1;
+                        }
+                        if (pt_top < .3) {
+                            pt_top = .3;
+                        }
 
-					_s_t = top - scrolled + _t ;
-					_s_t -= _s_t * pt_top;
-					intro.css({'top': ( _s_t ) + 'px'});
-				} else {
-					intro.css({'top': ''});
-				}
+                        _s_t = top - scrolled + _t;
+                        _s_t -= _s_t * pt_top;
+                        intro.css({'top': (_s_t) + 'px'});
+                    } else {
+                        intro.css({'top': ''});
+                    }
 
-			});
+                });
+            }
 		});
 	}
 
@@ -737,8 +739,10 @@ jQuery( document ).ready( function( $ ){
 	}
 
     $( window ).resize( function(){
-        swiper.container.find( '.swiper-slide-intro, .btn-next-section' ).removeAttr( 'data-top' ).removeAttr( 'style' );
-        $( window ).trigger( 'scroll' );
+    	if ( swiper && swiper.length ) {
+            swiper.container.find('.swiper-slide-intro, .btn-next-section').removeAttr('data-top').removeAttr('style');
+            $(window).trigger('scroll');
+        }
     } );
 
 
@@ -755,9 +759,10 @@ jQuery( document ).ready( function( $ ){
 
     var lastScrollTop = 0;
     // Paralax effect
-    function parallaxPosition( direction ){
+    function parallaxPosition( scrollTop,  direction ){
         var top = $( window ).scrollTop();
         var wh = $( window).height();
+        var ww = $( window).width();
         $('.section-parallax, .parallax-hero').each( function(  ){
             var $el = $( this );
             var h = $el.height();
@@ -768,22 +773,73 @@ jQuery( document ).ready( function( $ ){
                 r = .6;
             }
 
-            var section_h = $el.height();
-            var is_inview = $el.data( 'inview' );
-            if ( is_inview ) {
-                var offsetTop = $el.offset().top;
-                var diff, bgTop;
-                diff = top - offsetTop;
-                bgTop = Math.round( diff * r );
-                if ( bgTop > h ) {
-                    bgTop = h;
-                }
-                if ( wh > h * 2 ) {
-                    $('.parallax-bg', $el).css('background-position', '50% ' + ( 0 - ( section_h + bgTop ) ) + 'px');
+            var pl = $( '.parallax-bg', $el );
+
+            var w = $el.width();
+            var h = $el.height();
+            var img = $( 'img', pl );
+
+            if ( img.length ) {
+
+                var imageNaturalWidth = img.prop('naturalWidth');
+                var imageNaturalHeight = img.prop('naturalHeight');
+
+                var containerHeight = h > 0 ? h : 500;
+                var imgHeight = img.height();
+                var parallaxDist = imgHeight - containerHeight;
+                var top =  $el.offset().top;
+                var windowHeight = window.innerHeight;
+                var windowBottom = scrollTop + windowHeight;
+                var percentScrolled = (windowBottom - top) / (containerHeight + windowHeight);
+
+                var parallaxTop = parallaxDist * percentScrolled;
+                var l;
+                var max_width = imageNaturalWidth;
+
+                if ( imageNaturalWidth > w ){
                 } else {
-                    $('.parallax-bg', $el).css('background-position', '50% ' + ( bgTop ) + 'px');
+                    max_width = ww;
                 }
-            }
+
+                if( max_width > ww*2 && imageNaturalHeight > containerHeight * 2) {
+                    max_width = max_width - ww;
+                }
+
+                l = (max_width - ww ) / 2;
+                if ( l < 0 ) {
+                    l = 0;
+                }
+
+                img.css( {
+                    top: '-' + ( parallaxTop ) + 'px',
+                    left: '-' + ( l ) + 'px',
+                    //maxWidth: ww+'px'
+                    maxWidth: max_width+'px'
+                });
+
+            } else {
+
+                var section_h = $el.height();
+                var is_inview = $el.data( 'inview' );
+                if ( is_inview ) {
+                    var offsetTop = $el.offset().top;
+                    var diff, bgTop;
+                    diff = top - offsetTop;
+                    bgTop = Math.round( diff * r );
+                    if ( bgTop > h ) {
+                        bgTop = h;
+                    }
+                    if ( wh > h * 2 ) {
+                        $('.parallax-bg', $el).css('background-position', '50% ' + ( 0 - ( section_h + bgTop ) ) + 'px');
+                    } else {
+                        $('.parallax-bg', $el).css('background-position', '50% ' + ( bgTop ) + 'px');
+                    }
+                }
+
+			}
+
+
+
 
         } );
     }
@@ -796,10 +852,11 @@ jQuery( document ).ready( function( $ ){
             direction = 'up';
         }
         lastScrollTop = top ;
-        parallaxPosition( );
+        parallaxPosition( top );
     });
     $(window).resize( function(){
-        parallaxPosition( );
+        var top = $( window ).scrollTop();
+        parallaxPosition( top );
     } );
 
     $(window).trigger('scroll');

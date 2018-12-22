@@ -107,10 +107,6 @@ function screenr_setup() {
 			'name' => esc_html__( 'Contact Form 7', 'screenr' ),
 			'active_filename' => 'contact-form-7/wp-contact-form-7.php',
 		),
-		'easymega' => array(
-			'name' => esc_html__( 'Mega Menu Plugin for WordPress', 'screenr' ),
-			'active_filename' => 'easymega/easymega.php',
-		),
 	) );
 
 
@@ -354,6 +350,12 @@ require get_template_directory() . '/inc/customizer.php';
  * Slider
  */
 require get_template_directory() . '/inc/class-slider.php';
+
+/**
+ * Section navigation
+ * @since 1.1.9
+ */
+require get_template_directory() . '/inc/class-sections-navigation.php';
 
 if ( class_exists( 'WooCommerce' ) ) {
     /**

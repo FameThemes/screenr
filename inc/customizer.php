@@ -428,6 +428,18 @@ function screenr_customize_register( $wp_customize ) {
         );
 
 
+	/* Section Navigation
+	   ----------------------------------------------------------------------*/
+	$wp_customize->add_section( 'sections_navigation' ,
+		array(
+			'priority'    => 7,
+			'title'       => esc_html__( 'Sections Navigation', 'screenr' ),
+			'description' => '',
+			'panel'       => 'screenr_options',
+		)
+	);
+
+	Screenr_Dots_Navigation::get_instance()->add_customize( $wp_customize, 'sections_navigation' );
 
 
     /* Blog settings
@@ -2617,6 +2629,23 @@ function screenr_customize_register( $wp_customize ) {
             )
         )
     );
+
+	$wp_customize->add_setting( 'news_cat',
+		array(
+			'sanitize_callback' => 'sanitize_text_field',
+			'default'           => 0,
+		)
+	);
+
+	$wp_customize->add_control( new Screenr_Category_Control(
+		$wp_customize,
+		'news_cat',
+		array(
+			'label'       => esc_html__( 'Category to show', 'screenr' ),
+			'section'     => 'section_news',
+			'description' => '',
+		)
+	) );
 
     // Number posts to show
     $wp_customize->add_setting( 'news_num_post',
