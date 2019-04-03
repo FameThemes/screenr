@@ -1,4 +1,7 @@
 == Changelog ==
+= 1.2.1 =
+* IMPROVE section dots navigation.
+
 = 1.2.0 =
 * NEW Gutenberg compatible.
 * IMPROVE WooCommerce shop page description.
