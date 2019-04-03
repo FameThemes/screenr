@@ -320,9 +320,12 @@ class Screenr_Dots_Navigation {
 				$name   = $this->get_name( $id );
 				$enable = get_theme_mod( $name, $args['default'] );
 				if ( $enable ) {
-					$id = isset( $args['id'] ) && $args['id'] ? $args['id'] : $id;
-					var_dump( $args );
-					$el_id = sanitize_text_field( get_theme_mod( $id . '_id', $id, false ) );
+					$default_id = isset( $args['id'] ) && $args['id'] ? $args['id'] : $id;
+					$el_id = sanitize_text_field( get_theme_mod( $id . '_id', $default_id, false ) );
+
+					if ( ! $el_id ) {
+						$el_id = $default_id;
+					}
 
 					if ( ! $el_id ) {
 						$el_id = $id;
@@ -330,13 +333,14 @@ class Screenr_Dots_Navigation {
 
 					$data[ $el_id ] = array(
 						'id'     => $el_id,
+						'o_id' => $id,
 						'inverse' => get_theme_mod( $this->get_name( $id . '_inverse' ), isset( $args['inverse'] ) ? $args['inverse'] : false ),
 						'enable' => get_theme_mod( $name, $args['default'] ),
 						'title'  => get_theme_mod( $id . '_title', $args['title'] ),
 					);
 					$custom_title = get_theme_mod( $this->get_name( $id . '_label' ), false );
 					if ( $custom_title ) {
-						$data[ $id ]['title'] = $custom_title;
+						$data[ $el_id ]['title'] = $custom_title;
 					}
 				}
 			}
