@@ -12,7 +12,7 @@
  * Filter content just like `the_content`
  *
  * @see WP_Embed
- * @see wp_make_content_images_responsive
+ * @see wp_filter_content_tags || wp_make_content_images_responsive
  * @see wptexturize
  * @see convert_smilies
  * @see convert_chars
@@ -24,7 +24,11 @@
 global $wp_embed;
 add_filter( 'screenr_content_text', array( $wp_embed, 'autoembed' ), 8 );
 add_filter( 'screenr_content_text', array( $wp_embed, 'run_shortcode' ), 9 );
-add_filter( 'screenr_content_text', 'wp_make_content_images_responsive', 10 );
+if ( function_exists( 'wp_filter_content_tags' ) ) {
+	add_filter( 'screenr_content_text', 'wp_filter_content_tags', 10 );
+} else {
+	add_filter( 'screenr_content_text', 'wp_make_content_images_responsive', 10 );
+}
 add_filter( 'screenr_content_text', 'wptexturize', 12 );
 add_filter( 'screenr_content_text', 'convert_smilies', 13 );
 add_filter( 'screenr_content_text', 'convert_chars', 14 );
@@ -42,7 +46,7 @@ add_filter( 'screenr_content_text', 'capital_P_dangit', 18 );
 function screenr_get_layout( $default = 'right' ) {
 	if ( class_exists( 'WooCommerce' ) ) {
 		if ( is_shop() || is_product() || is_product_taxonomy() ) {
-			$default  = 'no';
+			$default = 'no';
 			return get_theme_mod( 'shop_layout_settings', $default );
 		}
 	}
@@ -62,8 +66,8 @@ function screenr_add_retina_logo( $html = '' ) {
 		'itemprop' => 'logo',
 	);
 	$image_retina_url = false;
-	$retina_id = false;
-	$retina_url = sanitize_text_field( get_theme_mod( 'retina_logo' ) );
+	$retina_id        = false;
+	$retina_url       = sanitize_text_field( get_theme_mod( 'retina_logo' ) );
 	if ( $retina_url ) {
 		$retina_id = attachment_url_to_postid( $retina_url );
 		if ( $retina_id ) {
@@ -81,8 +85,8 @@ function screenr_add_retina_logo( $html = '' ) {
 	$t_logo_html = '';
 
 	if ( get_theme_mod( 'header_layout' ) == 'transparent' ) {
-		$t_logo = sanitize_text_field( get_theme_mod( 'transparent_logo' ) );
-		$t_logo_r = sanitize_text_field( get_theme_mod( 'transparent_retina_logo' ) );
+		$t_logo      = sanitize_text_field( get_theme_mod( 'transparent_logo' ) );
+		$t_logo_r    = sanitize_text_field( get_theme_mod( 'transparent_retina_logo' ) );
 		$t_logo_attr = array(
 			'class'    => 'custom-logo-transparent',
 			'itemprop' => 'logo',
@@ -178,7 +182,7 @@ add_filter( 'excerpt_more', 'screenr_excerpt_more' );
  * @param $length
  */
 function screenr_add_excerpt_length( $length ) {
-	$length = absint( $length );
+	$length                            = absint( $length );
 	$GLOBALS['screenr_excerpt_length'] = $length;
 }
 
@@ -204,10 +208,10 @@ if ( ! function_exists( 'screenr_get_media_url' ) ) {
 			$media,
 			array(
 				'url' => '',
-				'id' => '',
+				'id'  => '',
 			)
 		);
-		$url = '';
+		$url   = '';
 		if ( $media['id'] != '' ) {
 			$url = wp_get_attachment_url( $media['id'] );
 		}
@@ -224,9 +228,9 @@ if ( ! function_exists( 'screenr_rgb2hex' ) ) {
 }
 
 function screenr_color_alpha_parse( $color_alpha ) {
-	$s = str_replace( array( 'rgba', '(', ')', ';' ), '', $color_alpha );
+	$s   = str_replace( array( 'rgba', '(', ')', ';' ), '', $color_alpha );
 	$arr = explode( ',', $s );
-	$r = false;
+	$r   = false;
 	if ( count( $arr ) > 2 ) {
 		$r = array(
 			'color' => array(
@@ -496,7 +500,7 @@ function screenr_custom_style() {
 	}
 
 	$slider_overlay_color = get_theme_mod( 'slider_overlay_color' );
-	$c = screenr_color_alpha_parse( $slider_overlay_color );
+	$c                    = screenr_color_alpha_parse( $slider_overlay_color );
 	if ( $slider_overlay_color && $c ) {
 		?>
 	.swiper-slider .swiper-slide .overlay {
@@ -517,8 +521,8 @@ function screenr_custom_style() {
 
 	// Page header
 	$page_header_bg_overlay = get_theme_mod( 'page_header_bg_overlay' );
-	$bg_cover = get_theme_mod( 'page_header_bg_color', '000000' );
-	$c = screenr_color_alpha_parse( $page_header_bg_overlay );
+	$bg_cover               = get_theme_mod( 'page_header_bg_color', '000000' );
+	$c                      = screenr_color_alpha_parse( $page_header_bg_overlay );
 	if ( $c ) {
 		?>
 	#page-header-cover.swiper-slider .swiper-slide .overlay {
@@ -692,7 +696,7 @@ function screenr_custom_style() {
 	}
 	<?php
 
-	$css = ob_get_clean();
+	$css    = ob_get_clean();
 	$custom = get_option( 'screenr_custom_css' );
 	if ( $custom ) {
 		$css .= "\n/* --- Begin custom CSS --- */\n" . $custom . "\n/* --- End custom CSS --- */\n";
@@ -754,8 +758,8 @@ function screenr_page_header_cover() {
 		$image = get_header_image();
 	}
 
-	$is_parallax  = true;
-	$item = array(
+	$is_parallax = true;
+	$item        = array(
 		'position'  => 'center',
 		'pd_top'    => get_theme_mod( 'page_header_pdtop' ) == '' ? 13 : get_theme_mod( 'page_header_pdtop' ),
 		'pd_bottom' => get_theme_mod( 'page_header_pdbottom' ) == '' ? 13 : get_theme_mod( 'page_header_pdbottom' ),
@@ -809,7 +813,7 @@ function screenr_page_header_cover() {
 
 				$html = '<div class="swiper-slide slide-align-' . esc_attr( $item['position'] ) . ' ' . esc_attr( implode( ' ', $swiper_slide_classes ) ) . '"' . $style . '>';
 
-				$style  = '';
+				$style = '';
 				if ( $item['pd_top'] != '' ) {
 					$style .= 'padding-top: ' . floatval( $item['pd_top'] ) . '%; ';
 				}

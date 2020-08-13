@@ -491,8 +491,10 @@ jQuery( document ).ready( function( $ ){
                                     v[0].play();
                                 } else {
                                     v[0].pause();
-                                    v[0].currentTime = 0;
-                                    swiper.slideNext();
+									v[0].currentTime = 0;
+									if ( 0 !== autoplay ) {
+										swiper.slideNext();
+									}
                                     swiper.startAutoplay();
                                 }
                             } );

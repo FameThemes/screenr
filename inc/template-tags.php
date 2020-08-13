@@ -515,7 +515,7 @@ function screenr_gallery_generate( $echo = true ){
 	}
 	switch( $display_type ) {
 		case 'masonry':
-			$html = screenr_gallery_html( $data );
+			$html = screenr_gallery_html( $data, true, 'full' );
 			if ( $html ) {
 				$div .= '<div data-col="'.$col.'" class="g-zoom-in gallery-masonry '.$class.' gallery-grid g-col-'.$col.'">';
 				$div .= $html;
