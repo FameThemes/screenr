@@ -347,7 +347,7 @@ function screenr_theme_info_page() {
                     </div>
 
                     <div class="theme_info_right">
-                        <img src="<?php echo get_template_directory_uri(); ?>/screenshot.png" alt="Theme Screenshot" />
+                        <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/screenshot.png" alt="Theme Screenshot" />
                     </div>
                 </div>
             </div>
