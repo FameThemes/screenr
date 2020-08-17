@@ -1,7 +1,10 @@
 == Changelog ==
+= 1.2.2 =
+* FIX remove deprecated function.
+
 = 1.2.1 =
 * Improve section dots navigation.
-* Add missing Gettext function
+* Add missing Gettext function.
 
 = 1.2.0 =
 * NEW Gutenberg compatible.
