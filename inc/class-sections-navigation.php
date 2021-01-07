@@ -4,7 +4,6 @@
  * Class Screenr_Dots_Navigation
  *
  * @since 2.1.0
- *
  */
 class Screenr_Dots_Navigation {
 	static $_instance = null;
@@ -15,8 +14,8 @@ class Screenr_Dots_Navigation {
 	 *
 	 * @return null|Screenr_Dots_Navigation
 	 */
-	static function get_instance(){
-		if ( is_null( self::$_instance ) ){
+	static function get_instance() {
+		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self();
 		}
 		return self::$_instance;
@@ -27,9 +26,9 @@ class Screenr_Dots_Navigation {
 	 *
 	 * @return array
 	 */
-	function get_sections(){
+	function get_sections() {
 
-		$sorted_sections =$sections = apply_filters (
+		$sorted_sections = $sections = apply_filters(
 			'screenr_frontpage_sections_order',
 			array(
 				'slider',
@@ -41,7 +40,7 @@ class Screenr_Dots_Navigation {
 				'clients',
 				'counter',
 				'news',
-				'contact'
+				'contact',
 			)
 		);
 
@@ -51,6 +50,7 @@ class Screenr_Dots_Navigation {
 				'title' => __( 'Home', 'screenr' ),
 				'default' => false,
 				'inverse' => false,
+				'id' => 'hero', // default id.
 			),
 			'features' => array(
 				'label' => __( 'Section: Features', 'screenr' ),
@@ -103,18 +103,17 @@ class Screenr_Dots_Navigation {
 			),
 
 			'contact' => array(
-				'label' =>  __( 'Section: Contact', 'screenr' ),
+				'label' => __( 'Section: Contact', 'screenr' ),
 				'title' => __( 'Get in touch', 'screenr' ),
 				'default' => false,
 				'inverse' => false,
 
 			),
 
-
 		);
 
 		$new = array(
-			'slider' => $sections_config['slider']
+			'slider' => $sections_config['slider'],
 		);
 
 		foreach ( $sorted_sections as $id ) {
@@ -135,7 +134,7 @@ class Screenr_Dots_Navigation {
 	 * @return string
 	 */
 	function get_name( $id ) {
-		return $this->key.$id;
+		return $this->key . $id;
 	}
 
 	/**
@@ -144,15 +143,17 @@ class Screenr_Dots_Navigation {
 	 * @param $wp_customize
 	 * @param $section_id
 	 */
-	function add_customize( $wp_customize, $section_id ){
+	function add_customize( $wp_customize, $section_id ) {
 
-		$wp_customize->add_setting( $this->get_name( '__enable' ),
+		$wp_customize->add_setting(
+			$this->get_name( '__enable' ),
 			array(
 				'sanitize_callback' => 'screenr_sanitize_text',
 				'default'           => false,
 			)
 		);
-		$wp_customize->add_control(  $this->get_name( '__enable' ),
+		$wp_customize->add_control(
+			$this->get_name( '__enable' ),
 			array(
 				'label'       => __( 'Enable in section navigation', 'screenr' ),
 				'section'     => $section_id,
@@ -160,13 +161,15 @@ class Screenr_Dots_Navigation {
 			)
 		);
 
-		$wp_customize->add_setting( $this->get_name( '__enable_label' ),
+		$wp_customize->add_setting(
+			$this->get_name( '__enable_label' ),
 			array(
 				'sanitize_callback' => 'screenr_sanitize_text',
 				'default'           => 1,
 			)
 		);
-		$wp_customize->add_control( $this->get_name( '__enable_label' ),
+		$wp_customize->add_control(
+			$this->get_name( '__enable_label' ),
 			array(
 				'label'       => __( 'Enable navigation labels', 'screenr' ),
 				'description'       => __( 'By default navigation label is section title.', 'screenr' ),
@@ -176,60 +179,80 @@ class Screenr_Dots_Navigation {
 		);
 
 		// Color Settings
-		$wp_customize->add_setting( $this->get_name( '__color' ), array(
-			'sanitize_callback'    => 'sanitize_hex_color_no_hash',
-			'sanitize_js_callback' => 'maybe_hash_hex_color',
-			'default'              => ''
-		) );
-		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $this->get_name( '__color' ),
+		$wp_customize->add_setting(
+			$this->get_name( '__color' ),
 			array(
-				'label'       => esc_html__( 'Dots color', 'screenr' ),
-				'section'     => $section_id,
-				'description' => '',
+				'sanitize_callback'    => 'sanitize_hex_color_no_hash',
+				'sanitize_js_callback' => 'maybe_hash_hex_color',
+				'default'              => '',
 			)
-		) );
+		);
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				$this->get_name( '__color' ),
+				array(
+					'label'       => esc_html__( 'Dots color', 'screenr' ),
+					'section'     => $section_id,
+					'description' => '',
+				)
+			)
+		);
 
 		// Color Settings
-		$wp_customize->add_setting( $this->get_name( '__color2' ), array(
-			'sanitize_callback'    => 'sanitize_hex_color_no_hash',
-			'sanitize_js_callback' => 'maybe_hash_hex_color',
-			'default'              => ''
-		) );
-		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $this->get_name( '__color2' ),
+		$wp_customize->add_setting(
+			$this->get_name( '__color2' ),
 			array(
-				'label'       => esc_html__( 'Dots inverse color', 'screenr' ),
-				'section'     => $section_id,
-				'description' => '',
+				'sanitize_callback'    => 'sanitize_hex_color_no_hash',
+				'sanitize_js_callback' => 'maybe_hash_hex_color',
+				'default'              => '',
 			)
-		) );
-
+		);
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				$this->get_name( '__color2' ),
+				array(
+					'label'       => esc_html__( 'Dots inverse color', 'screenr' ),
+					'section'     => $section_id,
+					'description' => '',
+				)
+			)
+		);
 
 		// Section Settings
 		foreach ( $this->get_sections() as $id => $args ) {
 
 			$name = $this->get_name( $id );
 
-			$wp_customize->add_setting( $id.'_em',
+			$wp_customize->add_setting(
+				$id . '_em',
 				array(
 					'sanitize_callback' => 'screenr_sanitize_text',
 				)
 			);
-			$wp_customize->add_control( new Screenr_Group_Settings_Heading_Control( $wp_customize,  $id.'_em',
-				array(
-					'type'        => 'group_heading',
-					'section'     => $section_id,
-					'title'       => esc_html( $args['label'] ),
+			$wp_customize->add_control(
+				new Screenr_Group_Settings_Heading_Control(
+					$wp_customize,
+					$id . '_em',
+					array(
+						'type'        => 'group_heading',
+						'section'     => $section_id,
+						'title'       => esc_html( $args['label'] ),
+					)
 				)
-			));
+			);
 
-			$wp_customize->add_setting( $name,
+			$wp_customize->add_setting(
+				$name,
 				array(
 					'sanitize_callback' => 'screenr_sanitize_checkbox',
 					'default'           => $args['default'],
-					//'transport'         => 'postMessage'
+					// 'transport'         => 'postMessage'
 				)
 			);
-			$wp_customize->add_control( $name,
+			$wp_customize->add_control(
+				$name,
 				array(
 					'label'       => __( 'Enable in section navigation', 'screenr' ),
 					'section'     => $section_id,
@@ -237,14 +260,16 @@ class Screenr_Dots_Navigation {
 				)
 			);
 
-			$wp_customize->add_setting( $name.'_inverse',
+			$wp_customize->add_setting(
+				$name . '_inverse',
 				array(
 					'sanitize_callback' => 'screenr_sanitize_checkbox',
 					'default'           => isset( $args['inverse'] ) ? $args['inverse'] : false,
-					//'transport'         => 'postMessage'
+					// 'transport'         => 'postMessage'
 				)
 			);
-			$wp_customize->add_control( $name.'_inverse',
+			$wp_customize->add_control(
+				$name . '_inverse',
 				array(
 					'label'       => __( 'Inverse dots color', 'screenr' ),
 					'section'     => $section_id,
@@ -252,15 +277,16 @@ class Screenr_Dots_Navigation {
 				)
 			);
 
-
-			$wp_customize->add_setting( $name.'_label',
+			$wp_customize->add_setting(
+				$name . '_label',
 				array(
 					'sanitize_callback' => 'sanitize_text_field',
 					'default'           => '',
-					//'transport'         => 'postMessage'
+					// 'transport'         => 'postMessage'
 				)
 			);
-			$wp_customize->add_control( $name.'_label',
+			$wp_customize->add_control(
+				$name . '_label',
 				array(
 					'label'       => __( 'Custom navigation label', 'screenr' ),
 					'section'     => $section_id,
@@ -277,7 +303,7 @@ class Screenr_Dots_Navigation {
 	 *
 	 * @return array
 	 */
-	function get_settings(){
+	function get_settings() {
 
 		$data = apply_filters( 'screenr_dots_navigation_get_settings', false );
 		if ( $data ) {
@@ -288,29 +314,36 @@ class Screenr_Dots_Navigation {
 		$sections = $this->get_sections();
 		foreach ( $sections as $id => $args ) {
 
-			if ( ! get_theme_mod( 'screenr_' . $id . '_disable', false )
-			     || ( isset( $args['show_section'] )  && $args['show_section'] )
+			if ( ! get_theme_mod( $id . '_disable', false )
+				 || ( isset( $args['show_section'] ) && $args['show_section'] )
 			) {
 				$name   = $this->get_name( $id );
 				$enable = get_theme_mod( $name, $args['default'] );
 				if ( $enable ) {
-					$el_id = sanitize_text_field( get_theme_mod( 'screenr_'.$id.'_id', $id, false ) );
+					$default_id = isset( $args['id'] ) && $args['id'] ? $args['id'] : $id;
+					$el_id = sanitize_text_field( get_theme_mod( $id . '_id', $default_id, false ) );
+
+					if ( ! $el_id ) {
+						$el_id = $default_id;
+					}
+
 					if ( ! $el_id ) {
 						$el_id = $id;
 					}
+
 					$data[ $el_id ] = array(
 						'id'     => $el_id,
-						'inverse' => get_theme_mod( $this->get_name( $id.'_inverse'), isset( $args['inverse'] ) ? $args['inverse'] : false  ),
+						'o_id' => $id,
+						'inverse' => get_theme_mod( $this->get_name( $id . '_inverse' ), isset( $args['inverse'] ) ? $args['inverse'] : false ),
 						'enable' => get_theme_mod( $name, $args['default'] ),
-						'title'  => get_theme_mod( 'screenr_' . $id . '_title', $args['title'] ),
+						'title'  => get_theme_mod( $id . '_title', $args['title'] ),
 					);
-					$custom_title = get_theme_mod( $this->get_name( $id.'_label' ), false );
-					if( $custom_title ) {
-						$data[ $id ]['title'] = $custom_title;
+					$custom_title = get_theme_mod( $this->get_name( $id . '_label' ), false );
+					if ( $custom_title ) {
+						$data[ $el_id ]['title'] = $custom_title;
 					}
 				}
 			}
-
 		}
 
 		return $data;
@@ -320,27 +353,31 @@ class Screenr_Dots_Navigation {
 	 * Add scripts
 	 * load only enabled
 	 */
-	function scripts(){
+	function scripts() {
 		if ( get_theme_mod( $this->get_name( '__enable' ), false ) ) {
 			if ( is_front_page() ) {
 				wp_enqueue_script( 'jquery.bully', get_template_directory_uri() . '/assets/js/jquery.bully.js', array( 'jquery' ), false, true );
-				wp_localize_script( 'jquery.bully', 'Screenr_Bully', array(
-					'enable_label' => get_theme_mod( $this->get_name( '__enable_label' ), true ) ?  true : false,
-					'sections' => $this->get_settings()
-				) );
+				wp_localize_script(
+					'jquery.bully',
+					'Screenr_Bully',
+					array(
+						'enable_label' => get_theme_mod( $this->get_name( '__enable_label' ), true ) ? true : false,
+						'sections' => $this->get_settings(),
+					)
+				);
 			}
-
 		}
 	}
 
 	/**
 	 * Add custom style
 	 * load only enabled
+	 *
 	 * @param $code
 	 *
 	 * @return string
 	 */
-	function custom_style(  $code = false ){
+	function custom_style( $code = false ) {
 		if ( get_theme_mod( $this->get_name( '__enable' ), false ) ) {
 			$color = sanitize_hex_color_no_hash( get_theme_mod( $this->get_name( '__color' ) ) );
 			if ( $color ) {
@@ -352,7 +389,7 @@ class Screenr_Dots_Navigation {
 				$code .= " body .c-bully.c-bully--inversed { color: #{$color2}; } ";
 			}
 			if ( is_customize_preview() ) {
-				//die( 'loadmoe' );
+				// die( 'loadmoe' );
 			}
 		}
 
@@ -362,7 +399,7 @@ class Screenr_Dots_Navigation {
 	/**
 	 * Init
 	 */
-	function init(){
+	function init() {
 		add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ) );
 		add_filter( 'screenr_custom_style', array( $this, 'custom_style' ) );
 	}

@@ -347,7 +347,7 @@ function screenr_theme_info_page() {
                     </div>
 
                     <div class="theme_info_right">
-                        <img src="<?php echo get_template_directory_uri(); ?>/screenshot.png" alt="Theme Screenshot" />
+                        <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/screenshot.png" alt="Theme Screenshot" />
                     </div>
                 </div>
             </div>
@@ -379,7 +379,7 @@ function screenr_theme_info_page() {
                             $select_2 .= '<option value="screenr">Screer</option>';
                             $select_2 .='</select>';
 
-                            echo $select . ' to '. $select_2;
+                            echo $select . ' ' . esc_html__( 'to', 'screenr' ) . ' ' . $select_2;
 
                             ?>
                             <input type="submit" class="button button-secondary" value="<?php esc_attr_e( 'Copy now', 'screenr' ); ?>">
