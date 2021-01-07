@@ -438,9 +438,9 @@ jQuery( document ).ready( function( $ ){
 
 
     var slider_number_item = $( '.swiper-slider .swiper-slide').length;
-	var autoplay = $( '.swiper-container' ).data( 'autoplay' ) || 0;
+	var autoplay = $( '.swiper-container:not(.elementor-image-carousel-wrapper)' ).data( 'autoplay' ) || 0;
 
-	var swiper = new Swiper('.swiper-container', {
+	var swiper = new Swiper('.swiper-container:not(.elementor-image-carousel-wrapper)', {
 		// Disable preloading of all images
 		preloadImages: false,
 		loop: slider_number_item >  1 ? true: false,
