@@ -54,41 +54,38 @@ $classes = 'section-news section-padding section-padding-lg';
 			</div>
 		<?php } ?>
 		<div class="section-content section-news-content">
-			<div class="row">
-				<div class="content-grid" id="section-news-posts" data-layout="<?php echo esc_attr( $layout ); ?>">
-					<?php if ( $latest_posts->have_posts() ) : ?>
-						<?php while ( $latest_posts->have_posts() ) :
-							$latest_posts->the_post(); ?>
-							<?php screenr_loop_post_item( $post_class ); ?>
-						<?php endwhile; ?>
-					<?php else : ?>
-						<?php get_template_part( 'template-parts/content', 'none' ); ?>
-					<?php endif; ?>
-				</div>
-				<div class="clear"></div>
-				<?php
-				$t = get_theme_mod( 'news_loadmore', 'ajax' );
-				if ( $t != 'hide' ) {
-					$label = get_theme_mod( 'news_more_text' );
-					$icon_name = 'fa-angle-double-down';
-					if ( $t == 'link' ) {
-						$icon_name = 'fa-angle-double-right';
-					}
-					if ( ! $label ) {
-						if ( $t == 'link' ) {
-							$label = esc_html__( 'Read Our Blog', 'screenr' );
-
-						} else {
-							$label = esc_html__( 'Load More News', 'screenr' );
-						}
-					}
-					?>
-				<div class="content-grid-loadmore  blt-<?php echo esc_attr( $t ); ?>">
-					<a href="<?php echo ( $t == 'link' ) ? esc_url( get_theme_mod( 'news_more_link' ) ) : '#'; ?>" class="btn btn-theme-primary-outline"><?php echo esc_html( $label ); ?><i aria-hidden="true" class="fa <?php echo esc_attr( $icon_name ); ?>"></i></a>
-				</div>
-				<?php } ?>
-
+			<div class="content-grid row" id="section-news-posts" data-layout="<?php echo esc_attr( $layout ); ?>">
+				<?php if ( $latest_posts->have_posts() ) : ?>
+					<?php while ( $latest_posts->have_posts() ) :
+						$latest_posts->the_post(); ?>
+						<?php screenr_loop_post_item( $post_class ); ?>
+					<?php endwhile; ?>
+				<?php else : ?>
+					<?php get_template_part( 'template-parts/content', 'none' ); ?>
+				<?php endif; ?>
 			</div>
+			<div class="clear"></div>
+			<?php
+			$t = get_theme_mod( 'news_loadmore', 'ajax' );
+			if ( $t != 'hide' ) {
+				$label = get_theme_mod( 'news_more_text' );
+				$icon_name = 'fa-angle-double-down';
+				if ( $t == 'link' ) {
+					$icon_name = 'fa-angle-double-right';
+				}
+				if ( ! $label ) {
+					if ( $t == 'link' ) {
+						$label = esc_html__( 'Read Our Blog', 'screenr' );
+
+					} else {
+						$label = esc_html__( 'Load More News', 'screenr' );
+					}
+				}
+				?>
+			<div class="content-grid-loadmore  blt-<?php echo esc_attr( $t ); ?>">
+				<a href="<?php echo ( $t == 'link' ) ? esc_url( get_theme_mod( 'news_more_link' ) ) : '#'; ?>" class="btn btn-theme-primary-outline"><?php echo esc_html( $label ); ?><i aria-hidden="true" class="fa <?php echo esc_attr( $icon_name ); ?>"></i></a>
+			</div>
+			<?php } ?>
 		</div>
 	</div>
 <?php if ( ! screenr_is_selective_refresh() ) { ?>
