@@ -339,7 +339,7 @@ jQuery( document ).ready( function( $ ){
 
     // Other scroll to elements
     jQuery( 'body' ).on('click', '.swiper-slide a[href*="#"]:not([href="#"]), .parallax-content a[href*="#"]:not([href="#"]), .back-top-top', function(event){
-        if (!/^#/.test(this.href)) return;
+        if (this.host != window.location.host) return;
         event.preventDefault();
 		if ( $( '.nav-menu' ).hasClass( 'nav-menu-mobile' ) ) {
 			$( '#nav-toggle' ).trigger( 'click' );
