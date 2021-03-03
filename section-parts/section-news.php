@@ -1,13 +1,13 @@
 <?php
-$title      = get_theme_mod( 'news_title', esc_html__( 'Latest News', 'screenr' ) );
-$subtitle   = get_theme_mod( 'news_subtitle', esc_html__( 'Section subtitle', 'screenr' ) );
-$desc       = get_theme_mod( 'news_desc' );
-$cat_id     = absint( get_theme_mod( 'news_cat' ) );
+$title    = get_theme_mod( 'news_title', esc_html__( 'Latest News', 'screenr' ) );
+$subtitle = get_theme_mod( 'news_subtitle', esc_html__( 'Section subtitle', 'screenr' ) );
+$desc     = get_theme_mod( 'news_desc' );
+$cat_id   = absint( get_theme_mod( 'news_cat' ) );
 
 $args = array(
 	'posts_per_page'      => absint( get_theme_mod( 'news_num_post', 3 ) ),
 	'ignore_sticky_posts' => true,
-	'post_status' => 'publish',
+	'post_status'         => 'publish',
 );
 
 if ( $cat_id > 0 ) {
@@ -45,19 +45,27 @@ $classes = 'section-news section-padding section-padding-lg';
 	<div class="container">
 		<?php if ( $title || $subtitle || $desc ) { ?>
 			<div class="section-title-area">
-				<?php if ( $subtitle ) {
-					?><div class="section-subtitle"><?php echo esc_html( $subtitle ); ?></div><?php } ?>
-				<?php if ( $title ) {
-					?><h2 class="section-title"><?php echo esc_html( $title ); ?></h2><?php } ?>
-				<?php if ( $desc ) {
-					?><div class="section-desc"><?php echo apply_filters( 'screenr_content_text', $desc ); ?></div><?php } ?>
+				<?php
+				if ( $subtitle ) {
+					?>
+					<div class="section-subtitle"><?php echo esc_html( $subtitle ); ?></div><?php } ?>
+				<?php
+				if ( $title ) {
+					?>
+					<h2 class="section-title"><?php echo esc_html( $title ); ?></h2><?php } ?>
+				<?php
+				if ( $desc ) {
+					?>
+					<div class="section-desc"><?php echo apply_filters( 'screenr_content_text', $desc ); ?></div><?php } ?>
 			</div>
 		<?php } ?>
 		<div class="section-content section-news-content">
 			<div class="content-grid row" id="section-news-posts" data-layout="<?php echo esc_attr( $layout ); ?>">
 				<?php if ( $latest_posts->have_posts() ) : ?>
-					<?php while ( $latest_posts->have_posts() ) :
-						$latest_posts->the_post(); ?>
+					<?php
+					while ( $latest_posts->have_posts() ) :
+						$latest_posts->the_post();
+						?>
 						<?php screenr_loop_post_item( $post_class ); ?>
 					<?php endwhile; ?>
 				<?php else : ?>
@@ -68,7 +76,7 @@ $classes = 'section-news section-padding section-padding-lg';
 			<?php
 			$t = get_theme_mod( 'news_loadmore', 'ajax' );
 			if ( $t != 'hide' ) {
-				$label = get_theme_mod( 'news_more_text' );
+				$label     = get_theme_mod( 'news_more_text' );
 				$icon_name = 'fa-angle-double-down';
 				if ( $t == 'link' ) {
 					$icon_name = 'fa-angle-double-right';

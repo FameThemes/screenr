@@ -1,4 +1,7 @@
 == Changelog ==
+= 1.2.3 =
+* FIX conflict slider with Elementor.
+
 = 1.2.2 =
 * FIX remove deprecated function.
 
