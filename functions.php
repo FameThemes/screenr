@@ -7,6 +7,24 @@
  * @package Screenr
  */
 
+/**
+ * is Elementor editor?
+ *
+ * @return bool
+ */
+if ( ! function_exists( 'screenr_elementor_is_editor' ) ) :
+    function screenr_elementor_is_editor()
+    {
+        if (class_exists('Elementor\Plugin')) {
+            if (Elementor\Plugin::$instance->preview->is_preview_mode() || Elementor\Plugin::$instance->editor->is_edit_mode()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+endif;
+
 if ( ! function_exists( 'screenr_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -258,11 +276,11 @@ function screenr_scripts() {
 
 	wp_enqueue_style( 'screenr-fonts', screenr_fonts_url(), array(), null );
 	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css', false, '4.0.0' );
-	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', false, '4.0.0' );
+	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', false, '5.0.0' );
 	wp_enqueue_style( 'screenr-style', get_template_directory_uri() . '/style.css' );
 
 	wp_enqueue_script( 'screenr-plugin', get_template_directory_uri() . '/assets/js/plugins.js', array( 'jquery' ), '4.0.0', true );
-	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array(), '4.0.0', true );
+    wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', array(), '5.0.0', true );
 
 	$screenr_js = array(
 		'ajax_url'           => admin_url( 'admin-ajax.php' ),
