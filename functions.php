@@ -13,16 +13,14 @@
  * @return bool
  */
 if ( ! function_exists( 'screenr_elementor_is_editor' ) ) :
-    function screenr_elementor_is_editor()
-    {
-        if (class_exists('Elementor\Plugin')) {
-            if (Elementor\Plugin::$instance->preview->is_preview_mode() || Elementor\Plugin::$instance->editor->is_edit_mode()) {
-                return true;
-            }
-        }
-
-        return false;
-    }
+	function screenr_elementor_is_editor() {
+		if ( class_exists( 'Elementor\Plugin' ) ) {
+			if ( Elementor\Plugin::$instance->preview->is_preview_mode() || Elementor\Plugin::$instance->editor->is_edit_mode() ) {
+				return true;
+			}
+		}
+		return false;
+	}
 endif;
 
 if ( ! function_exists( 'screenr_setup' ) ) :
@@ -139,7 +137,7 @@ if ( ! function_exists( 'screenr_setup' ) ) :
 			'recommend-plugins',
 			array(
 				'contact-form-7' => array(
-					'name' => esc_html__( 'Contact Form 7', 'screenr' ),
+					'name'            => esc_html__( 'Contact Form 7', 'screenr' ),
 					'active_filename' => 'contact-form-7/wp-contact-form-7.php',
 				),
 			)
@@ -271,16 +269,16 @@ add_action( 'after_setup_theme', 'screenr_editor_styles' );
  * Enqueue scripts and styles.
  */
 function screenr_scripts() {
-	$theme = wp_get_theme();
+	$theme   = wp_get_theme();
 	$version = $theme->get( 'Version' );
 
 	wp_enqueue_style( 'screenr-fonts', screenr_fonts_url(), array(), null );
 	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css', false, '4.0.0' );
-	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', false, '5.0.0' );
+	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', false, '4.0.0' );
 	wp_enqueue_style( 'screenr-style', get_template_directory_uri() . '/style.css' );
 
 	wp_enqueue_script( 'screenr-plugin', get_template_directory_uri() . '/assets/js/plugins.js', array( 'jquery' ), '4.0.0', true );
-    wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', array(), '5.0.0', true );
+	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', array(), '4.0.0', true );
 
 	$screenr_js = array(
 		'ajax_url'           => admin_url( 'admin-ajax.php' ),
@@ -295,10 +293,10 @@ function screenr_scripts() {
 	);
 
 	// Load gallery scripts
-	$galley_disable  = get_theme_mod( 'gallery_disable' ) == 1 ? true : false;
+	$galley_disable = get_theme_mod( 'gallery_disable' ) == 1 ? true : false;
 	if ( ! $galley_disable || is_customize_preview() ) {
 		$screenr_js['gallery_enable'] = 1;
-		$display = get_theme_mod( 'gallery_display', 'grid' );
+		$display                      = get_theme_mod( 'gallery_display', 'grid' );
 		if ( ! is_customize_preview() ) {
 			switch ( $display ) {
 				case 'masonry':
