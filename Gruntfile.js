@@ -68,6 +68,7 @@ module.exports = function( grunt ) {
                     '!phpunit.xml.dist',
                     '!*.sh',
                     '!*.map',
+                    '!*.js.map',
                     '!Gruntfile.js',
                     '!package.json',
                     '!.gitignore',
