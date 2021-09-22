@@ -161,6 +161,11 @@ if ( ! function_exists( 'screenr_setup' ) ) :
 		 */
 		add_theme_support( 'editor-styles' );
 		add_theme_support( 'align-wide' );
+
+		// Disables the block editor from managing widgets in the Gutenberg plugin.
+		add_filter( 'gutenberg_use_widgets_block_editor', '__return_false' );
+		// Disables the block editor from managing widgets.
+		add_filter( 'use_widgets_block_editor', '__return_false' );
 	}
 endif;
 add_action( 'after_setup_theme', 'screenr_setup' );
