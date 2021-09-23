@@ -2709,6 +2709,12 @@ ul.hours span {
   display: table-cell;
   vertical-align: middle;
 }
+.swiper-slider .swiper-container:not(.elementor-image-carousel-wrapper):not(.jp-carousel-swiper-container) .swiper-button-prev:after,
+.swiper-slider .swiper-container:not(.elementor-image-carousel-wrapper):not(.jp-carousel-swiper-container) .swiper-button-next:after,
+.swiper-slider .swiper-container:not(.elementor-image-carousel-wrapper):not(.jp-carousel-swiper-container) .swiper-container-rtl .swiper-button-next:after,
+.swiper-slider .swiper-container:not(.elementor-image-carousel-wrapper):not(.jp-carousel-swiper-container) .swiper-container-rtl .swiper-button-prev:after {
+  content: none;
+}
 
 .slide_content {
   font-size: 22px;

@@ -441,6 +441,18 @@
 			vertical-align: middle;
 		}
 	}
+
+	.swiper-container {
+		&:not(.elementor-image-carousel-wrapper):not(.jp-carousel-swiper-container) {
+			.swiper-button-prev:after,
+			.swiper-button-next:after, 
+			.swiper-container-rtl .swiper-button-next:after,
+			.swiper-container-rtl .swiper-button-prev:after {
+				content: none;
+			}
+		}
+	}
+	
 }
 
 .slide_content {
