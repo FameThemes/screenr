@@ -339,6 +339,7 @@ jQuery( document ).ready( function( $ ){
 
     // Other scroll to elements
     jQuery( 'body' ).on('click', '.swiper-slide a[href*="#"]:not([href="#"]), .parallax-content a[href*="#"]:not([href="#"]), .back-top-top', function(event){
+        if (this.host != window.location.host) return;
         event.preventDefault();
 		if ( $( '.nav-menu' ).hasClass( 'nav-menu-mobile' ) ) {
 			$( '#nav-toggle' ).trigger( 'click' );
@@ -440,7 +441,7 @@ jQuery( document ).ready( function( $ ){
     var slider_number_item = $( '.swiper-slider .swiper-slide').length;
 	var autoplay = $( '.swiper-container:not(.elementor-image-carousel-wrapper)' ).data( 'autoplay' ) || 0;
 
-	var swiper = new Swiper('.swiper-container:not(.elementor-image-carousel-wrapper)', {
+	var swiper = new Swiper('.swiper-container:not(.elementor-image-carousel-wrapper):not(.jp-carousel-swiper-container)', {
 		// Disable preloading of all images
 		preloadImages: false,
 		loop: slider_number_item >  1 ? true: false,
