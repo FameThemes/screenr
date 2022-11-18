@@ -933,7 +933,7 @@ function screenr_customize_register( $wp_customize ) {
                     'type'        => 'group_heading_message',
                     'title'       => esc_html__('Drag & Drop Section Orders', 'screenr'),
                     'section'     => 'front_page_sections_order_styling',
-                    'description' => sprintf( esc_html__('Check out the %1s version for full control over the frontpage SECTIONS ORDER!', 'screenr'), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ),
+                    'description' => sprintf( esc_html__('Check out the %s version for full control over the frontpage SECTIONS ORDER!', 'screenr'), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ),
     			)
     		)
     	);
@@ -948,7 +948,7 @@ function screenr_customize_register( $wp_customize ) {
                     'type'        => 'group_heading_message',
                     'title'       => esc_html__('Advanced Section Styling', 'screenr'),
                     'section'     => 'front_page_sections_order_styling',
-                    'description' => sprintf( esc_html__('Check out the %1s version for full control over the section styling which includes background color, image, video, parallax effect, custom style and more ...', 'screenr'), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ),
+                    'description' => sprintf( esc_html__('Check out the %1$s version for full control over the section styling which includes background color, image, video, parallax effect, custom style and more ...', 'screenr'), '<a target="_blank" href="'. screenr_get_plus_url() .'">Screenr Plus</a>' ),
     			)
     		)
     	);
