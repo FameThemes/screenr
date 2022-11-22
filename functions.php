@@ -266,7 +266,10 @@ add_action( 'widgets_init', 'screenr_widgets_init' );
  * Add Google Fonts, editor styles to WYSIWYG editor
  */
 function screenr_editor_styles() {
-	add_editor_style( array( 'assets/css/editor-style.css', screenr_fonts_url() ) );
+	$font_url = screenr_fonts_url();
+	if ( $font_url ) {
+		add_editor_style( array( 'assets/css/editor-style.css', $font_url ) );
+	}
 }
 add_action( 'after_setup_theme', 'screenr_editor_styles' );
 
@@ -276,8 +279,12 @@ add_action( 'after_setup_theme', 'screenr_editor_styles' );
 function screenr_scripts() {
 	$theme   = wp_get_theme();
 	$version = $theme->get( 'Version' );
-
-	wp_enqueue_style( 'screenr-fonts', screenr_fonts_url(), array(), null );
+	
+	$font_url = screenr_fonts_url();
+	if ( $font_url ) {
+		wp_enqueue_style( 'screenr-fonts', $font_url, array(), null );
+	}
+	
 	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css', false, '4.0.0' );
 	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', false, '4.0.0' );
 	wp_enqueue_style( 'screenr-style', get_template_directory_uri() . '/style.css' );
@@ -347,6 +354,18 @@ if ( ! function_exists( 'screenr_fonts_url' ) ) :
 	 */
 	function screenr_fonts_url() {
 		$fonts_url = '';
+		
+		/**
+		 * @since 1.2.5 Check if google is disabled function then return false.
+		 */
+		$settings = false;
+		if ( function_exists( 'Screenr\GoogleFonts\Downloader\get_download_settings' ) ) {
+			$settings = Screenr\GoogleFonts\Downloader\get_download_settings();
+		}
+		
+		if ( $settings && $settings['disable'] ) {
+			return false;
+		}
 
 		/*
 		  Translators: If there are characters in your language that are not
@@ -394,6 +413,14 @@ require get_template_directory() . '/inc/template-tags.php';
  * Custom functions that act independently of the theme templates.
  */
 require get_template_directory() . '/inc/extras.php';
+
+
+/**
+ * Download google font to local.
+ *
+ * @since 1.2.5
+ */
+require get_template_directory() . '/inc/google-fonts-downloader/downloader.php';
 
 /**
  * Customizer additions.

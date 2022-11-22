@@ -1,4 +1,8 @@
 == Changelog ==
+= 1.2.5 =
+* Add new google downloader. Now you can save & load google fonts to your server.
+* Add new filter screenr_page_cover_heading_item to page header cover item.
+
 = 1.2.4 =
 * FIX conflict Swiper with Jetpack.
 * FIX navigation dot issue.

@@ -872,7 +872,45 @@ function screenr_customize_register( $wp_customize ) {
     			)
     		)
     	);
+    	
+    	
+    
+    /* Google settings
+    ----------------------------------------------------------------------*/
+    /**
+	 * @since  1.2.5
+	 */
+    $wp_customize->add_section( 'google_font_section' ,
+		array(
+			'priority'    => 200,
+			'title'       => esc_html__( 'Google Fonts', 'screenr' ),
+			'description' => '',
+			'panel'       => 'screenr_options',
+		)
+	);
 
+	$wp_customize->register_control_type('Screenr\GoogleFonts\Downloader\Customize_Control');
+		// OnePress_Misc_Control
+		$wp_customize->add_setting(
+			'google_font_settings',
+			array(
+				'sanitize_callback' => 'screenr_sanitize_text',
+				'transport'         => 'postMessage',
+			)
+		);
+		$wp_customize->add_control(
+			new Screenr\GoogleFonts\Downloader\Customize_Control(
+				$wp_customize,
+				'google_font_settings',
+				array(
+					'label'        => esc_html__('Google Fonts', 'screenr'),
+					'section'      => 'google_font_section',
+					'priority'    => 19,
+				)
+			)
+		);
+		
+	
 
     /* Theme styling
     ----------------------------------------------------------------------*/

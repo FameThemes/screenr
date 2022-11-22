@@ -9,8 +9,12 @@ class Screenr_Editor {
 		add_action( 'enqueue_block_editor_assets', array( $this, 'admin_assets' ) );
 	}
 	public function admin_assets() {
-		wp_enqueue_style( 'screenr-admin-editor-fonts', screenr_fonts_url() );
-
+	
+		$font_url = screenr_fonts_url();
+		if ( $font_url ) {
+			wp_enqueue_style( 'screenr-admin-editor-fonts', screenr_fonts_url() );
+		}
+		
 		$heading_typography = get_theme_mod( 'screenr_typo_heading' );
 		$p_typography = get_theme_mod( 'screenr_typo_p' );
 
