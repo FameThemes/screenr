@@ -78,6 +78,11 @@ function download_google_fonts($font_link)
 	if (!in_array($check_url['host'], ['fonts.gstatic.com', 'fonts.googleapis.com'])) {
 		return $font_link;
 	}
+	
+	$saved_settings = get_download_settings();
+	if ( $saved_settings['disable'] ) {
+		return false;
+	}
 
 	$theme_name = get_stylesheet();
 
@@ -100,7 +105,7 @@ function download_google_fonts($font_link)
 		'svg' => false,
 	];
 
-	$saved_settings = get_download_settings();
+	
 	foreach ($download_types as $format => $default) {
 		if ('woff2' != $format) {
 			$download_types[$format] = isset($saved_settings[$format]) ? $saved_settings[$format] : $default;
