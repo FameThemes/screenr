@@ -1,10 +1,11 @@
+@charset "UTF-8";
 /*
 Theme Name: Screenr
 Theme URI: https://www.famethemes.com/themes/screenr
 Author: FameThemes
 Author URI: https://www.famethemes.com
 Description: Big - Bold and stylish, Screenr is a multiuse fullscreen theme well suited for business, portfolio, digital agency, product showcase, freelancers and everyone else who appreciate good design. Also with the flexible of the header and navigation, it can be use for one page or multiple pages website. The theme was built on Bootstrap 4, so you know it contains clean, precise code that makes for a highly streamlined site. (Live preview : http://www.famethemes.com/preview/?theme=Screenr)
-Version: 1.2.3
+Version: 1.2.5
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: screenr
@@ -287,7 +288,7 @@ abbr,
 acronym,
 dfn {
   cursor: help;
-  font-size: .95em;
+  font-size: 0.95em;
   text-transform: uppercase;
   border-bottom: 1px dotted #e9e9e9;
   letter-spacing: 1px;
@@ -372,7 +373,7 @@ fieldset {
   border: 1px solid #e9e9e9;
 }
 
-input[type="reset"], input[type="submit"], input[type="submit"] {
+input[type=reset], input[type=submit], input[type=submit] {
   cursor: pointer;
   background: #e86240;
   border: none;
@@ -392,12 +393,12 @@ input[type="reset"], input[type="submit"], input[type="submit"] {
   font-weight: 600;
   font-size: 13px;
 }
-input[type="reset"]:hover, input[type="submit"]:hover, input[type="submit"]:hover {
+input[type=reset]:hover, input[type=submit]:hover, input[type=submit]:hover {
   opacity: 0.8;
 }
 
-input[type="button"]:hover, input[type="button"]:focus, input[type="reset"]:hover,
-input[type="reset"]:focus, input[type="submit"]:hover, input[type="submit"]:focus,
+input[type=button]:hover, input[type=button]:focus, input[type=reset]:hover,
+input[type=reset]:focus, input[type=submit]:hover, input[type=submit]:focus,
 button:hover, button:focus {
   cursor: pointer;
 }
@@ -416,19 +417,19 @@ select {
 }
 
 textarea,
-input[type="date"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="email"],
-input[type="month"],
-input[type="number"],
-input[type="password"],
-input[type="search"],
-input[type="tel"],
-input[type="text"],
-input[type="time"],
-input[type="url"],
-input[type="week"] {
+input[type=date],
+input[type=datetime],
+input[type=datetime-local],
+input[type=email],
+input[type=month],
+input[type=number],
+input[type=password],
+input[type=search],
+input[type=tel],
+input[type=text],
+input[type=time],
+input[type=url],
+input[type=week] {
   padding: 13px 13px;
   max-width: 100%;
   border: 0px;
@@ -446,19 +447,19 @@ input[type="week"] {
   color: #222222;
 }
 textarea:focus,
-input[type="date"]:focus,
-input[type="datetime"]:focus,
-input[type="datetime-local"]:focus,
-input[type="email"]:focus,
-input[type="month"]:focus,
-input[type="number"]:focus,
-input[type="password"]:focus,
-input[type="search"]:focus,
-input[type="tel"]:focus,
-input[type="text"]:focus,
-input[type="time"]:focus,
-input[type="url"]:focus,
-input[type="week"]:focus {
+input[type=date]:focus,
+input[type=datetime]:focus,
+input[type=datetime-local]:focus,
+input[type=email]:focus,
+input[type=month]:focus,
+input[type=number]:focus,
+input[type=password]:focus,
+input[type=search]:focus,
+input[type=tel]:focus,
+input[type=text]:focus,
+input[type=time]:focus,
+input[type=url]:focus,
+input[type=week]:focus {
   transition: all 0.2s linear;
   -moz-transition: all 0.2s linear;
   -webkit-transition: all 0.2s linear;
@@ -471,7 +472,7 @@ button::-moz-focus-inner {
   padding: 0;
 }
 
-input[type="radio"], input[type="checkbox"] {
+input[type=radio], input[type=checkbox] {
   margin: 0 10px;
 }
 
@@ -595,10 +596,10 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .transition5 {
-  -webkit-transition: all .5s ease;
-  -moz-transition: all .5s ease;
-  -o-transition: all .5s ease;
-  transition: all .5s ease;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 /*--------------------------------------------------------------
@@ -700,7 +701,7 @@ input[type="radio"], input[type="checkbox"] {
   z-index: 99;
   -webkit-transition: all 1s ease-out;
   /* Safari */
-  transition: all .5s ease-out;
+  transition: all 0.5s ease-out;
 }
 .site-header.transparent {
   background: transparent;
@@ -938,8 +939,8 @@ input[type="radio"], input[type="checkbox"] {
 .nav-menu li {
   white-space: nowrap;
   *white-space: normal;
-  -webkit-transition: background .2s;
-  transition: background .2s;
+  -webkit-transition: background 0.2s;
+  transition: background 0.2s;
 }
 .nav-menu li.current-menu-item > a {
   color: #e86240;
@@ -1114,7 +1115,7 @@ input[type="radio"], input[type="checkbox"] {
     font-size: 22px;
   }
   .nav-menu.nav-menu-mobile .nav-toggle-dropdown > .nav-toggle-subarrow .fa-angle-down:before {
-    content: "\f106" !important;
+    content: "" !important;
   }
   .nav-menu.nav-menu-mobile .nav-toggle-dropdown > ul {
     display: block !important;
@@ -1157,7 +1158,7 @@ input[type="radio"], input[type="checkbox"] {
   height: 3px;
   width: 24px;
   background: #000000;
-  content: '';
+  content: "";
   right: 0;
   -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
@@ -1260,7 +1261,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 .site-footer .footer-widgets.section-padding {
   padding: 60px 0px 20px 0px;
-  padding:  3.75rem 0px 1.25rem 0px;
+  padding: 3.75rem 0rem 1.25rem 0rem;
 }
 .site-footer .sidebar .widget a {
   color: #bbbbbb;
@@ -1493,7 +1494,7 @@ input[type="radio"], input[type="checkbox"] {
 ------------------------------*/
 .entry-more a {
   padding: 8px 15px 10px;
-  padding:  0.5rem 0.9375rem 0.625rem;
+  padding: 0.5rem 0.9375rem 0.625rem;
   font-family: "Montserrat", Helvetica, Arial, sans-serif;
 }
 .entry-more a i {
@@ -1622,7 +1623,7 @@ input[type="radio"], input[type="checkbox"] {
   position: relative;
 }
 .sticky .entry-title:after {
-  content: "\f276";
+  content: "";
   display: inline-block;
   font-family: "FontAwesome";
   font-style: normal;
@@ -1645,7 +1646,7 @@ input[type="radio"], input[type="checkbox"] {
   margin-bottom: 15px;
   margin-top: 5px;
 }
-.wp-caption img[class*="wp-image-"] {
+.wp-caption img[class*=wp-image-] {
   display: block;
   max-width: 100%;
 }
@@ -2162,7 +2163,7 @@ section > .customize-partial-edit-shortcut button {
 .sidebar .widget .search-form .search-field {
   width: 100% !important;
   padding: 10px 15px;
-  padding:  0.625rem 0.9375rem;
+  padding: 0.625rem 0.9375rem;
 }
 .sidebar .widget .search-form .search-submit {
   padding: 12px 23px 12px;
@@ -2291,17 +2292,17 @@ ul.hours span {
 ------------------------------*/
 .section-padding {
   padding: 50px 0px;
-  padding:  3.125rem 0px;
+  padding: 3.125rem 0rem;
 }
 
 .section-padding-lg {
   padding: 70px 0px;
-  padding:  4.375rem 0px;
+  padding: 4.375rem 0rem;
 }
 
 .section-padding-larger {
   padding: 100px 0px;
-  padding:  6.25rem 0px;
+  padding: 6.25rem 0rem;
 }
 
 .section-padding-empty {
@@ -2381,7 +2382,7 @@ ul.hours span {
   display: inline-block;
   position: relative;
   margin: 0px 0px 10px 0px;
-  margin:  0px 0px 0.625rem 0px;
+  margin: 0rem 0rem 0.625rem 0rem;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
@@ -2817,7 +2818,7 @@ ul.hours span {
 .features-content .features__item .features__item-content {
   text-align: center;
   padding: 60px 50px;
-  padding:  3.75rem 3.125rem;
+  padding: 3.75rem 3.125rem;
 }
 .features-content .features__item .features__item-content p:last-of-type {
   margin-bottom: 0px;
@@ -2830,7 +2831,7 @@ ul.hours span {
   border-color: #fff;
   color: #FFF;
   padding: 5px 29px 7px;
-  padding:  0.3125rem 1.8125rem 0.4375rem;
+  padding: 0.3125rem 1.8125rem 0.4375rem;
 }
 .features-content .features__item .features__item-content .btn-secondary-outline:hover {
   color: #777777;
@@ -2904,7 +2905,7 @@ ul.hours span {
 }
 .services-content .card-block, .services-content .card-img-overlay {
   padding: 28px 30px 30px;
-  padding:  1.75rem 1.875rem 1.875rem;
+  padding: 1.75rem 1.875rem 1.875rem;
 }
 .services-content .card-title {
   margin-bottom: 15px;
@@ -3055,32 +3056,32 @@ ul.hours span {
 }
 @media screen and (max-width: 940px) {
   .client-4-cols .client-col,
-  .client-5-cols .client-col,
-  .client-6-cols .client-col {
+.client-5-cols .client-col,
+.client-6-cols .client-col {
     width: 50%;
   }
   .client-4-cols .client-col:nth-child(2n+1),
-  .client-5-cols .client-col:nth-child(2n+1),
-  .client-6-cols .client-col:nth-child(2n+1) {
+.client-5-cols .client-col:nth-child(2n+1),
+.client-6-cols .client-col:nth-child(2n+1) {
     clear: left;
   }
 }
 /* Section: Contact
 ------------------------------*/
 .section-contact textarea,
-.section-contact input[type="date"],
-.section-contact input[type="datetime"],
-.section-contact input[type="datetime-local"],
-.section-contact input[type="email"],
-.section-contact input[type="month"],
-.section-contact input[type="number"],
-.section-contact input[type="password"],
-.section-contact input[type="search"],
-.section-contact input[type="tel"],
-.section-contact input[type="text"],
-.section-contact input[type="time"],
-.section-contact input[type="url"],
-.section-contact input[type="week"] {
+.section-contact input[type=date],
+.section-contact input[type=datetime],
+.section-contact input[type=datetime-local],
+.section-contact input[type=email],
+.section-contact input[type=month],
+.section-contact input[type=number],
+.section-contact input[type=password],
+.section-contact input[type=search],
+.section-contact input[type=tel],
+.section-contact input[type=text],
+.section-contact input[type=time],
+.section-contact input[type=url],
+.section-contact input[type=week] {
   width: 100%;
 }
 .section-contact .contact-submit {
@@ -3498,7 +3499,7 @@ ul.hours span {
 }
 
 .mfp-container:before {
-  content: '';
+  content: "";
   display: inline-block;
   height: 100%;
   vertical-align: middle;
@@ -3675,7 +3676,7 @@ button::-moz-focus-inner {
 .mfp-arrow:before, .mfp-arrow:after,
 .mfp-arrow .mfp-b,
 .mfp-arrow .mfp-a {
-  content: '';
+  content: "";
   display: block;
   width: 0;
   height: 0;
@@ -3775,7 +3776,7 @@ img.mfp-img {
   line-height: 0;
 }
 .mfp-figure:after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 40px;
@@ -4704,22 +4705,22 @@ button.swiper-pagination-bullet {
   left: 15px;
 }
 .owl-carousel .owl-buttons .owl-prev .lg-icon::before {
-  content: "\e094";
+  content: "";
 }
 .owl-carousel .owl-buttons .owl-next {
   right: 15px;
 }
 .owl-carousel .owl-buttons .owl-next .lg-icon::before {
-  content: "\e095";
+  content: "";
 }
 
 /**
 * JQuery Bullly
 * @see https://github.com/pixelgrade/rellax/blob/gh-pages/assets/css/bully.css
  */
-[class*="c-bully"],
-[class*="c-bully"]:before,
-[class*="c-bully"]:after {
+[class*=c-bully],
+[class*=c-bully]:before,
+[class*=c-bully]:after {
   box-sizing: border-box;
 }
 
@@ -4768,7 +4769,7 @@ button.swiper-pagination-bullet {
   transform: scale(0.6) translateY(-50%);
 }
 .c-bully__title::after {
-  content: '';
+  content: "";
   width: 0;
   height: 0;
   border-style: solid;
@@ -4854,5 +4855,3 @@ button.swiper-pagination-bullet {
     transform: scale(1);
   }
 }
-
-/*# sourceMappingURL=style.css.map */

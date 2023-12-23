@@ -826,7 +826,7 @@ function screenr_page_header_cover() {
 				$html .= '<div class="swiper-slide-intro">';
 				$html .= '<div class="swiper-intro-inner"' . $style . '>';
 				if ( $item['title'] ) {
-					$html .= '<h2 class="swiper-slide-heading">' . wp_kses_post( $item['title'] ) . '</h2>';
+					$html .= apply_filters( 'screenr_page_cover_heading_item', '<h2 class="swiper-slide-heading">' . wp_kses_post( $item['title'] ) . '</h2>', $item );
 				}
 				if ( $item['desc'] ) {
 					$html .= '<div class="swiper-slide-desc">' . apply_filters( 'screenr_content_text', $item['desc'] ) . '</div>';

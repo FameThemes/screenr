@@ -168,6 +168,7 @@ jQuery( document ).ready( function( $ ){
 	jQuery('#nav-toggle').on('click', function(event){
 		event.preventDefault();
 		jQuery('#nav-toggle').toggleClass('nav-is-visible');
+		jQuery('body').toggleClass('body-nav-is-visible');
 		jQuery('.main-navigation .nav-menu').toggleClass("nav-menu-mobile");
 		jQuery('.header-widget').toggleClass("header-widget-mobile");
 
