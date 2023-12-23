@@ -5,9 +5,6 @@ module.exports = function( grunt ) {
         pkg: grunt.file.readJSON('package.json'),
         // Autoprefixer.
         postcss: {
-            options: {
-				style: 'expanded',
-            },
             dist: {
                 src: ['assets/css/*.css', '*.css']
             }
