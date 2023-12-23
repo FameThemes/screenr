@@ -278,7 +278,8 @@ function screenr_scripts() {
 	$version = $theme->get( 'Version' );
 
 	wp_enqueue_style( 'screenr-fonts', screenr_fonts_url(), array(), null );
-	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.min.css', false, '4.0.0' );
+	wp_enqueue_style('onepress-fa', get_template_directory_uri() . '/assets/fontawesome-v6/css/all.min.css', array(), '6.5.1');
+	wp_enqueue_style('onepress-fa-shims', get_template_directory_uri() . '/assets/fontawesome-v6/css/v4-shims.min.css', array(), '6.5.1');
 	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', false, '4.0.0' );
 	wp_enqueue_style( 'screenr-style', get_template_directory_uri() . '/style.css' );
 
