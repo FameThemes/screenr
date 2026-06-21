@@ -235,20 +235,22 @@ function screenr_render_recommend_plugins( $recommend_plugins = array() ){
 function screenr_admin_dismiss_actions(){
     // delete_option( 'screenr_actions_dismiss' );
     if ( isset( $_GET['screenr_action_notice'] ) ) {
+        if ( ! current_user_can( 'edit_theme_options' ) ) {
+            return;
+        }
         $actions_dismiss =  get_option( 'screenr_actions_dismiss' );
         if ( ! is_array( $actions_dismiss ) ) {
             $actions_dismiss = array();
         }
-        $action_key = stripslashes( $_GET['screenr_action_notice'] );
+        $action_key = sanitize_text_field( wp_unslash( $_GET['screenr_action_notice'] ) );
         if ( isset( $actions_dismiss[ $action_key ] ) &&  $actions_dismiss[ $action_key ] == 'hide' ){
             $actions_dismiss[ $action_key ] = 'show';
         } else {
             $actions_dismiss[ $action_key ] = 'hide';
         }
         update_option( 'screenr_actions_dismiss', $actions_dismiss );
-        $url = $_SERVER['REQUEST_URI'];
-        $url = remove_query_arg( 'screenr_action_notice', $url );
-        wp_redirect( $url );
+        $url = remove_query_arg( 'screenr_action_notice', wp_unslash( $_SERVER['REQUEST_URI'] ) );
+        wp_safe_redirect( esc_url_raw( $url ) );
         die();
     }
 }
@@ -261,6 +263,10 @@ function screenr_theme_info_page() {
 
     // Action for copy options
     if ( isset( $_POST['copy_from'] ) && isset( $_POST['copy_to'] ) ) {
+        check_admin_referer( 'screenr_copy_settings' );
+        if ( ! current_user_can( 'edit_theme_options' ) ) {
+            wp_die( esc_html__( 'You are not allowed to do that.', 'screenr' ) );
+        }
         $from = sanitize_text_field( $_POST['copy_from'] );
         $to = sanitize_text_field( $_POST['copy_to'] );
         if ( $from && $to ) {
@@ -359,7 +365,8 @@ function screenr_theme_info_page() {
                 <?php if ( is_child_theme() ){
                     $child_theme = wp_get_theme();
                     ?>
-                    <form method="post" action="<?php echo esc_attr( $current_action_link ); ?>" class="demo-import-boxed copy-settings-form">
+                    <form method="post" action="<?php echo esc_url( $current_action_link ); ?>" class="demo-import-boxed copy-settings-form">
+                        <?php wp_nonce_field( 'screenr_copy_settings' ); ?>
                         <p>
                             <strong> <?php printf( esc_html__(  'You\'re using %1$s theme, It\'s a child theme of Screenr', 'screenr' ) ,  $child_theme->Name ); ?></strong>
                         </p>

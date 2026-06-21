@@ -164,6 +164,10 @@ if (!function_exists('screenr_setup')) :
 		 */
 		add_theme_support('editor-styles');
 		add_theme_support('align-wide');
+		// Default block styles for core blocks on the front end.
+		add_theme_support('wp-block-styles');
+		// Make embedded content (videos, tweets, etc.) responsive.
+		add_theme_support('responsive-embeds');
 
 		// Disables the block editor from managing widgets in the Gutenberg plugin.
 		add_filter('gutenberg_use_widgets_block_editor', '__return_false');
@@ -271,12 +275,57 @@ add_action('widgets_init', 'screenr_widgets_init');
  */
 function screenr_editor_styles()
 {
+	// Typography, colours, spacing and layout for the block editor come from
+	// theme.json, so the editor preview matches the front end. The legacy
+	// classic-editor stylesheet is intentionally NOT loaded here because its
+	// normalize rules and line-height conflicted with theme.json. We only load
+	// the same web fonts into the editor canvas so text renders identically.
 	$font_url = screenr_fonts_url();
 	if ($font_url) {
-		add_editor_style(array('assets/css/editor-style.css', $font_url));
+		add_editor_style($font_url);
 	}
 }
 add_action('after_setup_theme', 'screenr_editor_styles');
+
+/**
+ * Block editor settings (colour palette, font sizes, layout) are declared in
+ * theme.json — the WordPress 6.x/7.0 way. This filter injects the customizer
+ * "Primary color" into the theme.json palette so the editor and front-end block
+ * colours stay in sync with the theme option.
+ *
+ * @param WP_Theme_JSON_Data $theme_json Theme JSON data.
+ * @return WP_Theme_JSON_Data
+ */
+function screenr_filter_theme_json_palette($theme_json)
+{
+	$primary = get_theme_mod('primary_color');
+	if (!$primary) {
+		// No override set — keep the default palette from theme.json.
+		return $theme_json;
+	}
+	$primary = '#' . ltrim($primary, '#');
+
+	// theme.json merges presets by slug, so the full palette is supplied with
+	// only the Primary colour swapped for the customizer value.
+	$palette = array(
+		array('name' => 'Primary', 'slug' => 'primary', 'color' => $primary),
+		array('name' => 'Heading', 'slug' => 'heading', 'color' => '#333333'),
+		array('name' => 'Body Text', 'slug' => 'body-text', 'color' => '#777777'),
+		array('name' => 'Light Gray', 'slug' => 'light-gray', 'color' => '#e9e9e9'),
+		array('name' => 'Dark', 'slug' => 'dark', 'color' => '#222222'),
+		array('name' => 'White', 'slug' => 'white', 'color' => '#ffffff'),
+	);
+
+	return $theme_json->update_with(
+		array(
+			'version'  => 3,
+			'settings' => array(
+				'color' => array('palette' => $palette),
+			),
+		)
+	);
+}
+add_filter('wp_theme_json_data_theme', 'screenr_filter_theme_json_palette');
 
 /**
  * Enqueue scripts and styles.
@@ -291,6 +340,8 @@ function screenr_scripts()
 	wp_enqueue_style('screenr-fa-shims', get_template_directory_uri() . '/assets/fontawesome-v6/css/v4-shims.min.css', array(), '6.5.1');
 	wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', false, '4.0.0');
 	wp_enqueue_style('screenr-style', get_template_directory_uri() . '/style.css');
+	// Block editor styles for the front end (palette colours, font sizes, alignment).
+	wp_enqueue_style('screenr-blocks', get_template_directory_uri() . '/assets/css/blocks.css', array('screenr-style'), $version);
 
 	wp_enqueue_script('screenr-plugin', get_template_directory_uri() . '/assets/js/plugins.js', array('jquery'), '4.0.0', true);
 	wp_enqueue_script('bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', array(), '4.0.0', true);

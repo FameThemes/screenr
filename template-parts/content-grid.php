@@ -20,7 +20,7 @@
 	<div class="entry-grid-elements">
 		<?php
 		$category = get_the_category();
-		if ( $category[0] ) {
+		if ( ! empty( $category ) ) {
 			echo '<div class="entry-grid-cate">';
 			echo '<a href="' . esc_url( get_category_link( $category[0]->term_id ) ) . '">' . $category[0]->cat_name . '</a>';
 			echo '</div>';

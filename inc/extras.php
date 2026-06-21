@@ -223,11 +223,17 @@ if ( ! function_exists( 'screenr_get_media_url' ) ) {
 }
 if ( ! function_exists( 'screenr_rgb2hex' ) ) {
 	function screenr_rgb2hex( $rgb ) {
-		return '#' . sprintf( '%02x', $rgb['r'] ) . sprintf( '%02x', $rgb['g'] ) . sprintf( '%02x', $rgb['b'] );
+		$r = isset( $rgb['r'] ) ? $rgb['r'] : 0;
+		$g = isset( $rgb['g'] ) ? $rgb['g'] : 0;
+		$b = isset( $rgb['b'] ) ? $rgb['b'] : 0;
+		return '#' . sprintf( '%02x', $r ) . sprintf( '%02x', $g ) . sprintf( '%02x', $b );
 	}
 }
 
 function screenr_color_alpha_parse( $color_alpha ) {
+	if ( null === $color_alpha || '' === $color_alpha ) {
+		return false;
+	}
 	$s   = str_replace( array( 'rgba', '(', ')', ';' ), '', $color_alpha );
 	$arr = explode( ',', $s );
 	$r   = false;
@@ -527,7 +533,7 @@ function screenr_custom_style() {
 		?>
 	#page-header-cover.swiper-slider .swiper-slide .overlay {
 		background-color: <?php echo screenr_rgb2hex( $c['color'] ); ?>;
-		opacity: <?php echo $c['opacity']; ?>;
+		opacity: <?php echo floatval( $c['opacity'] ); ?>;
 	}
 		<?php
 	}

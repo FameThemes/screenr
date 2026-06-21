@@ -36,6 +36,9 @@ get_header(); ?>
                                 array_unshift( $image_sizes, 'full' );
                                 foreach( $image_sizes as $image_size ) {
                                     $image = wp_get_attachment_image_src( get_the_ID(), $image_size );
+                                    if ( ! $image ) {
+                                        continue;
+                                    }
                                     $name = $image_size . ' (' . $image[1] . 'x' . $image[2] . ')';
                                     $images[] = '<a href="' . $image[0] . '">' . $name . '</a>';
                                 }

@@ -88,10 +88,10 @@ function screenr_posted_on( $echo = true ) {
 
     if ( get_theme_mod( 'show_post_cate', 1 ) ) {
         $category = get_the_category();
-        if ($category[0]) {
+        if ( ! empty( $category ) ) {
             $cat = sprintf(
                 esc_html_x('Category: %s', 'category', 'screenr'),
-                '<a href="' . esc_url(get_category_link($category[0]->term_id)) . '">' . $category[0]->cat_name . '</a>'
+                '<a href="' . esc_url(get_category_link($category[0]->term_id)) . '">' . esc_html($category[0]->cat_name) . '</a>'
             );
         }
     }
@@ -226,9 +226,9 @@ if ( ! function_exists( 'screenr_loop_post_item' ) ) {
 			<div class="entry-grid-elements">
 				<?php
 				$category = get_the_category();
-				if ($category[0]) {
+				if ( ! empty( $category ) ) {
 					echo '<div class="entry-grid-cate">';
-					echo '<a href="' . esc_url( get_category_link( $category[0]->term_id ) ) . '">' . $category[0]->cat_name . '</a>';
+					echo '<a href="' . esc_url( get_category_link( $category[0]->term_id ) ) . '">' . esc_html( $category[0]->cat_name ) . '</a>';
 					echo '</div>';
 				}
 				?>

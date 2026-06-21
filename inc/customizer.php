@@ -3132,6 +3132,9 @@ if ( ! function_exists( 'screenr_sanitize_checkbox' ) ) {
 
 
 function screenr_sanitize_color_alpha( $color ){
+    if ( null === $color || '' === $color ) {
+        return '';
+    }
     $color = str_replace( '#', '', $color );
     if ( '' === $color ){
         return '';
