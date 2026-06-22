@@ -9,13 +9,13 @@ classic theme still needs for blocks rendered inside .entry-content.
 
 /* Content width and wide / full alignment ---------------------------------- */
 .entry-content > * {
-	max-width: 790px;
+	max-width: var(--wp--style--global--content-size, 1110px);
 	margin-left: auto;
 	margin-right: auto;
 }
 
 .entry-content > .alignwide {
-	max-width: 1080px;
+	max-width: var(--wp--style--global--wide-size, 1230px);
 }
 
 .entry-content > .alignfull {

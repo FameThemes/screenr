@@ -1,4 +1,7 @@
 == Changelog ==
+= 1.2.10 =
+* IMPROVE: Block editor content/wide widths increased (content 1110px, wide 1230px); block front-end styles now derive these from theme.json instead of hard-coded values.
+
 = 1.2.9 =
 * NEW: Video Lightbox section now supports a self-hosted video (MP4) or an image as the lightbox source, in addition to a YouTube/Vimeo URL.
 * NEW: Icon fields now include an "SVG Code" option in the icon picker — paste inline SVG to use instead of a font icon (sanitized on output).
