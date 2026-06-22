@@ -1,4 +1,10 @@
 == Changelog ==
+= 1.2.8 =
+* NEW: Block editor support via theme.json (color palette, font sizes, content/wide layout) so the editor matches the front end.
+* SECURITY: Escaped category names and page-header overlay output; added nonce and capability checks to the dashboard settings-copy and notice-dismiss actions.
+* FIX: PHP 8.x compatibility issues.
+* Tested up to WordPress 7.0; minimum raised to WordPress 6.0 / PHP 7.4.
+
 = 1.2.7 =
 * Test and updated theme to compatible with WP 6.9.3
 
