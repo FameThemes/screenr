@@ -41,8 +41,9 @@ $classes    = 'section-contact section-padding onepage-section section-meta';
 							);
 							?>
 							<li class="contact-detail">
-								<?php if ( $item['icon'] ) {
-									?><span class="contact-icon"><i aria-hidden="true" class="<?php echo esc_attr( $item['icon'] ); ?> fa-2x"></i></span><?php } ?>
+								<?php $item_icon = screenr_render_item_icon( $item, 'fa-2x' );
+								if ( $item_icon ) {
+									?><span class="contact-icon"><?php echo $item_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- sanitized in screenr_render_item_icon(). ?></span><?php } ?>
 								<?php if ( $item['url'] ) {
 									?><a href="<?php echo antispambot( $item['url'] ); ?>"><?php } ?>
 									<span class="contact-detail-value"><?php echo esc_html( $item['title'] ); ?></span>

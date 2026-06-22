@@ -903,6 +903,13 @@ jQuery( document ).ready( function( $ ) {
         icon_group += '</div>';
 
     } );
+    // Add an "SVG Code" option to the icon picker.
+    options_font_type += '<option value="__svg__">' + ( C_Icon_Picker.svg_label || 'SVG Code' ) + '</option>';
+    icon_group += '<div class="ic-icons-group ic-svg-group" style="display: none;" data-group-name="__svg__">'
+        + '<textarea class="c-icon-svg-input" rows="6" placeholder="' + ( C_Icon_Picker.svg_placeholder || 'Paste your SVG code here…' ) + '"></textarea>'
+        + '<p><button type="button" class="button button-primary c-icon-svg-apply">' + ( C_Icon_Picker.svg_apply || 'Apply SVG' ) + '</button></p>'
+        + '</div>';
+
     icon_picker.find( '.c-icon-search input' ).attr( 'placeholder', C_Icon_Picker.search );
     icon_picker.find( '.c-icon-type' ).html( options_font_type );
     icon_picker.find( '.c-icon-list' ).append( icon_group );
@@ -914,6 +921,13 @@ jQuery( document ).ready( function( $ ) {
         icon_picker.find( '.ic-icons-group' ).hide();
         icon_picker.find( '.ic-icons-group[data-group-name="'+t+'"]' ).show();
 
+        if ( t === '__svg__' ) {
+            icon_picker.find( '.c-icon-search' ).hide();
+            var cur = window.editing_icon ? window.editing_icon.find( 'input' ).val() : '';
+            icon_picker.find( '.c-icon-svg-input' ).val( ( cur && cur.indexOf( '<svg' ) !== -1 ) ? cur : '' );
+        } else {
+            icon_picker.find( '.c-icon-search' ).show();
+        }
     } );
     icon_picker.find( 'select.c-icon-type' ).trigger( 'change' );
 
@@ -940,6 +954,15 @@ jQuery( document ).ready( function( $ ) {
         icon_picker.addClass( 'ic-active' );
         $( 'body' ).find( '.icon-wrapper' ).removeClass('icon-editing');
         icon.addClass( 'icon-editing' );
+
+        // Open in SVG mode when the stored value is SVG markup.
+        var cur = icon.find( 'input' ).val();
+        var type_select = icon_picker.find( 'select.c-icon-type' );
+        if ( cur && cur.indexOf( '<svg' ) !== -1 ) {
+            type_select.val( '__svg__' ).trigger( 'change' );
+        } else if ( type_select.val() === '__svg__' ) {
+            type_select.val( type_select.find( 'option' ).not( '[value="__svg__"]' ).first().val() ).trigger( 'change' );
+        }
     } );
     // Remove icon
     $( 'body' ).on( 'click', '.item-icon .remove-icon', function( e ){
@@ -951,13 +974,32 @@ jQuery( document ).ready( function( $ ) {
         $( 'body' ).find( '.icon-wrapper' ).removeClass('icon-editing');
     } );
 
-    // Selected icon
+    // Selected icon (font)
     $( 'body' ).on( 'click', '.c-icon-list span', function( e ){
         e.preventDefault();
         var icon_name =  $( this ).attr( 'data-name' ) || '';
         if ( window.editing_icon ) {
-            window.editing_icon.find( 'i' ).attr( 'class', '' ).addClass( $( this ).find( 'i' ).attr( 'class' ) );
+            window.editing_icon.find( '.icon-wrapper-svg-preview' ).remove();
+            window.editing_icon.find( 'i' ).show().attr( 'class', '' ).addClass( $( this ).find( 'i' ).attr( 'class' ) );
             window.editing_icon.find( 'input' ).val( icon_name ).trigger( 'change' );
+        }
+        icon_picker.removeClass( 'ic-active' );
+        window.editing_icon = false;
+        $( 'body' ).find( '.icon-wrapper' ).removeClass('icon-editing');
+    } );
+
+    // Apply SVG code from the picker
+    $( 'body' ).on( 'click', '.c-icon-svg-apply', function( e ){
+        e.preventDefault();
+        var svg = $.trim( icon_picker.find( '.c-icon-svg-input' ).val() );
+        if ( window.editing_icon ) {
+            window.editing_icon.find( 'input' ).val( svg ).trigger( 'change' );
+            window.editing_icon.find( 'i' ).hide().attr( 'class', '' );
+            var prev = window.editing_icon.find( '.icon-wrapper-svg-preview' );
+            if ( ! prev.length ) {
+                prev = $( '<span class="icon-wrapper-svg-preview"></span>' ).appendTo( window.editing_icon );
+            }
+            prev.html( svg );
         }
         icon_picker.removeClass( 'ic-active' );
         window.editing_icon = false;

@@ -230,6 +230,94 @@ if ( ! function_exists( 'screenr_rgb2hex' ) ) {
 	}
 }
 
+if ( ! function_exists( 'screenr_sanitize_svg' ) ) {
+	/**
+	 * Sanitize inline SVG markup for safe output.
+	 *
+	 * Allows a safe subset of SVG tags/attributes via wp_kses and strips
+	 * anything dangerous (script, event handlers, foreignObject, etc.).
+	 *
+	 * @param string $svg Raw SVG markup.
+	 * @return string Sanitized SVG (empty string if nothing safe remains).
+	 */
+	function screenr_sanitize_svg( $svg ) {
+		$svg = (string) $svg;
+		if ( '' === trim( $svg ) ) {
+			return '';
+		}
+
+		$common = array(
+			'fill'         => true,
+			'fill-rule'    => true,
+			'fill-opacity' => true,
+			'stroke'       => true,
+			'stroke-width' => true,
+			'stroke-linecap'  => true,
+			'stroke-linejoin' => true,
+			'stroke-opacity'  => true,
+			'opacity'      => true,
+			'transform'    => true,
+			'class'        => true,
+			'style'        => true,
+		);
+
+		$allowed = array(
+			'svg'            => array_merge( $common, array( 'xmlns' => true, 'xmlns:xlink' => true, 'viewbox' => true, 'width' => true, 'height' => true, 'aria-hidden' => true, 'role' => true, 'focusable' => true, 'preserveaspectratio' => true ) ),
+			'g'              => array_merge( $common, array( 'id' => true ) ),
+			'title'          => array(),
+			'desc'           => array(),
+			'defs'           => array(),
+			'path'           => array_merge( $common, array( 'd' => true, 'clip-rule' => true ) ),
+			'circle'         => array_merge( $common, array( 'cx' => true, 'cy' => true, 'r' => true ) ),
+			'ellipse'        => array_merge( $common, array( 'cx' => true, 'cy' => true, 'rx' => true, 'ry' => true ) ),
+			'rect'           => array_merge( $common, array( 'x' => true, 'y' => true, 'width' => true, 'height' => true, 'rx' => true, 'ry' => true ) ),
+			'line'           => array_merge( $common, array( 'x1' => true, 'y1' => true, 'x2' => true, 'y2' => true ) ),
+			'polyline'       => array_merge( $common, array( 'points' => true ) ),
+			'polygon'        => array_merge( $common, array( 'points' => true ) ),
+			'use'            => array_merge( $common, array( 'href' => true, 'xlink:href' => true, 'x' => true, 'y' => true, 'width' => true, 'height' => true ) ),
+			'lineargradient' => array( 'id' => true, 'x1' => true, 'y1' => true, 'x2' => true, 'y2' => true, 'gradientunits' => true, 'gradienttransform' => true ),
+			'radialgradient' => array( 'id' => true, 'cx' => true, 'cy' => true, 'r' => true, 'fx' => true, 'fy' => true, 'gradientunits' => true ),
+			'stop'           => array( 'offset' => true, 'stop-color' => true, 'stop-opacity' => true ),
+			'clippath'       => array( 'id' => true ),
+		);
+
+		return wp_kses( $svg, $allowed );
+	}
+}
+
+if ( ! function_exists( 'screenr_render_item_icon' ) ) {
+	/**
+	 * Render a repeater item's icon: inline SVG code when provided, otherwise the
+	 * font (FontAwesome) icon. Output is sanitized.
+	 *
+	 * @param array  $item       Repeater item ( may contain 'icon', 'svg', 'thumb_type' ).
+	 * @param string $size_class Extra class for sizing (e.g. 'fa-3x').
+	 * @return string
+	 */
+	function screenr_render_item_icon( $item, $size_class = '' ) {
+		$type = isset( $item['thumb_type'] ) ? $item['thumb_type'] : '';
+		$svg  = ! empty( $item['svg'] ) ? trim( $item['svg'] ) : '';
+		$icon = ! empty( $item['icon'] ) ? trim( $item['icon'] ) : '';
+
+		// SVG can come from a dedicated 'svg' field (thumb_type=svg) or directly
+		// from the icon value when chosen via the icon picker's "SVG Code" option.
+		$icon_is_svg = ( '' !== $icon && false !== stripos( $icon, '<svg' ) );
+		if ( $icon_is_svg && '' === $svg ) {
+			$svg = $icon;
+		}
+
+		$use_svg = ( 'svg' === $type ) || $icon_is_svg || ( '' === $type && '' !== $svg );
+
+		if ( $use_svg && '' !== $svg ) {
+			return '<span class="screenr-svg-icon ' . esc_attr( trim( $size_class ) ) . '">' . screenr_sanitize_svg( $svg ) . '</span>';
+		}
+		if ( '' !== $icon && ! $icon_is_svg && 'svg' !== $type ) {
+			return '<i aria-hidden="true" class="' . esc_attr( trim( $icon . ' ' . $size_class ) ) . '"></i>';
+		}
+		return '';
+	}
+}
+
 function screenr_color_alpha_parse( $color_alpha ) {
 	if ( null === $color_alpha || '' === $color_alpha ) {
 		return false;

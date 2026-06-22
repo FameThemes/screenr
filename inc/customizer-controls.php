@@ -607,7 +607,12 @@ class Screenr_Customize_Repeatable_Control extends WP_Customize_Control {
 
                                         <# }  else if ( field.type == 'icon'  ) { #>
                                             <div class="icon-wrapper">
-                                                <i class="fa fa-{{ field.value }}"></i>
+                                                <# if ( field.value && field.value.indexOf( '<svg' ) !== -1 ) { #>
+                                                    <span class="icon-wrapper-svg-preview">{{{ field.value }}}</span>
+                                                    <i class="fa fa-{{ field.value }}" style="display:none;"></i>
+                                                <# } else { #>
+                                                    <i class="fa fa-{{ field.value }}"></i>
+                                                <# } #>
                                                 <input data-live-id="{{ field.id }}" type="hidden" value="{{ field.value }}" data-repeat-name="_items[__i__][{{ field.id }}]" class="">
                                             </div>
                                             <a href="#" class="remove-icon"><?php esc_html_e( 'Remove', 'screenr' ); ?></a>

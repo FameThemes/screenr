@@ -72,16 +72,11 @@ if ( ! screenr_is_selective_refresh() ) {
 					<?php
 					switch ( $item['thumb_type'] ) {
 						case 'icon':
-							if ( $item['icon'] ) {
-								echo '<div class="features__item-media icon">';
-								echo '<i class="' . esc_attr( $item['icon'] ) . ' fa-7x"></i>';
-								echo '</div>';
-							}
-							break;
 						case 'svg':
-							echo '<div class="features__item-media icon">';
-							echo force_balance_tags( $item['svg'] );
-							echo '</div>';
+							$icon_html = screenr_render_item_icon( $item, 'fa-7x' );
+							if ( $icon_html ) {
+								echo '<div class="features__item-media icon">' . $icon_html . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- sanitized in screenr_render_item_icon().
+							}
 							break;
 						default:
 							echo '<div class="features__item-media">';

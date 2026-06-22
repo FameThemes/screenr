@@ -1,4 +1,8 @@
 == Changelog ==
+= 1.2.9 =
+* NEW: Video Lightbox section now supports a self-hosted video (MP4) or an image as the lightbox source, in addition to a YouTube/Vimeo URL.
+* NEW: Icon fields now include an "SVG Code" option in the icon picker — paste inline SVG to use instead of a font icon (sanitized on output).
+
 = 1.2.8 =
 * NEW: Block editor support via theme.json (color palette, font sizes, content/wide layout) so the editor matches the front end.
 * SECURITY: Escaped category names and page-header overlay output; added nonce and capability checks to the dashboard settings-copy and notice-dismiss actions.

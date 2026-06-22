@@ -86,9 +86,9 @@ $classes = 'section-services section-padding-lg section-meta screenr-section';
 
 											<div class="card-text"><?php the_excerpt(); ?></div>
 										</div>
-										<?php if ( $item['icon'] ) { ?>
+										<?php $item_icon = screenr_render_item_icon( $item, 'fa-3x' ); if ( $item_icon ) { ?>
 											<div class="service-card-icon">
-												<i class="<?php echo esc_attr( $item['icon'] ); ?> fa-3x" aria-hidden="true"></i>
+												<?php echo $item_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- sanitized in screenr_render_item_icon(). ?>
 											</div>
 										<?php } ?>
 										<?php if ( $item['readmore'] ) {

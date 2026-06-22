@@ -59,8 +59,8 @@ if ( ! screenr_is_selective_refresh() ) {
 											<span class="after-number"><?php echo esc_html( $item['after_number'] ); ?></span>
 										<?php } ?>
 									</div>
-									<?php if ( $item['icon'] ) { ?>
-										<i class="<?php echo esc_attr( $item['icon'] ); ?> fa-3x"></i>
+									<?php $item_icon = screenr_render_item_icon( $item, 'fa-3x' ); if ( $item_icon ) { ?>
+										<?php echo $item_icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- sanitized in screenr_render_item_icon(). ?>
 									<?php } ?>
 
 								</div>

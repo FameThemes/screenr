@@ -1670,6 +1670,46 @@ function screenr_customize_register( $wp_customize ) {
         )
     );
 
+    // LightBox Self-hosted Video (MP4)
+    $wp_customize->add_setting( 'videolightbox_hosted_video',
+        array(
+            'sanitize_callback' => 'absint',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control(
+        new WP_Customize_Media_Control(
+            $wp_customize,
+            'videolightbox_hosted_video',
+            array(
+                'label'       => esc_html__( 'Self-hosted Video (MP4):', 'screenr' ),
+                'description' => esc_html__( 'Upload a video file to play in the lightbox. Takes priority over the Video URL above.', 'screenr' ),
+                'section'     => 'section_videolightbox',
+                'mime_type'   => 'video',
+            )
+        )
+    );
+
+    // LightBox Image
+    $wp_customize->add_setting( 'videolightbox_image',
+        array(
+            'sanitize_callback' => 'absint',
+            'default'           => '',
+        )
+    );
+    $wp_customize->add_control(
+        new WP_Customize_Media_Control(
+            $wp_customize,
+            'videolightbox_image',
+            array(
+                'label'       => esc_html__( 'Image:', 'screenr' ),
+                'description' => esc_html__( 'Open an image in the lightbox. Used when no video is set.', 'screenr' ),
+                'section'     => 'section_videolightbox',
+                'mime_type'   => 'image',
+            )
+        )
+    );
+
     // LightBox Image Parallax
     $wp_customize->add_setting( 'videolightbox_parallax_img',
         array(
