@@ -1,0 +1,13 @@
+/*--------------------------------------------------------------
+Repeater SVG icons (used when an item provides SVG code instead of a font icon)
+--------------------------------------------------------------*/
+.screenr-svg-icon {
+	display: inline-block;
+	line-height: 0;
+	vertical-align: middle;
+}
+.screenr-svg-icon svg {
+	width: 1em;
+	height: 1em;
+	fill: currentColor;
+}
