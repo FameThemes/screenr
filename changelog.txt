@@ -1,4 +1,7 @@
 == Changelog ==
+= 1.2.11 =
+* SECURITY: Hardened the Google Fonts downloader.
+
 = 1.2.10 =
 * IMPROVE: Block editor content/wide widths increased (content 1110px, wide 1230px); block front-end styles now derive these from theme.json instead of hard-coded values.
 

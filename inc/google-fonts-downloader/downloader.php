@@ -75,7 +75,13 @@ function download_google_fonts($font_link)
 
 	$check_url = parse_url($font_link);
 	// Make sure the link must from google font.
-	if (!in_array($check_url['host'], ['fonts.gstatic.com', 'fonts.googleapis.com'])) {
+	// Enforce HTTPS and an exact host match to prevent SSRF / host bypass via
+	// crafted URLs like "https://fonts.gstatic.com/http://attacker/evil.php".
+	if (
+		empty($check_url['host'])
+		|| !in_array($check_url['scheme'], ['http', 'https'], true)
+		|| !in_array($check_url['host'], ['fonts.gstatic.com', 'fonts.googleapis.com'], true)
+	) {
 		return $font_link;
 	}
 	
@@ -136,6 +142,22 @@ function download_google_fonts($font_link)
 	$fs = get_file_system();
 	wp_mkdir_p($dir . '/fonts');
 
+	// Defense in depth: ensure no script in this upload directory can ever be
+	// executed by the web server, even if a malicious file were written here.
+	$htaccess_path = WP_CONTENT_DIR . '/uploads/google-fonts/.htaccess';
+	if (!file_exists($htaccess_path)) {
+		$htaccess_rules = "# Deny direct access to any executable script.\n"
+			. "<FilesMatch \"\\.(php|php3|php4|php5|php7|php8|phtml|phar|pl|py|cgi|asp|aspx|sh)$\">\n"
+			. "\tRequire all denied\n"
+			. "</FilesMatch>\n"
+			. "<IfModule !mod_authz_core.c>\n"
+			. "\tOrder Allow,Deny\n"
+			. "\tDeny from all\n"
+			. "</IfModule>\n"
+			. "php_flag engine off\n";
+		$fs->put_contents($htaccess_path, $htaccess_rules);
+	}
+
 	$user_agents = array(
 		'eot'   => 'Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0; GTB7.4; InfoPath.2; SV1; .NET CLR 3.3.69573; WOW64; en-US)',
 		'ttf'   => 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; de-at) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1',
@@ -170,7 +192,17 @@ function download_google_fonts($font_link)
 
 		$urls = $match[0];
 		if (is_dir($dir)) {
+			// Only these font file extensions may ever be written to disk.
+			$allowed_extensions = ['woff2', 'woff', 'ttf', 'eot', 'svg'];
 			foreach ($urls as $file_url) {
+				// The CSS from Google only ever references font files hosted on
+				// fonts.gstatic.com. Reject anything else so a tampered/MITM
+				// response cannot make us fetch and store an arbitrary file.
+				$file_host = wp_parse_url($file_url, PHP_URL_HOST);
+				if ('fonts.gstatic.com' !== $file_host) {
+					continue;
+				}
+
 				if (strpos($file_url, 'l/font?kit=') && strpos($file_url, '#')) {
 					$pathinfo = wp_parse_url($file_url);
 					$args = wp_parse_args($pathinfo['query'], ['v' => '', 'kit' => '']);
@@ -181,6 +213,21 @@ function download_google_fonts($font_link)
 					$name = str_replace(['http://fonts.gstatic.com/s/', 'https://fonts.gstatic.com/s/'], '', $pathinfo['dirname']);
 					$name = str_replace('/', '-', $name) . '-' . $pathinfo['basename'];
 				}
+
+				// Never trust the extension derived from the URL. Force the saved
+				// extension to an allow-listed font type, and sanitize the name so
+				// no path traversal or executable extension can slip through.
+				$ext = strtolower(pathinfo($name, PATHINFO_EXTENSION));
+				if (!in_array($ext, $allowed_extensions, true)) {
+					continue;
+				}
+				$safe_name = sanitize_file_name(str_replace('/', '-', $name));
+				// Guarantee the final name keeps only the validated font extension.
+				$safe_name = preg_replace('/\.[^.]+$/', '', $safe_name) . '.' . $ext;
+				if ('' === $safe_name || '.' . $ext === $safe_name) {
+					continue;
+				}
+				$name = $safe_name;
 
 				$name = 'fonts/' . $name;
 
@@ -232,8 +279,13 @@ function ajax_download_google_fonts()
 function ajax_change_js_font_url()
 {
 	$url = isset($_POST['url']) ? sanitize_text_field($_POST['url']) : false;
-	$verify  = wp_verify_nonce($_POST['nonce'], get_stylesheet() . '_change_js_font_url');
-	if (!$verify) {
+	$nonce = isset($_POST['nonce']) ? $_POST['nonce'] : '';
+	$verify  = wp_verify_nonce($nonce, get_stylesheet() . '_change_js_font_url');
+
+	// Require a valid nonce AND the capability to manage theme options. This
+	// endpoint only exists to localize Google Fonts, which is an admin-side
+	// optimisation; it must never be reachable by unauthenticated visitors.
+	if (!$verify || !current_user_can('edit_theme_options')) {
 		wp_send_json([
 			'url' => $url,
 			'success' => false,
@@ -252,7 +304,6 @@ function ajax_change_js_font_url()
 }
 add_action('wp_ajax_' . get_stylesheet() . '_download_google_fonts', __NAMESPACE__ . '\ajax_download_google_fonts');
 add_action('wp_ajax_' . get_stylesheet() . '_change_js_font_url', __NAMESPACE__ . '\ajax_change_js_font_url');
-add_action('wp_ajax_nopriv_' . get_stylesheet() . '_change_js_font_url', __NAMESPACE__ . '\ajax_change_js_font_url');
 
 
 
@@ -268,6 +319,13 @@ function maybe_change_download_from_js_append()
 
 	$settings = get_download_settings();
 	if (!$settings['download']) {
+		return;
+	}
+
+	// The JS localizer calls an authenticated, capability-gated endpoint, so
+	// only emit it (and its nonce) for users who can manage theme options.
+	// This prevents the nonce from being exposed to anonymous visitors.
+	if (!current_user_can('edit_theme_options')) {
 		return;
 	}
 ?>
